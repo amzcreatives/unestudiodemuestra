@@ -98,6 +98,8 @@ button,input,textarea{font:inherit}
 .acts{display:flex;gap:8px;flex-wrap:wrap}
 .acts button{display:inline-flex;align-items:center;gap:7px;background:transparent;color:#C9D0DA;border:1px solid var(--rule);border-radius:10px;padding:8px 12px;font-size:13px;cursor:pointer}
 .acts button:hover{border-color:var(--soft)}
+.rv{opacity:0;transform:translateY(6px);animation:rv .45s ease-out forwards}
+@keyframes rv{to{opacity:1;transform:none}}
 .badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;border:1px solid #3A4458;border-radius:999px;padding:6px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:#C9D0DA}
 .badge i{width:8px;height:8px;border-radius:50%;background:var(--dim)}
 .dots{display:inline-flex;gap:5px;align-items:center;height:24px}
@@ -208,24 +210,110 @@ const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-/* ---------- CiCi (versión C): la hoja del logo con ojos de punto y el subrayador como sonrisa ---------- */
-function cici(size, mood){
-  const h = Math.round(size * 140 / 120);
-  const face = {
-    idle: '<circle cx="46" cy="56" r="4.8" fill="#141A24"/><circle cx="74" cy="56" r="4.8" fill="#141A24"/><rect x="47" y="68" width="26" height="7" rx="1.5" fill="#F4E35A"/>',
-    think: '<circle cx="49" cy="51" r="4.8" fill="#141A24"/><circle cx="77" cy="51" r="4.8" fill="#141A24"/><rect x="54" y="69" width="13" height="6" rx="1.5" fill="#F4E35A"/>'
-      + '<circle cx="66" cy="90" r="2.5" fill="#F4E35A"><animate attributeName="opacity" values="0.15;0.6;0.15" dur="1.4s" repeatCount="indefinite"/></circle>'
-      + '<circle cx="78" cy="80" r="3.5" fill="#F4E35A"><animate attributeName="opacity" values="0.15;0.8;0.15" dur="1.4s" begin="0.25s" repeatCount="indefinite"/></circle>'
-      + '<circle cx="90" cy="68" r="4.5" fill="#F4E35A"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.4s" begin="0.5s" repeatCount="indefinite"/></circle>',
-    answer: '<path d="M40 58 Q46 50 52 58 M68 58 Q74 50 80 58" stroke="#141A24" stroke-width="4.2" stroke-linecap="round" fill="none"/><path d="M46 69 Q60 79 74 69" stroke="#F4E35A" stroke-width="7" stroke-linecap="round" fill="none"/>',
-    none: '<circle cx="46" cy="57" r="4.8" fill="#141A24"/><circle cx="74" cy="57" r="4.8" fill="#141A24"/><rect x="50" y="71" width="20" height="5" rx="1.5" fill="#D9DDE3"/>'
-  }[mood] || '';
-  const badge = mood === 'none'
-    ? '<circle cx="98" cy="17" r="12" fill="#141A24" stroke="#5B6472" stroke-width="2"/><text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#A3ACBB">?</text>'
-    : (mood === 'answer' ? '<circle cx="98" cy="17" r="18" fill="#F4E35A" opacity="0.28"><animate attributeName="r" values="15;21;15" dur="1.6s" repeatCount="indefinite"/></circle>' : '')
-      + '<circle cx="98" cy="17" r="13" fill="#F4E35A"/><text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#141A24">1</text>';
-  return `<svg width="${size}" height="${h}" viewBox="0 0 120 140" aria-hidden="true" style="flex:none;display:block"><ellipse cx="60" cy="134" rx="32" ry="4" fill="#000" opacity="0.28"/><path d="M30 14 H78 L98 34 V120 Q98 128 90 128 H30 Q22 128 22 120 V22 Q22 14 30 14 Z" fill="#F6F7F4"/><path d="M78 14 V28 Q78 34 84 34 H98 Z" fill="#D9DDE3"/><path d="M34 100 H86 M34 108 H78 M34 116 H68" stroke="#D9DDE3" stroke-width="3" stroke-linecap="round" fill="none"/>${face}${badge}</svg>`;
-}
+/* ---------- CiCi animada (archivo compartido cici-mascota.js) ---------- */
+/* ===== CiCi · mascota animada (versión C) =====
+   CiciMascota.svg(size, mood) → HTML de la mascota.
+   CiciMascota.mood(el, mood)   → cambia el estado de una o varias mascotas.
+   Estados: idle (reposo), listen (te escucha mientras escribes), think (piensa), talk (escribe la respuesta),
+            answer (contenta al terminar), none (sin evidencia).
+   En reposo parpadea, flota, mira de vez en cuando a los lados y sigue el cursor con los ojos. */
+(function(){
+  const css = `
+.cici{overflow:visible;display:block;flex:none}
+.cici .cc-body{animation:cc-float 4.2s ease-in-out infinite;transform-origin:60px 128px}
+@keyframes cc-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+.cici .cc-eyes{transform:translate(var(--gx,0px),var(--gy,0px));transition:transform .28s cubic-bezier(.3,.7,.3,1)}
+.cici .cc-eye{transform-box:fill-box;transform-origin:center;animation:cc-blink 5.2s infinite}
+.cici .cc-eye.r{animation-delay:.04s}
+@keyframes cc-blink{0%,93%,100%{transform:scaleY(1)}95.5%{transform:scaleY(.12)}}
+.cici .cc-mouth{transform-box:fill-box;transform-origin:center;transition:transform .25s}
+.cici .cc-happy,.cici .cc-smile,.cici .cc-flat,.cici .cc-dots,.cici .cc-glow,.cici .cc-bq{display:none}
+.cici .cc-badge{transform-box:fill-box;transform-origin:center}
+/* te escucha mientras escribes: mira hacia abajo, boca pequeña, la nota al pie asiente */
+.cici[data-mood=listen] .cc-eyes{transform:translate(-2px,4px)}
+.cici[data-mood=listen] .cc-mouth{transform:scaleX(.55)}
+.cici[data-mood=listen] .cc-badge{animation:cc-nod .9s ease-in-out infinite}
+@keyframes cc-nod{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+/* piensa: mira arriba, los datos suben, se balancea */
+.cici[data-mood=think] .cc-eyes{transform:translate(3px,-5px)}
+.cici[data-mood=think] .cc-mouth{transform:scaleX(.45) translateX(8px)}
+.cici[data-mood=think] .cc-dots{display:inline}
+.cici[data-mood=think] .cc-body{animation:cc-wobble 1.6s ease-in-out infinite}
+@keyframes cc-wobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.cici .cc-dots circle{animation:cc-rise 1.4s ease-in-out infinite;transform-box:fill-box}
+.cici .cc-dots circle:nth-child(2){animation-delay:.22s}.cici .cc-dots circle:nth-child(3){animation-delay:.44s}
+@keyframes cc-rise{0%{opacity:0;transform:translateY(6px)}50%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+/* escribe la respuesta: la boca (el subrayador) se mueve y el «1» brilla */
+.cici[data-mood=talk] .cc-mouth{animation:cc-talk .32s ease-in-out infinite alternate}
+@keyframes cc-talk{from{transform:scaleX(.55) scaleY(1)}to{transform:scaleX(1.05) scaleY(1.5)}}
+.cici[data-mood=talk] .cc-glow,.cici[data-mood=answer] .cc-glow{display:inline}
+.cici .cc-glow{animation:cc-pulse 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes cc-pulse{0%,100%{transform:scale(.8);opacity:.15}50%{transform:scale(1.15);opacity:.4}}
+/* contenta al terminar */
+.cici[data-mood=answer] .cc-eyes,.cici[data-mood=answer] .cc-mouth{display:none}
+.cici[data-mood=answer] .cc-happy,.cici[data-mood=answer] .cc-smile{display:inline}
+.cici[data-mood=answer] .cc-body{animation:cc-hop .5s ease-out 1}
+@keyframes cc-hop{0%{transform:translateY(0)}40%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+/* sin evidencia: mira abajo, boca gris, el «1» pasa a «?» */
+.cici[data-mood=none] .cc-eyes{transform:translate(0,3px)}
+.cici[data-mood=none] .cc-mouth{display:none}
+.cici[data-mood=none] .cc-flat,.cici[data-mood=none] .cc-bq{display:inline}
+.cici[data-mood=none] .cc-b1{display:none}
+@media (prefers-reduced-motion:reduce){.cici *{animation:none!important;transition:none!important}}
+`;
+  if (!document.getElementById('cc-style')){ const st = document.createElement('style'); st.id = 'cc-style'; st.textContent = css; document.head.appendChild(st); }
+
+  function svg(size, mood, label){
+    const h = Math.round(size * 140 / 120);
+    return `<svg class="cici" data-mood="${mood || 'idle'}" width="${size}" height="${h}" viewBox="0 0 120 140" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>
+<ellipse cx="60" cy="134" rx="32" ry="4" fill="#000" opacity="0.28"/>
+<g class="cc-body">
+<path d="M30 14 H78 L98 34 V120 Q98 128 90 128 H30 Q22 128 22 120 V22 Q22 14 30 14 Z" fill="#F6F7F4"/>
+<path d="M78 14 V28 Q78 34 84 34 H98 Z" fill="#D9DDE3"/>
+<path d="M34 100 H86 M34 108 H78 M34 116 H68" stroke="#D9DDE3" stroke-width="3" stroke-linecap="round" fill="none"/>
+<g class="cc-dots"><circle cx="66" cy="90" r="2.5" fill="#F4E35A"/><circle cx="78" cy="80" r="3.5" fill="#F4E35A"/><circle cx="90" cy="68" r="4.5" fill="#F4E35A"/></g>
+<g class="cc-eyes"><circle class="cc-eye l" cx="46" cy="56" r="4.8" fill="#141A24"/><circle class="cc-eye r" cx="74" cy="56" r="4.8" fill="#141A24"/></g>
+<path class="cc-happy" d="M40 58 Q46 50 52 58 M68 58 Q74 50 80 58" stroke="#141A24" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+<rect class="cc-mouth" x="47" y="68" width="26" height="7" rx="1.5" fill="#F4E35A"/>
+<path class="cc-smile" d="M46 69 Q60 79 74 69" stroke="#F4E35A" stroke-width="7" stroke-linecap="round" fill="none"/>
+<rect class="cc-flat" x="50" y="71" width="20" height="5" rx="1.5" fill="#D9DDE3"/>
+<circle class="cc-glow" cx="98" cy="17" r="19" fill="#F4E35A"/>
+<g class="cc-badge"><g class="cc-b1"><circle cx="98" cy="17" r="13" fill="#F4E35A"/><text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#141A24">1</text></g>
+<g class="cc-bq"><circle cx="98" cy="17" r="12" fill="#141A24" stroke="#5B6472" stroke-width="2"/><text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#A3ACBB">?</text></g></g>
+</g></svg>`;
+  }
+  function mood(target, m){
+    const els = typeof target === 'string' ? document.querySelectorAll(target) : (target instanceof Element ? [target] : target);
+    (els || []).forEach(el => { const s = el.matches && el.matches('svg.cici') ? el : el.querySelector && el.querySelector('svg.cici'); if (s) s.setAttribute('data-mood', m); });
+  }
+  /* los ojos siguen el cursor (solo en reposo) */
+  let raf = null, px = 0, py = 0;
+  window.addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; if (!raf) raf = requestAnimationFrame(gaze); }, { passive: true });
+  function gaze(){
+    raf = null;
+    document.querySelectorAll('svg.cici[data-mood=idle]').forEach(s => {
+      const r = s.getBoundingClientRect(); if (!r.width) return;
+      const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height * 0.4);
+      const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 260);
+      s.style.setProperty('--gx', (dx / d * 3.2 * k).toFixed(2) + 'px');
+      s.style.setProperty('--gy', (dy / d * 3.2 * k).toFixed(2) + 'px');
+    });
+  }
+  /* de vez en cuando mira a un lado (si el cursor está quieto) */
+  let lastMove = Date.now();
+  window.addEventListener('pointermove', () => { lastMove = Date.now(); }, { passive: true });
+  setInterval(() => {
+    if (Date.now() - lastMove < 4000) return;
+    document.querySelectorAll('svg.cici[data-mood=idle]').forEach(s => {
+      const side = Math.random() < 0.5 ? -1 : 1;
+      s.style.setProperty('--gx', (side * 3) + 'px'); s.style.setProperty('--gy', '0px');
+      setTimeout(() => { s.style.setProperty('--gx', '0px'); }, 1100);
+    });
+  }, 6500);
+  window.CiciMascota = { svg, mood };
+})();
+
+const cici = (size, mood) => CiciMascota.svg(size, mood);
 
 /* ---------- respuestas de ejemplo (modo demostración). Cada dato está comprobado en su estudio ---------- */
 const SRC = {
@@ -282,7 +370,7 @@ function demoFor(text){
 let CHATS = [], CUR = null, USER = null, BUSY = false;
 const KEY = () => 'ued-cici-' + (USER ? USER.id : 'anon');
 function load(){ try { CHATS = JSON.parse(localStorage.getItem(KEY()) || '[]'); } catch(e){ CHATS = []; } }
-function save(){ try { localStorage.setItem(KEY(), JSON.stringify(CHATS.slice(0, 30))); } catch(e){} }
+function save(){ try { localStorage.setItem(KEY(), JSON.stringify(CHATS.slice(0, 30).map(c => ({ ...c, msgs: c.msgs.map(({ fresh, ...m }) => m) })))); } catch(e){} }
 function renderHist(){
   const today = new Date().toDateString();
   const groups = [['HOY', CHATS.filter(c => new Date(c.at).toDateString() === today)], ['ANTES', CHATS.filter(c => new Date(c.at).toDateString() !== today)]];
@@ -293,22 +381,23 @@ function renderHist(){
 function current(){ return CHATS.find(c => c.id === CUR); }
 
 function citeBtn(n){ return `<button type="button" class="cite" data-cite="${n}" aria-label="Ver fuente ${n}">${n}</button>`; }
-function answerHtml(d){
+function answerHtml(d, live){
   const refs = (a) => a ? ' ' + a.map(citeBtn).join(' ') : '';
-  return `<div class="c">${cici(40, 'answer')}<div class="body">
+  let k = 0; const rv = () => live ? ` rv" style="animation-delay:${(k++) * 0.42}s` : '';
+  return `<div class="c${live ? ' live' : ''}">${cici(40, live ? 'talk' : 'idle')}<div class="body">
     <div class="hd"><b>CiCi</b><span>${d.src.length} ${d.src.length === 1 ? 'estudio' : 'estudios'} · 1 táctica de la biblioteca</span></div>
-    <p>${esc(d.intro)}</p>
-    <div class="pts">${d.pts.map((p, i) => `<div class="pt"><span class="n">${i + 1}</span><p><b>${esc(p[0])}</b> ${esc(p[1])}${refs(p[2])}</p></div>`).join('')}</div>
-    ${d.warn ? `<div class="warn"><b>!</b><p>${esc(d.warn[0])}${refs(d.warn[1])}</p></div>` : ''}
-    <span class="kick">TÁCTICA USADA</span>
-    <a class="tac" href="biblioteca#${d.tac.id}"><span class="th">${d.tac.th}</span><span class="tx"><span>Nº ${d.tac.n} · ${d.tac.cat}</span><b>${esc(d.tac.t)}</b><span>Abrir la táctica →</span></span></a>
-    <div class="srcs"><b>Fuentes</b>${d.src.map((k, i) => `<span data-src="${i + 1}"><b>[${i + 1}]</b> ${esc(SRC[k])}</span>`).join('')}</div>
-    <div class="acts"><button type="button" data-copy>
+    <p class="${rv()}">${esc(d.intro)}</p>
+    <div class="pts">${d.pts.map((p, i) => `<div class="pt${rv()}"><span class="n">${i + 1}</span><p><b>${esc(p[0])}</b> ${esc(p[1])}${refs(p[2])}</p></div>`).join('')}</div>
+    ${d.warn ? `<div class="warn${rv()}"><b>!</b><p>${esc(d.warn[0])}${refs(d.warn[1])}</p></div>` : ''}
+    <span class="kick${rv()}">TÁCTICA USADA</span>
+    <a class="tac${rv()}" href="biblioteca#${d.tac.id}"><span class="th">${d.tac.th}</span><span class="tx"><span>Nº ${d.tac.n} · ${d.tac.cat}</span><b>${esc(d.tac.t)}</b><span>Abrir la táctica →</span></span></a>
+    <div class="srcs${rv()}"><b>Fuentes</b>${d.src.map((k, i) => `<span data-src="${i + 1}"><b>[${i + 1}]</b> ${esc(SRC[k])}</span>`).join('')}</div>
+    <div class="acts${rv()}"><button type="button" data-copy>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>Copiar</button></div>
   </div></div>`;
 }
-function soonHtml(){
-  return `<div class="c">${cici(40, 'idle')}<div class="body">
+function soonHtml(live){
+  return `<div class="c${live ? ' live' : ''}">${cici(40, live ? 'none' : 'idle')}<div class="body">
     <div class="hd"><b>CiCi</b></div>
     <span class="badge"><i></i>MODO DEMOSTRACIÓN</span>
     <p>Todavía estoy aprendiendo: muy pronto responderé a cualquier pregunta con los estudios de la biblioteca.</p>
@@ -317,7 +406,7 @@ function soonHtml(){
   </div></div>`;
 }
 function helloHtml(){
-  return `<div class="hello">${cici(112, 'idle')}
+  return `<div class="hello" id="hello">${cici(112, 'idle')}
     <div><h1>Hola, soy CiCi<i>.</i></h1></div>
     <p>De <b>Ciencia Citada</b>. Cuéntame qué vendes y qué quieres mejorar: te respondo solo con estudios de la biblioteca, citando cada uno.</p>
     <div class="sugs">${DEMO.map((d, i) => `<button type="button" class="sug" data-sug="${i}"><span>${d.cat}</span><b>${esc(d.q)}</b></button>`).join('')}</div>
@@ -327,7 +416,8 @@ function render(){
   const c = current();
   $('chatTitle').textContent = c ? c.title : 'Nueva conversación';
   if (!c || !c.msgs.length){ $('col').innerHTML = helloHtml(); renderHist(); return; }
-  $('col').innerHTML = c.msgs.map(m => m.role === 'u' ? `<div class="u">${esc(m.text)}</div>` : (m.demo != null ? answerHtml(DEMO[m.demo]) : soonHtml())).join('')
+  const lastC = c.msgs.map(m => m.role).lastIndexOf('c');
+  $('col').innerHTML = c.msgs.map((m, i) => m.role === 'u' ? `<div class="u">${esc(m.text)}</div>` : (m.demo != null ? answerHtml(DEMO[m.demo], i === lastC && m.fresh) : soonHtml(i === lastC && m.fresh))).join('')
     + (BUSY ? `<div class="c">${cici(40, 'think')}<div class="body"><div class="hd"><b>CiCi</b><span>Buscando en la biblioteca…</span></div><span class="dots" aria-label="CiCi está pensando"><i></i><i></i><i></i></span></div></div>` : '');
   renderHist();
   requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
@@ -339,13 +429,33 @@ function ask(text){
   c.msgs.push({ role: 'u', text });
   BUSY = true; render(); save();
   const d = demoFor(text);
-  setTimeout(() => { c.msgs.push({ role: 'c', demo: d ? DEMO.indexOf(d) : null }); c.at = Date.now(); BUSY = false; save(); render(); }, 1400);
+  CiciMascota.mood('#sideCici', 'think');
+  setTimeout(() => {
+    const msg = { role: 'c', demo: d ? DEMO.indexOf(d) : null, fresh: true };
+    c.msgs.push(msg); c.at = Date.now(); BUSY = false; render(); autosize();
+    CiciMascota.mood('#sideCici', d ? 'talk' : 'none');
+    const parts = d ? 3 + d.pts.length + (d.warn ? 1 : 0) : 0;
+    const talkMs = d ? parts * 420 + 400 : 2600;
+    setTimeout(() => {
+      const live = document.querySelector('.c.live');
+      if (d){ CiciMascota.mood(live, 'answer'); CiciMascota.mood('#sideCici', 'answer'); }
+      setTimeout(() => { CiciMascota.mood(live, 'idle'); CiciMascota.mood('#sideCici', 'idle'); }, 2200);
+      delete msg.fresh; save();
+    }, talkMs);
+  }, 1500);
 }
 
 $('ask').addEventListener('submit', (e) => { e.preventDefault(); const v = $('q').value; $('q').value = ''; autosize(); ask(v); });
 $('q').addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); $('ask').requestSubmit(); } });
 function autosize(){ const t = $('q'); t.style.height = 'auto'; t.style.height = Math.min(200, t.scrollHeight) + 'px'; $('send').disabled = !t.value.trim() || BUSY; }
-$('q').addEventListener('input', autosize);
+let typingT = null;
+$('q').addEventListener('input', () => {
+  autosize(); if (BUSY) return;
+  const live = document.querySelector('.c:last-child:not(.live) svg.cici');
+  CiciMascota.mood('#sideCici', 'listen'); CiciMascota.mood('#hello', 'listen'); if (live) CiciMascota.mood(live, 'listen');
+  clearTimeout(typingT);
+  typingT = setTimeout(() => { if (BUSY) return; CiciMascota.mood('#sideCici', 'idle'); CiciMascota.mood('#hello', 'idle'); if (live) CiciMascota.mood(live, 'idle'); }, 1300);
+});
 $('newChat').addEventListener('click', () => { CUR = null; render(); closeSide(); $('q').focus(); });
 $('hist').addEventListener('click', (e) => { const b = e.target.closest('[data-chat]'); if (!b) return; CUR = b.dataset.chat; render(); closeSide(); });
 document.addEventListener('click', (e) => {

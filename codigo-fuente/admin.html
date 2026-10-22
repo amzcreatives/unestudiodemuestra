@@ -1,0 +1,560 @@
+<title>Panel UED</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="{{FAVICON}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141A24; --ink-0:#0E1219; --ink-2:#1A2130; --ink-3:#222A3A;
+  --paper:#F6F7F4; --mark:#F4E35A; --rule:#2C3546; --soft:#A3ACBB; --dim:#6F7889; --bad:#F2A4A4;
+  --sans:'Public Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ink-0);color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.5}
+a{color:inherit}
+button,input,select{font:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:16px}
+.top{padding-block:22px;border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand svg{height:40px;width:auto;display:block}
+.brand span{font-weight:700}
+.back{font-size:14px;color:var(--soft)}
+main{padding-block:40px 80px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 8px;letter-spacing:-.01em}
+.lead{color:var(--soft);margin:0 0 28px;max-width:640px}
+.mono{font-family:var(--mono)}
+.kick{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--mark);margin:0 0 10px}
+.box{background:var(--ink-2);border:1px solid var(--rule);border-radius:20px;padding:26px}
+.login{max-width:420px;display:grid;gap:14px}
+label{display:grid;gap:7px;font-size:14px;font-weight:600;color:var(--soft)}
+input,select{color:var(--paper);background:var(--ink-0);border:1px solid var(--rule);border-radius:10px;padding:11px 12px;font-size:15px}
+input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border-color:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;background:var(--mark);color:var(--ink);font-weight:800;padding:12px 18px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--rule)}
+.btn:disabled{opacity:.5;cursor:default}
+.msg{margin:0;border-radius:12px;padding:12px 14px;background:rgba(244,227,90,.1);border:1px solid rgba(244,227,90,.35)}
+.msg.err{background:rgba(242,164,164,.1);border-color:rgba(242,164,164,.4)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.stat{background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:16px 18px}
+.stat b{display:block;font-size:32px;line-height:1.1}
+.stat span{font-size:13px;color:var(--soft)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.bar input{flex:1;min-width:200px}
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--dim);font-weight:500;padding:10px 10px;border-bottom:1px solid var(--rule)}
+.tbl td{padding:10px;border-bottom:1px solid var(--rule);vertical-align:middle}
+.tbl td.email{font-weight:600;word-break:break-all}
+.tbl td.date{color:var(--soft);white-space:nowrap}
+.tbl select,.tbl input{padding:7px 9px;font-size:14px}
+.you{font-family:var(--mono);font-size:10.5px;background:var(--paper);color:var(--ink);border-radius:4px;padding:2px 6px;margin-left:6px}
+.saved{font-family:var(--mono);font-size:11px;color:var(--mark)}
+.saved.err{color:var(--bad)}
+.tblw{overflow-x:auto;background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:6px 8px}
+@media (max-width:720px){
+  .tbl thead{display:none}
+  .tbl tr{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 4px;border-bottom:1px solid var(--rule)}
+  .tbl td{border:0;padding:0}
+  .tbl td.email{grid-column:1/-1}
+  .tbl td[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim);margin-bottom:4px}
+}
+.tabs{display:inline-grid;grid-auto-flow:column;gap:4px;border:1px solid var(--rule);border-radius:12px;padding:4px;margin:6px 0 24px}
+.tabs button{background:none;border:0;border-radius:9px;padding:10px 16px;font-weight:700;color:var(--soft);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.tbl.cal td.t b{display:block}
+.tbl.cal td.t span{font-size:12.5px;color:var(--soft)}
+.tbl.cal td.n{font-family:var(--mono);color:var(--mark);white-space:nowrap}
+.tbl.cal input[type=url]{width:100%;min-width:160px}
+.st{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;border-radius:5px;padding:3px 7px;white-space:nowrap}
+.st.idea{background:var(--rule);color:var(--soft)} .st.preparacion{background:#3A4458;color:var(--paper)}
+.st.video_listo{background:#2346C9;color:#fff} .st.programada{background:rgba(244,227,90,.18);color:var(--mark)} .st.publicada{background:var(--mark);color:var(--ink)}
+.live{font-family:var(--mono);font-size:10.5px;color:var(--mark)}
+.newt{margin-top:22px;display:grid;gap:14px}
+/* estados: un color por estado */
+:root{--s-idea:#6F7889;--s-preparacion:#B07CF2;--s-video_listo:#4F7BFF;--s-programada:#F4E35A;--s-publicada:#3DDC97}
+.ctools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 12px}
+.ctools input[type=search]{flex:1;min-width:200px}
+.seg{display:inline-grid;grid-auto-flow:column;border:1px solid var(--rule);border-radius:12px;padding:4px;gap:4px}
+.seg button{background:none;border:0;border-radius:9px;padding:9px 14px;font-weight:700;color:var(--soft);cursor:pointer}
+.seg button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.rango{display:inline-flex;align-items:center;gap:6px;color:var(--soft)}
+.rango input{padding:9px 10px}
+.linkbtn{background:none;border:0;color:var(--soft);text-decoration:underline;cursor:pointer;font-size:14px}
+.cfil{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.fchip{--c:var(--soft);display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);background:transparent;color:var(--paper);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer}
+.fchip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.fchip b{font-family:var(--mono);font-size:11.5px;color:var(--soft);font-weight:500}
+.fchip[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb, var(--c) 16%, transparent)}
+.fchip[aria-pressed="true"] b{color:var(--paper)}
+.s-idea{--c:var(--s-idea)} .s-preparacion{--c:var(--s-preparacion)} .s-video_listo{--c:var(--s-video_listo)} .s-programada{--c:var(--s-programada)} .s-publicada{--c:var(--s-publicada)}
+.mhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mhead h2{margin:0;font-size:24px;min-width:200px}
+.mnav{width:38px;height:38px;border-radius:50%;border:1px solid var(--rule);background:transparent;color:var(--paper);font-size:20px;cursor:pointer}
+.mnav:hover{border-color:var(--soft)}
+.btn.sm{padding:8px 14px;font-size:14px}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--ink-2)}
+.mdow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--dim);padding:10px;border-bottom:1px solid var(--rule)}
+.mday{min-height:118px;padding:8px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:5px;min-width:0}
+.mday:nth-child(7n){border-right:0}
+.mday .d{font-family:var(--mono);font-size:12px;color:var(--soft)}
+.mday.out{background:rgba(0,0,0,.18)}
+.mday.out .d{color:var(--dim)}
+.mday.today .d{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--paper);color:var(--ink);font-weight:700}
+.mday.over{outline:2px dashed var(--mark);outline-offset:-4px}
+.ev{display:block;width:100%;text-align:left;border:0;border-left:3px solid var(--c);background:color-mix(in srgb, var(--c) 14%, var(--ink-0));color:var(--paper);border-radius:6px;padding:5px 7px;font-size:12.5px;line-height:1.3;cursor:pointer;overflow:hidden}
+.ev .h{font-family:var(--mono);font-size:10.5px;color:var(--c);display:block}
+.ev .tt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ev.s-publicada,.ev.on{--c:var(--s-publicada);background:var(--c);color:var(--ink)}
+.ev.on .h,.ev.s-publicada .h{color:var(--ink)}
+.ev.s-idea{border-left-style:dashed}
+.ev[draggable="true"]{cursor:grab}
+.nodate{margin-top:18px;background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:16px}
+.ndlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.ndlist .ev{padding:8px 10px;font-size:13.5px}
+.nodate .hint{margin:12px 0 0;font-size:13px;color:var(--dim)}
+.drawer{position:fixed;right:16px;top:90px;width:min(380px,calc(100vw - 32px));max-height:calc(100vh - 110px);overflow:auto;z-index:20;background:var(--ink-3);border:1px solid var(--rule);border-radius:18px;padding:22px;display:grid;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.drawer h3{margin:0;font-size:20px;line-height:1.25}
+.drawer .kick{margin:0}
+.cesub{margin:0;color:var(--soft);font-size:14px}
+.cestate{margin:0;font-size:13.5px;color:var(--soft)}
+.cebtns{display:flex;align-items:center;gap:12px}
+.dx{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:var(--paper);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.agenda{display:none}
+.ag{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center}
+.agd{font-family:var(--mono);font-size:11.5px;color:var(--soft);text-transform:uppercase;line-height:1.4}
+@media (max-width:720px){
+  .agenda{display:grid;gap:8px;margin-top:12px}
+  .agenda .ev .tt{display:block}
+  .mday .ev .x{display:none}
+  .mday .ev .h{font-size:9.5px}
+  .mdow{padding:6px 4px;font-size:9.5px;letter-spacing:.04em;text-align:center}
+  .mday{min-height:74px;padding:4px}
+  .mday .ev .tt{display:none}
+  .mday .ev{padding:3px 4px}
+  .mhead h2{font-size:19px;min-width:0;flex:1}
+}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lead b{color:var(--paper)}
+.help{margin-top:26px;color:var(--soft);font-size:14.5px;max-width:760px}
+.help b{color:var(--paper)}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="biblioteca">{{SYMBOL}}<span>Panel de administración</span></a>
+    <a class="back" href="biblioteca">← Volver a la biblioteca</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="kick">PANEL DE ADMINISTRACIÓN</p>
+  <h1 id="h1">Panel UED</h1>
+  <div class="tabs" role="tablist" id="tabs" hidden>
+    <button type="button" role="tab" data-tab="cal" aria-selected="true">Calendario de tácticas</button>
+    <button type="button" role="tab" data-tab="usr" aria-selected="false">Usuarios y accesos</button>
+  </div>
+
+  <div id="vNoCfg" class="box" hidden><p class="msg err">Falta conectar la base de datos: rellena <span class="mono">config.js</span> con la URL y la clave pública de Supabase.</p></div>
+
+  <form id="vLogin" class="box login" hidden novalidate>
+    <label>Email<input type="email" name="email" autocomplete="email" required></label>
+    <label>Contraseña<input type="password" name="pass" autocomplete="current-password" required></label>
+    <button class="btn" type="submit">Entrar</button>
+    <p class="msg err" id="loginMsg" hidden></p>
+  </form>
+
+  <div id="vNoAdmin" class="box" hidden>
+    <p class="msg err">Tu cuenta (<span id="naEmail"></span>) no es de administrador.</p>
+    <p style="margin:14px 0 0"><button class="btn ghost" type="button" data-out>Cerrar sesión</button></p>
+  </div>
+
+  <section id="vCal" hidden>
+    <p class="lead">Todas las tácticas, hechas o por hacer. Solo se ven en la web las <b>publicadas</b> y las <b>programadas</b> cuya fecha ya ha llegado. Las que tienen vídeo listo o están programadas salen como «Próximamente». Los cambios se guardan al momento.</p>
+    <div class="stats" id="cStats"></div>
+    <div class="ctools">
+      <div class="seg" role="tablist" id="cView" aria-label="Vista">
+        <button type="button" role="tab" data-v="mes" aria-selected="true">Calendario</button>
+        <button type="button" role="tab" data-v="lista" aria-selected="false">Lista</button>
+      </div>
+      <input type="search" id="cQ" placeholder="Buscar por título o estudio" aria-label="Buscar táctica">
+      <select id="cTema" aria-label="Filtrar por tema"><option value="">Todos los temas</option></select>
+      <select id="cRango" aria-label="Filtrar por fecha">
+        <option value="">Cualquier fecha</option>
+        <option value="semana">Esta semana</option>
+        <option value="mes">Este mes</option>
+        <option value="prox30">Próximos 30 días</option>
+        <option value="pasadas">Ya pasadas</option>
+        <option value="sin">Sin fecha</option>
+        <option value="custom">Entre dos fechas…</option>
+      </select>
+      <span class="rango" id="cCustom" hidden><input type="date" id="cDesde" aria-label="Desde"> – <input type="date" id="cHasta" aria-label="Hasta"></span>
+      <button class="linkbtn" type="button" id="cClear" hidden>Quitar filtros</button>
+    </div>
+    <div class="cfil" id="cFil" role="group" aria-label="Filtrar por estado"></div>
+
+    <div id="cMonth">
+      <div class="mhead">
+        <button type="button" class="mnav" id="mPrev" aria-label="Mes anterior">‹</button>
+        <h2 id="mTitle"></h2>
+        <button type="button" class="mnav" id="mNext" aria-label="Mes siguiente">›</button>
+        <button type="button" class="btn ghost sm" id="mToday">Hoy</button>
+      </div>
+      <div class="mgrid" id="mGrid"></div>
+      <div class="agenda" id="mAgenda"></div>
+      <div class="nodate">
+        <p class="kick">SIN FECHA <span id="ndCount"></span></p>
+        <div class="ndlist" id="ndList"></div>
+        <p class="hint">Arrastra una táctica a un día para darle fecha (20:00 por defecto). Toca cualquier táctica para editarla.</p>
+      </div>
+    </div>
+
+    <div class="tblw" id="cList" hidden>
+      <table class="tbl cal">
+        <thead><tr><th>Nº</th><th>TÁCTICA</th><th>ESTADO</th><th>FECHA Y HORA</th><th>REEL DE INSTAGRAM</th><th></th></tr></thead>
+        <tbody id="cRows"></tbody>
+      </table>
+    </div>
+    <div class="drawer" id="cEdit" role="dialog" aria-modal="false" aria-labelledby="ceTitle" hidden>
+      <button type="button" class="dx" id="ceClose" aria-label="Cerrar">×</button>
+      <p class="kick" id="ceNum"></p>
+      <h3 id="ceTitle"></h3>
+      <p class="cesub" id="ceSub"></p>
+      <label>Estado<select id="ceEstado"></select></label>
+      <label>Fecha y hora<input type="datetime-local" id="ceFecha"></label>
+      <label>Reel de Instagram<input type="url" id="ceReel" placeholder="https://www.instagram.com/reel/…"></label>
+      <p class="cestate" id="ceState"></p>
+      <div class="cebtns"><a class="btn ghost sm" id="ceVer" target="_blank" rel="noopener">Ver en la biblioteca</a><span class="saved" id="ceMsg" aria-live="polite"></span></div>
+    </div>
+
+    <form class="box newt" id="newT" novalidate>
+      <p class="kick">NUEVA TÁCTICA</p>
+      <div class="grid2">
+        <label>Título<input name="titulo" required maxlength="140" placeholder="Por ejemplo: Termina tus precios en 9"></label>
+        <label>Estudio principal<input name="estudio" required maxlength="140" placeholder="Autores (año)"></label>
+        <label>Tema<input name="tema" required maxlength="40" placeholder="Precios, Copy, Packaging…"></label>
+        <label>Estado<select name="estado"><option value="idea">Idea</option><option value="preparacion">En preparación</option><option value="video_listo">Vídeo listo</option><option value="programada">Programada</option></select></label>
+        <label>Fecha y hora (opcional)<input type="datetime-local" name="fecha"></label>
+      </div>
+      <div id="dupes" class="msg err" hidden></div>
+      <button class="btn" type="submit" id="newGo">Añadir táctica</button>
+      <p class="saved" id="newMsg" aria-live="polite"></p>
+    </form>
+    <div class="help">
+      <p><b>Estados:</b> Idea → En preparación → Vídeo listo → Programada → Publicada. «Programada» necesita fecha: a esa hora la táctica se abre sola en la web. Pon la misma hora a la que hayas programado el reel.</p>
+      <p><b>Sin repetir:</b> al añadir una táctica te aviso si ya hay otra con un título parecido o con el mismo estudio principal. Dos tácticas no pueden tener el mismo título.</p>
+      <p><b>Contenido:</b> el texto de cada táctica (por qué funciona, pasos, fuentes) lo prepara Claude y se carga en la base de datos.</p>
+    </div>
+  </section>
+
+  <section id="vAdmin" hidden>
+    <p class="lead">Da o quita el plan PRO a cualquier usuario. Los cambios se guardan al momento y el usuario los ve al recargar la biblioteca.</p>
+    <div class="stats">
+      <div class="stat"><b id="sTotal">0</b><span>usuarios</span></div>
+      <div class="stat"><b id="sPro">0</b><span>con PRO</span></div>
+      <div class="stat"><b id="sFree">0</b><span>free</span></div>
+      <div class="stat"><b id="sAdmin">0</b><span>administradores</span></div>
+    </div>
+    <div class="bar">
+      <input type="search" id="q" placeholder="Buscar por email" aria-label="Buscar por email">
+      <button class="btn ghost" type="button" id="reload">Actualizar</button>
+      <button class="btn ghost" type="button" data-out>Cerrar sesión</button>
+    </div>
+    <div class="tblw">
+      <table class="tbl">
+        <thead><tr><th>EMAIL</th><th>ALTA</th><th>PLAN</th><th>PRO HASTA</th><th>ROL</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="help">
+      <p><b>Añadir un usuario de prueba:</b> que se registre en la biblioteca (Entrar → Crear cuenta), o créalo en Supabase → Authentication → Users → Add user, marcando «Auto Confirm User». Aparecerá aquí y le das PRO.</p>
+      <p><b>PRO hasta:</b> déjalo vacío para un PRO sin caducidad. Si pones una fecha, el acceso se corta solo ese día.</p>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG = window.UED_CONFIG || {};
+const sb = (CFG.url && CFG.anonKey && window.supabase) ? window.supabase.createClient(CFG.url, CFG.anonKey) : null;
+let ME = null, ALL = [];
+let TAB = 'cal';
+function view(v){
+  const adm = v === 'vAdmin';
+  ['vNoCfg','vLogin','vNoAdmin'].forEach(id => $(id).hidden = id !== v);
+  $('tabs').hidden = !adm;
+  $('vCal').hidden = !(adm && TAB === 'cal');
+  $('vAdmin').hidden = !(adm && TAB === 'usr');
+}
+document.querySelectorAll('#tabs [data-tab]').forEach(b => b.addEventListener('click', () => {
+  TAB = b.dataset.tab;
+  document.querySelectorAll('#tabs [data-tab]').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+  view('vAdmin');
+}));
+
+/* ---------- calendario de tácticas ---------- */
+const ESTADOS = [['idea','Idea'],['preparacion','En preparación'],['video_listo','Vídeo listo'],['programada','Programada'],['publicada','Publicada']];
+let TACS = [];
+const isLive = (t) => t.estado === 'publicada' || (t.estado === 'programada' && t.fecha_publicacion && new Date(t.fecha_publicacion) <= new Date());
+const toLocal = (iso) => { if (!iso) return ''; const d = new Date(iso); const p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
+const normT = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 3);
+function parecido(a, b){ const A = new Set(normT(a)), B = new Set(normT(b)); if (!A.size || !B.size) return 0; let n = 0; A.forEach(w => { if (B.has(w)) n++; }); return n / Math.min(A.size, B.size); }
+async function loadCal(){
+  const { data, error } = await sb.from('tacticas').select('id,numero,titulo,tema,estudio_principal,estado,fecha_publicacion,url_reel').order('numero');
+  if (error){ $('cRows').innerHTML = `<tr><td colspan="6">No se han podido cargar las tácticas: ${esc(error.message)}</td></tr>`; return; }
+  TACS = data; renderCal();
+}
+/* filtros y vista */
+const CF = { estados: new Set(), tema: '', q: '', rango: '', desde: '', hasta: '' };
+let CVIEW = 'mes';
+const today0 = new Date(); let MONTH = new Date(today0.getFullYear(), today0.getMonth(), 1);
+const vis = (t) => isLive(t) ? 'publicada' : t.estado;
+const passF = (t) => (!CF.estados.size || CF.estados.has(vis(t))) && (!CF.tema || t.tema === CF.tema)
+  && (!CF.q || normQ(t.titulo + ' ' + t.estudio_principal + ' ' + t.numero).includes(normQ(CF.q))) && passFecha(t);
+function rangoFechas(){
+  const n = new Date(), d0 = new Date(n.getFullYear(), n.getMonth(), n.getDate());
+  if (CF.rango === 'semana'){ const a = new Date(d0); a.setDate(d0.getDate() - ((d0.getDay() + 6) % 7)); const b = new Date(a); b.setDate(a.getDate() + 7); return [a, b]; }
+  if (CF.rango === 'mes') return [new Date(n.getFullYear(), n.getMonth(), 1), new Date(n.getFullYear(), n.getMonth() + 1, 1)];
+  if (CF.rango === 'prox30'){ const b = new Date(n); b.setDate(n.getDate() + 30); return [n, b]; }
+  if (CF.rango === 'pasadas') return [null, n];
+  if (CF.rango === 'custom'){ const a = CF.desde ? new Date(CF.desde + 'T00:00') : null; let b = null; if (CF.hasta){ b = new Date(CF.hasta + 'T00:00'); b.setDate(b.getDate() + 1); } return [a, b]; }
+  return [null, null];
+}
+function passFecha(t){
+  if (!CF.rango) return true;
+  if (CF.rango === 'sin') return !t.fecha_publicacion;
+  if (!t.fecha_publicacion) return false;
+  const [a, b] = rangoFechas(), d = new Date(t.fecha_publicacion);
+  return (!a || d >= a) && (!b || d < b);
+}
+const normQ = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const ELABEL = { idea:'Idea', preparacion:'En preparación', video_listo:'Vídeo listo', programada:'Programada', publicada:'Publicada / en la web' };
+function renderFilters(){
+  $('cFil').innerHTML = Object.entries(ELABEL).map(([k, l]) => `<button type="button" class="fchip s-${k}" data-e="${k}" aria-pressed="${CF.estados.has(k)}"><i></i>${l}<b>${TACS.filter(t => vis(t) === k).length}</b></button>`).join('');
+  const temas = [...new Set(TACS.map(t => t.tema))].sort();
+  const sel = $('cTema'), cur = CF.tema;
+  sel.innerHTML = '<option value="">Todos los temas</option>' + temas.map(t => `<option${t === cur ? ' selected' : ''}>${esc(t)}</option>`).join('');
+  $('cClear').hidden = !(CF.estados.size || CF.tema || CF.q || CF.rango);
+  $('cCustom').hidden = CF.rango !== 'custom';
+}
+$('cFil').addEventListener('click', (e) => { const b = e.target.closest('[data-e]'); if (!b) return; const k = b.dataset.e; CF.estados.has(k) ? CF.estados.delete(k) : CF.estados.add(k); renderCal(); });
+$('cTema').addEventListener('change', (e) => { CF.tema = e.target.value; renderCal(); });
+$('cQ').addEventListener('input', (e) => { CF.q = e.target.value.trim(); renderCal(); });
+$('cRango').addEventListener('change', (e) => {
+  CF.rango = e.target.value; renderCal();
+  if (CF.rango && CF.rango !== 'sin' && CF.rango !== 'pasadas'){ const [a] = rangoFechas(); if (a) { MONTH = new Date(a.getFullYear(), a.getMonth(), 1); renderMonth(); } }
+});
+$('cDesde').addEventListener('change', (e) => { CF.desde = e.target.value; renderCal(); if (CF.desde){ const a = new Date(CF.desde + 'T00:00'); MONTH = new Date(a.getFullYear(), a.getMonth(), 1); renderMonth(); } });
+$('cHasta').addEventListener('change', (e) => { CF.hasta = e.target.value; renderCal(); });
+$('cClear').addEventListener('click', () => { CF.estados.clear(); CF.tema = ''; CF.q = ''; CF.rango = ''; CF.desde = ''; CF.hasta = ''; $('cQ').value = ''; $('cRango').value = ''; $('cDesde').value = ''; $('cHasta').value = ''; renderCal(); });
+$('cView').addEventListener('click', (e) => { const b = e.target.closest('[data-v]'); if (!b) return; CVIEW = b.dataset.v; document.querySelectorAll('#cView [data-v]').forEach(x => x.setAttribute('aria-selected', String(x === b))); renderCal(); });
+$('mPrev').addEventListener('click', () => { MONTH = new Date(MONTH.getFullYear(), MONTH.getMonth() - 1, 1); renderMonth(); });
+$('mNext').addEventListener('click', () => { MONTH = new Date(MONTH.getFullYear(), MONTH.getMonth() + 1, 1); renderMonth(); });
+$('mToday').addEventListener('click', () => { MONTH = new Date(today0.getFullYear(), today0.getMonth(), 1); renderMonth(); });
+const sameDay = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+const hhmm = (d) => d.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
+function evHtml(t, withTime){
+  const d = t.fecha_publicacion ? new Date(t.fecha_publicacion) : null;
+  const live = isLive(t);
+  return `<button type="button" class="ev s-${t.estado}${live ? ' on' : ''}" data-id="${t.id}" draggable="true" title="${esc(ELABEL[vis(t)])}: ${esc(t.titulo)}"><span class="h"><span class="n">Nº ${String(t.numero).padStart(3, '0')}</span><span class="x">${withTime && d ? ' · ' + hhmm(d) : ''}</span></span><span class="tt">${esc(t.titulo)}</span></button>`;
+}
+function renderMonth(){
+  const list = TACS.filter(passF);
+  const mt = MONTH.toLocaleDateString('es-ES', { month:'long', year:'numeric' }); $('mTitle').textContent = mt.charAt(0).toUpperCase() + mt.slice(1);
+  const first = new Date(MONTH), start = new Date(first); start.setDate(1 - ((first.getDay() + 6) % 7));
+  const last = new Date(MONTH.getFullYear(), MONTH.getMonth() + 1, 0);
+  const cells = Math.ceil((((first.getDay() + 6) % 7) + last.getDate()) / 7) * 7;
+  let html = ['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'].map(d => `<div class="mdow">${d}</div>`).join('');
+  for (let i = 0; i < cells; i++){
+    const day = new Date(start); day.setDate(start.getDate() + i);
+    const evs = list.filter(t => t.fecha_publicacion && sameDay(new Date(t.fecha_publicacion), day)).sort((a, b) => new Date(a.fecha_publicacion) - new Date(b.fecha_publicacion));
+    html += `<div class="mday${day.getMonth() !== MONTH.getMonth() ? ' out' : ''}${sameDay(day, today0) ? ' today' : ''}" data-day="${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}"><span class="d">${day.getDate()}</span>${evs.map(t => evHtml(t, true)).join('')}</div>`;
+  }
+  $('mGrid').innerHTML = html;
+  const inMonth = list.filter(t => t.fecha_publicacion && new Date(t.fecha_publicacion).getMonth() === MONTH.getMonth() && new Date(t.fecha_publicacion).getFullYear() === MONTH.getFullYear())
+    .sort((a, b) => new Date(a.fecha_publicacion) - new Date(b.fecha_publicacion));
+  $('mAgenda').innerHTML = inMonth.map(t => { const d = new Date(t.fecha_publicacion); return `<div class="ag"><span class="agd">${d.toLocaleDateString('es-ES', { weekday:'short', day:'numeric' })}<br>${hhmm(d)}</span>${evHtml(t, false)}</div>`; }).join('') || '<p style="color:var(--dim);font-size:14px;margin:0">Nada programado este mes.</p>';
+  const nd = list.filter(t => !t.fecha_publicacion);
+  document.querySelector('.nodate').hidden = !!CF.rango && CF.rango !== 'sin';
+  $('ndCount').textContent = '· ' + nd.length;
+  $('ndList').innerHTML = nd.map(t => evHtml(t, false)).join('') || '<span style="color:var(--dim);font-size:14px">Todas las tácticas filtradas tienen fecha.</span>';
+}
+/* editar desde el calendario */
+let EDIT = null;
+function openEdit(id){
+  const t = TACS.find(x => x.id === id); if (!t) return;
+  EDIT = id;
+  $('ceNum').textContent = 'Nº ' + String(t.numero).padStart(3, '0') + ' · ' + t.tema.toUpperCase();
+  $('ceTitle').textContent = t.titulo; $('ceSub').textContent = t.estudio_principal;
+  $('ceEstado').innerHTML = ESTADOS.map(([v, l]) => `<option value="${v}"${t.estado === v ? ' selected' : ''}>${l}</option>`).join('');
+  $('ceFecha').value = toLocal(t.fecha_publicacion); $('ceReel').value = t.url_reel || '';
+  $('ceVer').href = 'biblioteca#' + t.id; $('ceMsg').textContent = '';
+  $('ceState').innerHTML = isLive(t) ? '● Se ve en la web.' : (['preparacion','video_listo','programada'].includes(t.estado) ? 'En la web sale como «Próximamente».' : 'No se ve en la web.');
+  $('cEdit').hidden = false;
+}
+$('ceClose').addEventListener('click', () => { $('cEdit').hidden = true; EDIT = null; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('cEdit').hidden) { $('cEdit').hidden = true; EDIT = null; } });
+['ceEstado','ceFecha','ceReel'].forEach(id => $(id).addEventListener('change', async () => {
+  const t = TACS.find(x => x.id === EDIT); if (!t) return;
+  const f = id === 'ceEstado' ? 'estado' : id === 'ceFecha' ? 'fecha_publicacion' : 'url_reel';
+  let val = $(id).value.trim();
+  if (f === 'fecha_publicacion') val = val ? new Date(val).toISOString() : null;
+  if (f === 'url_reel') val = val || null;
+  const r = await saveTac(t, f, val);
+  $('ceMsg').className = 'saved' + (r.ok ? '' : ' err'); $('ceMsg').textContent = r.msg;
+  if (!r.ok && f === 'estado') $('ceEstado').value = t.estado;
+  if (r.ok) openEdit(t.id), ($('ceMsg').textContent = 'Guardado ✓');
+}));
+async function saveTac(t, f, val){
+  const patch = { [f]: val };
+  if (f === 'estado' && val === 'programada' && !t.fecha_publicacion) return { ok:false, msg:'Pon primero la fecha' };
+  if (f === 'estado' && val === 'publicada' && !t.fecha_publicacion) patch.fecha_publicacion = new Date().toISOString();
+  const { error } = await sb.from('tacticas').update(patch).eq('id', t.id);
+  if (error) return { ok:false, msg:'Error: ' + error.message };
+  Object.assign(t, patch); renderCal();
+  return { ok:true, msg:'Guardado ✓' };
+}
+$('cMonth').addEventListener('click', (e) => { const ev = e.target.closest('.ev[data-id]'); if (ev) openEdit(ev.dataset.id); });
+/* arrastrar para cambiar la fecha */
+$('cMonth').addEventListener('dragstart', (e) => { const ev = e.target.closest('.ev[data-id]'); if (ev) e.dataTransfer.setData('text/plain', ev.dataset.id); });
+$('mGrid').addEventListener('dragover', (e) => { const d = e.target.closest('.mday'); if (d){ e.preventDefault(); document.querySelectorAll('.mday.over').forEach(x => x !== d && x.classList.remove('over')); d.classList.add('over'); } });
+$('mGrid').addEventListener('dragleave', (e) => { const d = e.target.closest('.mday'); if (d && !d.contains(e.relatedTarget)) d.classList.remove('over'); });
+$('mGrid').addEventListener('drop', async (e) => {
+  const d = e.target.closest('.mday'); if (!d) return; e.preventDefault(); d.classList.remove('over');
+  const t = TACS.find(x => x.id === e.dataTransfer.getData('text/plain')); if (!t) return;
+  const [y, m, dd] = d.dataset.day.split('-').map(Number);
+  const old = t.fecha_publicacion ? new Date(t.fecha_publicacion) : null;
+  const nd = new Date(y, m - 1, dd, old ? old.getHours() : 20, old ? old.getMinutes() : 0);
+  await saveTac(t, 'fecha_publicacion', nd.toISOString());
+  if (EDIT === t.id) openEdit(t.id);
+});
+function renderCal(){
+  renderFilters();
+  $('cMonth').hidden = CVIEW !== 'mes'; $('cList').hidden = CVIEW !== 'lista';
+  if (CVIEW === 'mes') renderMonth();
+  const c = (e) => TACS.filter(t => t.estado === e).length;
+  $('cStats').innerHTML = [['Total', TACS.length], ['En la web', TACS.filter(isLive).length], ['Programadas', c('programada')], ['Vídeo listo', c('video_listo')], ['En preparación', c('preparacion')], ['Ideas', c('idea')]]
+    .map(([l, n]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('cRows').innerHTML = TACS.filter(passF).map(t => `<tr data-id="${t.id}">
+      <td class="n">${String(t.numero).padStart(3, '0')}</td>
+      <td class="t"><b>${esc(t.titulo)}</b><span>${esc(t.tema)} · ${esc(t.estudio_principal)}</span></td>
+      <td data-l="ESTADO"><select data-c="estado" aria-label="Estado de ${esc(t.titulo)}">${ESTADOS.map(([v, l]) => `<option value="${v}"${t.estado === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
+        <div style="margin-top:6px">${isLive(t) ? '<span class="live">● EN LA WEB</span>' : `<span class="fchip s-${t.estado}" style="padding:3px 9px;font-size:11px;cursor:default"><i></i>${ELABEL[t.estado]}</span> <span class="st ${t.estado}">${['video_listo','programada','preparacion'].includes(t.estado) ? 'PRÓXIMAMENTE' : 'OCULTA'}</span>`}</div></td>
+      <td data-l="FECHA Y HORA"><input type="datetime-local" data-c="fecha_publicacion" value="${toLocal(t.fecha_publicacion)}" aria-label="Fecha de ${esc(t.titulo)}"></td>
+      <td data-l="REEL"><input type="url" data-c="url_reel" value="${esc(t.url_reel || '')}" placeholder="https://www.instagram.com/reel/…" aria-label="Reel de ${esc(t.titulo)}"></td>
+      <td><a class="back" href="biblioteca#${t.id}" target="_blank" rel="noopener">Ver</a> <span class="saved" aria-live="polite"></span></td>
+    </tr>`).join('') || (TACS.length ? '<tr><td colspan="6" style="color:var(--soft)">Ninguna táctica con estos filtros.</td></tr>' : '<tr><td colspan="6" style="color:var(--soft)">Aún no hay tácticas.</td></tr>');
+}
+$('cRows').addEventListener('change', async (e) => {
+  const el = e.target.closest('[data-c]'); if (!el) return;
+  const tr = el.closest('tr'), id = tr.dataset.id, f = el.dataset.c, out = tr.querySelector('.saved');
+  const t = TACS.find(x => x.id === id);
+  let val = el.value.trim();
+  if (f === 'fecha_publicacion') val = val ? new Date(val).toISOString() : null;
+  if (f === 'url_reel') val = val || null;
+  const patch = { [f]: val };
+  if (f === 'estado' && val === 'programada' && !t.fecha_publicacion){ out.className = 'saved err'; out.textContent = 'Pon primero la fecha'; el.value = t.estado; return; }
+  if (f === 'estado' && val === 'publicada' && !t.fecha_publicacion) patch.fecha_publicacion = new Date().toISOString();
+  out.className = 'saved'; out.textContent = 'Guardando…';
+  const { error } = await sb.from('tacticas').update(patch).eq('id', id);
+  if (error){ out.className = 'saved err'; out.textContent = 'Error'; out.title = error.message; return; }
+  Object.assign(t, patch); renderCal();
+  const o = document.querySelector(`#cRows tr[data-id="${id}"] .saved`); if (o) o.textContent = 'Guardado ✓';
+});
+let dupeOk = false;
+$('newT').addEventListener('input', () => { dupeOk = false; $('dupes').hidden = true; $('newGo').textContent = 'Añadir táctica'; });
+$('newT').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target, titulo = f.titulo.value.trim(), estudio = f.estudio.value.trim(), tema = f.tema.value.trim();
+  if (!titulo || !estudio || !tema){ $('newMsg').className = 'saved err'; $('newMsg').textContent = 'Rellena título, estudio principal y tema.'; return; }
+  const fecha = f.fecha.value ? new Date(f.fecha.value).toISOString() : null;
+  if (f.estado.value === 'programada' && !fecha){ $('newMsg').className = 'saved err'; $('newMsg').textContent = 'Una táctica programada necesita fecha.'; return; }
+  const dupes = TACS.filter(t => parecido(t.titulo, titulo) >= 0.6 || (estudio && t.estudio_principal.toLowerCase() === estudio.toLowerCase()));
+  if (dupes.length && !dupeOk){
+    $('dupes').innerHTML = 'Ojo, puede estar repetida:<br>' + dupes.map(t => `· Nº ${String(t.numero).padStart(3, '0')} ${esc(t.titulo)} (${esc(t.estudio_principal)})`).join('<br>') + '<br>Si es distinta, pulsa otra vez para añadirla.';
+    $('dupes').hidden = false; dupeOk = true; $('newGo').textContent = 'Añadir igualmente'; return;
+  }
+  const numero = TACS.reduce((m, t) => Math.max(m, t.numero), 0) + 1;
+  const id = 't' + String(numero).padStart(2, '0');
+  $('newGo').disabled = true;
+  const { error } = await sb.from('tacticas').insert({ id, numero, titulo, tema, estudio_principal: estudio, estado: f.estado.value, fecha_publicacion: fecha });
+  $('newGo').disabled = false;
+  if (error){ $('newMsg').className = 'saved err'; $('newMsg').textContent = error.code === '23505' ? 'Ya existe una táctica con ese título.' : error.message; return; }
+  f.reset(); dupeOk = false; $('dupes').hidden = true; $('newGo').textContent = 'Añadir táctica';
+  $('newMsg').className = 'saved'; $('newMsg').textContent = `Añadida como Nº ${String(numero).padStart(3, '0')} ✓`;
+  loadCal();
+});
+const fmtDate = (d) => d ? new Date(d).toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' }) : '';
+const isPro = (p) => p.rol === 'admin' || (p.plan === 'pro' && (!p.pro_hasta || new Date(p.pro_hasta) > new Date()));
+
+async function boot(session){
+  if (!sb) return view('vNoCfg');
+  if (!session) return view('vLogin');
+  ME = session.user;
+  const { data: me } = await sb.from('perfiles').select('rol').eq('id', ME.id).maybeSingle();
+  if (!me || me.rol !== 'admin'){ $('naEmail').textContent = ME.email; return view('vNoAdmin'); }
+  view('vAdmin'); load(); loadCal();
+}
+async function load(){
+  const { data, error } = await sb.from('perfiles').select('id,email,plan,rol,pro_hasta,creado_en').order('creado_en', { ascending:false });
+  if (error){ $('rows').innerHTML = `<tr><td colspan="6">No se han podido cargar los usuarios: ${esc(error.message)}</td></tr>`; return; }
+  ALL = data; render();
+}
+function render(){
+  const q = $('q').value.trim().toLowerCase();
+  const list = ALL.filter(p => !q || p.email.toLowerCase().includes(q));
+  $('sTotal').textContent = ALL.length;
+  $('sPro').textContent = ALL.filter(isPro).length;
+  $('sFree').textContent = ALL.filter(p => !isPro(p)).length;
+  $('sAdmin').textContent = ALL.filter(p => p.rol === 'admin').length;
+  $('rows').innerHTML = list.map(p => {
+    const mine = p.id === ME.id;
+    const until = p.pro_hasta ? p.pro_hasta.slice(0, 10) : '';
+    return `<tr data-id="${p.id}">
+      <td class="email">${esc(p.email)}${mine ? '<span class="you">TÚ</span>' : ''}</td>
+      <td class="date" data-l="ALTA">${fmtDate(p.creado_en)}</td>
+      <td data-l="PLAN"><select data-f="plan" aria-label="Plan de ${esc(p.email)}"><option value="free"${p.plan === 'free' ? ' selected' : ''}>Free</option><option value="pro"${p.plan === 'pro' ? ' selected' : ''}>PRO</option></select></td>
+      <td data-l="PRO HASTA"><input type="date" data-f="pro_hasta" value="${until}" aria-label="PRO hasta, ${esc(p.email)}"></td>
+      <td data-l="ROL"><select data-f="rol" aria-label="Rol de ${esc(p.email)}"${mine ? ' disabled title="No puedes quitarte tu propio rol"' : ''}><option value="usuario"${p.rol === 'usuario' ? ' selected' : ''}>Usuario</option><option value="admin"${p.rol === 'admin' ? ' selected' : ''}>Admin</option></select></td>
+      <td><span class="saved" aria-live="polite"></span></td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="6" style="color:var(--soft)">No hay usuarios con ese email.</td></tr>';
+}
+$('rows').addEventListener('change', async (e) => {
+  const el = e.target.closest('[data-f]'); if (!el) return;
+  const tr = el.closest('tr'), id = tr.dataset.id, f = el.dataset.f, out = tr.querySelector('.saved');
+  let val = el.value;
+  if (f === 'pro_hasta') val = val ? new Date(val + 'T23:59:59').toISOString() : null;
+  if (f === 'rol' && val === 'admin' && !confirmAdmin(tr)) { el.value = 'usuario'; return; }
+  out.className = 'saved'; out.textContent = 'Guardando…';
+  const { error } = await sb.from('perfiles').update({ [f]: val }).eq('id', id);
+  if (error){ out.className = 'saved err'; out.textContent = 'Error'; out.title = error.message; return; }
+  const p = ALL.find(x => x.id === id); p[f] = val;
+  out.textContent = 'Guardado ✓';
+  render();
+  const row = document.querySelector(`tr[data-id="${id}"] .saved`); if (row) row.textContent = 'Guardado ✓';
+});
+function confirmAdmin(tr){
+  // sin diálogos del navegador: segundo cambio confirma
+  if (tr.dataset.armed){ delete tr.dataset.armed; return true; }
+  tr.dataset.armed = '1';
+  const out = tr.querySelector('.saved'); out.className = 'saved err'; out.textContent = 'Vuelve a elegir «Admin» para confirmar';
+  return false;
+}
+$('q').addEventListener('input', render);
+$('reload').addEventListener('click', load);
+document.addEventListener('click', async (e) => { if (e.target.closest('[data-out]')) { await sb.auth.signOut(); } });
+$('vLogin').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const { error } = await sb.auth.signInWithPassword({ email: e.target.email.value.trim(), password: e.target.pass.value });
+  $('loginMsg').hidden = !error;
+  if (error) $('loginMsg').textContent = error.message === 'Invalid login credentials' ? 'El email o la contraseña no son correctos.' : error.message;
+});
+if (sb) sb.auth.onAuthStateChange((ev, session) => { setTimeout(() => boot(session), 0); });
+else view('vNoCfg');
+</script>
