@@ -157,6 +157,23 @@ mark,.m{background:var(--mark);color:var(--ink);padding:0 .14em;white-space:nowr
 .sec-head h2 .dot{color:var(--mark)}
 .sec-head p{color:var(--soft);max-width:56ch;margin:0 auto}
 .picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.catrow{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center}
+.cats{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,260px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;scrollbar-width:thin}
+.cat{scroll-snap-align:start;display:grid;gap:10px;align-content:start;text-align:left;border:1px solid var(--rule);background:rgba(26,33,48,.7);border-radius:var(--r);padding:22px;color:var(--paper);cursor:pointer;min-height:220px}
+.cat:hover{border-color:rgba(244,227,90,.55)}
+.cat .ci{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(244,227,90,.12);color:var(--mark)}
+.cat .ci svg{width:28px;height:28px}
+.cat b{font-size:19px;line-height:1.2;font-weight:800}
+.cat .cs{font-size:13.5px;color:var(--soft);line-height:1.45}
+.cat .cn{justify-self:start;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;border-radius:999px;padding:4px 10px;margin-top:auto}
+.cat .cn.on{background:var(--mark);color:var(--ink);font-weight:700}
+.cat .cn.soon{border:1px solid rgba(244,227,90,.5);color:var(--mark)}
+.cat .cn.off{border:1px solid var(--rule);color:var(--dim)}
+.cat.is-off{cursor:default;opacity:.55}
+.cat.is-off .ci{background:rgba(246,247,244,.06);color:var(--soft)}
+.catnav{width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);background:var(--ink-2);color:var(--paper);font-size:22px;cursor:pointer}
+.catnav:hover{border-color:var(--soft)}
+@media (max-width:640px){.catrow{grid-template-columns:minmax(0,1fr)}.catnav{display:none}.cats{grid-auto-columns:78%}}
 @media (max-width:980px){.picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.picks{grid-template-columns:minmax(0,1fr)}}
 .pick{border:1px solid var(--rule);background:rgba(26,33,48,.7);border-radius:var(--r);padding:22px;display:grid;gap:12px;text-align:left;align-content:start}
@@ -307,7 +324,15 @@ footer a{text-decoration:none}
 .menu .soc{font-family:var(--mono);font-size:13px;color:var(--soft);display:flex;gap:22px;flex-wrap:wrap}
 
 .soonc{background:var(--ink-2)}
-.soonc .hook{opacity:.55}
+.soonc .sblur{position:absolute;inset:-12px;filter:blur(5px) saturate(.85) brightness(.6)}
+.soonc .sblur .art{position:absolute;inset:12px}
+.soonc .faux{position:absolute;inset:12px;padding:26px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.soonov{position:absolute;inset:0;z-index:1;display:grid;place-content:center;justify-items:center;gap:8px;text-align:center;padding:16px;background:radial-gradient(ellipse at center,rgba(14,18,25,.35),rgba(14,18,25,.7))}
+.soonov .big{font-weight:800;font-size:clamp(24px,2.8vw,36px);letter-spacing:.1em;color:var(--paper);line-height:1;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.soonov .cd{font-family:var(--mono);font-size:clamp(15px,1.7vw,20px);font-weight:700;color:var(--mark);background:rgba(14,18,25,.75);border:1px solid rgba(244,227,90,.45);border-radius:999px;padding:6px 14px;font-variant-numeric:tabular-nums}
+.soonov .when{font-size:13px;color:var(--soft)}
+.side .soonov .big{font-size:40px}
+@media (max-width:640px){.soonc .ct.ov{display:none}.soonov{gap:6px}.soonov .big{font-size:22px}.soonov .when{font-size:12px}}
 .soonpill{display:flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px}
 .soonpill span{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.16em}
 .soonpill b{font-size:15px;line-height:1}
@@ -401,8 +426,12 @@ footer a{text-decoration:none}
 
   <section class="sec" id="empieza">
     <div class="wrap">
-      <div class="sec-head"><h2>Empieza por aquí<span class="dot">.</span></h2><p id="empiezaTxt">Las primeras tácticas de imágenes de producto. Toca cualquiera y ábrela.</p></div>
-      <div class="picks" id="picks"></div>
+      <div class="sec-head"><h2>Empieza por aquí<span class="dot">.</span></h2><p id="empiezaTxt">Elige qué quieres mejorar y te enseñamos sus tácticas.</p></div>
+      <div class="catrow">
+        <button class="catnav" type="button" data-dir="-1" aria-label="Categorías anteriores">‹</button>
+        <div class="cats" id="picks" role="list"></div>
+        <button class="catnav" type="button" data-dir="1" aria-label="Más categorías">›</button>
+      </div>
     </div>
   </section>
 
@@ -650,11 +679,34 @@ const F = { tax:null, cat:null, ev:null, acc:null };
 let list = [], cur = 0;
 
 function soonCover(t){
-  return `<div class="cover soonc">
-    <div class="ct"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="soonpill"><span>PRÓXIMAMENTE</span>${t.fecha ? `<b>${esc(fmtDay(t.fecha))}</b>` : ''}</span></div>
-    <div><p class="kick">Un estudio demuestra que…</p><p class="hook">${t.cover}</p></div>
+  const art = ILL[t.id] ? ILL[t.id]() : '';
+  return `<div class="cover ill soonc">
+    <div class="sblur" aria-hidden="true">${art ? `<div class="art">${art}</div>` : `<div class="faux"><p class="kick">Un estudio demuestra que…</p><p class="hook">${t.cover}</p></div>`}</div>
+    <div class="ct ov"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${num(t)}</span></div>
+    <div class="soonov">
+      <span class="big">PRÓXIMAMENTE</span>
+      ${t.fecha ? `<span class="cd" data-cd="${esc(t.fecha)}">${countdown(t.fecha)}</span><span class="when">${esc(fmtLong(t.fecha))}</span>` : '<span class="when">Muy pronto en Instagram</span>'}
+    </div>
   </div>`;
 }
+function countdown(iso){
+  let s = Math.max(0, Math.floor((new Date(iso) - Date.now()) / 1000));
+  const d = Math.floor(s / 86400); s -= d * 86400;
+  const h = Math.floor(s / 3600); s -= h * 3600;
+  const m = Math.floor(s / 60); s -= m * 60;
+  const p = (n) => String(n).padStart(2, '0');
+  return `${d ? d + 'd ' : ''}${p(h)}h ${p(m)}m ${p(s)}s`;
+}
+const fmtLong = (iso) => { const t = new Date(iso).toLocaleString('es-ES', { weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit' }); return t.charAt(0).toUpperCase() + t.slice(1); };
+let CD_REFRESHING = false;
+setInterval(() => {
+  document.querySelectorAll('[data-cd]').forEach(el => {
+    if (new Date(el.dataset.cd) - Date.now() <= 0){
+      el.textContent = '¡Ya disponible!';
+      if (!CD_REFRESHING && typeof refresh === 'function'){ CD_REFRESHING = true; setTimeout(() => { refresh().finally(() => { CD_REFRESHING = false; }); }, 1500); }
+    } else el.textContent = countdown(el.dataset.cd);
+  });
+}, 1000);
 function cover(t, big){
   if (big) return `<div class="cover">
     <div class="ct"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${num(t)}</span></div>
@@ -926,15 +978,44 @@ document.addEventListener('keydown', (e) => {
 });
 window.addEventListener('resize', layout);
 
+/* iconos de categoría (trazo, 24×24) */
+const CAT_ICON = {
+  publicidad:'<path d="M3 10v4h3l6 4V6L6 10H3z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>',
+  branding:'<path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/>',
+  copywriting:'<path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M13 7l3 3"/><path d="M14 20h6"/>',
+  ecommerce:'<rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-5-5-8 8"/>',
+  sector:'<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5M9 10h.01M15 10h.01"/>',
+  precios:'<path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
+  retail:'<path d="M3 9l2-5h14l2 5"/><path d="M4 9v11h16V9"/><path d="M3 9h18M9 20v-6h6v6"/>',
+  ventas:'<path d="M3 12l4-4 4 3 3-2 7 5-4 4-3-2-3 2-4-3-4 1z"/><path d="M7 8l4 3"/>',
+  ux:'<path d="M5 3l14 8-6 2-2 6L5 3z"/><path d="M13 13l6 6"/>',
+};
+const CAT_LABEL = { ecommerce:'Imágenes de producto y eCommerce' };
 function renderPicks(){
-  const pub = T.filter(t => !t.draft).slice(0, 4);
-  const items = pub.length ? pub : SOON.slice(0, 4);
-  $('empieza').hidden = !items.length;
-  $('picks').innerHTML = items.map(t => t.soon
-    ? `<div class="pick is-soon" aria-disabled="true"><span class="n">Nº ${num(t)} · ${esc(t.cat.toUpperCase())}</span><h3>${esc(t.t)}</h3><p>Se publica ${t.fecha ? 'el ' + esc(fmtDay(t.fecha)) : 'muy pronto'}. Síguenos en Instagram para verla la primera.</p><span class="go">Próximamente</span></div>`
-    : `<button class="pick" type="button" data-id="${t.id}"><span class="n">Nº ${num(t)} · ${esc(t.cat.toUpperCase())}</span><h3>${esc(t.t)}</h3><p>${esc(t.quote)}</p><span class="go">Abrir la táctica →</span></button>`).join('');
-  $('empiezaTxt').textContent = pub.length ? 'Las primeras tácticas de imágenes de producto. Toca cualquiera y ábrela.' : 'Estas son las primeras tácticas que vamos a publicar.';
+  $('empieza').hidden = false;
+  const cnt = (k, arr) => arr.filter(t => inTax(t, k)).length;
+  const items = TAX.map(([k, label, subs]) => {
+    const pub = cnt(k, T.filter(t => !t.draft)), soon = cnt(k, SOON);
+    return { k, label: CAT_LABEL[k] || label, subs: subs.map(x => x[1]), pub, soon };
+  }).sort((a, b) => (b.pub - a.pub) || (b.soon - a.soon));
+  $('picks').innerHTML = items.map(c => {
+    const state = c.pub ? `<span class="cn on">${c.pub} ${c.pub === 1 ? 'táctica' : 'tácticas'}</span>` : c.soon ? `<span class="cn soon">${c.soon} en camino</span>` : '<span class="cn off">Próximamente</span>';
+    return `<button class="cat${c.pub || c.soon ? '' : ' is-off'}" type="button" role="listitem" data-cat="${c.k}"${c.pub || c.soon ? '' : ' aria-disabled="true"'}>
+      <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${CAT_ICON[c.k] || ''}</svg></span>
+      <b>${esc(c.label)}</b>
+      <span class="cs">${esc(c.subs.slice(0, 3).join(' · '))}${c.subs.length > 3 ? '…' : ''}</span>
+      ${state}
+    </button>`;
+  }).join('');
 }
+$('picks').addEventListener('click', (e) => {
+  const b = e.target.closest('.cat[data-cat]'); if (!b || b.classList.contains('is-off')) return;
+  F.tax = b.dataset.cat; F.cat = null; F.ev = null; apply();
+  document.querySelector('#biblioteca .hero').scrollIntoView({ behavior: 'smooth' });
+});
+document.querySelectorAll('.catnav').forEach(n => n.addEventListener('click', () => {
+  const r = $('picks'); r.scrollBy({ left: Number(n.dataset.dir) * Math.max(260, r.clientWidth * 0.8), behavior: 'smooth' });
+}));
 
 $('waitlist').addEventListener('submit', async (e) => {
   e.preventDefault();
