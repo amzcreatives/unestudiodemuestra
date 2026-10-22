@@ -799,7 +799,8 @@ function searchRender(){
   pills($('ssort'), [['rel','Lo más relevante'],['num','Por número'],['ev','Más evidencia']], 'sort');
   const words = norm(S.q).split(/\s+/).filter(Boolean);
   let res = T.map(t => {
-    const hay = norm([t.t, t.quote, t.cat, t.sesgo, t.why.map(w => w[0] + ' ' + w[1]).join(' '), (t.how || []).map(h => h[0]).join(' '), t.by.join(' ')].join(' '));
+    const flat = (arr) => (arr || []).map(x => Array.isArray(x) ? x.filter(y => typeof y === 'string').join(' ') : String(x)).join(' ');
+    const hay = norm([t.t, t.quote, t.cat, t.sesgo, flat(t.why), flat(t.mejor), flat(t.ojo), t.ex, t.evtxt, t.cap, t.cap2, flat(t.src), (t.how || []).map(h => h[0] + ' ' + h[3]).join(' '), t.by.join(' ')].join(' '));
     const score = words.reduce((a, w) => a + (hay.includes(w) ? 1 + (norm(t.t).includes(w) ? 2 : 0) : -99), 0);
     return { t, score };
   }).filter(r => (!words.length || r.score > 0) && (!S.cat || r.t.cat === S.cat));
