@@ -373,7 +373,6 @@ footer a{text-decoration:none}
         <div class="frow frow-tax"><span>Categoría</span><div class="tax" id="ftax"></div></div>
         <div class="frow"><span>Tema</span><div class="chips" id="fcat"></div></div>
         <div class="frow"><span>Evidencia</span><div class="chips" id="fev"></div></div>
-        <div class="frow"><span>Acceso</span><div class="chips" id="facc"></div></div>
         <button class="clear" type="button" id="fclear">Quitar filtros</button>
       </div>
     </div>
@@ -391,24 +390,24 @@ footer a{text-decoration:none}
 
   <section class="sec" id="empieza">
     <div class="wrap">
-      <div class="sec-head"><h2>Empieza por aquí<span class="dot">.</span></h2><p>Cuatro tácticas abiertas de imágenes de producto. Toca cualquiera y ábrela.</p></div>
+      <div class="sec-head"><h2>Empieza por aquí<span class="dot">.</span></h2><p>Cuatro tácticas de imágenes de producto para empezar. Toca cualquiera y ábrela.</p></div>
       <div class="picks" id="picks"></div>
     </div>
   </section>
 
   <section class="sec" id="pro">
     <div class="wrap">
-      <div class="sec-head"><h2>Hazte PRO<span class="dot">.</span></h2><p>Toda la biblioteca, el paso a paso de cada táctica y un asistente que responde con estudios.</p></div>
+      <div class="sec-head"><h2>Hazte PRO<span class="dot">.</span></h2><p>Todas las tácticas son gratis. PRO te da el paso a paso de cada una y a CiCi, que responde a tu caso con estudios.</p></div>
       <div class="plans">
         <div class="plan">
           <span class="k">ABIERTA</span><h3>Gratis</h3>
-          <ul><li>Una selección de tácticas abiertas</li><li>Nueva táctica cada semana en redes</li><li>Newsletter con el estudio de la semana</li></ul>
+          <ul><li>Todas las tácticas: por qué funcionan, ejemplos y fuentes</li><li>Buscador y filtros</li><li>Nueva táctica cada semana en redes</li></ul>
           <a class="btn ghost" href="#lista">Apuntarme gratis</a>
         </div>
         <div class="plan feat">
-          <span class="k">PRO</span><h3>Biblioteca completa</h3>
+          <span class="k">PRO</span><h3>Cómo aplicarlo + CiCi</h3>
           <p class="price">[PRECIO]<small>/ mes</small></p>
-          <ul><li>Todas las tácticas, con buscador y filtros</li><li>Cómo aplicarlo, paso a paso, en cada ficha</li><li>Pregúntale a la ciencia: tu caso, respondido con estudios</li><li>El vídeo de cada táctica y sus fuentes</li></ul>
+          <ul><li>Cómo aplicarlo, paso a paso, en cada táctica</li><li>Cada paso con su imagen y el estudio del que sale</li><li>CiCi: cuéntale tu caso y te responde con estudios citados</li><li>Las tácticas nuevas, en cuanto se publican</li></ul>
           <a class="btn" href="#lista">Quiero el precio de fundador</a>
           <p class="note">La lista de espera tendrá acceso anticipado y precio de fundador.</p>
         </div>
@@ -609,12 +608,7 @@ const T = [
      ['Las huellas ajenas restan valor','En productos de segunda mano, las señales visibles del dueño anterior bajan la valoración. Pasa en el laboratorio y también en ventas reales de eBay. Y si otros compradores ya han tocado un producto, también se valora peor: da cierto rechazo.',[1,2]],
      ['Pero la presencia humana también suma','En fotos de producto para redes sociales, la sensación de que hay alguien detrás mejoró las emociones y la utilidad percibida de la foto. Y con ellas subió la intención de compra.',[4]],
    ],
-   how:[
-     ['Fotografía el producto con huellas de uso que no tengan dueño: una taza a medio beber, una manta medio doblada, fruta recién cortada junto a la batidora.','foto',[4],'Probaron fotos con una persona, con presencia insinuada y sin nadie. Cuanta más presencia social transmitía la foto, mejores emociones y más útil parecía para decidir. Y eso subía la intención de compra.'],
-     ['Si sale alguien, que no robe el foco: mejor una mano o un gesto que una cara reconocible.','foto',[3],'El efecto «parece suyo» fue más fuerte cuando la persona de la foto era más llamativa o distintiva.'],
-     ['Evita cualquier señal de manoseo: envases abiertos sin motivo, arrugas, huellas.','foto',[1,2],'Las señales de que otros han tocado o usado el producto bajan su valoración.'],
-     ['En moda, enseña a la persona. El cliente necesita imaginarse con la prenda puesta.','foto',[5],'Con camisetas, la foto con modelo fue la que más ayudaba a imaginarse llevándola en la fase de decidir la compra.'],
-   ],
+   how:null, fmts:['foto', 'foto', 'foto', 'foto'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Productos ligados a la identidad: experiencias, viajes y objetos que dicen quién eres.',[3]],['Productos de segunda mano o reacondicionados.',[2]]],
    ojo:[['En moda la persona ayuda, no resta.',[5]],['No quites toda presencia humana: sin nadie, la foto también pierde emoción.',[4]],['Ningún estudio comparó directamente «sugerir» frente a «mostrar». La táctica une varios hallazgos.',[]]],
    ex:'Una batidora junto a fruta recién cortada y un vaso a medio llenar: alguien la está usando, pero no hay nadie que se la quede.',
@@ -634,12 +628,7 @@ const T = [
      ['Imaginarse es medio comprar','Cuanto más se imaginaban los participantes usando la prenda, más intención de compra tenían. Pasó en los dos estudios.',[1]],
      ['El orden cambia lo que pesa','Con solo dos fotos, la del modelo funcionó mejor después de la del producto solo: pesa más lo último que ves. En una galería de cinco, funcionó mejor al principio: pesa más lo primero.',[1]],
    ],
-   how:[
-     ['Imagen principal: el producto solo, limpio. Es la que mejor sirve para comparar, y en Amazon además es obligatoria.','foto',[2],'Para la fase de comparar entre opciones, los autores recomiendan imágenes sin persona, como el maniquí.'],
-     ['Si solo tienes dos fotos, la de uso va la segunda.','foto',[1],'Con una imagen de cada tipo, la foto con modelo y fondo generó más imaginación cuando iba después de la del producto solo.'],
-     ['Si tienes una galería larga, pon las fotos en uso al principio y los detalles después.','foto',[1],'En una serie de cinco imágenes, empezar por las fotos con modelo y fondo generó más imaginación que dejarlas para el final. Y más imaginación se tradujo en más intención de compra.'],
-     ['En la ficha de producto, donde se decide, usa fotos con modelo. En listados y categorías, el producto solo.','foto',[2],'Los autores proponen maniquí para evaluar, por ejemplo en páginas de categoría, y modelo para la consideración profunda, en la ficha.'],
-   ],
+   how:null, fmts:['foto', 'foto', 'foto', 'foto'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Ropa y productos que se llevan puestos: con ellos se hicieron los estudios.',[1,2]],['Productos que a primera vista no enamoran: ahí la foto con modelo ayuda más.',[2]]],
    ojo:[['Los dos estudios usaron ropa. En otras categorías está por confirmar.',[]],['Amazon exige fondo blanco en la imagen principal: la foto en uso va en la galería.',[]]],
    ex:'Camiseta sobre fondo blanco como principal. Segunda foto: la misma camiseta puesta, paseando por la calle. Después, los detalles: tejido, costuras, etiqueta.',
@@ -656,11 +645,7 @@ const T = [
      ['Arriba es lujo','El ángulo de cámara y la orientación vertical del fondo aumentaron la sensación de lujo del producto en tres experimentos.',[1]],
      ['Con cara, al revés','Si el producto tiene rasgos humanos, verlo desde arriba da sensación de control sobre él, y así gusta más. Esperamos que algo «con personalidad» nos trate bien.',[2]],
    ],
-   how:[
-     ['Baja la cámara: que el objetivo mire ligeramente hacia arriba al producto.','foto',[2],'En productos sin rasgos humanos, los ángulos que miran hacia arriba se asociaron con superioridad y dieron mejores valoraciones.'],
-     ['Si vendes gama alta, refuerza la verticalidad: ángulo bajo y composición vertical.','foto',[1],'El ángulo de cámara y un fondo de orientación vertical aumentaron la percepción de lujo.'],
-     ['Si tu producto tiene cara o personalidad (una mascota, un robot, un envase con ojos), hazlo al revés: desde arriba.','foto',[2],'Con productos antropomorfizados, el ángulo desde arriba dio sensación de dominio y mejores valoraciones que el ángulo desde abajo.'],
-   ],
+   how:null, fmts:['foto', 'foto', 'foto'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Cuando quieres transmitir superioridad o lujo.',[1,2]],['Con clientes de perfil dominante: en ellos el efecto fue mayor.',[1]]],
    ojo:[['El efecto sobre el precio que la gente espera pagar cambió según el tipo de producto.',[1]],['En productos con cara, el efecto del ángulo apareció sobre todo en consumidores de nivel socioeconómico alto.',[2]],['Ningún estudio midió cuánto ángulo es demasiado: empieza con algo sutil.',[]]],
    ex:'Un frasco de perfume con la cámara ligeramente por debajo; la mascota de una marca de cereales, fotografiada desde arriba.',
@@ -677,12 +662,7 @@ const T = [
      ['El cerebro ensaya el gesto','Al ver un producto orientado hacia nuestra mano dominante, simulamos mentalmente cogerlo. En cuatro estudios, esa simulación aumentó la intención de compra.',[2]],
      ['Una mano ajena se siente propia','Ver una mano tocando el producto en una imagen, un GIF o en realidad virtual aumentó la sensación de propiedad y lo que valía el producto. Sentimos esa mano casi como nuestra.',[3]],
    ],
-   how:[
-     ['Orienta asas y mangos hacia la derecha: la mayoría somos diestros.','foto',[2],'Orientar el producto hacia la mano dominante de quien mira aumentó la intención de compra.'],
-     ['Enseña una mano tocando el producto, no solo cerca de él. Mejor en vídeo o GIF.','video',[3],'En ocho estudios, que apareciera una mano no bastaba: tenía que estar tocando el producto.'],
-     ['Que el gesto enseñe algo: apretar para ver lo blando que es, levantarlo para ver lo que pesa, pasar el dedo por la textura.','video',[3],'El efecto se debilitó cuando el movimiento de la mano no revelaba información del producto, como su textura o su peso.'],
-     ['Describe con palabras cómo se siente: «algodón grueso que no transparenta», «mango de goma que no resbala».','copy',[4],'En moda online, las descripciones del tacto generaron imaginación táctil, y las fotos no. Esa imaginación mejoró la calidad percibida y la intención de compra.'],
-   ],
+   how:null, fmts:['foto', 'video', 'video', 'copy'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Productos que se usan con las manos.',[2,3]],['Vídeos inmersivos que emocionan: el efecto fue mayor en quien más se activaba.',[3]]],
    ojo:[['Si el producto despierta rechazo, ayudar a imaginarlo en la mano reduce la compra.',[2]],['Si la página está saturada de estímulos, el efecto de la orientación se debilita.',[2]],['Un tacto desagradable resta: el valor depende de que la experiencia sea positiva.',[1]]],
    ex:'Una taza con el asa a la derecha. En el vídeo, una mano la levanta y pasa el pulgar por el esmalte. En el texto: «cerámica gruesa que mantiene el calor».',
@@ -692,7 +672,7 @@ const T = [
         ['Luangrath, A. W., Peck, J., Hedgcock, W. & Xu, Y. (2022). Observing product touch: The vicarious haptic effect in digital marketing and virtual reality. Journal of Marketing Research, 59(2), 306–326.',null],
         ['Silva, S. C., Rocha, T. V., De Cicco, R., Galhanone, R. F. & Mattos, L. T. M. F. (2021). Need for touch and haptic imagery: An investigation in online fashion shopping. Journal of Retailing and Consumer Services, 59, 102378.','10.1016/j.jretconser.2020.102378']] },
 
- { id:'t05', n:3, cat:'Composición', ev:'hi', pro:true, sesgo:'Montaje mental', cover:'Enseña las <i class="m">capas</i>',
+ { id:'t05', n:3, cat:'Composición', ev:'hi', pro:false, sesgo:'Montaje mental', cover:'Enseña las <i class="m">capas</i>',
    t:'Enseña las capas del producto por dentro', by:['Kang, Kim & Lakshmanan','2024','Journal of Marketing'],
    quote:'Enseñar el producto despiezado, con sus capas separadas, hace que valga más para el cliente: al montarlo con la vista, confía más en que funcionará.',
    cap:'Con las capas separadas, el cliente monta el producto con la vista y entiende por qué funciona.',
@@ -701,7 +681,7 @@ const T = [
      ['Montarlo da confianza','Ese montaje mental aumenta la confianza en que el producto rinde bien. Esa confianza sube lo que vale para el cliente.',[1]],
      ['Funciona fuera del laboratorio','En dos experimentos de campo, en venta entre particulares y en anuncios en redes, las imágenes despiezadas generaron más interacción.',[1]],
    ],
-   how:null, fmts:['foto', 'foto', 'copy'], /* los pasos PRO viven en Supabase (tabla pasos_pro) */
+   how:null, fmts:['foto', 'foto', 'copy'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Productos que se compran por lo que hacen, más que por placer.',[1]],['Anuncios en redes y marketplaces.',[1]]],
    ojo:[['Si la compra es por placer, el efecto se debilita.',[1]],['Con clientes a los que la tecnología les genera ansiedad, también se debilita.',[1]],['Demasiadas piezas pueden abrumar.',[2]]],
    ex:'Una zapatilla con la suela, la amortiguación y la plantilla separadas en vertical. Junto a cada capa: «goma antideslizante», «espuma de 8 mm», «plantilla extraíble».',
@@ -709,7 +689,7 @@ const T = [
    src:[['Kang, S. Y., Kim, J. & Lakshmanan, A. (2024). Anatomical depiction: How showing a product\'s inner structure shapes product valuations. Journal of Marketing.',null],
         ['Cheng, P. & Zhang, C. (2023). Show me insides: Investigating the influences of product exploded view on consumers\' mental imagery, comprehension, attitude, and purchase intention. Journal of Retailing and Consumer Services, 70, 103168.',null]] },
 
- { id:'t06', n:4, cat:'Composición', ev:'hi', pro:true, sesgo:'Peso visual', cover:'Abajo a la derecha <i class="m">pesa más</i>',
+ { id:'t06', n:4, cat:'Composición', ev:'hi', pro:false, sesgo:'Peso visual', cover:'Abajo a la derecha <i class="m">pesa más</i>',
    t:'Coloca la imagen abajo a la derecha para dar peso', by:['Deng & Kahn','2009','Journal of Marketing Research'],
    quote:'En un envase, la imagen del producto colocada abajo o a la derecha lo hace parecer más pesado. Si el peso es una virtud, suma. Si no, resta.',
    cap:'La misma tableta: con la onza arriba a la izquierda parece ligera; abajo a la derecha, contundente.',
@@ -718,7 +698,7 @@ const T = [
      ['El peso es bueno o malo según el producto','En snacks, donde el peso sugiere más cantidad o más sabor, se prefirieron los envases con la imagen en posición pesada. En productos donde el peso estorba, como una bombilla o una webcam, se prefirieron las posiciones ligeras.',[1]],
      ['Izquierda sana, derecha no','Colocar la opción saludable a la izquierda de la no saludable aumentó las elecciones sanas en siete estudios. Encaja con cómo ordenamos mentalmente la comida.',[2]],
    ],
-   how:null, fmts:['foto', 'foto', 'foto', 'foto'], /* los pasos PRO viven en Supabase (tabla pasos_pro) */
+   how:null, fmts:['foto', 'foto', 'foto', 'foto'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Envases y lineales donde tu producto compite al lado de otros.',[1]],['Menús y surtidos con opciones sanas y menos sanas.',[2]]],
    ojo:[['Si el cliente tiene en mente cuidarse, la preferencia por lo pesado se debilita.',[1]],['Si todos los envases de alrededor hacen lo mismo, el efecto desaparece.',[1]],['Se estudió en envases: llevarlo a la foto de producto es una extrapolación.',[]]],
    ex:'Una tableta de chocolate intenso con la onza dibujada abajo a la derecha. Su versión sin azúcar, en la misma página, colocada a la izquierda.',
@@ -726,7 +706,7 @@ const T = [
    src:[['Deng, X. & Kahn, B. E. (2009). Is your product on the right side? The "location effect" on perceived product heaviness and package evaluation. Journal of Marketing Research, 46(6), 725–738.','10.1509/jmkr.46.6.725'],
         ['Romero, M. & Biswas, D. (2016). Healthy-left, unhealthy-right: Can displaying healthy items to the left (versus right) of unhealthy items nudge healthier choices? Journal of Consumer Research, 43(1), 103–112.',null]] },
 
- { id:'t07', n:7, cat:'Color', ev:'hi', pro:true, sesgo:'Intensidad del color', cover:'Más saturado, <i class="m">más potente</i>',
+ { id:'t07', n:7, cat:'Color', ev:'hi', pro:false, sesgo:'Intensidad del color', cover:'Más saturado, <i class="m">más potente</i>',
    t:'Sube la saturación para transmitir potencia', by:['Labrecque et al.','2025','Journal of Marketing'],
    quote:'Los colores muy saturados hacen que un producto parezca más fuerte y eficaz. Los apagados, más natural y sostenible.',
    cap:'El mismo envase: saturado transmite potencia; apagado, suavidad y origen natural.',
@@ -734,7 +714,7 @@ const T = [
      ['Color intenso, producto intenso','Los envases con colores muy saturados se perciben más potentes y eficaces que los de tonos apagados. El efecto es más fuerte en limpieza y desinfección.',[1]],
      ['Color apagado, producto natural','Los colores poco saturados hacen que un producto parezca más respetuoso con el medio ambiente: más natural, más auténtico y más duradero. Eso aumenta la confianza en la marca, la intención de compra y la disposición a pagar más.',[2]],
    ],
-   how:null, fmts:['foto', 'foto', 'copy'], /* los pasos PRO viven en Supabase (tabla pasos_pro) */
+   how:null, fmts:['foto', 'foto', 'copy'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Limpieza y desinfección.',[1]],['Productos ecológicos, naturales o duraderos (en tonos apagados).',[2]]],
    ojo:[['En medicamentos, un envase muy saturado puede parecer demasiado fuerte y generar dudas.',[1]],['En productos de salud o seguridad, dosificar mal tiene consecuencias.',[1]]],
    ex:'Un desinfectante en rojo intenso con «Basta con un tapón por litro» bien visible. Un detergente ecológico, en verde apagado.',
@@ -753,12 +733,7 @@ const T = [
      ['Leer es tocar','En moda online, describir el tacto con palabras generó imaginación táctil, y las fotos no. En publicaciones patrocinadas, el lenguaje sensorial aumentó la interacción y la intención de compra, porque hace creíble que el influencer usa el producto.',[6,7]],
    ],
    img2Fn:'t08b', cap2:'Misma vela, mismo aroma. Con la canela a la vista, el cliente ya sabe a qué va a oler.',
-   how:[
-     ['Enseña de dónde sale el aroma: el limón junto al limpiador, la lavanda junto al ambientador.','foto',[2],'Solo el 27 % de 957 detergentes y limpiadores con aroma enseñaba la fuente del olor, y esos tenían mejor valoración. En los experimentos, la foto de la fuente mejoró la evaluación y la elección.'],
-     ['Elige una fuente que huela de verdad: una rosa evoca más aroma que un girasol.','foto',[2,3],'Las imágenes de rosas puntuaron mejor que las de girasoles, que apenas huelen. Los elementos visuales que evocan imágenes mentales aumentan lo agradable que parece el olor y la intención de compra.'],
-     ['Graba vídeo con el sonido real del producto funcionando: la batidora, el cuchillo.','video',[4,5],'Los sonidos más fuertes hicieron percibir más potencia y aumentaron la disposición a pagar. En vídeos de cuchillos, el sonido natural mejoró la experiencia de quienes necesitan tocar antes de comprar.'],
-     ['Escribe con palabras que se sienten: crujiente, jugoso, recién hecho, suave.','copy',[6,7],'En TikTok, cada palabra sensorial de más se asoció con unas 11.000 interacciones más (likes y comentarios); en Instagram, con unas 49. Y las descripciones del tacto generaron imaginación táctil que las fotos no lograron.'],
-   ],
+   how:null, fmts:['foto', 'foto', 'video', 'copy'], /* «Cómo aplicarlo» es PRO: vive en Supabase (tabla pasos_pro) */
    mejor:[['Productos donde el aroma es parte de lo que compras.',[2]],['Clientes que necesitan oler o tocar antes de comprar.',[2,5]],['Vídeos que enseñan el producto en uso.',[4]]],
    ojo:[['Si el aroma no importa en tu producto, la imagen no aporta.',[2]],['En ambientadores y desodorantes, no enseñes el mal olor: resta.',[2]],['El sonido ayudó con cuchillos, pero no con jerséis.',[5]],['Las 11.000 interacciones son de TikTok, donde la media por vídeo es enorme. No esperes lo mismo en otras redes.',[7]]],
    ex:'Una vela de canela con un puñado de canela junto al tarro. En el texto, «canela recién molida» en lugar de «aroma a canela».',
@@ -810,7 +785,7 @@ function cover(t, big){
     <div><p class="kick">Un estudio demuestra que…</p><p class="hook">${t.cover}</p></div>
     <div class="foot">${LOGO}<span class="ev ${t.ev}">${EV[t.ev]}</span></div>
   </div>`;
-  return `<div class="cover ill${t.pro && !PRO_USER ? ' locked' : ''}">
+  return `<div class="cover ill">
     <div class="art">${t.img}</div>
     <div class="ct ov"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${num(t)}</span></div>
     <div class="lockveil"><span class="lockpill">${LOCK} PRO</span></div>
@@ -847,13 +822,12 @@ function renderFilters(){
   renderTax();
   chipSet($('fcat'), ORDER.map(c => [c, c, T.filter(t => t.cat === c).length]), 'cat');
   chipSet($('fev'), ['hi','md','lo'].map(e => [e, EVS[e], T.filter(t => t.ev === e).length, EVC[e]]), 'ev');
-  chipSet($('facc'), [['open','Abiertas', T.filter(t => !t.pro).length], ['pro','PRO', T.filter(t => t.pro).length]], 'acc');
   const n = Object.values(F).filter(Boolean).length;
   $('fcount').hidden = !n; $('fcount').textContent = n;
 }
 function apply(){
   renderFilters();
-  list = T.filter(t => (!F.tax || inTax(t, F.tax)) && (!F.cat || t.cat === F.cat) && (!F.ev || t.ev === F.ev) && (!F.acc || (F.acc === 'pro') === t.pro));
+  list = T.filter(t => (!F.tax || inTax(t, F.tax)) && (!F.cat || t.cat === F.cat) && (!F.ev || t.ev === F.ev));
   cur = Math.min(cur, Math.max(0, list.length - 1));
   buildStage(); buildTrack(); layout();
 }
@@ -975,12 +949,12 @@ function stepItem(t, h, i){
       <div class="sev"><span class="lbl">De dónde sale</span><p>${esc(note)}</p><ul class="sref">${rl}</ul></div></div></details></li>`;
 }
 function sheet(t){
-  const locked = t.pro && (!PRO_USER || !t.how);
-  /* en PRO bloqueado no se pinta el texto real de los pasos: solo líneas de relleno */
+  const locked = !PRO_USER || !t.how;
+  /* sin PRO no se pinta el texto real de los pasos: solo líneas de relleno */
   const fmts = t.fmts || (t.how || []).map(h => h[1]);
   const fake = (i) => `<li class="step f-${fmts[i]} fake"><div class="fsum"><span class="k">${String(i + 1).padStart(2,'0')}</span><span class="bars"><i style="width:${[92,78,86,70,82][i % 5]}%"></i><i style="width:${[54,62,40,58,47][i % 5]}%"></i><i class="t"></i></span></div></li>`;
   const steps = locked
-    ? `<div class="gate"><ol class="steps" aria-hidden="true">${fmts.map((f, i) => fake(i)).join('')}</ol><div class="unlock"><div>${LOCK}<b>Los ${fmts.length} pasos son parte de PRO</b><span class="note">${PRO_USER ? 'No se han podido cargar los pasos. Recarga la página.' : 'Con PRO ves cada paso con su imagen y el estudio del que sale.'}</span>${PRO_USER ? '' : '<a class="btn" href="#pro" data-close>Hazte PRO</a><button class="linkbtn" type="button" data-login>Ya soy PRO: entrar</button>'}</div></div></div>`
+    ? `<div class="gate"><ol class="steps" aria-hidden="true">${fmts.map((f, i) => fake(i)).join('')}</ol><div class="unlock"><div>${LOCK}<b>Los ${fmts.length} pasos son parte de PRO</b><span class="note">${PRO_USER ? 'No se han podido cargar los pasos. Recarga la página.' : 'Con PRO ves cada paso con su imagen y el estudio del que sale, y puedes preguntarle a CiCi.'}</span>${PRO_USER ? '' : '<a class="btn" href="#pro" data-close>Hazte PRO</a><button class="linkbtn" type="button" data-login>Ya soy PRO: entrar</button>'}</div></div></div>`
     : `<ol class="steps">${t.how.map((h, i) => stepItem(t, h, i)).join('')}</ol>`;
   $('sheet').innerHTML = `
     <aside class="side">
@@ -1001,9 +975,9 @@ function sheet(t){
         <div><h4>Cuidado con</h4><ul class="blist warn">${t.ojo.map(m => `<li>${esc(m[0])}${refs(m[1])}</li>`).join('')}</ul></div></div>
       <div><h4>Ejemplo</h4><p class="example" style="margin-top:10px">${esc(t.ex)}</p></div>
       <div><h4>Nivel de evidencia</h4><p class="evline" style="margin-top:10px"><span class="ev ${t.ev}">${EVS[t.ev]}</span><span class="txt">${esc(t.evtxt)}</span></p></div>
-      <div class="ask"><span class="mono" style="font-size:11.5px;letter-spacing:.12em;color:var(--mark)">PREGÚNTALE A LA CIENCIA · PRO</span>
+      <div class="ask"><span class="mono" style="font-size:11.5px;letter-spacing:.12em;color:var(--mark)">PREGÚNTALE A CICI · PRO</span>
         <span class="q">¿Me sirve esto para una tienda de cosmética?</span>
-        <span class="a">Ejemplo: el asistente respondería con esta táctica y las relacionadas de la biblioteca, citando cada estudio.</span>
+        <span class="a">Ejemplo: CiCi respondería con esta táctica y las relacionadas de la biblioteca, citando cada estudio.</span>
         <div class="in"><input type="text" disabled placeholder="Disponible en PRO" aria-label="Pregunta (disponible en PRO)"><a class="btn" href="#pro" data-close>Hazte PRO</a></div>
       </div>
       ${srcBlock(t)}
@@ -1120,7 +1094,7 @@ function renderMe(){
   const pl = planOf(PERFIL);
   $('accEmail').textContent = SESSION.user.email || '';
   $('accBadge').className = 'pbadge ' + pl; $('accBadge').textContent = pl === 'admin' ? 'ADMIN' : pl === 'pro' ? 'PRO' : 'FREE';
-  $('accPlanTxt').textContent = pl === 'admin' ? 'Acceso completo y gestión de usuarios.' : pl === 'pro' ? 'Tienes acceso a toda la biblioteca.' : 'Ves las tácticas abiertas. Las PRO, con el plan PRO.';
+  $('accPlanTxt').textContent = pl === 'admin' ? 'Acceso completo y gestión de usuarios.' : pl === 'pro' ? 'Tienes el paso a paso de cada táctica y acceso a CiCi.' : 'Ves todas las tácticas. «Cómo aplicarlo» y CiCi son PRO.';
   $('accAdmin').hidden = pl !== 'admin'; $('accUp').hidden = pl !== 'free';
 }
 async function loadAccess(){
@@ -1132,13 +1106,12 @@ async function loadAccess(){
       PRO_USER = true;
       const { data: rows, error } = await sb.from('pasos_pro').select('tactica,orden,texto,formato,refs,nota,imagen').order('orden');
       if (!error && rows) T.forEach(t => {
-        if (!t.pro) return;
         const r = rows.filter(x => x.tactica === t.id).sort((a, b) => a.orden - b.orden);
         t.how = r.length ? r.map(x => [x.texto, x.formato, x.refs || [], x.nota || '', x.imagen ? `<img src="${esc(x.imagen)}" alt="" loading="lazy">` : undefined]) : null;
       });
     }
   }
-  if (!PRO_USER) T.forEach(t => { if (t.pro) t.how = null; });
+  if (!PRO_USER) T.forEach(t => { t.how = null; });
   renderAcct();
   buildStage(); layout();
   if (OPEN_ID && !$('Lsheet').hidden) sheet(T.find(x => x.id === OPEN_ID));

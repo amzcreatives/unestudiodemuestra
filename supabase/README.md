@@ -13,7 +13,7 @@
 ## Qué hace cada cosa
 
 - `perfiles`: un registro por usuario con su `plan` (free/pro), su `rol` (usuario/admin) y, opcional, `pro_hasta` (caducidad del PRO).
-- `pasos_pro`: el «Cómo aplicarlo» de las tácticas PRO. Ya no está en el código de la web: solo lo descarga quien tiene PRO o es admin. Lo garantiza la base de datos (Row Level Security), no la página.
+- `pasos_pro`: el «Cómo aplicarlo» de todas las tácticas (es lo que da el plan PRO, junto con CiCi). No está en el código de la web: solo lo descarga quien tiene PRO o es admin. Lo garantiza la base de datos (Row Level Security), no la página.
 - Nadie puede darse PRO a sí mismo: solo un admin puede cambiar el plan o el rol.
 
 ## Usuario de prueba
