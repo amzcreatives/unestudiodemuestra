@@ -78,6 +78,67 @@ input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border
 .st.video_listo{background:#2346C9;color:#fff} .st.programada{background:rgba(244,227,90,.18);color:var(--mark)} .st.publicada{background:var(--mark);color:var(--ink)}
 .live{font-family:var(--mono);font-size:10.5px;color:var(--mark)}
 .newt{margin-top:22px;display:grid;gap:14px}
+/* estados: un color por estado */
+:root{--s-idea:#6F7889;--s-preparacion:#B07CF2;--s-video_listo:#4F7BFF;--s-programada:#F4E35A;--s-publicada:#3DDC97}
+.ctools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 12px}
+.ctools input[type=search]{flex:1;min-width:200px}
+.seg{display:inline-grid;grid-auto-flow:column;border:1px solid var(--rule);border-radius:12px;padding:4px;gap:4px}
+.seg button{background:none;border:0;border-radius:9px;padding:9px 14px;font-weight:700;color:var(--soft);cursor:pointer}
+.seg button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.linkbtn{background:none;border:0;color:var(--soft);text-decoration:underline;cursor:pointer;font-size:14px}
+.cfil{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.fchip{--c:var(--soft);display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);background:transparent;color:var(--paper);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer}
+.fchip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.fchip b{font-family:var(--mono);font-size:11.5px;color:var(--soft);font-weight:500}
+.fchip[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb, var(--c) 16%, transparent)}
+.fchip[aria-pressed="true"] b{color:var(--paper)}
+.s-idea{--c:var(--s-idea)} .s-preparacion{--c:var(--s-preparacion)} .s-video_listo{--c:var(--s-video_listo)} .s-programada{--c:var(--s-programada)} .s-publicada{--c:var(--s-publicada)}
+.mhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mhead h2{margin:0;font-size:24px;min-width:200px}
+.mnav{width:38px;height:38px;border-radius:50%;border:1px solid var(--rule);background:transparent;color:var(--paper);font-size:20px;cursor:pointer}
+.mnav:hover{border-color:var(--soft)}
+.btn.sm{padding:8px 14px;font-size:14px}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--ink-2)}
+.mdow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--dim);padding:10px;border-bottom:1px solid var(--rule)}
+.mday{min-height:118px;padding:8px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:5px;min-width:0}
+.mday:nth-child(7n){border-right:0}
+.mday .d{font-family:var(--mono);font-size:12px;color:var(--soft)}
+.mday.out{background:rgba(0,0,0,.18)}
+.mday.out .d{color:var(--dim)}
+.mday.today .d{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--paper);color:var(--ink);font-weight:700}
+.mday.over{outline:2px dashed var(--mark);outline-offset:-4px}
+.ev{display:block;width:100%;text-align:left;border:0;border-left:3px solid var(--c);background:color-mix(in srgb, var(--c) 14%, var(--ink-0));color:var(--paper);border-radius:6px;padding:5px 7px;font-size:12.5px;line-height:1.3;cursor:pointer;overflow:hidden}
+.ev .h{font-family:var(--mono);font-size:10.5px;color:var(--c);display:block}
+.ev .tt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ev.s-publicada,.ev.on{--c:var(--s-publicada);background:var(--c);color:var(--ink)}
+.ev.on .h,.ev.s-publicada .h{color:var(--ink)}
+.ev.s-idea{border-left-style:dashed}
+.ev[draggable="true"]{cursor:grab}
+.nodate{margin-top:18px;background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:16px}
+.ndlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.ndlist .ev{padding:8px 10px;font-size:13.5px}
+.nodate .hint{margin:12px 0 0;font-size:13px;color:var(--dim)}
+.drawer{position:fixed;right:16px;top:90px;width:min(380px,calc(100vw - 32px));max-height:calc(100vh - 110px);overflow:auto;z-index:20;background:var(--ink-3);border:1px solid var(--rule);border-radius:18px;padding:22px;display:grid;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.drawer h3{margin:0;font-size:20px;line-height:1.25}
+.drawer .kick{margin:0}
+.cesub{margin:0;color:var(--soft);font-size:14px}
+.cestate{margin:0;font-size:13.5px;color:var(--soft)}
+.cebtns{display:flex;align-items:center;gap:12px}
+.dx{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:var(--paper);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.agenda{display:none}
+.ag{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center}
+.agd{font-family:var(--mono);font-size:11.5px;color:var(--soft);text-transform:uppercase;line-height:1.4}
+@media (max-width:720px){
+  .agenda{display:grid;gap:8px;margin-top:12px}
+  .agenda .ev .tt{display:block}
+  .mday .ev .x{display:none}
+  .mday .ev .h{font-size:9.5px}
+  .mdow{padding:6px 4px;font-size:9.5px;letter-spacing:.04em;text-align:center}
+  .mday{min-height:74px;padding:4px}
+  .mday .ev .tt{display:none}
+  .mday .ev{padding:3px 4px}
+  .mhead h2{font-size:19px;min-width:0;flex:1}
+}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .lead b{color:var(--paper)}
 .help{margin-top:26px;color:var(--soft);font-size:14.5px;max-width:760px}
@@ -123,12 +184,51 @@ input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border
   <section id="vCal" hidden>
     <p class="lead">Todas las tácticas, hechas o por hacer. Solo se ven en la web las <b>publicadas</b> y las <b>programadas</b> cuya fecha ya ha llegado. Las que tienen vídeo listo o están programadas salen como «Próximamente». Los cambios se guardan al momento.</p>
     <div class="stats" id="cStats"></div>
-    <div class="tblw">
+    <div class="ctools">
+      <div class="seg" role="tablist" id="cView" aria-label="Vista">
+        <button type="button" role="tab" data-v="mes" aria-selected="true">Calendario</button>
+        <button type="button" role="tab" data-v="lista" aria-selected="false">Lista</button>
+      </div>
+      <input type="search" id="cQ" placeholder="Buscar por título o estudio" aria-label="Buscar táctica">
+      <select id="cTema" aria-label="Filtrar por tema"><option value="">Todos los temas</option></select>
+      <button class="linkbtn" type="button" id="cClear" hidden>Quitar filtros</button>
+    </div>
+    <div class="cfil" id="cFil" role="group" aria-label="Filtrar por estado"></div>
+
+    <div id="cMonth">
+      <div class="mhead">
+        <button type="button" class="mnav" id="mPrev" aria-label="Mes anterior">‹</button>
+        <h2 id="mTitle"></h2>
+        <button type="button" class="mnav" id="mNext" aria-label="Mes siguiente">›</button>
+        <button type="button" class="btn ghost sm" id="mToday">Hoy</button>
+      </div>
+      <div class="mgrid" id="mGrid"></div>
+      <div class="agenda" id="mAgenda"></div>
+      <div class="nodate">
+        <p class="kick">SIN FECHA <span id="ndCount"></span></p>
+        <div class="ndlist" id="ndList"></div>
+        <p class="hint">Arrastra una táctica a un día para darle fecha (20:00 por defecto). Toca cualquier táctica para editarla.</p>
+      </div>
+    </div>
+
+    <div class="tblw" id="cList" hidden>
       <table class="tbl cal">
         <thead><tr><th>Nº</th><th>TÁCTICA</th><th>ESTADO</th><th>FECHA Y HORA</th><th>REEL DE INSTAGRAM</th><th></th></tr></thead>
         <tbody id="cRows"></tbody>
       </table>
     </div>
+    <div class="drawer" id="cEdit" role="dialog" aria-modal="false" aria-labelledby="ceTitle" hidden>
+      <button type="button" class="dx" id="ceClose" aria-label="Cerrar">×</button>
+      <p class="kick" id="ceNum"></p>
+      <h3 id="ceTitle"></h3>
+      <p class="cesub" id="ceSub"></p>
+      <label>Estado<select id="ceEstado"></select></label>
+      <label>Fecha y hora<input type="datetime-local" id="ceFecha"></label>
+      <label>Reel de Instagram<input type="url" id="ceReel" placeholder="https://www.instagram.com/reel/…"></label>
+      <p class="cestate" id="ceState"></p>
+      <div class="cebtns"><a class="btn ghost sm" id="ceVer" target="_blank" rel="noopener">Ver en la biblioteca</a><span class="saved" id="ceMsg" aria-live="polite"></span></div>
+    </div>
+
     <form class="box newt" id="newT" novalidate>
       <p class="kick">NUEVA TÁCTICA</p>
       <div class="grid2">
@@ -202,26 +302,129 @@ const ESTADOS = [['idea','Idea'],['preparacion','En preparación'],['video_listo
 let TACS = [];
 const isLive = (t) => t.estado === 'publicada' || (t.estado === 'programada' && t.fecha_publicacion && new Date(t.fecha_publicacion) <= new Date());
 const toLocal = (iso) => { if (!iso) return ''; const d = new Date(iso); const p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
-const normT = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 3);
+const normT = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 3);
 function parecido(a, b){ const A = new Set(normT(a)), B = new Set(normT(b)); if (!A.size || !B.size) return 0; let n = 0; A.forEach(w => { if (B.has(w)) n++; }); return n / Math.min(A.size, B.size); }
 async function loadCal(){
   const { data, error } = await sb.from('tacticas').select('id,numero,titulo,tema,estudio_principal,estado,fecha_publicacion,url_reel').order('numero');
   if (error){ $('cRows').innerHTML = `<tr><td colspan="6">No se han podido cargar las tácticas: ${esc(error.message)}</td></tr>`; return; }
   TACS = data; renderCal();
 }
+/* filtros y vista */
+const CF = { estados: new Set(), tema: '', q: '' };
+let CVIEW = 'mes';
+const today0 = new Date(); let MONTH = new Date(today0.getFullYear(), today0.getMonth(), 1);
+const vis = (t) => isLive(t) ? 'publicada' : t.estado;
+const passF = (t) => (!CF.estados.size || CF.estados.has(vis(t))) && (!CF.tema || t.tema === CF.tema)
+  && (!CF.q || normQ(t.titulo + ' ' + t.estudio_principal + ' ' + t.numero).includes(normQ(CF.q)));
+const normQ = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const ELABEL = { idea:'Idea', preparacion:'En preparación', video_listo:'Vídeo listo', programada:'Programada', publicada:'Publicada / en la web' };
+function renderFilters(){
+  $('cFil').innerHTML = Object.entries(ELABEL).map(([k, l]) => `<button type="button" class="fchip s-${k}" data-e="${k}" aria-pressed="${CF.estados.has(k)}"><i></i>${l}<b>${TACS.filter(t => vis(t) === k).length}</b></button>`).join('');
+  const temas = [...new Set(TACS.map(t => t.tema))].sort();
+  const sel = $('cTema'), cur = CF.tema;
+  sel.innerHTML = '<option value="">Todos los temas</option>' + temas.map(t => `<option${t === cur ? ' selected' : ''}>${esc(t)}</option>`).join('');
+  $('cClear').hidden = !(CF.estados.size || CF.tema || CF.q);
+}
+$('cFil').addEventListener('click', (e) => { const b = e.target.closest('[data-e]'); if (!b) return; const k = b.dataset.e; CF.estados.has(k) ? CF.estados.delete(k) : CF.estados.add(k); renderCal(); });
+$('cTema').addEventListener('change', (e) => { CF.tema = e.target.value; renderCal(); });
+$('cQ').addEventListener('input', (e) => { CF.q = e.target.value.trim(); renderCal(); });
+$('cClear').addEventListener('click', () => { CF.estados.clear(); CF.tema = ''; CF.q = ''; $('cQ').value = ''; renderCal(); });
+$('cView').addEventListener('click', (e) => { const b = e.target.closest('[data-v]'); if (!b) return; CVIEW = b.dataset.v; document.querySelectorAll('#cView [data-v]').forEach(x => x.setAttribute('aria-selected', String(x === b))); renderCal(); });
+$('mPrev').addEventListener('click', () => { MONTH = new Date(MONTH.getFullYear(), MONTH.getMonth() - 1, 1); renderMonth(); });
+$('mNext').addEventListener('click', () => { MONTH = new Date(MONTH.getFullYear(), MONTH.getMonth() + 1, 1); renderMonth(); });
+$('mToday').addEventListener('click', () => { MONTH = new Date(today0.getFullYear(), today0.getMonth(), 1); renderMonth(); });
+const sameDay = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+const hhmm = (d) => d.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
+function evHtml(t, withTime){
+  const d = t.fecha_publicacion ? new Date(t.fecha_publicacion) : null;
+  const live = isLive(t);
+  return `<button type="button" class="ev s-${t.estado}${live ? ' on' : ''}" data-id="${t.id}" draggable="true" title="${esc(ELABEL[vis(t)])}: ${esc(t.titulo)}"><span class="h"><span class="n">Nº ${String(t.numero).padStart(3, '0')}</span><span class="x">${withTime && d ? ' · ' + hhmm(d) : ''}</span></span><span class="tt">${esc(t.titulo)}</span></button>`;
+}
+function renderMonth(){
+  const list = TACS.filter(passF);
+  const mt = MONTH.toLocaleDateString('es-ES', { month:'long', year:'numeric' }); $('mTitle').textContent = mt.charAt(0).toUpperCase() + mt.slice(1);
+  const first = new Date(MONTH), start = new Date(first); start.setDate(1 - ((first.getDay() + 6) % 7));
+  const last = new Date(MONTH.getFullYear(), MONTH.getMonth() + 1, 0);
+  const cells = Math.ceil((((first.getDay() + 6) % 7) + last.getDate()) / 7) * 7;
+  let html = ['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'].map(d => `<div class="mdow">${d}</div>`).join('');
+  for (let i = 0; i < cells; i++){
+    const day = new Date(start); day.setDate(start.getDate() + i);
+    const evs = list.filter(t => t.fecha_publicacion && sameDay(new Date(t.fecha_publicacion), day)).sort((a, b) => new Date(a.fecha_publicacion) - new Date(b.fecha_publicacion));
+    html += `<div class="mday${day.getMonth() !== MONTH.getMonth() ? ' out' : ''}${sameDay(day, today0) ? ' today' : ''}" data-day="${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}"><span class="d">${day.getDate()}</span>${evs.map(t => evHtml(t, true)).join('')}</div>`;
+  }
+  $('mGrid').innerHTML = html;
+  const inMonth = list.filter(t => t.fecha_publicacion && new Date(t.fecha_publicacion).getMonth() === MONTH.getMonth() && new Date(t.fecha_publicacion).getFullYear() === MONTH.getFullYear())
+    .sort((a, b) => new Date(a.fecha_publicacion) - new Date(b.fecha_publicacion));
+  $('mAgenda').innerHTML = inMonth.map(t => { const d = new Date(t.fecha_publicacion); return `<div class="ag"><span class="agd">${d.toLocaleDateString('es-ES', { weekday:'short', day:'numeric' })}<br>${hhmm(d)}</span>${evHtml(t, false)}</div>`; }).join('') || '<p style="color:var(--dim);font-size:14px;margin:0">Nada programado este mes.</p>';
+  const nd = list.filter(t => !t.fecha_publicacion);
+  $('ndCount').textContent = '· ' + nd.length;
+  $('ndList').innerHTML = nd.map(t => evHtml(t, false)).join('') || '<span style="color:var(--dim);font-size:14px">Todas las tácticas filtradas tienen fecha.</span>';
+}
+/* editar desde el calendario */
+let EDIT = null;
+function openEdit(id){
+  const t = TACS.find(x => x.id === id); if (!t) return;
+  EDIT = id;
+  $('ceNum').textContent = 'Nº ' + String(t.numero).padStart(3, '0') + ' · ' + t.tema.toUpperCase();
+  $('ceTitle').textContent = t.titulo; $('ceSub').textContent = t.estudio_principal;
+  $('ceEstado').innerHTML = ESTADOS.map(([v, l]) => `<option value="${v}"${t.estado === v ? ' selected' : ''}>${l}</option>`).join('');
+  $('ceFecha').value = toLocal(t.fecha_publicacion); $('ceReel').value = t.url_reel || '';
+  $('ceVer').href = 'biblioteca#' + t.id; $('ceMsg').textContent = '';
+  $('ceState').innerHTML = isLive(t) ? '● Se ve en la web.' : (['preparacion','video_listo','programada'].includes(t.estado) ? 'En la web sale como «Próximamente».' : 'No se ve en la web.');
+  $('cEdit').hidden = false;
+}
+$('ceClose').addEventListener('click', () => { $('cEdit').hidden = true; EDIT = null; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('cEdit').hidden) { $('cEdit').hidden = true; EDIT = null; } });
+['ceEstado','ceFecha','ceReel'].forEach(id => $(id).addEventListener('change', async () => {
+  const t = TACS.find(x => x.id === EDIT); if (!t) return;
+  const f = id === 'ceEstado' ? 'estado' : id === 'ceFecha' ? 'fecha_publicacion' : 'url_reel';
+  let val = $(id).value.trim();
+  if (f === 'fecha_publicacion') val = val ? new Date(val).toISOString() : null;
+  if (f === 'url_reel') val = val || null;
+  const r = await saveTac(t, f, val);
+  $('ceMsg').className = 'saved' + (r.ok ? '' : ' err'); $('ceMsg').textContent = r.msg;
+  if (!r.ok && f === 'estado') $('ceEstado').value = t.estado;
+  if (r.ok) openEdit(t.id), ($('ceMsg').textContent = 'Guardado ✓');
+}));
+async function saveTac(t, f, val){
+  const patch = { [f]: val };
+  if (f === 'estado' && val === 'programada' && !t.fecha_publicacion) return { ok:false, msg:'Pon primero la fecha' };
+  if (f === 'estado' && val === 'publicada' && !t.fecha_publicacion) patch.fecha_publicacion = new Date().toISOString();
+  const { error } = await sb.from('tacticas').update(patch).eq('id', t.id);
+  if (error) return { ok:false, msg:'Error: ' + error.message };
+  Object.assign(t, patch); renderCal();
+  return { ok:true, msg:'Guardado ✓' };
+}
+$('cMonth').addEventListener('click', (e) => { const ev = e.target.closest('.ev[data-id]'); if (ev) openEdit(ev.dataset.id); });
+/* arrastrar para cambiar la fecha */
+$('cMonth').addEventListener('dragstart', (e) => { const ev = e.target.closest('.ev[data-id]'); if (ev) e.dataTransfer.setData('text/plain', ev.dataset.id); });
+$('mGrid').addEventListener('dragover', (e) => { const d = e.target.closest('.mday'); if (d){ e.preventDefault(); document.querySelectorAll('.mday.over').forEach(x => x !== d && x.classList.remove('over')); d.classList.add('over'); } });
+$('mGrid').addEventListener('dragleave', (e) => { const d = e.target.closest('.mday'); if (d && !d.contains(e.relatedTarget)) d.classList.remove('over'); });
+$('mGrid').addEventListener('drop', async (e) => {
+  const d = e.target.closest('.mday'); if (!d) return; e.preventDefault(); d.classList.remove('over');
+  const t = TACS.find(x => x.id === e.dataTransfer.getData('text/plain')); if (!t) return;
+  const [y, m, dd] = d.dataset.day.split('-').map(Number);
+  const old = t.fecha_publicacion ? new Date(t.fecha_publicacion) : null;
+  const nd = new Date(y, m - 1, dd, old ? old.getHours() : 20, old ? old.getMinutes() : 0);
+  await saveTac(t, 'fecha_publicacion', nd.toISOString());
+  if (EDIT === t.id) openEdit(t.id);
+});
 function renderCal(){
+  renderFilters();
+  $('cMonth').hidden = CVIEW !== 'mes'; $('cList').hidden = CVIEW !== 'lista';
+  if (CVIEW === 'mes') renderMonth();
   const c = (e) => TACS.filter(t => t.estado === e).length;
   $('cStats').innerHTML = [['Total', TACS.length], ['En la web', TACS.filter(isLive).length], ['Programadas', c('programada')], ['Vídeo listo', c('video_listo')], ['En preparación', c('preparacion')], ['Ideas', c('idea')]]
     .map(([l, n]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
-  $('cRows').innerHTML = TACS.map(t => `<tr data-id="${t.id}">
+  $('cRows').innerHTML = TACS.filter(passF).map(t => `<tr data-id="${t.id}">
       <td class="n">${String(t.numero).padStart(3, '0')}</td>
       <td class="t"><b>${esc(t.titulo)}</b><span>${esc(t.tema)} · ${esc(t.estudio_principal)}</span></td>
       <td data-l="ESTADO"><select data-c="estado" aria-label="Estado de ${esc(t.titulo)}">${ESTADOS.map(([v, l]) => `<option value="${v}"${t.estado === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
-        <div style="margin-top:6px">${isLive(t) ? '<span class="live">● EN LA WEB</span>' : `<span class="st ${t.estado}">${['video_listo','programada','preparacion'].includes(t.estado) ? 'PRÓXIMAMENTE' : 'OCULTA'}</span>`}</div></td>
+        <div style="margin-top:6px">${isLive(t) ? '<span class="live">● EN LA WEB</span>' : `<span class="fchip s-${t.estado}" style="padding:3px 9px;font-size:11px;cursor:default"><i></i>${ELABEL[t.estado]}</span> <span class="st ${t.estado}">${['video_listo','programada','preparacion'].includes(t.estado) ? 'PRÓXIMAMENTE' : 'OCULTA'}</span>`}</div></td>
       <td data-l="FECHA Y HORA"><input type="datetime-local" data-c="fecha_publicacion" value="${toLocal(t.fecha_publicacion)}" aria-label="Fecha de ${esc(t.titulo)}"></td>
       <td data-l="REEL"><input type="url" data-c="url_reel" value="${esc(t.url_reel || '')}" placeholder="https://www.instagram.com/reel/…" aria-label="Reel de ${esc(t.titulo)}"></td>
       <td><a class="back" href="biblioteca#${t.id}" target="_blank" rel="noopener">Ver</a> <span class="saved" aria-live="polite"></span></td>
-    </tr>`).join('') || '<tr><td colspan="6" style="color:var(--soft)">Aún no hay tácticas.</td></tr>';
+    </tr>`).join('') || (TACS.length ? '<tr><td colspan="6" style="color:var(--soft)">Ninguna táctica con estos filtros.</td></tr>' : '<tr><td colspan="6" style="color:var(--soft)">Aún no hay tácticas.</td></tr>');
 }
 $('cRows').addEventListener('change', async (e) => {
   const el = e.target.closest('[data-c]'); if (!el) return;
