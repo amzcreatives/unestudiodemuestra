@@ -961,7 +961,16 @@ const ERR = {
   'User already registered':'Ya existe una cuenta con ese email. Prueba a entrar.',
   'Password should be at least 6 characters.':'La contraseña es demasiado corta.',
 };
-const tr = (m) => ERR[m] || m || 'Algo ha fallado. Inténtalo de nuevo.';
+const tr = (m) => {
+  m = m || '';
+  if (ERR[m]) return ERR[m];
+  if (/Email address .* is invalid/i.test(m)) return 'Ese email no es válido. Revisa que esté bien escrito.';
+  if (/not authorized/i.test(m)) return 'Ahora mismo no podemos enviar el email de confirmación a esa dirección. Escríbenos y te damos acceso.';
+  if (/rate limit|too many/i.test(m)) return 'Se han enviado demasiados emails seguidos. Espera unos minutos y vuelve a intentarlo.';
+  if (/password/i.test(m)) return 'Elige una contraseña más segura: al menos 8 caracteres, con letras y números.';
+  if (/fetch|network/i.test(m)) return 'No hay conexión con el servidor. Revisa tu internet y vuelve a intentarlo.';
+  return m || 'Algo ha fallado. Inténtalo de nuevo.';
+};
 function accMsg(id, text, err){ const m = $(id); m.hidden = !text; m.textContent = text || ''; m.classList.toggle('err', !!err); }
 function accView(v){ $('accForm').hidden = v !== 'form'; $('accNew').hidden = v !== 'new'; $('accMe').hidden = v !== 'me'; }
 function setMode(m){
