@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pregúntale a CiCi · UED</title>
+<meta name="description" content="CiCi, de Ciencia Citada: el asistente de Un Estudio Demuestra que responde solo con estudios, citando cada uno.">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJVbiBFc3R1ZGlvIERlbXVlc3RyYSI+PHRpdGxlPlVuIEVzdHVkaW8gRGVtdWVzdHJhPC90aXRsZT48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTQxQTI0Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMy4yNDggMi43ODgpIHNjYWxlKDAuOTIxMikiPjxwYXRoIGQ9Ik0yNSAxNCBINTUgTTgwIDM5IFY4NSBRODAgOTAgNzUgOTAgSDI1IFEyMCA5MCAyMCA4NSBWMTkgUTIwIDE0IDI1IDE0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNkY3RjQiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSI0MiIgY3k9IjUwIiByPSI2LjUiIGZpbGw9IiNGNEUzNUEiIGZpbGwtb3BhY2l0eT0iMC43NSIvPgo8Y2lyY2xlIGN4PSI3MSIgY3k9IjIzIiByPSIxNSIgZmlsbD0iI0Y0RTM1QSIvPjwvZz48L3N2Zz4K">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Public+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141A24; --ink-0:#0E1219; --ink-2:#1A2130; --ink-3:#222A3A;
+  --paper:#F6F7F4; --mark:#F4E35A; --rule:#2C3546; --soft:#A3ACBB; --dim:#8A94A6; --text:#E4E8EE; --warn:#F2A4A4;
+  --serif:'Newsreader',Georgia,serif; --sans:'Public Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--ink-0);color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.5}
+a{color:var(--mark)}
+button,input,textarea{font:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.app{display:flex;min-height:100vh}
+.side{flex:none;width:280px;background:var(--ink);border-right:1px solid var(--rule);padding:20px 16px;display:flex;flex-direction:column;gap:18px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 6px;text-decoration:none;color:var(--paper)}
+.brand .nm{font-family:var(--serif);font-size:22px;font-weight:500}
+.pro{font-family:var(--mono);font-size:10px;letter-spacing:.12em;background:var(--mark);color:var(--ink);border-radius:4px;padding:2px 6px}
+.newc{display:flex;align-items:center;gap:10px;color:var(--paper);background:transparent;border:1px solid var(--rule);border-radius:12px;padding:11px 14px;font-weight:600;font-size:14.5px;cursor:pointer;text-align:left}
+.newc:hover{border-color:var(--soft)}
+.hist{display:flex;flex-direction:column;gap:2px;overflow-y:auto;min-height:0;flex:1}
+.hist .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--dim);padding:8px 8px 6px}
+.hist button{all:unset;cursor:pointer;color:#C9D0DA;border-radius:10px;padding:10px;font-size:14px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist button:hover{background:var(--ink-2)}
+.hist button[aria-current="true"]{background:var(--ink-3);color:var(--paper)}
+.hist .none{color:var(--dim);font-size:13px;padding:8px}
+.sfoot{display:flex;flex-direction:column;gap:10px}
+.sfoot a.lk{display:flex;align-items:center;gap:10px;text-decoration:none;color:#C9D0DA;font-size:14px;padding:6px 8px}
+.me{display:flex;align-items:center;gap:10px;border-top:1px solid var(--rule);padding:14px 8px 0}
+.av{width:32px;height:32px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:14px;text-transform:uppercase;flex:none}
+.me .t{display:flex;flex-direction:column;min-width:0}
+.me .t b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.me .t span{font-size:12px;color:var(--soft)}
+
+.main{flex:1;min-width:0;display:flex;flex-direction:column;min-height:100vh}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 28px;border-bottom:1px solid #1E2636;position:sticky;top:0;background:rgba(14,18,25,.92);backdrop-filter:blur(8px);z-index:5}
+.top .ttl{display:flex;flex-direction:column;min-width:0}
+.top .ttl b{font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top .ttl span{font-size:13px;color:var(--soft)}
+.iconbtn{width:44px;height:44px;border:1px solid var(--rule);border-radius:12px;background:transparent;color:var(--paper);display:grid;place-items:center;cursor:pointer;flex:none}
+.menu{display:none}
+.demo{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--mark);border:1px solid rgba(244,227,90,.45);border-radius:999px;padding:5px 10px;white-space:nowrap}
+
+.scroll{flex:1;display:flex;flex-direction:column;align-items:center;padding:32px 20px 24px}
+.col{width:100%;max-width:780px;display:flex;flex-direction:column;gap:28px}
+
+.hello{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;text-align:center;padding:24px 0}
+.hello h1{margin:6px 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,52px);line-height:1.05;letter-spacing:-.01em}
+.hello h1 i{font-style:normal;color:var(--mark)}
+.hello p{margin:0;font-size:17.5px;line-height:1.6;color:#C9D0DA;max-width:600px}
+.sugs{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;text-align:left}
+.sug{display:flex;flex-direction:column;gap:6px;color:var(--paper);background:var(--ink);border:1px solid var(--rule);border-radius:16px;padding:16px 18px;cursor:pointer;text-align:left}
+.sug:hover{border-color:rgba(244,227,90,.55)}
+.sug span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--mark)}
+.sug b{font-weight:500;font-size:15px;line-height:1.4}
+
+.u{align-self:flex-end;max-width:78%;background:var(--ink-3);border-radius:20px 20px 6px 20px;padding:14px 18px;font-size:16px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+.c{display:flex;gap:16px;align-items:flex-start}
+.c .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:14px}
+.c .hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.c .hd b{font-weight:700}
+.c .hd span{font-family:var(--mono);font-size:11.5px;color:var(--soft)}
+.c p{margin:0;font-size:16px;line-height:1.65;color:var(--text)}
+.c p b{color:var(--paper)}
+.pts{display:flex;flex-direction:column;gap:14px}
+.pt{display:flex;gap:12px}
+.pt .n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;margin-top:1px}
+.cite{font-family:var(--mono);font-size:11px;font-weight:700;background:rgba(244,227,90,.16);color:var(--mark);border:1px solid rgba(244,227,90,.45);border-radius:6px;padding:1px 6px;cursor:pointer;vertical-align:1px}
+.cite:hover{background:rgba(244,227,90,.3)}
+.warn{display:flex;gap:10px;align-items:flex-start;background:rgba(242,164,164,.08);border:1px solid rgba(242,164,164,.3);border-radius:12px;padding:12px 14px}
+.warn > b{font-family:var(--mono);color:var(--warn)}
+.warn p{font-size:14.5px;line-height:1.55}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim)}
+.tac{display:flex;gap:14px;align-items:center;text-decoration:none;color:var(--paper);background:var(--ink);border:1px solid var(--rule);border-radius:16px;padding:12px;max-width:520px}
+.tac:hover{border-color:rgba(244,227,90,.55)}
+.tac .th{flex:none;width:96px;height:60px;border-radius:10px;background:#1E2636;display:grid;place-items:center;font-family:var(--serif);font-size:13px;color:var(--soft);text-align:center;line-height:1.15;padding:4px}
+.tac .th mark{background:var(--mark);color:var(--ink);padding:0 3px}
+.tac .tx{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tac .tx span:first-child{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mark)}
+.tac .tx b{font-size:15px;line-height:1.3}
+.tac .tx span:last-child{font-size:13px;color:var(--soft)}
+.srcs{border-top:1px solid var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--soft)}
+.srcs > b{font-family:var(--sans);font-size:13px;color:var(--paper)}
+.srcs span b{color:var(--mark)}
+.srcs span.hl{background:rgba(244,227,90,.1);border-radius:6px;outline:1px solid rgba(244,227,90,.4)}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.acts button{display:inline-flex;align-items:center;gap:7px;background:transparent;color:#C9D0DA;border:1px solid var(--rule);border-radius:10px;padding:8px 12px;font-size:13px;cursor:pointer}
+.acts button:hover{border-color:var(--soft)}
+.badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;border:1px solid #3A4458;border-radius:999px;padding:6px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:#C9D0DA}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--dim)}
+.dots{display:inline-flex;gap:5px;align-items:center;height:24px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--mark);animation:up 1.2s infinite ease-in-out}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes up{0%,100%{opacity:.25;transform:translateY(2px)}50%{opacity:1;transform:translateY(-4px)}}
+
+.composer{position:sticky;bottom:0;padding:10px 20px 22px;display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(transparent,var(--ink-0) 30%)}
+.box{width:100%;max-width:780px;display:flex;align-items:flex-end;gap:10px;background:var(--ink);border:1px solid #3A4458;border-radius:22px;padding:12px 12px 12px 18px}
+.box:focus-within{border-color:rgba(244,227,90,.6)}
+.box textarea{flex:1;resize:none;background:transparent;border:0;color:var(--paper);font-size:16px;line-height:1.5;outline:none;max-height:200px;min-height:24px}
+.send{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--mark);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.send:disabled{opacity:.4;cursor:default}
+.note{margin:0;font-size:12.5px;color:var(--dim);text-align:center}
+
+.gate{min-height:100vh;display:grid;place-items:center;padding:24px}
+.gbox{max-width:460px;width:100%;background:var(--ink-2);border:1px solid var(--rule);border-radius:24px;padding:30px 28px;display:grid;gap:16px;justify-items:center;text-align:center}
+.gbox h1{margin:0;font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.1}
+.gbox p{margin:0;color:#C9D0DA;line-height:1.55}
+.gbox form{width:100%;display:grid;gap:12px;text-align:left}
+.gbox label{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--soft)}
+.gbox input{color:var(--paper);background:var(--ink-0);border:1px solid var(--rule);border-radius:12px;padding:12px 14px;font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;background:var(--mark);color:var(--ink);font-weight:800;padding:14px 20px;text-decoration:none;cursor:pointer;font-size:15.5px}
+.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--rule)}
+.err{margin:0;color:var(--warn);font-size:14px}
+
+@media (max-width:860px){
+  .side{position:fixed;left:0;top:0;bottom:0;z-index:20;transform:translateX(-100%);transition:transform .25s;box-shadow:0 0 60px rgba(0,0,0,.6)}
+  .app.open .side{transform:none}
+  .menu{display:grid}
+  .top{padding:12px 14px}
+  .top .ttl span{display:none}
+  .demo{font-size:9.5px;padding:4px 8px}
+  .scroll{padding:20px 14px}
+  .sugs{grid-template-columns:minmax(0,1fr)}
+  .u{max-width:88%}
+  .c{gap:10px}
+  .composer{padding:8px 10px 16px}
+}
+@media (prefers-reduced-motion:reduce){.dots i{animation:none}.side{transition:none}}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate" hidden>
+  <div class="gbox">
+    <span id="gateCici"></span>
+    <h1 id="gTitle">Pregúntale a CiCi</h1>
+    <p id="gText">CiCi, de Ciencia Citada, responde a tu caso solo con estudios de la biblioteca y cita cada uno. Es parte del plan PRO.</p>
+    <form id="gLogin" novalidate>
+      <label>Email<input type="email" name="email" autocomplete="email" required></label>
+      <label>Contraseña<input type="password" name="pass" autocomplete="current-password" required></label>
+      <button class="btn" type="submit">Entrar</button>
+      <p class="err" id="gErr" hidden></p>
+    </form>
+    <a class="btn" id="gPro" href="biblioteca#pro" hidden>Hazte PRO</a>
+    <a class="btn ghost" href="biblioteca">Ir a la biblioteca</a>
+  </div>
+</div>
+
+<div id="app" class="app" hidden>
+  <aside class="side" id="side" aria-label="Conversaciones">
+    <a class="brand" href="biblioteca" aria-label="Volver a la biblioteca"><span id="sideCici"></span><span class="nm">CiCi</span><span class="pro">PRO</span></a>
+    <button class="newc" type="button" id="newChat">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      Nueva conversación
+    </button>
+    <nav class="hist" id="hist" aria-label="Historial"></nav>
+    <div class="sfoot">
+      <a class="lk" href="biblioteca">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h6v14H4zM14 5h6v14h-6z"/></svg>
+        La biblioteca
+      </a>
+      <div class="me"><span class="av" id="meAv">·</span><div class="t"><b id="meEmail"></b><span id="mePlan"></span></div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <button class="iconbtn menu" type="button" id="openSide" aria-label="Abrir conversaciones" aria-controls="side" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h16"/></svg>
+      </button>
+      <div class="ttl"><b id="chatTitle">Nueva conversación</b><span>CiCi responde solo con los estudios de la biblioteca</span></div>
+      <span class="demo" title="CiCi todavía no está conectada a la IA: las respuestas son de ejemplo">MODO DEMOSTRACIÓN</span>
+    </header>
+
+    <div class="scroll" id="scroll">
+      <div class="col" id="col"></div>
+    </div>
+
+    <div class="composer">
+      <form class="box" id="ask">
+        <label class="sr" for="q">Tu pregunta</label>
+        <textarea id="q" rows="1" placeholder="Pregúntale a CiCi sobre tu marca, tus fotos, tus precios…"></textarea>
+        <button class="send" type="submit" id="send" aria-label="Enviar" disabled>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
+      </form>
+      <p class="note">CiCi solo responde con estudios de la biblioteca y cita cada uno. Si no hay evidencia, te lo dice.</p>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+/* ---------- CiCi (versión C): la hoja del logo con ojos de punto y el subrayador como sonrisa ---------- */
+function cici(size, mood){
+  const h = Math.round(size * 140 / 120);
+  const face = {
+    idle: '<circle cx="46" cy="56" r="4.8" fill="#141A24"/><circle cx="74" cy="56" r="4.8" fill="#141A24"/><rect x="47" y="68" width="26" height="7" rx="1.5" fill="#F4E35A"/>',
+    think: '<circle cx="49" cy="51" r="4.8" fill="#141A24"/><circle cx="77" cy="51" r="4.8" fill="#141A24"/><rect x="54" y="69" width="13" height="6" rx="1.5" fill="#F4E35A"/>'
+      + '<circle cx="66" cy="90" r="2.5" fill="#F4E35A"><animate attributeName="opacity" values="0.15;0.6;0.15" dur="1.4s" repeatCount="indefinite"/></circle>'
+      + '<circle cx="78" cy="80" r="3.5" fill="#F4E35A"><animate attributeName="opacity" values="0.15;0.8;0.15" dur="1.4s" begin="0.25s" repeatCount="indefinite"/></circle>'
+      + '<circle cx="90" cy="68" r="4.5" fill="#F4E35A"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.4s" begin="0.5s" repeatCount="indefinite"/></circle>',
+    answer: '<path d="M40 58 Q46 50 52 58 M68 58 Q74 50 80 58" stroke="#141A24" stroke-width="4.2" stroke-linecap="round" fill="none"/><path d="M46 69 Q60 79 74 69" stroke="#F4E35A" stroke-width="7" stroke-linecap="round" fill="none"/>',
+    none: '<circle cx="46" cy="57" r="4.8" fill="#141A24"/><circle cx="74" cy="57" r="4.8" fill="#141A24"/><rect x="50" y="71" width="20" height="5" rx="1.5" fill="#D9DDE3"/>'
+  }[mood] || '';
+  const badge = mood === 'none'
+    ? '<circle cx="98" cy="17" r="12" fill="#141A24" stroke="#5B6472" stroke-width="2"/><text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#A3ACBB">?</text>'
+    : (mood === 'answer' ? '<circle cx="98" cy="17" r="18" fill="#F4E35A" opacity="0.28"><animate attributeName="r" values="15;21;15" dur="1.6s" repeatCount="indefinite"/></circle>' : '')
+      + '<circle cx="98" cy="17" r="13" fill="#F4E35A"/><text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#141A24">1</text>';
+  return `<svg width="${size}" height="${h}" viewBox="0 0 120 140" aria-hidden="true" style="flex:none;display:block"><ellipse cx="60" cy="134" rx="32" ry="4" fill="#000" opacity="0.28"/><path d="M30 14 H78 L98 34 V120 Q98 128 90 128 H30 Q22 128 22 120 V22 Q22 14 30 14 Z" fill="#F6F7F4"/><path d="M78 14 V28 Q78 34 84 34 H98 Z" fill="#D9DDE3"/><path d="M34 100 H86 M34 108 H78 M34 116 H68" stroke="#D9DDE3" stroke-width="3" stroke-linecap="round" fill="none"/>${face}${badge}</svg>`;
+}
+
+/* ---------- respuestas de ejemplo (modo demostración). Cada dato está comprobado en su estudio ---------- */
+const SRC = {
+  sharma: 'Sharma, V. & Estes, Z. (2024). Seeing is smelling: Pictures improve product evaluations by evoking olfactory imagery. International Journal of Research in Marketing, 41(2), 282–307.',
+  cascio: 'Cascio Rizzo, G. L., Berger, J., De Angelis, M. & Pozharliev, R. (2023). How sensory language shapes influencer\'s impact. Journal of Consumer Research, 50(4), 810–825.',
+  lu: 'Lu, Z. Y., Jung, S. & Peck, J. (2024). It looks like "theirs": When and why human presence in the photo lowers viewers\' liking and preference for an experience venue. Journal of Consumer Research, 51(2), 321–341.',
+  poirier: 'Poirier, S.-M. et al. (2024). The impact of social presence cues in social media product photos on consumers\' purchase intentions. Journal of Business Research, 185, 114932.',
+  bagatini: 'Bagatini, F. Z., Rech, E., Pacheco, N. A. & Nicolao, L. (2023). Can you imagine yourself wearing this product? Journal of Research in Interactive Marketing, 17(3), 470–490.',
+  xuan: 'Xuan, C., Chen, R., Lin, S. & Huang, H. (2024). Looking up or down? The effects of camera angle on evaluations of anthropomorphized products in advertisements. Journal of Advertising, 53(4), 530–548.',
+  vanrompay: 'Van Rompay, T. J. L. et al. (2012). Embodied product perception: Effects of verticality cues in advertising and packaging design on consumer impressions and price expectations. Psychology & Marketing, 29(12), 919–928.',
+  pichierri: 'Pichierri, M. & Pino, G. (2023). Less saturated, more eco-friendly: Color saturation and consumer perception of product sustainability. Psychology & Marketing, 40(9), 1830–1849.',
+  labrecque: 'Labrecque, L. I., Sohn, S., Seegebarth, B. & Ashley, C. (2025). Color me effective: The impact of color saturation on perceptions of potency and product efficacy. Journal of Marketing.'
+};
+const DEMO = [
+  { cat:'SENTIDOS', q:'Vendo velas aromáticas. ¿Cómo hago que mis fotos vendan más?', keys:['vela','aroma','olor','perfume de ambiente','ambientador','huel'],
+    intro:'Con velas tienes ventaja: el aroma es justo lo que compra tu cliente. Esto es lo que dicen los estudios:',
+    pts:[['Enseña de dónde sale el aroma.','Pon junto a la vela la canela, la lavanda o la vainilla de verdad. De 957 detergentes y limpiadores con aroma, solo el 27 % lo hacía, y esos tenían mejor nota media: 4,66 frente a 4,46 estrellas.',[1]],
+         ['Elige una fuente que huela de verdad.','Una rosa evoca más aroma que un girasol, que apenas huele. Busca el ingrediente más reconocible de tu olor.',[1]],
+         ['Que el texto también huela.','Escribe «canela recién molida», no «aroma a canela». En vídeos patrocinados de TikTok, cada palabra sensorial de más se asoció con unas 11.000 interacciones más.',[2]]],
+    warn:['Si tu vela promete eliminar olores, no enseñes el mal olor (humo, tabaco): en esos productos, esa imagen resta.',[1]],
+    tac:{ id:'t08', n:'008', cat:'SENTIDOS', t:'Haz que tus fotos se puedan oler, oír y tocar', th:'Que la foto <mark>huela</mark>' },
+    src:['sharma','cascio'] },
+  { cat:'PERSONAS', q:'¿Pongo personas en mis fotos de producto o mejor no?', keys:['persona','modelo','gente','cara','humano'],
+    intro:'Depende de lo que vendas. La presencia humana suma, pero una persona concreta puede hacer que el producto parezca de otro:',
+    pts:[['Si no es ropa, sugiere a alguien sin mostrarlo.','Una mano, una taza a medio beber, una manta medio doblada. En fotos de producto, la sensación de que hay alguien detrás mejoró las emociones y la intención de compra.',[2]],
+         ['Si sale alguien, que no robe el foco.','Cuando la foto sale con otra persona, el lugar gusta menos porque parece «suyo». El efecto fue más fuerte cuando esa persona era muy llamativa.',[1]],
+         ['En moda, sí enseña a la persona.','Con camisetas, la foto con modelo fue la que más ayudaba a imaginarse llevándola en el momento de decidir la compra.',[3]]],
+    warn:null,
+    tac:{ id:'t01', n:'001', cat:'PERSONAS', t:'Sugiere a las personas, no las muestres', th:'El rastro, <mark>no la persona</mark>' },
+    src:['lu','poirier','bagatini'] },
+  { cat:'ENCUADRE', q:'¿Desde qué ángulo fotografío un perfume de gama alta?', keys:['angulo','camara','abajo','arriba','lujo','gama alta','premium','perfume'],
+    intro:'Para un perfume de gama alta, baja la cámara. Esto es lo que dicen los estudios:',
+    pts:[['Que la cámara mire un poco hacia arriba.','En cuatro experimentos, uno de campo, los productos vistos desde abajo se valoraron mejor: lo asociamos con superioridad.',[1]],
+         ['Refuerza la verticalidad.','El ángulo bajo y un fondo de orientación vertical aumentaron la sensación de lujo en tres experimentos.',[2]]],
+    warn:['Si tu frasco tiene cara o personalidad (una mascota, un diseño con ojos), hazlo al revés: esos productos gustan más vistos desde arriba. Y ningún estudio midió cuánto ángulo es demasiado: empieza con algo sutil.',[1]],
+    tac:{ id:'t03', n:'005', cat:'ENCUADRE', t:'Fotografía el producto desde un poco más abajo', th:'Desde abajo, <mark>superior</mark>' },
+    src:['xuan','vanrompay'] },
+  { cat:'COLOR', q:'¿Qué colores hacen que mi detergente parezca ecológico?', keys:['color','ecolog','sostenib','natural','saturac','detergente','verde'],
+    intro:'Baja la saturación. Los colores apagados se asocian a lo natural y sostenible:',
+    pts:[['Usa tonos poco saturados.','En cinco experimentos, los colores poco saturados hicieron que el producto pareciera más sostenible, más natural y más duradero. Eso aumentó la confianza, la intención de compra y la disposición a pagar más.',[1]],
+         ['Reserva los colores intensos para vender potencia.','Los envases muy saturados se perciben más potentes y eficaces, sobre todo en limpieza y desinfección.',[2]]],
+    warn:['Si un color muy saturado hace que tu producto parezca muy potente, el cliente puede usar menos de lo necesario: indica bien la dosis.',[2]],
+    tac:{ id:'t07', n:'007', cat:'COLOR', t:'Sube la saturación para transmitir potencia', th:'Más saturado, <mark>más potente</mark>' },
+    src:['pichierri','labrecque'] }
+];
+function demoFor(text){
+  const n = norm(text);
+  let best = null, score = 0;
+  DEMO.forEach(d => { const s = d.keys.filter(k => n.includes(k)).length + (norm(d.q) === n ? 10 : 0); if (s > score){ score = s; best = d; } });
+  return best;
+}
+
+/* ---------- conversaciones (se guardan en este navegador) ---------- */
+let CHATS = [], CUR = null, USER = null, BUSY = false;
+const KEY = () => 'ued-cici-' + (USER ? USER.id : 'anon');
+function load(){ try { CHATS = JSON.parse(localStorage.getItem(KEY()) || '[]'); } catch(e){ CHATS = []; } }
+function save(){ try { localStorage.setItem(KEY(), JSON.stringify(CHATS.slice(0, 30))); } catch(e){} }
+function renderHist(){
+  const today = new Date().toDateString();
+  const groups = [['HOY', CHATS.filter(c => new Date(c.at).toDateString() === today)], ['ANTES', CHATS.filter(c => new Date(c.at).toDateString() !== today)]];
+  $('hist').innerHTML = CHATS.length
+    ? groups.filter(g => g[1].length).map(([l, arr]) => `<span class="lbl">${l}</span>` + arr.map(c => `<button type="button" data-chat="${c.id}" aria-current="${c.id === CUR}">${esc(c.title)}</button>`).join('')).join('')
+    : '<span class="none">Aquí aparecerán tus conversaciones.</span>';
+}
+function current(){ return CHATS.find(c => c.id === CUR); }
+
+function citeBtn(n){ return `<button type="button" class="cite" data-cite="${n}" aria-label="Ver fuente ${n}">${n}</button>`; }
+function answerHtml(d){
+  const refs = (a) => a ? ' ' + a.map(citeBtn).join(' ') : '';
+  return `<div class="c">${cici(40, 'answer')}<div class="body">
+    <div class="hd"><b>CiCi</b><span>${d.src.length} ${d.src.length === 1 ? 'estudio' : 'estudios'} · 1 táctica de la biblioteca</span></div>
+    <p>${esc(d.intro)}</p>
+    <div class="pts">${d.pts.map((p, i) => `<div class="pt"><span class="n">${i + 1}</span><p><b>${esc(p[0])}</b> ${esc(p[1])}${refs(p[2])}</p></div>`).join('')}</div>
+    ${d.warn ? `<div class="warn"><b>!</b><p>${esc(d.warn[0])}${refs(d.warn[1])}</p></div>` : ''}
+    <span class="kick">TÁCTICA USADA</span>
+    <a class="tac" href="biblioteca#${d.tac.id}"><span class="th">${d.tac.th}</span><span class="tx"><span>Nº ${d.tac.n} · ${d.tac.cat}</span><b>${esc(d.tac.t)}</b><span>Abrir la táctica →</span></span></a>
+    <div class="srcs"><b>Fuentes</b>${d.src.map((k, i) => `<span data-src="${i + 1}"><b>[${i + 1}]</b> ${esc(SRC[k])}</span>`).join('')}</div>
+    <div class="acts"><button type="button" data-copy>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>Copiar</button></div>
+  </div></div>`;
+}
+function soonHtml(){
+  return `<div class="c">${cici(40, 'idle')}<div class="body">
+    <div class="hd"><b>CiCi</b></div>
+    <span class="badge"><i></i>MODO DEMOSTRACIÓN</span>
+    <p>Todavía estoy aprendiendo: muy pronto responderé a cualquier pregunta con los estudios de la biblioteca.</p>
+    <p>Mientras tanto, prueba una de estas, que ya sé contestar:</p>
+    <div class="sugs">${DEMO.map((d, i) => `<button type="button" class="sug" data-sug="${i}"><span>${d.cat}</span><b>${esc(d.q)}</b></button>`).join('')}</div>
+  </div></div>`;
+}
+function helloHtml(){
+  return `<div class="hello">${cici(112, 'idle')}
+    <div><h1>Hola, soy CiCi<i>.</i></h1></div>
+    <p>De <b>Ciencia Citada</b>. Cuéntame qué vendes y qué quieres mejorar: te respondo solo con estudios de la biblioteca, citando cada uno.</p>
+    <div class="sugs">${DEMO.map((d, i) => `<button type="button" class="sug" data-sug="${i}"><span>${d.cat}</span><b>${esc(d.q)}</b></button>`).join('')}</div>
+  </div>`;
+}
+function render(){
+  const c = current();
+  $('chatTitle').textContent = c ? c.title : 'Nueva conversación';
+  if (!c || !c.msgs.length){ $('col').innerHTML = helloHtml(); renderHist(); return; }
+  $('col').innerHTML = c.msgs.map(m => m.role === 'u' ? `<div class="u">${esc(m.text)}</div>` : (m.demo != null ? answerHtml(DEMO[m.demo]) : soonHtml())).join('')
+    + (BUSY ? `<div class="c">${cici(40, 'think')}<div class="body"><div class="hd"><b>CiCi</b><span>Buscando en la biblioteca…</span></div><span class="dots" aria-label="CiCi está pensando"><i></i><i></i><i></i></span></div></div>` : '');
+  renderHist();
+  requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+}
+function ask(text){
+  text = text.trim(); if (!text || BUSY) return;
+  let c = current();
+  if (!c){ c = { id: 'c' + Date.now(), title: text.length > 48 ? text.slice(0, 46) + '…' : text, at: Date.now(), msgs: [] }; CHATS.unshift(c); CUR = c.id; }
+  c.msgs.push({ role: 'u', text });
+  BUSY = true; render(); save();
+  const d = demoFor(text);
+  setTimeout(() => { c.msgs.push({ role: 'c', demo: d ? DEMO.indexOf(d) : null }); c.at = Date.now(); BUSY = false; save(); render(); }, 1400);
+}
+
+$('ask').addEventListener('submit', (e) => { e.preventDefault(); const v = $('q').value; $('q').value = ''; autosize(); ask(v); });
+$('q').addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); $('ask').requestSubmit(); } });
+function autosize(){ const t = $('q'); t.style.height = 'auto'; t.style.height = Math.min(200, t.scrollHeight) + 'px'; $('send').disabled = !t.value.trim() || BUSY; }
+$('q').addEventListener('input', autosize);
+$('newChat').addEventListener('click', () => { CUR = null; render(); closeSide(); $('q').focus(); });
+$('hist').addEventListener('click', (e) => { const b = e.target.closest('[data-chat]'); if (!b) return; CUR = b.dataset.chat; render(); closeSide(); });
+document.addEventListener('click', (e) => {
+  const s = e.target.closest('[data-sug]'); if (s){ ask(DEMO[+s.dataset.sug].q); return; }
+  const ct = e.target.closest('[data-cite]');
+  if (ct){ const body = ct.closest('.body'); const el = body && body.querySelector(`[data-src="${ct.dataset.cite}"]`); if (el){ body.querySelectorAll('.hl').forEach(x => x.classList.remove('hl')); el.classList.add('hl'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } return; }
+  const cp = e.target.closest('[data-copy]');
+  if (cp){ const body = cp.closest('.body'); try { navigator.clipboard.writeText(body.innerText.replace(/\n{3,}/g, '\n\n')); cp.lastChild.textContent = 'Copiado'; } catch(err){} }
+});
+function closeSide(){ $('app').classList.remove('open'); $('openSide').setAttribute('aria-expanded', 'false'); }
+$('openSide').addEventListener('click', () => { const o = !$('app').classList.contains('open'); $('app').classList.toggle('open', o); $('openSide').setAttribute('aria-expanded', String(o)); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSide(); });
+
+/* ---------- acceso: solo PRO y admin ---------- */
+const CFG = window.UED_CONFIG || {};
+const sb = (CFG.url && CFG.anonKey && window.supabase) ? window.supabase.createClient(CFG.url, CFG.anonKey) : null;
+$('gateCici').innerHTML = cici(84, 'idle'); $('sideCici').innerHTML = cici(28, 'idle');
+function gate(mode){
+  $('app').hidden = true; $('gate').hidden = false;
+  $('gLogin').hidden = mode !== 'login'; $('gPro').hidden = mode !== 'free';
+  if (mode === 'free'){ $('gTitle').textContent = 'CiCi es parte de PRO'; $('gText').textContent = 'Con PRO, CiCi responde a tu caso con los estudios de la biblioteca y te da el paso a paso de cada táctica.'; }
+  if (mode === 'nocfg'){ $('gText').textContent = 'CiCi estará disponible muy pronto.'; }
+}
+async function boot(session){
+  if (!sb) return gate('nocfg');
+  if (!session) return gate('login');
+  USER = session.user;
+  const { data: p } = await sb.from('perfiles').select('plan,rol,pro_hasta').eq('id', USER.id).maybeSingle();
+  const pro = p && (p.rol === 'admin' || (p.plan === 'pro' && (!p.pro_hasta || new Date(p.pro_hasta) > new Date())));
+  if (!pro) return gate('free');
+  $('gate').hidden = true; $('app').hidden = false;
+  $('meAv').textContent = (USER.email || '·').charAt(0); $('meEmail').textContent = USER.email || '';
+  $('mePlan').textContent = p.rol === 'admin' ? 'Administrador · PRO' : 'PRO';
+  load(); CUR = null; render();
+  const q = new URLSearchParams(location.search).get('q');
+  if (q) { history.replaceState(null, '', location.pathname); ask(q); }
+}
+$('gLogin').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const { error } = await sb.auth.signInWithPassword({ email: e.target.email.value.trim(), password: e.target.pass.value });
+  $('gErr').hidden = !error;
+  if (error) $('gErr').textContent = error.message === 'Invalid login credentials' ? 'El email o la contraseña no son correctos.' : error.message;
+});
+if (sb) sb.auth.onAuthStateChange((ev, session) => { setTimeout(() => boot(session), 0); });
+else gate('nocfg');
+</script>
+
+</body>
+</html>

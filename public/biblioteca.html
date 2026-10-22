@@ -506,6 +506,7 @@ footer a{text-decoration:none}
     <nav aria-label="Principal">
       <a href="#biblioteca" data-close>La biblioteca</a>
       <a href="#empieza" data-close>Empieza por aquí</a>
+      <a href="cici">Pregúntale a CiCi</a>
       <a href="#pro" data-close>Hazte PRO</a>
       <a href="#lista" data-close>Lista de espera</a>
     </nav>
@@ -545,7 +546,8 @@ footer a{text-decoration:none}
       <h2 id="accEmail"></h2>
       <p class="accplan"><span id="accBadge" class="pbadge"></span><span id="accPlanTxt"></span></p>
       <div class="accbtns">
-        <a class="btn" href="admin" id="accAdmin" hidden>Gestionar accesos</a>
+        <a class="btn" href="cici" id="accCici" hidden>Pregúntale a CiCi</a>
+        <a class="btn ghost" href="admin" id="accAdmin" hidden>Gestionar accesos</a>
         <a class="btn" href="#pro" data-close id="accUp" hidden>Hazte PRO</a>
         <button class="btn ghost" type="button" id="accOut">Cerrar sesión</button>
       </div>
@@ -921,8 +923,10 @@ function sheet(t){
       <div><h4>Nivel de evidencia</h4><p class="evline" style="margin-top:10px"><span class="ev ${t.ev}">${EVS[t.ev]}</span><span class="txt">${esc(t.evtxt)}</span></p></div>
       <div class="ask"><span class="mono" style="font-size:11.5px;letter-spacing:.12em;color:var(--mark)">PREGÚNTALE A CICI · PRO</span>
         <span class="q">¿Me sirve esto para una tienda de cosmética?</span>
-        <span class="a">Ejemplo: CiCi respondería con esta táctica y las relacionadas de la biblioteca, citando cada estudio.</span>
-        <div class="in"><input type="text" disabled placeholder="Disponible en PRO" aria-label="Pregunta (disponible en PRO)"><a class="btn" href="#pro" data-close>Hazte PRO</a></div>
+        <span class="a">CiCi responde a tu caso con esta táctica y las relacionadas de la biblioteca, citando cada estudio.</span>
+        ${PRO_USER
+          ? `<form class="in" action="cici" method="get"><input type="text" name="q" placeholder="Pregúntale a CiCi sobre esta táctica…" aria-label="Pregunta para CiCi"><button class="btn" type="submit">Preguntar</button></form>`
+          : `<div class="in"><input type="text" disabled placeholder="Disponible en PRO" aria-label="Pregunta (disponible en PRO)"><a class="btn" href="#pro" data-close>Hazte PRO</a></div>`}
       </div>
       ${srcBlock(t)}
     </div>`;
@@ -1085,7 +1089,7 @@ function renderMe(){
   $('accEmail').textContent = SESSION.user.email || '';
   $('accBadge').className = 'pbadge ' + pl; $('accBadge').textContent = pl === 'admin' ? 'ADMIN' : pl === 'pro' ? 'PRO' : 'FREE';
   $('accPlanTxt').textContent = pl === 'admin' ? 'Acceso completo y gestión de usuarios.' : pl === 'pro' ? 'Tienes el paso a paso de cada táctica y acceso a CiCi.' : 'Ves todas las tácticas. «Cómo aplicarlo» y CiCi son PRO.';
-  $('accAdmin').hidden = pl !== 'admin'; $('accUp').hidden = pl !== 'free';
+  $('accAdmin').hidden = pl !== 'admin'; $('accUp').hidden = pl !== 'free'; $('accCici').hidden = pl === 'free';
 }
 async function loadProfile(){
   PERFIL = null; PRO_USER = false;
