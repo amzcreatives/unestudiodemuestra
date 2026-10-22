@@ -1,0 +1,21 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-22T21:55:00Z" },
+  "title": "CiCi · interfaz y mascota",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 1360, "y": 0, "w": 1280, "h": 940, "title": "Escritorio · respuesta con citas", "expand": "fill" },
+    "Bienvenida.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 820, "title": "Escritorio · bienvenida", "expand": "fill" },
+    "Movil.dc.html": { "x": 0, "y": 1300, "w": 390, "h": 844, "title": "Móvil · respuesta" },
+    "SinEvidencia.dc.html": { "x": 470, "y": 1300, "w": 390, "h": 844, "title": "Móvil · cuando no hay estudios" },
+    "Mascota.dc.html": { "x": 940, "y": 1300, "w": 1280, "h": 1100, "title": "CiCi · versiones × estados (elegida: C)" },
+    "Cici.dc.html": { "x": 2300, "y": 1300, "w": 240, "h": 280, "title": "Componente CiCi" }
+  },
+  "order": ["Bienvenida.dc.html", "Main.dc.html", "Movil.dc.html", "SinEvidencia.dc.html", "Mascota.dc.html", "Cici.dc.html"],
+  "notes": {
+    "t1": { "x": 0, "y": -300, "text": "Pregúntale a CiCi · interfaz", "kind": "title1", "maxW": 2640 },
+    "t2": { "x": 0, "y": 1000, "text": "Móvil y mascota", "kind": "title1", "maxW": 2540 }
+  },
+  "designSystems": []
+}

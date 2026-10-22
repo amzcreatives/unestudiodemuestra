@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CiCi</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: {{w}}px; height: {{h}}px; display: block">
+<svg viewBox="0 0 120 140" width="100%" height="100%" role="img" aria-label="{{label}}">
+  <ellipse cx="60" cy="134" rx="32" ry="4" fill="#000000" opacity="0.28"></ellipse>
+  <g display="{{armsB}}">
+    <path d="{{armL}}" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" fill="none"></path>
+    <path d="{{armR}}" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" fill="none"></path>
+  </g>
+  <path d="M30 14 H78 L98 34 V120 Q98 128 90 128 H30 Q22 128 22 120 V22 Q22 14 30 14 Z" fill="#F6F7F4"></path>
+  <path d="M78 14 V28 Q78 34 84 34 H98 Z" fill="#D9DDE3"></path>
+  <path d="M34 100 H86 M34 108 H78 M34 116 H68" stroke="#D9DDE3" stroke-width="3" stroke-linecap="round" fill="none"></path>
+
+  <g display="{{dots}}">
+    <circle cx="66" cy="90" r="2.5" fill="#F4E35A" opacity="0.45">
+      <animate attributeName="opacity" values="0.15;0.6;0.15" dur="1.4s" repeatCount="indefinite"></animate>
+    </circle>
+    <circle cx="78" cy="80" r="3.5" fill="#F4E35A" opacity="0.7">
+      <animate attributeName="opacity" values="0.15;0.8;0.15" dur="1.4s" begin="0.25s" repeatCount="indefinite"></animate>
+    </circle>
+    <circle cx="90" cy="68" r="4.5" fill="#F4E35A">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="1.4s" begin="0.5s" repeatCount="indefinite"></animate>
+    </circle>
+  </g>
+
+  <!-- A · geométrica -->
+  <g display="{{aIdle}}"><rect x="41" y="48" width="7" height="16" rx="3.5" fill="#141A24"></rect><rect x="72" y="48" width="7" height="16" rx="3.5" fill="#141A24"></rect></g>
+  <g display="{{aThink}}"><rect x="44" y="43" width="7" height="14" rx="3.5" fill="#141A24"></rect><rect x="75" y="43" width="7" height="14" rx="3.5" fill="#141A24"></rect></g>
+  <g display="{{aAnswer}}"><path d="M39 58 Q44.5 49 50 58 M70 58 Q75.5 49 81 58" stroke="#141A24" stroke-width="4.5" stroke-linecap="round" fill="none"></path></g>
+  <g display="{{aNone}}"><path d="M40 57 H50 M71 57 H81" stroke="#141A24" stroke-width="4.5" stroke-linecap="round" fill="none"></path></g>
+
+  <!-- B · simpática -->
+  <g display="{{bIdle}}">
+    <circle cx="45" cy="56" r="7" fill="#141A24"></circle><circle cx="75" cy="56" r="7" fill="#141A24"></circle>
+    <circle cx="47.5" cy="53.5" r="2.2" fill="#F6F7F4"></circle><circle cx="77.5" cy="53.5" r="2.2" fill="#F6F7F4"></circle>
+    <ellipse cx="36" cy="70" rx="5.5" ry="3.2" fill="#F4E35A" opacity="0.8"></ellipse><ellipse cx="84" cy="70" rx="5.5" ry="3.2" fill="#F4E35A" opacity="0.8"></ellipse>
+    <path d="M52 71 Q60 79 68 71" stroke="#141A24" stroke-width="3.5" stroke-linecap="round" fill="none"></path>
+  </g>
+  <g display="{{bThink}}">
+    <circle cx="45" cy="56" r="7" fill="#141A24"></circle><circle cx="75" cy="56" r="7" fill="#141A24"></circle>
+    <circle cx="47.5" cy="51.5" r="2.4" fill="#F6F7F4"></circle><circle cx="77.5" cy="51.5" r="2.4" fill="#F6F7F4"></circle>
+    <ellipse cx="36" cy="70" rx="5.5" ry="3.2" fill="#F4E35A" opacity="0.8"></ellipse><ellipse cx="84" cy="70" rx="5.5" ry="3.2" fill="#F4E35A" opacity="0.8"></ellipse>
+    <circle cx="62" cy="74" r="3.2" fill="#141A24"></circle>
+  </g>
+  <g display="{{bAnswer}}">
+    <path d="M38 58 Q45 48 52 58 M68 58 Q75 48 82 58" stroke="#141A24" stroke-width="4.5" stroke-linecap="round" fill="none"></path>
+    <ellipse cx="36" cy="70" rx="5.5" ry="3.2" fill="#F4E35A"></ellipse><ellipse cx="84" cy="70" rx="5.5" ry="3.2" fill="#F4E35A"></ellipse>
+    <path d="M49 69 Q60 83 71 69 Z" fill="#141A24"></path>
+  </g>
+  <g display="{{bNone}}">
+    <circle cx="45" cy="57" r="6" fill="#141A24"></circle><circle cx="75" cy="57" r="6" fill="#141A24"></circle>
+    <path d="M37 45 L51 48 M83 45 L69 48" stroke="#141A24" stroke-width="3" stroke-linecap="round" fill="none"></path>
+    <path d="M49 75 Q54.5 70 60 75 Q65.5 80 71 75" stroke="#141A24" stroke-width="3.2" stroke-linecap="round" fill="none"></path>
+  </g>
+
+  <!-- C · intermedia: el subrayador es la boca -->
+  <g display="{{cIdle}}"><circle cx="46" cy="56" r="4.8" fill="#141A24"></circle><circle cx="74" cy="56" r="4.8" fill="#141A24"></circle><rect x="47" y="68" width="26" height="7" rx="1.5" fill="#F4E35A"></rect></g>
+  <g display="{{cThink}}"><circle cx="49" cy="51" r="4.8" fill="#141A24"></circle><circle cx="77" cy="51" r="4.8" fill="#141A24"></circle><rect x="54" y="69" width="13" height="6" rx="1.5" fill="#F4E35A"></rect></g>
+  <g display="{{cAnswer}}"><path d="M40 58 Q46 50 52 58 M68 58 Q74 50 80 58" stroke="#141A24" stroke-width="4.2" stroke-linecap="round" fill="none"></path><path d="M46 69 Q60 79 74 69" stroke="#F4E35A" stroke-width="7" stroke-linecap="round" fill="none"></path></g>
+  <g display="{{cNone}}"><circle cx="46" cy="57" r="4.8" fill="#141A24"></circle><circle cx="74" cy="57" r="4.8" fill="#141A24"></circle><rect x="50" y="71" width="20" height="5" rx="1.5" fill="#D9DDE3"></rect></g>
+
+  <!-- la nota al pie «1» que rompe la esquina -->
+  <circle cx="98" cy="17" r="19" fill="#F4E35A" opacity="0.28" display="{{glow}}">
+    <animate attributeName="r" values="15;21;15" dur="1.6s" repeatCount="indefinite"></animate>
+  </circle>
+  <g display="{{badgeOn}}">
+    <circle cx="98" cy="17" r="13" fill="#F4E35A"></circle>
+    <text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#141A24">1</text>
+  </g>
+  <g display="{{badgeQ}}">
+    <circle cx="98" cy="17" r="12" fill="#141A24" stroke="#5B6472" stroke-width="2"></circle>
+    <text x="98" y="22.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#A3ACBB">?</text>
+  </g>
+</svg>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","options":["a","b","c","d"],"default":"c"},"mood":{"editor":"enum","options":["idle","think","answer","none"],"default":"idle"},"size":{"editor":"int","default":240,"min":16,"max":480},"$preview":{"width":240,"height":280}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const v0 = this.props.variant ?? 'c';
+    const v = v0;
+    const face = v === 'd' ? 'c' : v;
+    const m = this.props.mood ?? 'idle';
+    const size = Number(this.props.size ?? 240);
+    const on = (cond) => (cond ? 'inline' : 'none');
+    const vals = { w: size, h: Math.round(size * 140 / 120) };
+    ['a', 'b', 'c'].forEach((x) => {
+      vals[x + 'Idle'] = on(face === x && m === 'idle');
+      vals[x + 'Think'] = on(face === x && m === 'think');
+      vals[x + 'Answer'] = on(face === x && m === 'answer');
+      vals[x + 'None'] = on(face === x && m === 'none');
+    });
+    vals.armsB = on(v === 'b' || v === 'd');
+    const arms = {
+      idle: ['M24 86 Q14 92 12 102', 'M96 86 Q106 92 108 102'],
+      think: ['M24 86 Q14 92 12 102', 'M96 86 Q104 80 100 72'],
+      answer: ['M24 86 Q14 92 12 102', 'M96 84 Q108 76 108 62'],
+      none: ['M24 86 Q14 82 10 72', 'M96 86 Q106 82 110 72']
+    };
+    vals.armL = arms[m][0];
+    vals.armR = arms[m][1];
+    vals.dots = on(m === 'think');
+    vals.glow = on(m === 'answer');
+    vals.badgeOn = on(m !== 'none');
+    vals.badgeQ = on(m === 'none');
+    vals.label = 'CiCi, ' + ({ idle: 'en reposo', think: 'pensando', answer: 'respondiendo', none: 'sin evidencia' })[m];
+    return vals;
+  }
+}
+</script>
+</body>
+</html>

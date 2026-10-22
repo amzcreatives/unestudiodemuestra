@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pregúntale a CiCi · bienvenida</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,400&amp;family=Public+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0E1219}
+a{color:#F4E35A}a:hover{color:#FFF27F}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 820px; background: #0E1219; color: #F6F7F4; font-family: 'Public Sans', system-ui, sans-serif">
+
+  <aside style="flex: 1 1 250px; max-width: 290px; box-sizing: border-box; padding: 20px 16px; background: #141A24; border-right: 1px solid #2C3546; display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 6px">
+      <dc-import name="Cici" variant="c" mood="idle" size="30" hint-size="30px,35px"></dc-import>
+      <span style="font-family: 'Newsreader', serif; font-size: 22px; font-weight: 500">CiCi</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .12em; background: #F4E35A; color: #141A24; border-radius: 4px; padding: 2px 6px">PRO</span>
+    </div>
+    <a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #141A24; background: #F6F7F4; border-radius: 12px; padding: 11px 14px; font-weight: 700; font-size: 14.5px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+      Nueva conversación
+    </a>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #8A94A6; padding: 6px 8px">HOY</span>
+      <a href="Main.dc.html" style="text-decoration: none; color: #C9D0DA; border-radius: 10px; padding: 10px 10px; font-size: 14px">Fotos para velas aromáticas</a>
+      <a href="#" style="text-decoration: none; color: #C9D0DA; border-radius: 10px; padding: 10px 10px; font-size: 14px">¿Personas en mis fotos o no?</a>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #8A94A6; padding: 14px 8px 6px">ESTA SEMANA</span>
+      <a href="#" style="text-decoration: none; color: #C9D0DA; border-radius: 10px; padding: 10px 10px; font-size: 14px">Ángulo para un perfume</a>
+      <a href="#" style="text-decoration: none; color: #C9D0DA; border-radius: 10px; padding: 10px 10px; font-size: 14px">Colores para un detergente eco</a>
+    </div>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; border-top: 1px solid #2C3546; padding: 14px 8px 0">
+      <span style="width: 32px; height: 32px; border-radius: 50%; background: #F6F7F4; color: #141A24; display: grid; place-items: center; font-weight: 800; font-size: 14px">G</span>
+      <div style="display: flex; flex-direction: column">
+        <span style="font-weight: 600; font-size: 14px">Gondez</span>
+        <span style="font-size: 12px; color: #A3ACBB">PRO · 12 de 50 preguntas este mes</span>
+      </div>
+    </div>
+  </aside>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; padding: 48px 24px">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; max-width: 620px">
+      <dc-import name="Cici" variant="c" mood="idle" size="112" hint-size="112px,131px"></dc-import>
+      <h1 style="margin: 6px 0 0; font-family: 'Newsreader', serif; font-weight: 500; font-size: 52px; line-height: 1.05; letter-spacing: -.01em">Hola, soy CiCi<span style="color: #F4E35A">.</span></h1>
+      <p style="margin: 0; font-size: 17.5px; line-height: 1.6; color: #C9D0DA">De <b style="color: #F6F7F4">Ciencia Citada</b>. Cuéntame qué vendes y qué quieres mejorar: te respondo solo con estudios de la biblioteca, citando cada uno.</p>
+    </div>
+
+    <form style="width: 100%; max-width: 760px; box-sizing: border-box; display: flex; align-items: flex-end; gap: 10px; background: #141A24; border: 1px solid #3A4458; border-radius: 22px; padding: 14px 14px 14px 20px">
+      <label style="flex: 1; display: flex"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Tu pregunta</span><textarea rows="2" placeholder="Pregúntale a CiCi sobre tu marca, tus fotos, tus precios…" style="flex: 1; resize: none; background: transparent; border: 0; color: #F6F7F4; font: inherit; font-size: 17px; line-height: 1.5; outline: none"></textarea></label>
+      <button type="button" aria-label="Enviar" style="flex: none; width: 46px; height: 46px; border-radius: 50%; border: 0; background: #F4E35A; color: #141A24; display: grid; place-items: center; cursor: pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+      </button>
+    </form>
+
+    <div style="width: 100%; max-width: 760px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+      <a href="Main.dc.html" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #F6F7F4; background: #141A24; border: 1px solid #2C3546; border-radius: 16px; padding: 16px 18px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: #F4E35A">SENTIDOS</span>
+        <span style="font-size: 15px; line-height: 1.4">Vendo velas aromáticas. ¿Cómo hago que mis fotos vendan más?</span>
+      </a>
+      <a href="#" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #F6F7F4; background: #141A24; border: 1px solid #2C3546; border-radius: 16px; padding: 16px 18px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: #F4E35A">PERSONAS</span>
+        <span style="font-size: 15px; line-height: 1.4">¿Pongo personas en mis fotos de producto o mejor no?</span>
+      </a>
+      <a href="#" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #F6F7F4; background: #141A24; border: 1px solid #2C3546; border-radius: 16px; padding: 16px 18px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: #F4E35A">ENCUADRE</span>
+        <span style="font-size: 15px; line-height: 1.4">¿Desde qué ángulo fotografío un perfume de gama alta?</span>
+      </a>
+      <a href="#" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #F6F7F4; background: #141A24; border: 1px solid #2C3546; border-radius: 16px; padding: 16px 18px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: #F4E35A">COLOR</span>
+        <span style="font-size: 15px; line-height: 1.4">¿Qué colores hacen que mi detergente parezca ecológico?</span>
+      </a>
+    </div>
+    <p style="margin: 0; font-size: 12.5px; color: #8A94A6; text-align: center">CiCi solo responde con estudios de la biblioteca. Si no hay evidencia, te lo dice.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
