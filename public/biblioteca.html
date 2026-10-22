@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Biblioteca UED</title>
+<meta name="description" content="La biblioteca de tácticas de marketing respaldadas por estudios científicos. Busca, filtra y abre cada táctica con su fuente.">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJVbiBFc3R1ZGlvIERlbXVlc3RyYSI+PHRpdGxlPlVuIEVzdHVkaW8gRGVtdWVzdHJhPC90aXRsZT48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTQxQTI0Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMy4yNDggMi43ODgpIHNjYWxlKDAuOTIxMikiPjxwYXRoIGQ9Ik0yNSAxNCBINTUgTTgwIDM5IFY4NSBRODAgOTAgNzUgOTAgSDI1IFEyMCA5MCAyMCA4NSBWMTkgUTIwIDE0IDI1IDE0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNkY3RjQiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSI0MiIgY3k9IjUwIiByPSI2LjUiIGZpbGw9IiNGNEUzNUEiIGZpbGwtb3BhY2l0eT0iMC43NSIvPgo8Y2lyY2xlIGN4PSI3MSIgY3k9IjIzIiByPSIxNSIgZmlsbD0iI0Y0RTM1QSIvPjwvZz48L3N2Zz4K">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: archivo nocturno de laboratorio — cabecera centrada con buscador, carrusel 3D de tácticas sobre una línea de tiempo, fichas como modal de dos columnas */
+:root{
+  --ink:#141A24;      /* Tinta */
+  --ink-0:#0E1219;    /* fondo profundo */
+  --ink-2:#1A2130;    /* superficie */
+  --ink-3:#222A3A;    /* superficie elevada */
+  --rule:#2C3546;     /* línea */
+  --paper:#F6F7F4;    /* Papel */
+  --mark:#F4E35A;     /* Subrayador */
+  --soft:#A3ACBB;     /* texto secundario */
+  --dim:#6F7889;
+  --ev-hi:#5CC892; --ev-md:#E0B24A; --ev-lo:#FF8A73;
+  --serif:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --r:20px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink-0);color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(244,227,90,.07), transparent 60%),
+    radial-gradient(800px 600px at 85% 70%, rgba(110,139,255,.05), transparent 60%),
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px) 0 0/56px 56px,
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px) 0 0/56px 56px}
+main,header,footer{position:relative;z-index:1}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.mono{font-family:var(--mono)}
+mark,.m{background:var(--mark);color:var(--ink);padding:0 .14em;white-space:nowrap;font-style:normal}
+
+/* cabecera */
+.top{padding-block:22px}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand svg{height:44px;width:auto;display:block}
+.brand span{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-.01em}
+@media (max-width:520px){.brand span{display:none}}
+.menu-btn{display:flex;align-items:center;gap:12px;border:1px solid var(--rule);background:rgba(26,33,48,.7);border-radius:999px;padding:10px 12px 10px 20px;font-weight:700;letter-spacing:.04em;font-size:14px}
+.menu-btn i{width:22px;height:22px;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-style:normal;font-family:var(--mono);font-size:12px;font-weight:600}
+.menu-btn:hover{border-color:var(--soft)}
+
+/* hero */
+.hero{position:relative;text-align:center;padding-block:34px 18px}
+.bignum{position:absolute;left:4%;top:12px;font-family:var(--sans);font-weight:800;font-size:clamp(160px,26vw,360px);line-height:1;color:rgba(255,255,255,.035);letter-spacing:-.04em;pointer-events:none;user-select:none;font-variant-numeric:tabular-nums;transition:opacity .3s}
+.hero h1{position:relative;font-family:var(--sans);font-weight:300;font-size:clamp(38px,6.4vw,78px);letter-spacing:.06em;line-height:1.05;text-transform:uppercase}
+.hero h1 b{font-weight:800;letter-spacing:.02em}
+.hero h1 .dot{color:var(--mark);font-weight:800}
+.hero .sub{position:relative;margin:16px auto 0;max-width:58ch;color:var(--soft);font-size:clamp(16px,1.7vw,19px)}
+.hero .sub b{color:var(--paper);font-weight:600;font-variant-numeric:tabular-nums}
+.sbar{position:relative;margin:30px auto 0;max-width:980px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px}
+.sfield{display:flex;align-items:center;gap:14px;border:1px solid var(--rule);background:rgba(20,26,36,.85);border-radius:16px;padding:0 16px;height:62px;text-align:left;color:var(--dim);font-size:18px}
+.sfield:hover{border-color:var(--soft)}
+.sfield svg{flex:none}
+.sfield span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kbd{font-family:var(--mono);font-size:12px;color:var(--soft);border:1px solid var(--rule);border-radius:6px;padding:2px 8px}
+.fbtn{display:flex;align-items:center;gap:12px;border:1px solid var(--rule);background:rgba(20,26,36,.85);border-radius:16px;padding:0 24px;height:62px;font-weight:700;font-size:17px}
+.fbtn[aria-expanded="true"]{border-color:var(--mark);background:rgba(244,227,90,.08)}
+.fbtn .n{font-family:var(--mono);font-size:12px;background:var(--mark);color:var(--ink);border-radius:999px;padding:1px 7px}
+@media (max-width:560px){.sbar{grid-template-columns:minmax(0,1fr)}.fbtn{justify-content:center}}
+
+.fpanel{position:relative;max-width:1100px;margin:14px auto 0;border:1px solid var(--rule);background:rgba(26,33,48,.92);backdrop-filter:blur(10px);border-radius:24px;padding:22px 28px;text-align:left;display:grid}
+.frow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding-block:14px;align-items:start}
+.frow + .frow{border-top:1px solid var(--rule)}
+.frow > span{font-weight:700;padding-top:9px}
+@media (max-width:640px){.frow{grid-template-columns:minmax(0,1fr)}.frow > span{padding-top:0}}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--rule);background:transparent;border-radius:14px;padding:10px 16px;font-weight:600;font-size:15px;color:var(--paper)}
+.chip:hover{border-color:var(--soft)}
+/* recuento: bolita amarilla con el número, como el 1 del logo */
+.chip .c,.tax .c{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--mark);color:var(--ink);font-family:var(--mono);font-size:11.5px;font-weight:700;line-height:1;flex:none}
+.tax{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px 22px}
+.tgroup{display:grid;gap:2px;align-content:start}
+.tax button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:10px;color:var(--paper);padding:6px 10px}
+.tax .tpar{font-weight:700;font-size:15px}
+.tax .tsubs{display:grid;gap:1px;margin-left:12px;padding-left:10px;border-left:1px solid var(--rule)}
+.tax .tsub{font-weight:500;font-size:14px;color:var(--soft)}
+.tax button:hover:not(:disabled){border-color:var(--soft);color:var(--paper)}
+.tax button[aria-pressed="true"]{border-color:var(--mark);background:rgba(244,227,90,.12);color:var(--paper)}
+.tax button:disabled{opacity:.4;cursor:default}
+.chip:disabled{opacity:.4;cursor:default}
+.chip:disabled .c,.tax button:disabled .c{background:transparent;color:var(--soft);box-shadow:inset 0 0 0 1px var(--rule)}
+.chip .d{width:9px;height:9px;border-radius:50%}
+.chip[aria-pressed="true"]{border-color:var(--mark);background:rgba(244,227,90,.12)}
+.fpanel .clear{justify-self:end;background:none;border:0;color:var(--soft);font-family:var(--mono);font-size:12px;text-decoration:underline;padding:8px 0 0}
+
+/* carrusel */
+.stage{position:relative;height:clamp(470px,52vw,560px);margin-top:26px;overflow:hidden;perspective:1600px;touch-action:pan-y;user-select:none}
+.card{position:absolute;left:50%;top:10px;width:min(440px,78vw);margin-left:calc(min(440px,78vw) / -2);transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s,opacity .55s;border-radius:24px;background:var(--ink-2);border:1px solid var(--rule);padding:12px;text-align:left;cursor:pointer}
+.card.is-center{border-color:rgba(244,227,90,.55);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(244,227,90,.15)}
+.cover{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:16px;overflow:hidden;background:
+  linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px) 0 0/22px 22px,linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px) 0 0/22px 22px,linear-gradient(160deg,#1E2636,#10141C);
+  padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.cover .ct{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.cover.ill{padding:0;background:var(--ink)}
+.cover .art,.cover .art svg,.cover .art img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cover .art img{object-fit:contain;background:var(--ink)}
+.cover .ct.ov{position:absolute;left:14px;right:14px;top:14px;z-index:1}
+.cover .ct.ov .num{font-size:26px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.fig{margin:0;border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--ink)}
+.fig svg,.fig img{display:block;width:100%;height:auto}
+.fig figcaption{padding:12px 16px;font-size:14px;color:var(--soft);border-top:1px solid var(--rule)}
+.cover .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;background:var(--paper);color:var(--ink);padding:4px 8px;border-radius:4px}
+.cover .num{font-weight:800;font-size:34px;line-height:1;letter-spacing:-.02em}
+.cover .kick{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--soft)}
+.cover .hook{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.2vw,38px);line-height:1.05;letter-spacing:-.01em}
+.cover .foot{display:flex;justify-content:space-between;align-items:center}
+.cover .foot svg{height:28px;width:auto}
+.cover .ev{font-family:var(--mono);font-size:10.5px;padding:3px 9px;border:1px solid currentColor;border-radius:999px}
+.ev.hi{color:var(--ev-hi)}.ev.md{color:var(--ev-md)}.ev.lo{color:var(--ev-lo)}
+.lockveil{position:absolute;inset:0;display:none;place-items:center;background:rgba(14,18,25,.35);backdrop-filter:blur(7px)}
+.locked .lockveil{display:grid}
+.lockpill{display:flex;align-items:center;gap:9px;background:var(--paper);color:var(--ink);border-radius:999px;padding:9px 16px;font-weight:800;font-size:14px;letter-spacing:.04em}
+.card .meta{margin-top:14px;padding:0 6px;font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--mark);font-weight:500}
+.card h3{padding:6px 6px 8px;font-size:20px;font-weight:800;line-height:1.25;min-height:2.5em}
+.card .pro{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;background:var(--paper);color:var(--ink);border-radius:4px;padding:2px 6px;margin-left:8px;vertical-align:2px}
+.empty{position:absolute;inset:40px 0 auto;text-align:center;color:var(--soft)}
+.empty b{color:var(--paper)}
+
+/* línea de tiempo */
+.tl{display:grid;grid-template-columns:56px minmax(0,1fr) 56px;gap:22px;align-items:center;max-width:1180px;margin:0 auto;padding-inline:max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px))}
+.arrow{width:56px;height:56px;border-radius:50%;border:1px solid var(--rule);background:rgba(20,26,36,.8);display:grid;place-items:center}
+.arrow:hover{border-color:var(--soft)}
+.track{position:relative;height:74px;cursor:pointer;touch-action:none}
+.rail{position:absolute;left:0;right:0;top:36px;height:4px;border-radius:2px;background:var(--rule)}
+.fill{position:absolute;left:0;top:36px;height:4px;border-radius:2px;background:var(--mark);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.tick{position:absolute;top:33px;width:1px;height:10px;background:#3A4458}
+.knob{position:absolute;top:26px;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:var(--mark);box-shadow:0 0 0 6px rgba(244,227,90,.18);transition:left .45s cubic-bezier(.2,.8,.2,1)}
+.knob::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--ink)}
+.klabel{position:absolute;top:0;transform:translateX(-50%);font-weight:800;font-size:14px;white-space:nowrap;transition:left .45s cubic-bezier(.2,.8,.2,1)}
+.glabel{position:absolute;top:54px;font-weight:700;font-size:13px;color:var(--dim);white-space:nowrap;background:none;border:0;padding:0}
+.glabel.on{color:var(--mark)}
+@media (max-width:640px){.tl{grid-template-columns:44px minmax(0,1fr) 44px;gap:12px}.arrow{width:44px;height:44px}.glabel{display:none}}
+
+/* empieza por aquí */
+.sec{padding-block:96px 20px}
+.sec-head{text-align:center;display:grid;gap:12px;margin-bottom:40px}
+.sec-head h2{font-weight:800;font-size:clamp(30px,4.4vw,48px);letter-spacing:.01em;text-transform:uppercase}
+.sec-head h2 .dot{color:var(--mark)}
+.sec-head p{color:var(--soft);max-width:56ch;margin:0 auto}
+.picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:980px){.picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.picks{grid-template-columns:minmax(0,1fr)}}
+.pick{border:1px solid var(--rule);background:rgba(26,33,48,.7);border-radius:var(--r);padding:22px;display:grid;gap:12px;text-align:left;align-content:start}
+.pick:hover{border-color:rgba(244,227,90,.5)}
+.pick .n{font-family:var(--mono);font-size:13px;color:var(--mark);font-weight:500}
+.pick h3{font-size:20px;font-weight:800;line-height:1.25}
+.pick p{color:var(--soft);font-size:15px}
+.pick .go{font-family:var(--mono);font-size:12px;color:var(--soft)}
+
+/* pro + lista */
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:1000px;margin:0 auto}
+@media (max-width:760px){.plans{grid-template-columns:minmax(0,1fr)}}
+.plan{border:1px solid var(--rule);background:rgba(26,33,48,.7);border-radius:24px;padding:30px;display:grid;gap:16px;align-content:start}
+.plan.feat{border-color:rgba(244,227,90,.6);background:linear-gradient(180deg,rgba(244,227,90,.08),rgba(26,33,48,.8))}
+.plan .k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--soft)}
+.plan h3{font-size:26px;font-weight:800}
+.price{font-size:42px;font-weight:800;line-height:1}
+.price small{font-family:var(--mono);font-size:13px;font-weight:400;color:var(--soft);margin-left:6px}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--mark);margin-top:9px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:14px;background:var(--mark);color:var(--ink);font-weight:800;font-size:16px;padding:15px 22px;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1px var(--rule)}
+.note{font-size:13.5px;color:var(--soft)}
+.join{max-width:720px;margin:0 auto;border:1px solid var(--rule);background:rgba(26,33,48,.8);border-radius:24px;padding:30px;display:grid;gap:16px}
+.join .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr) auto;gap:12px}
+@media (max-width:720px){.join .row{grid-template-columns:minmax(0,1fr)}}
+.join input,.join select{font:inherit;font-size:16px;color:var(--paper);background:var(--ink-0);border:1px solid var(--rule);border-radius:12px;padding:14px;min-width:0;width:100%}
+.join label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.msg{font-size:14.5px;padding:12px 14px;border-radius:12px;border:1px solid var(--ev-lo)}
+.msg.ok{border-color:var(--ev-hi)}
+footer{margin-top:96px;border-top:1px solid var(--rule);padding-block:28px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
+footer a{text-decoration:none}
+.demo{font-family:var(--mono);font-size:11.5px;color:var(--dim);text-align:center;margin-top:10px}
+
+/* capas */
+.layer{position:fixed;inset:0;z-index:50;background:rgba(10,13,19,.78);backdrop-filter:blur(14px);overflow-y:auto;
+  padding:max(20px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(40px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+.x{position:fixed;top:max(20px, env(safe-area-inset-top, 0px));right:max(20px, env(safe-area-inset-right, 0px));width:48px;height:48px;border-radius:50%;border:0;background:var(--paper);color:var(--ink);display:grid;place-items:center;z-index:2}
+
+/* buscador a pantalla completa */
+.search{max-width:860px;margin:9vh auto 0;display:grid;gap:18px}
+.search .in{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--rule);padding-bottom:14px}
+.search input{flex:1;min-width:0;background:transparent;border:0;color:var(--paper);font-family:var(--sans);font-size:clamp(24px,3.4vw,38px);font-weight:300}
+.search input::placeholder{color:var(--dim)}
+.search input:focus{outline:none}
+.srow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.srow > span{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--dim);min-width:84px;text-transform:uppercase}
+.pill{border:1px solid var(--rule);background:transparent;border-radius:999px;padding:6px 13px;font-size:13.5px;font-weight:600}
+.pill[aria-pressed="true"]{background:var(--mark);border-color:var(--mark);color:var(--ink)}
+.results{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px}
+.res{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;width:100%;text-align:left;border:1px solid var(--rule);background:rgba(26,33,48,.75);border-radius:16px;padding:16px 18px}
+.res:hover,.res:focus-visible{border-color:rgba(244,227,90,.55)}
+.res .n{font-family:var(--mono);font-size:12.5px;color:var(--mark)}
+.res b{display:block;font-size:17px}
+.res span.s{display:block;color:var(--soft);font-size:14px;margin-top:2px}
+.res .r{display:flex;gap:8px;align-items:center}
+.res .ev{font-family:var(--mono);font-size:10.5px;padding:2px 8px;border:1px solid currentColor;border-radius:999px;white-space:nowrap}
+@media (max-width:600px){.res{grid-template-columns:minmax(0,1fr)}.res .r{flex-wrap:wrap}}
+.hit{background:rgba(244,227,90,.25);color:var(--paper);border-radius:3px}
+
+/* ficha */
+.sheet{max-width:1100px;margin:4vh auto 0;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:48px;align-items:start}
+@media (max-width:860px){.sheet{grid-template-columns:minmax(0,1fr);gap:28px}}
+.side{position:sticky;top:20px;display:grid;gap:14px}
+@media (max-width:860px){.side{position:static}}
+.side .cover{aspect-ratio:4/5;border:1px solid var(--rule)}
+.side .cover .hook{font-size:34px}
+.side .cap{text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim)}
+.body{display:grid;gap:22px}
+.body .meta{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;color:var(--mark);font-weight:500;text-transform:uppercase}
+.body h2{font-size:clamp(32px,4.4vw,50px);font-weight:800;line-height:1.08;letter-spacing:-.01em}
+.body .by{color:var(--soft);margin-top:-12px}
+.body .by b{color:var(--paper)}
+.body .by i{font-family:var(--serif)}
+.quote{border-left:3px solid var(--mark);background:rgba(244,227,90,.06);border-radius:0 14px 14px 0;padding:18px 22px;font-size:clamp(18px,1.9vw,21px);font-weight:700;line-height:1.45}
+.body h4{margin:8px 0 0;font-size:18px;font-weight:800}
+.body .txt{color:var(--soft);font-size:17px;max-width:68ch}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.step{--fc:var(--soft);border:1px solid var(--rule);border-left:2px solid var(--fc);background:rgba(26,33,48,.7);border-radius:16px;overflow:hidden}
+.step.f-foto{--fc:#C9D0DA}
+.step.f-video{--fc:#7F97F2}
+.step.f-copy{--fc:var(--mark)}
+.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:34px minmax(0,1fr) 18px;gap:10px;padding:16px 18px;align-items:start}
+.step summary::-webkit-details-marker{display:none}
+.step summary:hover{background:rgba(255,255,255,.03)}
+.step .k{font-family:var(--mono);font-size:13px;color:var(--mark);font-weight:600;padding-top:2px}
+.step .fmt{display:flex;align-items:center;gap:6px;margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--fc);opacity:.85}
+.step .chev{width:9px;height:9px;margin-top:7px;border-right:1.5px solid var(--soft);border-bottom:1.5px solid var(--soft);transform:rotate(45deg);transition:transform .2s}
+.step details[open] .chev{transform:rotate(225deg);margin-top:11px}
+.sbody{display:grid;gap:14px;padding:0 18px 18px 62px}
+@media (max-width:560px){.sbody{padding-left:18px}}
+.sfig{margin:0;border-radius:12px;overflow:hidden;background:var(--ink-0)}
+.sfig img{display:block;width:100%;height:auto}
+.ph{aspect-ratio:21/9;display:grid;place-content:center;justify-items:center;gap:6px;border:1px dashed var(--rule);border-radius:12px;color:var(--dim);font-size:14px}
+.ph svg{width:22px;height:22px;color:var(--fc)}
+.ph small{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.sev{border-top:1px solid var(--rule);padding-top:12px;display:grid;gap:8px}
+.sev .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mark)}
+.sev p{margin:0;font-size:15px;line-height:1.55;color:var(--paper)}
+.sref{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--soft)}
+.sref li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}
+.sref .rn{color:var(--mark)}
+.sref a{color:var(--mark)}
+.step.fake .fsum{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;padding:18px}
+.bars{display:grid;gap:9px;padding-top:4px}
+.bars i{display:block;height:10px;border-radius:5px;background:rgba(246,247,244,.16)}
+.bars i.t{width:90px;height:7px;background:var(--fc);opacity:.35}
+.whys{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:16px}
+.whys li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px}
+.whys .wn{width:24px;height:24px;border-radius:50%;background:var(--mark);color:var(--ink);font-family:var(--mono);font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.whys b{display:block;font-size:16.5px;margin-bottom:4px}
+.whys p{margin:0;color:var(--soft);line-height:1.65;font-size:15.5px}
+.rf{font-family:var(--mono);font-size:11px;color:var(--mark);white-space:nowrap}
+.mo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.blist{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:9px}
+.blist li{position:relative;padding-left:22px;color:var(--soft);line-height:1.55;font-size:15px}
+.blist li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-size:13px}
+.blist.ok li::before{content:"+";color:var(--mark)}
+.blist.warn li::before{content:"!";color:#F2A4A4}
+.hint{margin:6px 0 0;font-size:13.5px;color:var(--dim)}
+.gate{position:relative;min-height:240px}
+.gate .steps{filter:blur(7px);user-select:none;pointer-events:none}
+.gate .unlock{position:absolute;inset:0;display:grid;place-items:center}
+.gate .unlock div{background:var(--ink-3);border:1px solid rgba(244,227,90,.5);border-radius:20px;padding:22px;display:grid;gap:12px;justify-items:center;text-align:center;max-width:340px}
+.example{border:1px dashed var(--rule);border-radius:14px;padding:16px 18px;color:var(--paper)}
+.evline{display:flex;gap:12px;align-items:flex-start}
+.evline .ev{font-family:var(--mono);font-size:11px;padding:3px 10px;border:1px solid currentColor;border-radius:999px;white-space:nowrap}
+.src{display:grid;gap:8px;font-family:var(--mono);font-size:12.5px;color:var(--soft);line-height:1.6;border-top:1px solid var(--rule);padding-top:18px}
+.src a:not(.btn){color:var(--mark)}
+.srch{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans)}
+.srch b{color:var(--paper);font-size:15px}.srch span{font-family:var(--mono);font-size:12px}
+.ask{border:1px solid var(--rule);border-radius:18px;padding:18px;display:grid;gap:12px;background:rgba(14,18,25,.6)}
+.ask .q{justify-self:end;background:var(--paper);color:var(--ink);border-radius:12px 12px 2px 12px;padding:9px 13px;font-size:14.5px;max-width:90%}
+.ask .a{border-left:2px solid var(--mark);padding-left:12px;color:var(--soft);font-size:14.5px}
+.ask .in{display:flex;gap:10px;flex-wrap:wrap}
+.ask input{flex:1;min-width:0;font:inherit;font-size:15px;background:var(--ink-0);color:var(--dim);border:1px solid var(--rule);border-radius:12px;padding:12px}
+
+/* vídeo */
+.video{max-width:1000px;margin:10vh auto 0;aspect-ratio:16/9;max-height:80vh;border-radius:22px;background:#000;border:1px solid var(--rule);display:grid;place-items:center;text-align:center;color:var(--dim);padding:24px}
+
+/* menú */
+.menu{max-width:1100px;margin:12vh auto 0;display:grid;gap:40px}
+.menu nav{display:grid;gap:4px}
+.menu nav a{font-weight:800;font-size:clamp(40px,7vw,84px);line-height:1.08;text-decoration:none;letter-spacing:-.01em;text-transform:uppercase}
+.menu nav a:hover{color:var(--mark)}
+.menu .soc{font-family:var(--mono);font-size:13px;color:var(--soft);display:flex;gap:22px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion: reduce){.card,.knob,.fill,.klabel{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#biblioteca" aria-label="Un Estudio Demuestra"><svg viewBox="15 8 71 87" aria-hidden="true" focusable="false"><path d="M25 14 H58 M80 36 V85 Q80 90 75 90 H25 Q20 90 20 85 V19 Q20 14 25 14" fill="none" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40.683875 73.891V66.7735L39.133625 66.23725V65.8375H43.199375V66.23725L41.727125 66.7735V73.80325Q41.727125 75.568 41.093375 76.781875Q40.459625 77.99575 39.240875 78.614875Q38.022125 79.234 36.276875000000004 79.234Q34.395125 79.234 33.108125 78.614875Q31.821125000000002 77.99575 31.158125000000002 76.752625Q30.495125 75.5095 30.495125 73.64725V66.7735L29.022875000000003 66.23725V65.8375H34.560875V66.23725L33.088625 66.7735V73.696Q33.088625 74.99275 33.507875 75.8605Q33.927125000000004 76.72825 34.765625 77.15725Q35.604125 77.58625 36.852125 77.58625Q38.080625 77.58625 38.93375 77.167Q39.786875 76.74775 40.235375000000005 75.923875Q40.683875 75.1 40.683875 73.891ZM52.764125 69.49375 52.715374999999995 72.097 52.764125 74.70025H51.954875L51.633125 72.63325L47.050625 72.61375V71.59L51.633125 71.56075L51.954875 69.49375ZM55.425875 69.63025 54.928625 69.74725 52.949374999999996 66.52975 53.758624999999995 66.90025H46.962875V65.8375H53.271125L54.450874999999996 65.24275H54.684875ZM53.232124999999996 78.30775 55.377125 74.93425 55.825624999999995 75.05125 55.006625 79.663H54.753125L53.495374999999996 79.0H46.962875V77.93725H53.885374999999996ZM44.310874999999996 79.0V78.60025L45.783125 78.064V66.7735L44.310874999999996 66.23725V65.8375H48.376625V79.0ZM67.847375 72.253Q67.847375 69.5035 66.40925 68.201875Q64.971125 66.90025 62.445875 66.90025H59.803625000000004L59.637875 65.8375H62.923625Q65.478125 65.8375 67.174625 66.52000000000001Q68.871125 67.2025 69.71937500000001 68.58212499999999Q70.567625 69.96175 70.567625 72.0385Q70.567625 74.25175 69.573125 75.80687499999999Q68.578625 77.362 66.85287500000001 78.181Q65.127125 79.0 62.952875000000006 79.0H59.637875L59.803625000000004 77.93725H62.640875Q64.21062500000001 77.93725 65.38062500000001 77.357125Q66.550625 76.777 67.199 75.524125Q67.847375 74.27125 67.847375 72.253ZM57.044375 79.0V78.60025L58.516625000000005 78.064V66.7735L57.044375 66.23725V65.8375H61.110125000000004V79.0Z" fill="#F6F7F4"/>
+<circle cx="34" cy="52" r="2.6" fill="#F4E35A" fill-opacity="0.4"/>
+<circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/>
+<circle cx="72" cy="22" r="12" fill="#F4E35A"/>
+<path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg><span>un estudio demuestra</span></a>
+    <button class="menu-btn" type="button" id="openMenu" aria-haspopup="dialog">MENÚ <i aria-hidden="true">1</i></button>
+  </div>
+</header>
+
+<main id="biblioteca">
+  <section class="hero">
+    <div class="bignum" id="ghost" aria-hidden="true">001</div>
+    <div class="wrap">
+      <h1>La biblioteca <b>UED</b><span class="dot">.</span></h1>
+      <p class="sub" id="sub"></p>
+      <div class="sbar">
+        <button class="sfield" type="button" id="openSearch" aria-haspopup="dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+          <span>¿Qué quieres vender mejor?</span><span class="kbd" style="flex:none">/</span>
+        </button>
+        <button class="fbtn" type="button" id="fbtn" aria-expanded="false" aria-controls="fpanel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"></path></svg>
+          Filtros <span class="n" id="fcount" hidden></span>
+        </button>
+      </div>
+      <div class="fpanel" id="fpanel" hidden>
+        <div class="frow frow-tax"><span>Categoría</span><div class="tax" id="ftax"></div></div>
+        <div class="frow"><span>Tema</span><div class="chips" id="fcat"></div></div>
+        <div class="frow"><span>Evidencia</span><div class="chips" id="fev"></div></div>
+        <div class="frow"><span>Acceso</span><div class="chips" id="facc"></div></div>
+        <button class="clear" type="button" id="fclear">Quitar filtros</button>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Tácticas">
+    <div class="stage" id="stage" aria-roledescription="carrusel"></div>
+    <div class="tl">
+      <button class="arrow" type="button" id="prev" aria-label="Táctica anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+      <div class="track" id="track" role="slider" tabindex="0" aria-label="Posición en la biblioteca" aria-valuemin="1"></div>
+      <button class="arrow" type="button" id="next" aria-label="Táctica siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </div>
+    <p class="demo">Contenido de prueba · tácticas basadas en estudios reales, con textos e ilustraciones propios</p>
+  </section>
+
+  <section class="sec" id="empieza">
+    <div class="wrap">
+      <div class="sec-head"><h2>Empieza por aquí<span class="dot">.</span></h2><p>Cuatro tácticas abiertas de imágenes de producto. Toca cualquiera y ábrela.</p></div>
+      <div class="picks" id="picks"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="pro">
+    <div class="wrap">
+      <div class="sec-head"><h2>Hazte PRO<span class="dot">.</span></h2><p>Toda la biblioteca, el paso a paso de cada táctica y un asistente que responde con estudios.</p></div>
+      <div class="plans">
+        <div class="plan">
+          <span class="k">ABIERTA</span><h3>Gratis</h3>
+          <ul><li>Una selección de tácticas abiertas</li><li>Nueva táctica cada semana en redes</li><li>Newsletter con el estudio de la semana</li></ul>
+          <a class="btn ghost" href="#lista">Apuntarme gratis</a>
+        </div>
+        <div class="plan feat">
+          <span class="k">PRO</span><h3>Biblioteca completa</h3>
+          <p class="price">[PRECIO]<small>/ mes</small></p>
+          <ul><li>Todas las tácticas, con buscador y filtros</li><li>Cómo aplicarlo, paso a paso, en cada ficha</li><li>Pregúntale a la ciencia: tu caso, respondido con estudios</li><li>El vídeo de cada táctica y sus fuentes</li></ul>
+          <a class="btn" href="#lista">Quiero el precio de fundador</a>
+          <p class="note">La lista de espera tendrá acceso anticipado y precio de fundador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="lista">
+    <div class="wrap">
+      <div class="sec-head"><h2>Lista de espera<span class="dot">.</span></h2><p>Te avisamos cuando abra la biblioteca.</p></div>
+      <form class="join" id="waitlist" novalidate>
+        <div class="row">
+          <label for="email">Tu email</label><input id="email" type="email" autocomplete="email" placeholder="tu@email.com" required>
+          <label for="interes">Qué quieres mejorar</label><select id="interes"><option>Precios</option><option>Copywriting</option><option>Ventas</option><option>Diseño web</option><option>Promociones</option><option>Email</option></select>
+          <button class="btn" type="submit">Entrar →</button>
+        </div>
+        <p class="msg" id="msg" role="status" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Un Estudio Demuestra · 2026</span>
+    <a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">Instagram · @unestudiodemuestra</a>
+  </div>
+</footer>
+
+<!-- capas -->
+<div class="layer" id="Lsearch" role="dialog" aria-modal="true" aria-label="Buscar en la biblioteca" hidden>
+  <button class="x" type="button" data-close aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div class="search">
+    <div class="in"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--dim)"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input id="q" type="search" placeholder="Busca una palabra o una frase" autocomplete="off" aria-label="Buscar"><span class="kbd">ESC</span></div>
+    <div class="srow" id="scat"><span>Tema</span></div>
+    <div class="srow" id="ssort"><span>Ordenar</span></div>
+    <ul class="results" id="results"></ul>
+  </div>
+</div>
+
+<div class="layer" id="Lsheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" hidden>
+  <button class="x" type="button" data-close aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<div class="layer" id="Lvideo" role="dialog" aria-modal="true" aria-label="Vídeo de la táctica" hidden>
+  <button class="x" type="button" data-close aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div class="video"><div><p style="font-weight:700;color:var(--paper);font-size:18px">Aquí irá el reel de esta táctica</p><p style="margin-top:6px">Se conectará cuando los vídeos estén publicados.</p></div></div>
+</div>
+
+<div class="layer" id="Lmenu" role="dialog" aria-modal="true" aria-label="Menú" hidden>
+  <button class="x" type="button" data-close aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div class="menu">
+    <nav aria-label="Principal">
+      <a href="#biblioteca" data-close>La biblioteca</a>
+      <a href="#empieza" data-close>Empieza por aquí</a>
+      <a href="#pro" data-close>Hazte PRO</a>
+      <a href="#lista" data-close>Lista de espera</a>
+    </nav>
+    <div class="soc"><a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">Instagram</a><span>@unestudiodemuestra</span></div>
+  </div>
+</div>
+
+<script>
+const WAITLIST_ENDPOINT = ''; // Pega aquí la URL de tu herramienta de emails. Vacía = modo demostración.
+const LOGO = `<svg viewBox="15 8 71 87" aria-hidden="true" focusable="false"><path d="M25 14 H58 M80 36 V85 Q80 90 75 90 H25 Q20 90 20 85 V19 Q20 14 25 14" fill="none" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M40.683875 73.891V66.7735L39.133625 66.23725V65.8375H43.199375V66.23725L41.727125 66.7735V73.80325Q41.727125 75.568 41.093375 76.781875Q40.459625 77.99575 39.240875 78.614875Q38.022125 79.234 36.276875000000004 79.234Q34.395125 79.234 33.108125 78.614875Q31.821125000000002 77.99575 31.158125000000002 76.752625Q30.495125 75.5095 30.495125 73.64725V66.7735L29.022875000000003 66.23725V65.8375H34.560875V66.23725L33.088625 66.7735V73.696Q33.088625 74.99275 33.507875 75.8605Q33.927125000000004 76.72825 34.765625 77.15725Q35.604125 77.58625 36.852125 77.58625Q38.080625 77.58625 38.93375 77.167Q39.786875 76.74775 40.235375000000005 75.923875Q40.683875 75.1 40.683875 73.891ZM52.764125 69.49375 52.715374999999995 72.097 52.764125 74.70025H51.954875L51.633125 72.63325L47.050625 72.61375V71.59L51.633125 71.56075L51.954875 69.49375ZM55.425875 69.63025 54.928625 69.74725 52.949374999999996 66.52975 53.758624999999995 66.90025H46.962875V65.8375H53.271125L54.450874999999996 65.24275H54.684875ZM53.232124999999996 78.30775 55.377125 74.93425 55.825624999999995 75.05125 55.006625 79.663H54.753125L53.495374999999996 79.0H46.962875V77.93725H53.885374999999996ZM44.310874999999996 79.0V78.60025L45.783125 78.064V66.7735L44.310874999999996 66.23725V65.8375H48.376625V79.0ZM67.847375 72.253Q67.847375 69.5035 66.40925 68.201875Q64.971125 66.90025 62.445875 66.90025H59.803625000000004L59.637875 65.8375H62.923625Q65.478125 65.8375 67.174625 66.52000000000001Q68.871125 67.2025 69.71937500000001 68.58212499999999Q70.567625 69.96175 70.567625 72.0385Q70.567625 74.25175 69.573125 75.80687499999999Q68.578625 77.362 66.85287500000001 78.181Q65.127125 79.0 62.952875000000006 79.0H59.637875L59.803625000000004 77.93725H62.640875Q64.21062500000001 77.93725 65.38062500000001 77.357125Q66.550625 76.777 67.199 75.524125Q67.847375 74.27125 67.847375 72.253ZM57.044375 79.0V78.60025L58.516625000000005 78.064V66.7735L57.044375 66.23725V65.8375H61.110125000000004V79.0Z" fill="#F6F7F4"/> <circle cx="34" cy="52" r="2.6" fill="#F4E35A" fill-opacity="0.4"/> <circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/> <circle cx="72" cy="22" r="12" fill="#F4E35A"/> <path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg>`;
+const EV = { hi:'Evidencia alta', md:'Evidencia media', lo:'Discutida' };
+const EVS = { hi:'Alta', md:'Media', lo:'Discutida' };
+const EVC = { hi:'var(--ev-hi)', md:'var(--ev-md)', lo:'var(--ev-lo)' };
+const ORDER = ['Personas','Composición','Encuadre','Tacto','Color','Sentidos'];
+const PRO_USER = false; // prototipo: el visitante no es PRO
+
+/* ---------- ilustraciones propias (640×360) ---------- */
+const C = { ink:'#141A24', pan:'#1A2130', rule:'#2C3546', paper:'#F6F7F4', mark:'#F4E35A', soft:'#A3ACBB', dim:'#6F7889', mid:'#3A4458' };
+const OK = (x,y) => `<circle cx="${x}" cy="${y}" r="14" fill="${C.mark}"/><path d="M${x-6} ${y} l4 4 l8 -8" fill="none" stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+const NO = (x,y) => `<circle cx="${x}" cy="${y}" r="14" fill="${C.rule}"/><path d="M${x-5} ${y-5} l10 10 M${x+5} ${y-5} l-10 10" stroke="${C.soft}" stroke-width="2.6" stroke-linecap="round"/>`;
+const P = (x, label, v, cap, inner) => `<g transform="translate(${x} 0)"><rect x="16" y="16" width="296" height="328" rx="14" fill="${C.pan}" stroke="${C.rule}"/>
+  <text x="36" y="47" font-family="JetBrains Mono,monospace" font-size="12" letter-spacing="1.4" fill="${C.soft}">${label}</text>${v === 1 ? OK(284,42) : v === 0 ? NO(284,42) : ''}
+  ${inner}<text x="164" y="322" text-anchor="middle" font-family="Public Sans,Arial,sans-serif" font-size="14.5" font-weight="600" fill="${C.paper}">${cap}</text></g>`;
+const SVG = (label, a, b, mid = '') => `<svg viewBox="0 0 640 360" role="img" aria-label="${label}"><rect width="640" height="360" fill="${C.ink}"/>${a}${b}${mid}</svg>`;
+const ARROW = `<circle cx="320" cy="180" r="18" fill="${C.mark}"/><path d="M311 180 h16 m-6 -6 l6 6 -6 6" fill="none" stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+const blender = (cx) => `<rect x="${cx-28}" y="238" width="56" height="32" rx="6" fill="${C.paper}"/><path d="M${cx-24} 236 L${cx+24} 236 L${cx+18} 150 L${cx-18} 150 Z" fill="rgba(246,247,244,.07)" stroke="${C.paper}" stroke-width="3"/><path d="M${cx-21} 234 L${cx+21} 234 L${cx+19} 200 L${cx-19} 200 Z" fill="${C.mark}" opacity=".85"/><rect x="${cx-22}" y="138" width="44" height="12" rx="3" fill="${C.paper}"/>`;
+const shirt = (x, y, fill) => `<path transform="translate(${x} ${y})" d="M30 0 L50 8 Q60 14 70 8 L90 0 L120 22 L104 44 L92 36 L92 110 L28 110 L28 36 L16 44 L0 22 Z" fill="${fill}"/>`;
+const mug = (x, right, hand) => `<rect x="${x}" y="122" width="100" height="120" rx="14" fill="${C.paper}"/><ellipse cx="${x+50}" cy="124" rx="44" ry="7" fill="${C.mid}"/>
+  <path d="${right ? `M${x+100} 152 C${x+140} 152 ${x+140} 214 ${x+100} 214` : `M${x} 152 C${x-40} 152 ${x-40} 214 ${x} 214`}" fill="none" stroke="${C.paper}" stroke-width="12" stroke-linecap="round"/>
+  <path d="M${x+38} 108 q-6 -10 0 -20 M${x+56} 108 q-6 -10 0 -20" fill="none" stroke="${C.soft}" stroke-width="2.5" stroke-linecap="round"/>
+  ${hand ? `<path transform="translate(${x+136} 196) scale(2)" d="M8 2v11l-2-2a2 2 0 0 0-3 3l5 6h9l2-8a2 2 0 0 0-2-2h-4V2a2 2 0 0 0-4 0z" fill="${C.mark}" stroke="${C.ink}" stroke-width="1.2" stroke-linejoin="round"/>` : ''}`;
+const bag = (top, bot, y0, y1, band) => `<path d="M${164-top} ${y0-12} L${164+top} ${y0-12} L${164+top} ${y0} L${164-top} ${y0} Z" fill="${C.soft}"/>
+  <path d="M${164-top} ${y0} L${164+top} ${y0} L${164+bot} ${y1} L${164-bot} ${y1} Z" fill="${C.paper}"/>
+  <path d="M${164-band[0]} ${band[2]} L${164+band[0]} ${band[2]} L${164+band[1]} ${band[3]} L${164-band[1]} ${band[3]} Z" fill="${C.mark}"/>
+  <text x="164" y="${(band[2]+band[3])/2+6}" text-anchor="middle" font-family="Public Sans,Arial" font-weight="800" font-size="17" letter-spacing="2" fill="${C.ink}">CAFÉ</text>`;
+const cam = (x, y) => `<rect x="${x}" y="${y}" width="28" height="19" rx="4" fill="${C.soft}"/><circle cx="${x+14}" cy="${y+9.5}" r="5.5" fill="${C.ink}"/><rect x="${x+4}" y="${y-4}" width="9" height="5" rx="1.5" fill="${C.soft}"/>`;
+const slab = (y, fill, front) => `<path d="M88 ${y+22} L130 ${y} L252 ${y} L210 ${y+22} Z" fill="${fill}"/><path d="M88 ${y+22} L210 ${y+22} L210 ${y+32} L88 ${y+32} Z" fill="${front}"/><path d="M210 ${y+22} L252 ${y} L252 ${y+10} L210 ${y+32} Z" fill="${C.mid}"/>`;
+const pack = (ix, iy) => `<rect x="62" y="96" width="204" height="118" rx="6" fill="${C.paper}"/><rect x="${ix}" y="${iy}" width="60" height="42" rx="4" fill="#7A5233"/><path d="M${ix+20} ${iy} v42 M${ix+40} ${iy} v42 M${ix} ${iy+21} h60" stroke="#5E3D24" stroke-width="2"/>`;
+const beam = (side) => `<path d="M164 296 l-14 0 l14 -26 l14 26 z" fill="${C.soft}"/><path d="M96 ${side ? 262 : 278} L232 ${side ? 278 : 262}" stroke="${C.soft}" stroke-width="5" stroke-linecap="round"/>
+  ${side ? `<rect x="214" y="250" width="26" height="22" rx="3" fill="#7A5233"/>` : `<rect x="88" y="246" width="18" height="14" rx="3" fill="#7A5233"/>`}`;
+const box = (fill, band, txt, tc) => `<rect x="104" y="80" width="120" height="176" rx="8" fill="${fill}"/><rect x="104" y="138" width="120" height="48" fill="${band}"/><text x="164" y="171" text-anchor="middle" font-family="Public Sans,Arial" font-weight="800" font-size="22" letter-spacing="2" fill="${tc}">${txt}</text><rect x="120" y="206" width="88" height="7" rx="3.5" fill="${tc}" opacity=".5"/><rect x="132" y="221" width="64" height="7" rx="3.5" fill="${tc}" opacity=".35"/>`;
+
+const soap = (x) => `<rect x="${x+40}" y="96" width="40" height="18" rx="3" fill="${C.soft}"/><rect x="${x+52}" y="78" width="16" height="20" fill="${C.soft}"/><rect x="${x+42}" y="70" width="46" height="12" rx="4" fill="${C.soft}"/><rect x="${x+84}" y="72" width="30" height="7" rx="3" fill="${C.soft}"/>
+  <rect x="${x}" y="112" width="120" height="170" rx="42" fill="rgba(246,247,244,.08)" stroke="${C.paper}" stroke-width="3"/><rect x="${x+12}" y="150" width="96" height="30" rx="4" fill="${C.paper}"/><text x="${x+60}" y="170" text-anchor="middle" font-family="Public Sans,Arial" font-weight="800" font-size="13" letter-spacing="1.5" fill="${C.ink}">LIMÓN</text>
+  <rect x="${x+12}" y="196" width="96" height="58" rx="4" fill="rgba(92,200,146,.35)"/>`;
+const lemonHalf = (cx, cy, r) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${C.mark}"/><circle cx="${cx}" cy="${cy}" r="${r-4}" fill="#FFF2A6"/>${Array.from({length:8}, (_,k) => { const a = k*Math.PI/4; return `<path d="M${cx} ${cy} L${(cx + Math.cos(a)*(r-5)).toFixed(1)} ${(cy + Math.sin(a)*(r-5)).toFixed(1)}" stroke="${C.mark}" stroke-width="1.6"/>`; }).join('')}<circle cx="${cx}" cy="${cy}" r="3" fill="${C.mark}"/>`;
+const ILL = {
+  t01: () => SVG('Comparación: producto con una persona frente a producto con el rastro de una persona',
+    P(0, 'CON PERSONA', 0, 'Parece de otra persona', `<circle cx="112" cy="128" r="25" fill="${C.mid}"/><rect x="76" y="160" width="72" height="112" rx="30" fill="${C.mid}"/>${blender(212)}`),
+    P(312, 'SOLO EL RASTRO', 1, 'Sugiere uso sin mostrar a nadie', `${blender(146)}<rect x="196" y="262" width="96" height="10" rx="3" fill="${C.soft}"/><circle cx="222" cy="249" r="13" fill="${C.mark}"/><circle cx="222" cy="249" r="8" fill="none" stroke="${C.paper}" stroke-width="2"/><circle cx="254" cy="251" r="11" fill="${C.mark}"/><path d="M254 240 v22 M243 251 h22" stroke="${C.paper}" stroke-width="1.6"/><rect x="58" y="206" width="36" height="64" rx="5" fill="none" stroke="${C.paper}" stroke-width="3"/><rect x="61" y="238" width="30" height="29" rx="3" fill="${C.mark}" opacity=".85"/>`)),
+  t02: () => SVG('Secuencia: primero el producto aislado, después en contexto',
+    P(0, '1 · PARA ELEGIR', -1, 'Solo: fácil de comparar', `<rect x="74" y="70" width="180" height="204" rx="10" fill="${C.paper}"/>${shirt(104, 118, C.ink)}`),
+    P(312, '2 · PARA COMPRAR', -1, 'En contexto: ayuda a decidir', `<rect x="34" y="66" width="86" height="112" rx="4" fill="${C.rule}" opacity=".9"/><path d="M77 66 v112 M34 122 h86" stroke="${C.pan}" stroke-width="4"/><circle cx="262" cy="118" r="30" fill="${C.mid}" opacity=".8"/><rect x="246" y="146" width="32" height="40" rx="4" fill="${C.rule}"/><path d="M40 286 h248" stroke="${C.rule}" stroke-width="4"/><path d="M64 94 h200" stroke="${C.soft}" stroke-width="3"/><path d="M164 94 v10 M164 104 L122 126 h84 Z" fill="none" stroke="${C.paper}" stroke-width="3" stroke-linejoin="round"/>${shirt(104, 126, C.mark)}`),
+    ARROW),
+  t03: () => SVG('Comparación de ángulos de cámara sobre una bolsa de café',
+    P(0, 'DESDE ABAJO', -1, 'Superior · más lujo', `${bag(40, 58, 96, 264, [46, 52, 172, 208])}${cam(48, 272)}<path d="M76 276 L118 240" stroke="${C.dim}" stroke-width="2" stroke-dasharray="5 5"/>`),
+    P(312, 'DESDE ARRIBA', -1, 'Pierde presencia', `${bag(64, 46, 96, 264, [58, 52, 150, 186])}${cam(250, 62)}<path d="M250 78 L214 100" stroke="${C.dim}" stroke-width="2" stroke-dasharray="5 5"/>`)),
+  t04: () => SVG('Comparación: taza con el asa a la izquierda frente a taza con el asa a la derecha y una mano',
+    P(0, 'ASA A LA IZQUIERDA', 0, 'Cuesta imaginarse cogiéndola', mug(132, false, false)),
+    P(312, 'ASA A LA DERECHA', 1, 'Invita a cogerla: somos diestros', mug(84, true, true))),
+  t05: () => SVG('Comparación: producto como bloque frente a producto con las capas separadas',
+    P(0, 'UN BLOQUE', 0, 'No se ve por qué funciona', `<path d="M96 146 L138 118 L260 118 L218 146 Z" fill="#4A5468"/><rect x="96" y="146" width="122" height="104" fill="${C.mid}"/><path d="M218 146 L260 118 L260 222 L218 250 Z" fill="${C.rule}"/>`),
+    P(312, 'CAPAS SEPARADAS', 1, 'Se monta con la vista: confianza', `<path d="M150 80 V272" stroke="${C.dim}" stroke-width="2" stroke-dasharray="4 6"/>${slab(78, C.paper, '#C9CED6')}${slab(128, C.mark, '#C9B83F')}${slab(178, C.soft, '#7F8898')}${slab(228, C.paper, '#C9CED6')}`)),
+  t06: () => SVG('Comparación: imagen del producto arriba a la izquierda frente a abajo a la derecha en un envase',
+    P(0, 'ARRIBA · IZQUIERDA', -1, 'Se percibe más ligero', `${pack(78, 110)}<rect x="150" y="116" width="96" height="9" rx="4.5" fill="${C.ink}"/><rect x="150" y="134" width="70" height="7" rx="3.5" fill="${C.soft}"/>${beam(false)}`),
+    P(312, 'ABAJO · DERECHA', 1, 'Más pesado, más contundente', `${pack(190, 160)}<rect x="80" y="116" width="96" height="9" rx="4.5" fill="${C.ink}"/><rect x="80" y="134" width="70" height="7" rx="3.5" fill="${C.soft}"/>${beam(true)}`)),
+  t07: () => SVG('Comparación: envase saturado frente a envase de colores apagados',
+    P(0, 'SATURADO', -1, 'Intenso · potente · eficaz', box('#E8262B', '#FFD60A', 'MAX', '#FFFFFF')),
+    P(312, 'APAGADO', -1, 'Suave · natural · ecológico', box('#A9B8AC', '#E6E9E2', 'EKO', '#3E4A42'))),
+
+  t08: () => SVG('Comparación: jabón de limón con limones enteros frente a jabón con un limón cortado',
+    P(0, 'LIMONES ENTEROS', 0, 'Se ve, pero no se huele', `${soap(104)}<ellipse cx="146" cy="224" rx="21" ry="15" fill="${C.mark}"/><ellipse cx="180" cy="228" rx="19" ry="14" fill="#E6D24A"/><path d="M124 224 l-6 0 M200 228 l6 0" stroke="${C.mark}" stroke-width="5" stroke-linecap="round"/>`),
+    P(312, 'LIMÓN CORTADO', 1, 'Con el zumo a la vista, casi se huele', `${soap(104)}${lemonHalf(150, 226, 22)}<ellipse cx="186" cy="228" rx="16" ry="13" fill="#E6D24A"/><path d="M168 228 a18 13 0 0 1 0 0" /><path d="M128 196 q4 -6 0 -12 M140 192 q4 -6 0 -12" fill="none" stroke="${C.soft}" stroke-width="2" stroke-linecap="round"/><path d="M262 120 q6 -10 0 -18 q-6 -8 0 -18 M276 128 q6 -10 0 -18 q-6 -8 0 -18" fill="none" stroke="${C.mark}" stroke-width="2.5" stroke-linecap="round" opacity=".8"/><path d="M240 250 q4 8 0 12 q-4 -4 0 -12 Z M252 262 q3 6 0 9 q-3 -3 0 -9 Z" fill="#FFF2A6"/>`)),
+  t08b: () => `<svg viewBox="0 0 640 360" role="img" aria-label="Vela de canela con canela en rama y canela molida; ampliación de la canela molida con la etiqueta aroma más intenso"><rect width="640" height="360" fill="${C.ink}"/>
+    <rect x="16" y="16" width="608" height="328" rx="14" fill="${C.pan}" stroke="${C.rule}"/>
+    <rect x="40" y="286" width="258" height="14" rx="4" fill="#5A3E2B"/>
+    <rect x="72" y="146" width="92" height="140" rx="12" fill="rgba(246,247,244,.10)" stroke="${C.paper}" stroke-width="3"/>
+    <rect x="77" y="182" width="82" height="100" rx="8" fill="${C.paper}"/><rect x="92" y="214" width="52" height="34" rx="3" fill="none" stroke="#9A5A2E" stroke-width="2"/><rect x="100" y="228" width="36" height="6" rx="3" fill="#9A5A2E"/>
+    <path d="M118 182 v-12" stroke="${C.ink}" stroke-width="2"/><path d="M118 146 q-10 14 0 24 q10 -10 0 -24 Z" fill="${C.mark}"/>
+    ${[0,1,2].map(k => `<rect x="${186 + k*6}" y="${252 + k*-11}" width="96" height="14" rx="7" fill="#A0612F"/><circle cx="${188 + k*6}" cy="${259 + k*-11}" r="7" fill="#7A4521"/><circle cx="${188 + k*6}" cy="${259 + k*-11}" r="3.5" fill="#5A3317"/>`).join('')}
+    <path d="M52 288 Q98 238 146 288 Z" fill="#C47A3E"/>${Array.from({length:22}, (_,k) => `<circle cx="${62 + (k*37)%80}" cy="${272 + (k*13)%14}" r="1.4" fill="#8A4F22"/>`).join('')}
+    <rect x="44" y="236" width="112" height="58" rx="4" fill="none" stroke="${C.mark}" stroke-width="2.5"/>
+    <path d="M156 240 L344 118" stroke="${C.mark}" stroke-width="2"/>
+    <rect x="344" y="100" width="260" height="214" rx="12" fill="#232B3A" stroke="${C.mark}" stroke-width="2.5"/>
+    <path d="M362 300 Q470 150 588 300 Z" fill="#C47A3E"/>${Array.from({length:60}, (_,k) => `<circle cx="${380 + (k*53)%190}" cy="${262 + (k*17)%34}" r="2" fill="#8A4F22"/>`).join('')}
+    <rect x="372" y="54" width="214" height="36" rx="8" fill="${C.ink}" stroke="${C.rule}"/>
+    <text x="479" y="77" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="14" letter-spacing="2" fill="${C.paper}">AROMA <tspan font-weight="700" fill="${C.mark}">MÁS INTENSO</tspan></text>
+    <path d="M479 90 V214" stroke="${C.paper}" stroke-width="2.5"/><circle cx="479" cy="218" r="7" fill="${C.ink}" stroke="${C.paper}" stroke-width="2.5"/>
+  </svg>`,
+};
+
+const T = [
+ { id:'t01', n:1, cat:'Personas', ev:'md', pro:false, sesgo:'Propiedad psicológica', cover:'El rastro, <i class="m">no la persona</i>',
+   t:'Sugiere a las personas, no las muestres', by:['Lu, Jung & Peck','2024','Journal of Consumer Research'],
+   quote:'Una persona en la foto puede hacer que el producto parezca de otro. Una pista de que alguien lo usa, como una mano o una taza a medio beber, aporta calidez sin ese efecto.',
+   cap:'Mismo producto, dos fotos: la persona compite con el producto; el rastro de uso lo hace deseable sin robar atención.',
+   why:[
+     ['Lo que parece de otro, lo queremos menos','Cuando una foto de un viaje o de un lugar especial sale con otra persona, gusta menos que la misma foto vacía. El motivo: el sitio parece «suyo», no tuyo. Los autores lo vieron en 14.725 fotos de Instagram y en cinco experimentos.',[3]],
+     ['Las huellas ajenas restan valor','En productos de segunda mano, las señales visibles del dueño anterior bajan la valoración. Pasa en el laboratorio y también en ventas reales de eBay. Y si otros compradores ya han tocado un producto, también se valora peor: da cierto rechazo.',[1,2]],
+     ['Pero la presencia humana también suma','En fotos de producto para redes sociales, la sensación de que hay alguien detrás mejoró las emociones y la utilidad percibida de la foto. Y con ellas subió la intención de compra.',[4]],
+   ],
+   how:[
+     ['Fotografía el producto con huellas de uso que no tengan dueño: una taza a medio beber, una manta medio doblada, fruta recién cortada junto a la batidora.','foto',[4],'Probaron fotos con una persona, con presencia insinuada y sin nadie. Cuanta más presencia social transmitía la foto, mejores emociones y más útil parecía para decidir. Y eso subía la intención de compra.'],
+     ['Si sale alguien, que no robe el foco: mejor una mano o un gesto que una cara reconocible.','foto',[3],'El efecto «parece suyo» fue más fuerte cuando la persona de la foto era más llamativa o distintiva.'],
+     ['Evita cualquier señal de manoseo: envases abiertos sin motivo, arrugas, huellas.','foto',[1,2],'Las señales de que otros han tocado o usado el producto bajan su valoración.'],
+     ['En moda, enseña a la persona. El cliente necesita imaginarse con la prenda puesta.','foto',[5],'Con camisetas, la foto con modelo fue la que más ayudaba a imaginarse llevándola en la fase de decidir la compra.'],
+   ],
+   mejor:[['Productos ligados a la identidad: experiencias, viajes y objetos que dicen quién eres.',[3]],['Productos de segunda mano o reacondicionados.',[2]]],
+   ojo:[['En moda la persona ayuda, no resta.',[5]],['No quites toda presencia humana: sin nadie, la foto también pierde emoción.',[4]],['Ningún estudio comparó directamente «sugerir» frente a «mostrar». La táctica une varios hallazgos.',[]]],
+   ex:'Una batidora junto a fruta recién cortada y un vaso a medio llenar: alguien la está usando, pero no hay nadie que se la quede.',
+   evtxt:'Cada pieza está bien estudiada. La combinación es nuestra: ningún estudio la probó tal cual.',
+   src:[['Argo, J. J., Dahl, D. W. & Morales, A. C. (2006). Consumer contamination: How consumers react to products touched by others. Journal of Marketing, 70(2), 81–94.','10.1509/jmkg.70.2.081'],
+        ['Kim, J. (2017). The ownership distance effect: The impact of traces left by previous owners on the evaluation of used goods. Marketing Letters, 28(4), 591–605.','10.1007/s11002-017-9432-7'],
+        ['Lu, Z. Y., Jung, S. & Peck, J. (2024). It looks like "theirs": When and why human presence in the photo lowers viewers\' liking and preference for an experience venue. Journal of Consumer Research, 51(2), 321–341.',null],
+        ['Poirier, S.-M., Cosby, S., Sénécal, S., Coursaris, C. K., Fredette, M. & Léger, P.-M. (2024). The impact of social presence cues in social media product photos on consumers\' purchase intentions. Journal of Business Research, 185, 114932.','10.1016/j.jbusres.2024.114932'],
+        ['Bagatini, F. Z., Rech, E., Pacheco, N. A. & Nicolao, L. (2023). Can you imagine yourself wearing this product? Embodied mental simulation and attractiveness in e-commerce product pictures. Journal of Research in Interactive Marketing, 17(3), 470–490.','10.1108/JRIM-11-2021-0280']] },
+
+ { id:'t02', n:2, cat:'Composición', ev:'md', pro:false, sesgo:'Simulación mental', cover:'Primero <i class="m">solo</i>, luego en uso',
+   t:'Ordena la galería: el producto solo y, justo después, en uso', by:['Lee, Shin & Kincade','2024','Journal of Product & Brand Management'],
+   quote:'La foto que te ayuda a imaginarte usando el producto es la que empuja la compra. Y el lugar que ocupa en la galería cambia cuánto ayuda.',
+   cap:'Primero la foto limpia, que facilita comparar; después la foto en uso, que ayuda a imaginarse con el producto.',
+   why:[
+     ['Comprar en dos tiempos','Primero comparamos opciones y después decidimos. En un estudio con camisetas, la foto que más ayudaba a imaginarse con el producto cambiaba según la fase. Para comparar, los autores recomiendan maniquí. Para decidir en la ficha, modelo.',[2]],
+     ['Imaginarse es medio comprar','Cuanto más se imaginaban los participantes usando la prenda, más intención de compra tenían. Pasó en los dos estudios.',[1]],
+     ['El orden cambia lo que pesa','Con solo dos fotos, la del modelo funcionó mejor después de la del producto solo: pesa más lo último que ves. En una galería de cinco, funcionó mejor al principio: pesa más lo primero.',[1]],
+   ],
+   how:[
+     ['Imagen principal: el producto solo, limpio. Es la que mejor sirve para comparar, y en Amazon además es obligatoria.','foto',[2],'Para la fase de comparar entre opciones, los autores recomiendan imágenes sin persona, como el maniquí.'],
+     ['Si solo tienes dos fotos, la de uso va la segunda.','foto',[1],'Con una imagen de cada tipo, la foto con modelo y fondo generó más imaginación cuando iba después de la del producto solo.'],
+     ['Si tienes una galería larga, pon las fotos en uso al principio y los detalles después.','foto',[1],'En una serie de cinco imágenes, empezar por las fotos con modelo y fondo generó más imaginación que dejarlas para el final. Y más imaginación se tradujo en más intención de compra.'],
+     ['En la ficha de producto, donde se decide, usa fotos con modelo. En listados y categorías, el producto solo.','foto',[2],'Los autores proponen maniquí para evaluar, por ejemplo en páginas de categoría, y modelo para la consideración profunda, en la ficha.'],
+   ],
+   mejor:[['Ropa y productos que se llevan puestos: con ellos se hicieron los estudios.',[1,2]],['Productos que a primera vista no enamoran: ahí la foto con modelo ayuda más.',[2]]],
+   ojo:[['Los dos estudios usaron ropa. En otras categorías está por confirmar.',[]],['Amazon exige fondo blanco en la imagen principal: la foto en uso va en la galería.',[]]],
+   ex:'Camiseta sobre fondo blanco como principal. Segunda foto: la misma camiseta puesta, paseando por la calle. Después, los detalles: tejido, costuras, etiqueta.',
+   evtxt:'Estudios recientes y coherentes entre sí, pero hechos con ropa.',
+   src:[['Lee, J. E., Shin, E. & Kincade, D. H. (2024). Presentation-order effect of product images on consumers\' mental imagery processing and purchase intentions. Journal of Product & Brand Management, 33(5), 604–617.',null],
+        ['Bagatini, F. Z., Rech, E., Pacheco, N. A. & Nicolao, L. (2023). Can you imagine yourself wearing this product? Embodied mental simulation and attractiveness in e-commerce product pictures. Journal of Research in Interactive Marketing, 17(3), 470–490.','10.1108/JRIM-11-2021-0280']] },
+
+ { id:'t03', n:5, cat:'Encuadre', ev:'md', pro:false, sesgo:'Verticalidad', cover:'Desde abajo, <i class="m">superior</i>',
+   t:'Fotografía el producto desde un poco más abajo', by:['Xuan, Chen, Lin & Huang','2024','Journal of Advertising'],
+   quote:'Visto desde abajo, un producto parece superior y más lujoso. La excepción son los productos con cara, que gustan más vistos desde arriba.',
+   cap:'La misma bolsa de café: vista desde abajo parece superior; vista desde arriba pierde presencia.',
+   why:[
+     ['Arriba es mejor','Usamos el espacio como metáfora: lo que está arriba es superior. En cuatro experimentos, uno de ellos de campo, los productos fotografiados con la cámara mirando hacia arriba se valoraron mejor que con la cámara mirando hacia abajo.',[2]],
+     ['Arriba es lujo','El ángulo de cámara y la orientación vertical del fondo aumentaron la sensación de lujo del producto en tres experimentos.',[1]],
+     ['Con cara, al revés','Si el producto tiene rasgos humanos, verlo desde arriba da sensación de control sobre él, y así gusta más. Esperamos que algo «con personalidad» nos trate bien.',[2]],
+   ],
+   how:[
+     ['Baja la cámara: que el objetivo mire ligeramente hacia arriba al producto.','foto',[2],'En productos sin rasgos humanos, los ángulos que miran hacia arriba se asociaron con superioridad y dieron mejores valoraciones.'],
+     ['Si vendes gama alta, refuerza la verticalidad: ángulo bajo y composición vertical.','foto',[1],'El ángulo de cámara y un fondo de orientación vertical aumentaron la percepción de lujo.'],
+     ['Si tu producto tiene cara o personalidad (una mascota, un robot, un envase con ojos), hazlo al revés: desde arriba.','foto',[2],'Con productos antropomorfizados, el ángulo desde arriba dio sensación de dominio y mejores valoraciones que el ángulo desde abajo.'],
+   ],
+   mejor:[['Cuando quieres transmitir superioridad o lujo.',[1,2]],['Con clientes de perfil dominante: en ellos el efecto fue mayor.',[1]]],
+   ojo:[['El efecto sobre el precio que la gente espera pagar cambió según el tipo de producto.',[1]],['En productos con cara, el efecto del ángulo apareció sobre todo en consumidores de nivel socioeconómico alto.',[2]],['Ningún estudio midió cuánto ángulo es demasiado: empieza con algo sutil.',[]]],
+   ex:'Un frasco de perfume con la cámara ligeramente por debajo; la mascota de una marca de cereales, fotografiada desde arriba.',
+   evtxt:'Dos trabajos con siete experimentos en total, uno de ellos de campo.',
+   src:[['Van Rompay, T. J. L., De Vries, P. W., Bontekoe, F. & Tanja-Dijkstra, K. (2012). Embodied product perception: Effects of verticality cues in advertising and packaging design on consumer impressions and price expectations. Psychology & Marketing, 29(12), 919–928.','10.1002/mar.20574'],
+        ['Xuan, C., Chen, R., Lin, S. & Huang, H. (2024). Looking up or down? The effects of camera angle on evaluations of anthropomorphized products in advertisements. Journal of Advertising, 53(4), 530–548.','10.1080/00913367.2023.2282998']] },
+
+ { id:'t04', n:6, cat:'Tacto', ev:'hi', pro:false, sesgo:'Propiedad por el tacto', cover:'El asa, <i class="m">a la derecha</i>',
+   t:'Haz que den ganas de tocar el producto', by:['Peck & Shu','2009','Journal of Consumer Research'],
+   quote:'Tocar algo nos hace sentirlo nuestro. Online no se puede tocar, pero verlo tocar, tenerlo orientado hacia tu mano o leer cómo se siente produce un efecto parecido.',
+   cap:'Con el asa hacia la mano dominante, el cliente se imagina cogiendo la taza sin esfuerzo.',
+   why:[
+     ['Tocar es empezar a poseer','Basta con tocar un objeto para sentirlo más nuestro. Y para quien aún no lo tiene, imaginar que lo toca también aumenta esa sensación de propiedad.',[1]],
+     ['El cerebro ensaya el gesto','Al ver un producto orientado hacia nuestra mano dominante, simulamos mentalmente cogerlo. En cuatro estudios, esa simulación aumentó la intención de compra.',[2]],
+     ['Una mano ajena se siente propia','Ver una mano tocando el producto en una imagen, un GIF o en realidad virtual aumentó la sensación de propiedad y lo que valía el producto. Sentimos esa mano casi como nuestra.',[3]],
+   ],
+   how:[
+     ['Orienta asas y mangos hacia la derecha: la mayoría somos diestros.','foto',[2],'Orientar el producto hacia la mano dominante de quien mira aumentó la intención de compra.'],
+     ['Enseña una mano tocando el producto, no solo cerca de él. Mejor en vídeo o GIF.','video',[3],'En ocho estudios, que apareciera una mano no bastaba: tenía que estar tocando el producto.'],
+     ['Que el gesto enseñe algo: apretar para ver lo blando que es, levantarlo para ver lo que pesa, pasar el dedo por la textura.','video',[3],'El efecto se debilitó cuando el movimiento de la mano no revelaba información del producto, como su textura o su peso.'],
+     ['Describe con palabras cómo se siente: «algodón grueso que no transparenta», «mango de goma que no resbala».','copy',[4],'En moda online, las descripciones del tacto generaron imaginación táctil, y las fotos no. Esa imaginación mejoró la calidad percibida y la intención de compra.'],
+   ],
+   mejor:[['Productos que se usan con las manos.',[2,3]],['Vídeos inmersivos que emocionan: el efecto fue mayor en quien más se activaba.',[3]]],
+   ojo:[['Si el producto despierta rechazo, ayudar a imaginarlo en la mano reduce la compra.',[2]],['Si la página está saturada de estímulos, el efecto de la orientación se debilita.',[2]],['Un tacto desagradable resta: el valor depende de que la experiencia sea positiva.',[1]]],
+   ex:'Una taza con el asa a la derecha. En el vídeo, una mano la levanta y pasa el pulgar por el esmalte. En el texto: «cerámica gruesa que mantiene el calor».',
+   evtxt:'Línea de investigación sólida, con trabajos en las revistas de referencia y muchos experimentos.',
+   src:[['Peck, J. & Shu, S. B. (2009). The effect of mere touch on perceived ownership. Journal of Consumer Research, 36(3), 434–447.','10.1086/598614'],
+        ['Elder, R. S. & Krishna, A. (2012). The "visual depiction effect" in advertising: Facilitating embodied mental simulation through product orientation. Journal of Consumer Research, 38(6), 988–1003.','10.1086/661531'],
+        ['Luangrath, A. W., Peck, J., Hedgcock, W. & Xu, Y. (2022). Observing product touch: The vicarious haptic effect in digital marketing and virtual reality. Journal of Marketing Research, 59(2), 306–326.',null],
+        ['Silva, S. C., Rocha, T. V., De Cicco, R., Galhanone, R. F. & Mattos, L. T. M. F. (2021). Need for touch and haptic imagery: An investigation in online fashion shopping. Journal of Retailing and Consumer Services, 59, 102378.','10.1016/j.jretconser.2020.102378']] },
+
+ { id:'t05', n:3, cat:'Composición', ev:'hi', pro:true, sesgo:'Montaje mental', cover:'Enseña las <i class="m">capas</i>',
+   t:'Enseña las capas del producto por dentro', by:['Kang, Kim & Lakshmanan','2024','Journal of Marketing'],
+   quote:'Enseñar el producto despiezado, con sus capas separadas, hace que valga más para el cliente: al montarlo con la vista, confía más en que funcionará.',
+   cap:'Con las capas separadas, el cliente monta el producto con la vista y entiende por qué funciona.',
+   why:[
+     ['Lo montamos con la vista','Al ver las piezas separadas, las juntamos mentalmente y formamos una imagen completa del producto.',[1]],
+     ['Montarlo da confianza','Ese montaje mental aumenta la confianza en que el producto rinde bien. Esa confianza sube lo que vale para el cliente.',[1]],
+     ['Funciona fuera del laboratorio','En dos experimentos de campo, en venta entre particulares y en anuncios en redes, las imágenes despiezadas generaron más interacción.',[1]],
+   ],
+   how:[
+     ['Añade a la galería una imagen con el producto separado en capas.','foto',[1],'Frente a la imagen normal, la imagen por capas aumentó la valoración del producto en varios experimentos.'],
+     ['Deja aire entre capas y respeta el orden real, para que se pueda montar con la vista.','foto',[1],'El efecto viene de reconstruir mentalmente el producto a partir de sus partes.'],
+     ['Acompaña cada capa con un texto concreto: material, medida, función. «Espuma de 8 mm», no «máximo confort».','copy',[2],'La vista despiezada mejoró la comprensión y la intención de compra con descripciones concretas. Con descripciones abstractas, funcionó mejor la foto normal.'],
+   ],
+   mejor:[['Productos que se compran por lo que hacen, más que por placer.',[1]],['Anuncios en redes y marketplaces.',[1]]],
+   ojo:[['Si la compra es por placer, el efecto se debilita.',[1]],['Con clientes a los que la tecnología les genera ansiedad, también se debilita.',[1]],['Demasiadas piezas pueden abrumar.',[2]]],
+   ex:'Una zapatilla con la suela, la amortiguación y la plantilla separadas en vertical. Junto a cada capa: «goma antideslizante», «espuma de 8 mm», «plantilla extraíble».',
+   evtxt:'Nueve experimentos en el trabajo principal, dos de ellos de campo, y un segundo estudio que lo matiza.',
+   src:[['Kang, S. Y., Kim, J. & Lakshmanan, A. (2024). Anatomical depiction: How showing a product\'s inner structure shapes product valuations. Journal of Marketing.',null],
+        ['Cheng, P. & Zhang, C. (2023). Show me insides: Investigating the influences of product exploded view on consumers\' mental imagery, comprehension, attitude, and purchase intention. Journal of Retailing and Consumer Services, 70, 103168.',null]] },
+
+ { id:'t06', n:4, cat:'Composición', ev:'hi', pro:true, sesgo:'Peso visual', cover:'Abajo a la derecha <i class="m">pesa más</i>',
+   t:'Coloca la imagen abajo a la derecha para dar peso', by:['Deng & Kahn','2009','Journal of Marketing Research'],
+   quote:'En un envase, la imagen del producto colocada abajo o a la derecha lo hace parecer más pesado. Si el peso es una virtud, suma. Si no, resta.',
+   cap:'La misma tableta: con la onza arriba a la izquierda parece ligera; abajo a la derecha, contundente.',
+   why:[
+     ['Lo pesado cae','Abajo, a la derecha y abajo a la derecha son posiciones «pesadas». Arriba, a la izquierda y arriba a la izquierda, «ligeras». Los participantes juzgaron más pesadas las imágenes situadas en las posiciones pesadas.',[1]],
+     ['El peso es bueno o malo según el producto','En snacks, donde el peso sugiere más cantidad o más sabor, se prefirieron los envases con la imagen en posición pesada. En productos donde el peso estorba, como una bombilla o una webcam, se prefirieron las posiciones ligeras.',[1]],
+     ['Izquierda sana, derecha no','Colocar la opción saludable a la izquierda de la no saludable aumentó las elecciones sanas en siete estudios. Encaja con cómo ordenamos mentalmente la comida.',[2]],
+   ],
+   how:[
+     ['Si el peso es una virtud (snacks, chocolate, comida que llena), coloca el producto abajo o a la derecha.','foto',[1],'Con snacks, los envases con la imagen en posición pesada se evaluaron mejor.'],
+     ['Si el peso es un defecto (electrónica, accesorios de viaje), colócalo arriba o a la izquierda.','foto',[1],'En productos no alimentarios donde el peso perjudica, se prefirieron las posiciones ligeras.'],
+     ['Busca el contraste con la competencia: el efecto aparece cuando tu envase se diferencia de los que tiene al lado.','foto',[1],'El efecto apareció cuando el envase contrastaba con los de su alrededor y desapareció cuando era igual que ellos.'],
+     ['Si vendes una versión saludable junto a otra que no lo es, ponla a la izquierda.','foto',[2],'Colocar lo sano a la izquierda hace que se procese con más facilidad, refuerza el autocontrol y aumenta la elección saludable.'],
+   ],
+   mejor:[['Envases y lineales donde tu producto compite al lado de otros.',[1]],['Menús y surtidos con opciones sanas y menos sanas.',[2]]],
+   ojo:[['Si el cliente tiene en mente cuidarse, la preferencia por lo pesado se debilita.',[1]],['Si todos los envases de alrededor hacen lo mismo, el efecto desaparece.',[1]],['Se estudió en envases: llevarlo a la foto de producto es una extrapolación.',[]]],
+   ex:'Una tableta de chocolate intenso con la onza dibujada abajo a la derecha. Su versión sin azúcar, en la misma página, colocada a la izquierda.',
+   evtxt:'Un efecto clásico, con muchos experimentos y estudios relacionados posteriores.',
+   src:[['Deng, X. & Kahn, B. E. (2009). Is your product on the right side? The "location effect" on perceived product heaviness and package evaluation. Journal of Marketing Research, 46(6), 725–738.','10.1509/jmkr.46.6.725'],
+        ['Romero, M. & Biswas, D. (2016). Healthy-left, unhealthy-right: Can displaying healthy items to the left (versus right) of unhealthy items nudge healthier choices? Journal of Consumer Research, 43(1), 103–112.',null]] },
+
+ { id:'t07', n:7, cat:'Color', ev:'hi', pro:true, sesgo:'Intensidad del color', cover:'Más saturado, <i class="m">más potente</i>',
+   t:'Sube la saturación para transmitir potencia', by:['Labrecque et al.','2025','Journal of Marketing'],
+   quote:'Los colores muy saturados hacen que un producto parezca más fuerte y eficaz. Los apagados, más natural y sostenible.',
+   cap:'El mismo envase: saturado transmite potencia; apagado, suavidad y origen natural.',
+   why:[
+     ['Color intenso, producto intenso','Los envases con colores muy saturados se perciben más potentes y eficaces que los de tonos apagados. El efecto es más fuerte en limpieza y desinfección.',[1]],
+     ['Color apagado, producto natural','Los colores poco saturados hacen que un producto parezca más respetuoso con el medio ambiente: más natural, más auténtico y más duradero. Eso aumenta la confianza en la marca, la intención de compra y la disposición a pagar más.',[2]],
+   ],
+   how:[
+     ['Si vendes potencia o eficacia (limpieza, desinfección), sube la saturación del envase y de la imagen.','foto',[1],'Los colores saturados hicieron que los productos se percibieran más potentes y eficaces.'],
+     ['Si vendes algo natural, sostenible o duradero, baja la saturación.','foto',[2],'En cinco experimentos, los colores poco saturados aumentaron la percepción de sostenibilidad, la intención de compra y la disposición a pagar más.'],
+     ['Si el color dice «potente», que el texto diga cuánto usar.','copy',[1],'Percibir más potencia puede llevar a usar menos producto del necesario. Los autores recomiendan instrucciones de uso claras.'],
+   ],
+   mejor:[['Limpieza y desinfección.',[1]],['Productos ecológicos, naturales o duraderos (en tonos apagados).',[2]]],
+   ojo:[['En medicamentos, un envase muy saturado puede parecer demasiado fuerte y generar dudas.',[1]],['En productos de salud o seguridad, dosificar mal tiene consecuencias.',[1]]],
+   ex:'Un desinfectante en rojo intenso con «Basta con un tapón por litro» bien visible. Un detergente ecológico, en verde apagado.',
+   evtxt:'Dos trabajos recientes y complementarios, en revistas sólidas.',
+   src:[['Labrecque, L. I., Sohn, S., Seegebarth, B. & Ashley, C. (2025). Color me effective: The impact of color saturation on perceptions of potency and product efficacy. Journal of Marketing.',null],
+        ['Pichierri, M. & Pino, G. (2023). Less saturated, more eco-friendly: Color saturation and consumer perception of product sustainability. Psychology & Marketing, 40(9), 1830–1849.','10.1002/mar.21858']] },
+
+ { id:'t08', n:8, cat:'Sentidos', ev:'md', pro:false, sesgo:'Imaginería sensorial', cover:'Que la foto <i class="m">huela</i>',
+   t:'Haz que tus fotos se puedan oler, oír y tocar', by:['Sharma & Estes','2024','International Journal of Research in Marketing'],
+   quote:'De 957 detergentes y limpiadores con aroma, solo el 27 % enseñaba en el envase aquello a lo que huele. Y esos tenían mejor nota de los clientes: 4,66 frente a 4,46 estrellas.',
+   cap:'Misma caja, mismo bombón. Cerrado, solo se ve. Abierto y con el relleno cayendo, casi se saborea.',
+   why:[
+     ['El cerebro guarda sensaciones, no palabras','Tu cerebro no guarda «vino» como una palabra, sino como un paquete de sensaciones: el color, el aroma, el sonido al servirlo, el frescor en la boca. Cuando algo despierta una de ellas, se activa el resto.',[1]],
+     ['Ver es oler','Las imágenes de la fuente del aroma hacen que se imagine el olor sin olerlo. Eso mejoró la valoración y la elección del producto en siete estudios. Elegir entre dos jabones de manos dependió más de que hubiera foto de la fruta que de si olían a mandarina o a pera.',[2,3]],
+     ['Oír es sentir la potencia','Cuanto más fuerte suena un producto al funcionar, más potente parece, y más se está dispuesto a pagar por él. Funciona sobre todo cuando se muestra el producto en uso.',[4]],
+     ['Leer es tocar','En moda online, describir el tacto con palabras generó imaginación táctil, y las fotos no. En publicaciones patrocinadas, el lenguaje sensorial aumentó la interacción y la intención de compra, porque hace creíble que el influencer usa el producto.',[6,7]],
+   ],
+   img2Fn:'t08b', cap2:'Misma vela, mismo aroma. Con la canela a la vista, el cliente ya sabe a qué va a oler.',
+   how:[
+     ['Enseña de dónde sale el aroma: el limón junto al limpiador, la lavanda junto al ambientador.','foto',[2],'Solo el 27 % de 957 detergentes y limpiadores con aroma enseñaba la fuente del olor, y esos tenían mejor valoración. En los experimentos, la foto de la fuente mejoró la evaluación y la elección.'],
+     ['Elige una fuente que huela de verdad: una rosa evoca más aroma que un girasol.','foto',[2,3],'Las imágenes de rosas puntuaron mejor que las de girasoles, que apenas huelen. Los elementos visuales que evocan imágenes mentales aumentan lo agradable que parece el olor y la intención de compra.'],
+     ['Graba vídeo con el sonido real del producto funcionando: la batidora, el cuchillo.','video',[4,5],'Los sonidos más fuertes hicieron percibir más potencia y aumentaron la disposición a pagar. En vídeos de cuchillos, el sonido natural mejoró la experiencia de quienes necesitan tocar antes de comprar.'],
+     ['Escribe con palabras que se sienten: crujiente, jugoso, recién hecho, suave.','copy',[6,7],'En TikTok, cada palabra sensorial de más se asoció con unas 11.000 interacciones más (likes y comentarios); en Instagram, con unas 49. Y las descripciones del tacto generaron imaginación táctil que las fotos no lograron.'],
+   ],
+   mejor:[['Productos donde el aroma es parte de lo que compras.',[2]],['Clientes que necesitan oler o tocar antes de comprar.',[2,5]],['Vídeos que enseñan el producto en uso.',[4]]],
+   ojo:[['Si el aroma no importa en tu producto, la imagen no aporta.',[2]],['En ambientadores y desodorantes, no enseñes el mal olor: resta.',[2]],['El sonido ayudó con cuchillos, pero no con jerséis.',[5]],['Las 11.000 interacciones son de TikTok, donde la media por vídeo es enorme. No esperes lo mismo en otras redes.',[7]]],
+   ex:'Una vela de canela con un puñado de canela junto al tarro. En el texto, «canela recién molida» en lugar de «aroma a canela».',
+   evtxt:'Varios estudios recientes apuntan en la misma dirección, y la base teórica sobre cómo guarda el cerebro los conceptos es sólida.',
+   src:[['Barsalou, L. W. (1999). Perceptual symbol systems. Behavioral and Brain Sciences, 22(4), 577–660.','10.1017/S0140525X99002149'],
+        ['Sharma, V. & Estes, Z. (2024). Seeing is smelling: Pictures improve product evaluations by evoking olfactory imagery. International Journal of Research in Marketing, 41(2), 282–307.','10.1016/j.ijresmar.2024.02.001'],
+        ['Lyu, M. & Huang, Q. (2024). Visual elements in advertising enhance odor perception and purchase intention: The role of mental imagery in multi-sensory marketing. Journal of Retailing and Consumer Services, 78, 103752.','10.1016/j.jretconser.2024.103752'],
+        ['Ringler, C., Sirianni, N. J. & Christenson, B. (2021). The power of consequential product sounds. Journal of Retailing, 97(2), 288–300.','10.1016/j.jretai.2020.09.002'],
+        ['Løkke-Andersen, C. B., Wang, Q. J. & Giacalone, D. (2022). User experience design approaches for accommodating high "need for touch" consumers in ecommerce. Journal of Sensory Studies, 37(2), e12727.','10.1111/joss.12727'],
+        ['Silva, S. C., Rocha, T. V., De Cicco, R., Galhanone, R. F. & Mattos, L. T. M. F. (2021). Need for touch and haptic imagery: An investigation in online fashion shopping. Journal of Retailing and Consumer Services, 59, 102378.','10.1016/j.jretconser.2020.102378'],
+        ['Cascio Rizzo, G. L., Berger, J., De Angelis, M. & Pozharliev, R. (2023). How sensory language shapes influencer\'s impact. Journal of Consumer Research, 50(4), 810–825.','10.1093/jcr/ucad017']] },
+];
+T.sort((a, b) => a.n - b.n);
+T.forEach(t => { t.img = ILL[t.id](); if (t.img2Fn) t.img2 = ILL[t.img2Fn](); });
+/* fotos reales de la táctica Nº 008 */
+(() => { const t = T.find(x => x.id === 't08');
+  t.img = `<img src="img/t08-portada.jpg" alt="Caja de bombones con un bombón entero frente al mismo bombón abierto con el relleno cayendo" loading="lazy">`;
+  t.img2 = `<img src="img/t08-canela.jpg" alt="Vela de canela con canela en rama frente a la misma vela con canela molida y la etiqueta aroma más intenso" loading="lazy">`;
+  t.cap = 'Misma caja, mismo bombón. Cerrado, solo se ve. Abierto y con el relleno cayendo, casi se saborea.';
+})();
+T.sort((a, b) => a.n - b.n);
+
+/* categorías de la biblioteca (área / subárea). Por ahora todas las tácticas son de eCommerce › Imágenes de producto */
+const TAX = [
+  ['publicidad','Publicidad',[['creatividades','Creatividades'],['estrategia','Estrategia publicitaria'],['influencers','Marketing de influencers']]],
+  ['branding','Branding',[['diseno','Diseño'],['packaging','Packaging']]],
+  ['copywriting','Copywriting',[['cta','Llamadas a la acción'],['diseno-texto','Diseño del texto'],['fechas-numeros','Fechas y números'],['enfoque','Enfoque del mensaje'],['linguistica','Lingüística']]],
+  ['ecommerce','eCommerce',[['catalogo','Catálogo de producto'],['imagenes','Imágenes de producto'],['resenas','Reseñas']]],
+  ['sector','Sector',[['lujo','Lujo'],['ong','ONG y sin ánimo de lucro']]],
+  ['precios','Precios',[['packs','Packs'],['diseno-precio','Diseño del precio'],['digitos','Dígitos del precio'],['psicologia','Psicología del precio'],['promociones','Promociones']]],
+  ['retail','Retail',[['lineales','Lineales']]],
+  ['ventas','Ventas',[['negociacion','Negociación'],['venta-personal','Venta personal']]],
+  ['ux','Experiencia de usuario',[['guias-ux','Guías UX']]],
+];
+T.forEach(t => { if (!t.tax) t.tax = 'ecommerce/imagenes'; });
+const inTax = (t, key) => t.tax === key || t.tax.startsWith(key + '/');
+const num = (t) => String(t.n).padStart(3,'0');
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const norm = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const LOCK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>';
+
+const F = { tax:null, cat:null, ev:null, acc:null };
+let list = T.slice(), cur = 1;
+
+function cover(t, big){
+  if (big) return `<div class="cover">
+    <div class="ct"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${num(t)}</span></div>
+    <div><p class="kick">Un estudio demuestra que…</p><p class="hook">${t.cover}</p></div>
+    <div class="foot">${LOGO}<span class="ev ${t.ev}">${EV[t.ev]}</span></div>
+  </div>`;
+  return `<div class="cover ill${t.pro ? ' locked' : ''}">
+    <div class="art">${t.img}</div>
+    <div class="ct ov"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${num(t)}</span></div>
+    <div class="lockveil"><span class="lockpill">${LOCK} PRO</span></div>
+  </div>`;
+}
+
+function sub(){
+  const studies = T.reduce((a,t) => a + t.src.length, 0);
+  $('sub').innerHTML = `Imágenes de producto: <b>${T.length}</b> tácticas y <b>${studies}</b> estudios citados, buscables palabra por palabra.`;
+}
+
+/* filtros */
+function chipSet(box, items, key){
+  box.innerHTML = '';
+  items.forEach(([val, label, count, dot]) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.setAttribute('aria-pressed', String(F[key] === val));
+    if (!count && F[key] !== val) b.disabled = true;
+    b.innerHTML = `${dot ? `<span class="d" style="background:${dot}"></span>` : ''}${esc(label)}<span class="c">${count}</span>`;
+    b.addEventListener('click', () => { F[key] = F[key] === val ? null : val; apply(); });
+    box.appendChild(b);
+  });
+}
+function renderTax(){
+  const box = $('ftax');
+  const btn = (key, label, cls) => {
+    const n = T.filter(t => inTax(t, key)).length;
+    return `<button type="button" class="${cls}" data-tax="${key}" aria-pressed="${F.tax === key}"${n ? '' : ' disabled title="Próximamente"'}>${esc(label)}<span class="c">${n}</span></button>`;
+  };
+  box.innerHTML = TAX.map(([k, label, subs]) => `<div class="tgroup">${btn(k, label, 'tpar')}<div class="tsubs">${subs.map(([s, l]) => btn(k + '/' + s, l, 'tsub')).join('')}</div></div>`).join('');
+  box.querySelectorAll('button[data-tax]').forEach(b => b.addEventListener('click', () => { const k = b.dataset.tax; F.tax = F.tax === k ? null : k; apply(); }));
+}
+function renderFilters(){
+  renderTax();
+  chipSet($('fcat'), ORDER.map(c => [c, c, T.filter(t => t.cat === c).length]), 'cat');
+  chipSet($('fev'), ['hi','md','lo'].map(e => [e, EVS[e], T.filter(t => t.ev === e).length, EVC[e]]), 'ev');
+  chipSet($('facc'), [['open','Abiertas', T.filter(t => !t.pro).length], ['pro','PRO', T.filter(t => t.pro).length]], 'acc');
+  const n = Object.values(F).filter(Boolean).length;
+  $('fcount').hidden = !n; $('fcount').textContent = n;
+}
+function apply(){
+  renderFilters();
+  list = T.filter(t => (!F.tax || inTax(t, F.tax)) && (!F.cat || t.cat === F.cat) && (!F.ev || t.ev === F.ev) && (!F.acc || (F.acc === 'pro') === t.pro));
+  cur = Math.min(cur, Math.max(0, list.length - 1));
+  buildStage(); buildTrack(); layout();
+}
+
+/* carrusel */
+function buildStage(){
+  const st = $('stage');
+  if (!list.length){ st.innerHTML = '<p class="empty">No hay tácticas con estos filtros. <b>Quita alguno</b> para ver más.</p>'; return; }
+  st.innerHTML = list.map((t,i) => `<article class="card" data-i="${i}" tabindex="-1" aria-label="${esc(t.t)}${t.pro ? ' (PRO)' : ''}">
+    ${cover(t)}
+    <p class="meta">Nº ${num(t)} · ${esc(t.cat.toUpperCase())}</p>
+    <h3>${esc(t.t)}${t.pro ? '<span class="pro">PRO</span>' : ''}</h3>
+  </article>`).join('');
+}
+function layout(){
+  const cards = [...document.querySelectorAll('.card')];
+  const w = window.innerWidth;
+  const step = w < 640 ? w * 0.52 : Math.min(330, w * 0.24);
+  cards.forEach((c, i) => {
+    const d = i - cur, a = Math.abs(d);
+    c.classList.toggle('is-center', d === 0);
+    c.style.transform = `translateX(${d * step}px) translateZ(${-a * 140}px) rotateY(${d === 0 ? 0 : (d < 0 ? 14 : -14)}deg) scale(${d === 0 ? 1 : 0.9})`;
+    c.style.zIndex = String(100 - a);
+    c.style.filter = d === 0 ? 'none' : `blur(${Math.min(a, 3) * 1.6}px) brightness(${1 - Math.min(a, 3) * 0.18})`;
+    c.style.opacity = a > 3 ? '0' : '1';
+    c.style.pointerEvents = a > 3 ? 'none' : 'auto';
+  });
+  if (list[cur]) $('ghost').textContent = num(list[cur]);
+  moveKnob();
+}
+function go(i){ if (!list.length) return; cur = Math.max(0, Math.min(list.length - 1, i)); layout(); }
+
+/* línea de tiempo por categorías */
+function buildTrack(){
+  const tr = $('track');
+  const n = list.length;
+  if (!n){ tr.innerHTML = ''; return; }
+  const pos = (i) => n === 1 ? 0 : (i / (n - 1)) * 100;
+  let html = '<div class="rail"></div><div class="fill" id="fill"></div>';
+  list.forEach((t,i) => html += `<span class="tick" style="left:${pos(i)}%"></span>`);
+  const seen = new Set();
+  list.forEach((t,i) => { if (!seen.has(t.cat)) { seen.add(t.cat); html += `<button type="button" class="glabel" data-g="${i}" style="left:${pos(i)}%;transform:translateX(${i === 0 ? '0' : '-30%'})">${esc(t.cat)}</button>`; } });
+  html += '<span class="klabel" id="klabel"></span><span class="knob" id="knob"></span>';
+  tr.innerHTML = html;
+  tr.setAttribute('aria-valuemax', String(n));
+}
+function moveKnob(){
+  const n = list.length; if (!n) return;
+  const p = n === 1 ? 0 : (cur / (n - 1)) * 100;
+  $('knob').style.left = p + '%'; $('fill').style.width = p + '%';
+  $('klabel').style.left = p + '%'; $('klabel').textContent = 'Nº ' + num(list[cur]);
+  $('track').setAttribute('aria-valuenow', String(cur + 1));
+  $('track').setAttribute('aria-valuetext', `Nº ${num(list[cur])}, ${list[cur].t}`);
+  document.querySelectorAll('.glabel').forEach(g => g.classList.toggle('on', list[cur].cat === list[+g.dataset.g].cat));
+}
+function trackTo(x){
+  const r = $('track').getBoundingClientRect();
+  const f = Math.max(0, Math.min(1, (x - r.left) / r.width));
+  go(Math.round(f * (list.length - 1)));
+}
+
+/* buscador */
+const S = { q:'', cat:null, sort:'rel' };
+function pills(box, items, key){
+  box.querySelectorAll('.pill').forEach(p => p.remove());
+  items.forEach(([v, l]) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'pill';
+    b.textContent = l; b.setAttribute('aria-pressed', String(S[key] === v));
+    b.addEventListener('click', () => { S[key] = v; searchRender(); });
+    box.appendChild(b);
+  });
+}
+function hl(text, words){
+  let s = esc(text);
+  words.forEach(w => { if (w.length > 1) { const re = new RegExp('(' + w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','gi'); s = s.replace(re, '<span class="hit">$1</span>'); } });
+  return s;
+}
+function searchRender(){
+  pills($('scat'), [[null,'Cualquiera'], ...ORDER.map(c => [c, c])], 'cat');
+  pills($('ssort'), [['rel','Lo más relevante'],['num','Por número'],['ev','Más evidencia']], 'sort');
+  const words = norm(S.q).split(/\s+/).filter(Boolean);
+  let res = T.map(t => {
+    const hay = norm([t.t, t.quote, t.cat, t.sesgo, t.why.map(w => w[0] + ' ' + w[1]).join(' '), t.how.map(h => h[0]).join(' '), t.by.join(' ')].join(' '));
+    const score = words.reduce((a, w) => a + (hay.includes(w) ? 1 + (norm(t.t).includes(w) ? 2 : 0) : -99), 0);
+    return { t, score };
+  }).filter(r => (!words.length || r.score > 0) && (!S.cat || r.t.cat === S.cat));
+  if (S.sort === 'num') res.sort((a,b) => a.t.n - b.t.n);
+  else if (S.sort === 'ev') res.sort((a,b) => 'hml'.indexOf(a.t.ev[0]) - 'hml'.indexOf(b.t.ev[0]) || a.t.n - b.t.n);
+  else res.sort((a,b) => b.score - a.score || a.t.n - b.t.n);
+  const ul = $('results');
+  if (!res.length){ ul.innerHTML = `<li style="color:var(--soft);padding:12px 4px">No hay tácticas que hablen de «${esc(S.q)}». Prueba con «precio», «opciones» o «escasez».</li>`; return; }
+  ul.innerHTML = res.map(({t}) => `<li><button class="res" type="button" data-id="${t.id}">
+    <span class="n">Nº ${num(t)}</span>
+    <span><b>${hl(t.t, words)}</b><span class="s">${hl(t.quote, words)}</span></span>
+    <span class="r"><span class="ev ${t.ev}">${EVS[t.ev]}</span>${t.pro ? '<span class="pro" style="font-family:var(--mono);font-size:10.5px;background:var(--paper);color:var(--ink);border-radius:4px;padding:2px 6px">PRO</span>' : ''}</span>
+  </button></li>`).join('');
+}
+
+/* ficha */
+const refs = (arr) => arr && arr.length ? ` <span class="rf">${arr.map(n => '[' + n + ']').join('')}</span>` : '';
+const refOf = (t, n) => { const x = t.src[n - 1]; return Array.isArray(x) ? x : [x, null]; };
+function srcBlock(t){
+  const items = t.src.map((x, i) => { const [txt, doi] = Array.isArray(x) ? x : [x, null];
+    return `<span>[${i + 1}] ${esc(txt)}${doi ? ` <a href="https://doi.org/${doi}" target="_blank" rel="noopener">doi.org/${esc(doi)}</a>` : ''}</span>`; }).join('');
+  return `<div class="src"><div class="srch"><b>Fuentes</b><span>${t.src.length} ${t.src.length === 1 ? 'estudio citado' : 'estudios citados'}</span></div>${items}</div>`;
+}
+const FMT = {
+  foto:['Fotografía','<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>'],
+  video:['Vídeo','<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>'],
+  copy:['Copywriting','<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 6h14M5 11h14M5 16h9"/></svg>'],
+};
+function stepItem(t, h, i){
+  const [txt, fmt, refs, note, im] = h;
+  const k = String(i + 1).padStart(2, '0');
+  const fig = im || `<div class="ph">${FMT[fmt][1]}<span>Imagen del paso ${k}</span><small>Próximamente</small></div>`;
+  const rl = refs.map(n => { const [r, doi] = refOf(t, n); return `<li><span class="rn">[${n}]</span><span>${esc(r)}${doi ? ` <a href="https://doi.org/${doi}" target="_blank" rel="noopener">doi.org/${esc(doi)}</a>` : ''}</span></li>`; }).join('');
+  return `<li class="step f-${fmt}"><details><summary><span class="k">${k}</span><span class="st">${esc(txt)}<span class="fmt">${FMT[fmt][1]}${FMT[fmt][0]}</span></span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="sbody"><figure class="sfig">${fig}</figure>
+      <div class="sev"><span class="lbl">De dónde sale</span><p>${esc(note)}</p><ul class="sref">${rl}</ul></div></div></details></li>`;
+}
+function sheet(t){
+  const locked = t.pro && !PRO_USER;
+  /* en PRO bloqueado no se pinta el texto real de los pasos: solo líneas de relleno */
+  const fake = (i) => `<li class="step f-${t.how[i][1]} fake"><div class="fsum"><span class="k">${String(i + 1).padStart(2,'0')}</span><span class="bars"><i style="width:${[92,78,86,70,82][i % 5]}%"></i><i style="width:${[54,62,40,58,47][i % 5]}%"></i><i class="t"></i></span></div></li>`;
+  const steps = locked
+    ? `<div class="gate"><ol class="steps" aria-hidden="true">${t.how.map((h, i) => fake(i)).join('')}</ol><div class="unlock"><div>${LOCK}<b>Los ${t.how.length} pasos son parte de PRO</b><span class="note">Con PRO ves cada paso con su imagen y el estudio del que sale.</span><a class="btn" href="#pro" data-close>Hazte PRO</a></div></div></div>`
+    : `<ol class="steps">${t.how.map((h, i) => stepItem(t, h, i)).join('')}</ol>`;
+  $('sheet').innerHTML = `
+    <aside class="side">
+      ${cover(t, true)}
+      <button class="btn" type="button" data-video>Ver el vídeo ▸</button>
+      <p class="cap">${esc(t.cat.toUpperCase())} · Nº ${num(t)}</p>
+    </aside>
+    <div class="body">
+      <p class="meta">${esc(t.cat)} · ${EVS[t.ev]} · ${esc(t.sesgo)}</p>
+      <h2 id="sh-title">${esc(t.t)}</h2>
+      <p class="by">de <b>${esc(t.by[0])}</b> · ${esc(t.by[1])} · <i>${esc(t.by[2])}</i></p>
+      <p class="quote">${esc(t.quote)}</p>
+      <figure class="fig">${t.img}<figcaption>${esc(t.cap)}</figcaption></figure>
+      <div><h4>Por qué funciona</h4><ol class="whys">${t.why.map((w, i) => `<li><span class="wn">${i + 1}</span><div><b>${esc(w[0])}</b><p>${esc(w[1])}${refs(w[2])}</p></div></li>`).join('')}</ol></div>
+      ${t.img2 ? `<figure class="fig">${t.img2}<figcaption>${esc(t.cap2)}</figcaption></figure>` : ''}
+      <div><h4>Cómo aplicarlo</h4>${locked ? '' : '<p class="hint">Toca cada paso para ver la imagen y el estudio del que sale.</p>'}<div style="margin-top:12px;display:grid;gap:12px">${steps}</div></div>
+      <div class="mo"><div><h4>Funciona mejor</h4><ul class="blist ok">${t.mejor.map(m => `<li>${esc(m[0])}${refs(m[1])}</li>`).join('')}</ul></div>
+        <div><h4>Cuidado con</h4><ul class="blist warn">${t.ojo.map(m => `<li>${esc(m[0])}${refs(m[1])}</li>`).join('')}</ul></div></div>
+      <div><h4>Ejemplo</h4><p class="example" style="margin-top:10px">${esc(t.ex)}</p></div>
+      <div><h4>Nivel de evidencia</h4><p class="evline" style="margin-top:10px"><span class="ev ${t.ev}">${EVS[t.ev]}</span><span class="txt">${esc(t.evtxt)}</span></p></div>
+      <div class="ask"><span class="mono" style="font-size:11.5px;letter-spacing:.12em;color:var(--mark)">PREGÚNTALE A LA CIENCIA · PRO</span>
+        <span class="q">¿Me sirve esto para una tienda de cosmética?</span>
+        <span class="a">Ejemplo: el asistente respondería con esta táctica y las relacionadas de la biblioteca, citando cada estudio.</span>
+        <div class="in"><input type="text" disabled placeholder="Disponible en PRO" aria-label="Pregunta (disponible en PRO)"><a class="btn" href="#pro" data-close>Hazte PRO</a></div>
+      </div>
+      ${srcBlock(t)}
+    </div>`;
+}
+
+/* capas */
+let lastFocus = null;
+function openLayer(id){ lastFocus = document.activeElement; document.querySelectorAll('.layer').forEach(l => l.hidden = l.id !== id); $(id).hidden = false; $(id).scrollTop = 0; document.body.style.overflow = 'hidden'; }
+function closeLayers(){ document.querySelectorAll('.layer').forEach(l => l.hidden = true); document.body.style.overflow = ''; try { history.replaceState(null, '', '#biblioteca'); } catch(e){} if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+function openTactic(id){
+  const t = T.find(x => x.id === id); if (!t) return;
+  sheet(t); openLayer('Lsheet'); $('Lsheet').querySelector('.x').focus();
+  try { history.replaceState(null, '', '#' + id); } catch(e){}
+  const i = list.findIndex(x => x.id === id); if (i >= 0) go(i);
+}
+function openSearch(){ openLayer('Lsearch'); searchRender(); setTimeout(() => $('q').focus(), 30); }
+
+document.addEventListener('click', (e) => {
+  const c = e.target.closest('[data-close]');
+  if (c){ const href = c.getAttribute('href'); closeLayers(); if (href && href.startsWith('#')) { e.preventDefault(); document.querySelector(href)?.scrollIntoView(); } return; }
+  if (e.target.closest('[data-video]')) { openLayer('Lvideo'); return; }
+  const r = e.target.closest('.res[data-id]'); if (r) { openTactic(r.dataset.id); return; }
+  const p = e.target.closest('.pick[data-id]'); if (p) { openTactic(p.dataset.id); return; }
+  const g = e.target.closest('.glabel'); if (g) { e.stopPropagation(); go(+g.dataset.g); return; }
+  if (e.target.classList.contains('layer')) closeLayers();
+});
+$('stage').addEventListener('click', (e) => {
+  const c = e.target.closest('.card'); if (!c || moved) return;
+  const i = +c.dataset.i;
+  if (i === cur) openTactic(list[i].id); else go(i);
+});
+let sx = null, moved = false;
+$('stage').addEventListener('pointerdown', (e) => { sx = e.clientX; moved = false; });
+$('stage').addEventListener('pointermove', (e) => { if (sx !== null && Math.abs(e.clientX - sx) > 10) moved = true; });
+$('stage').addEventListener('pointerup', (e) => { if (sx === null) return; const dx = e.clientX - sx; if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1)); sx = null; setTimeout(() => moved = false, 0); });
+$('prev').addEventListener('click', () => go(cur - 1));
+$('next').addEventListener('click', () => go(cur + 1));
+let dragging = false;
+$('track').addEventListener('pointerdown', (e) => { if (e.target.closest('.glabel')) return; dragging = true; $('track').setPointerCapture(e.pointerId); trackTo(e.clientX); });
+$('track').addEventListener('pointermove', (e) => { if (dragging) trackTo(e.clientX); });
+$('track').addEventListener('pointerup', () => dragging = false);
+$('track').addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { go(cur - 1); e.preventDefault(); } if (e.key === 'ArrowRight') { go(cur + 1); e.preventDefault(); } });
+$('fbtn').addEventListener('click', () => { const open = $('fpanel').hidden; $('fpanel').hidden = !open; $('fbtn').setAttribute('aria-expanded', String(open)); });
+$('fclear').addEventListener('click', () => { F.tax = F.cat = F.ev = F.acc = null; apply(); });
+$('openSearch').addEventListener('click', openSearch);
+$('openMenu').addEventListener('click', () => { openLayer('Lmenu'); $('Lmenu').querySelector('.x').focus(); });
+$('q').addEventListener('input', (e) => { S.q = e.target.value.trim(); searchRender(); });
+document.addEventListener('keydown', (e) => {
+  const anyOpen = [...document.querySelectorAll('.layer')].some(l => !l.hidden);
+  if (e.key === 'Escape' && anyOpen) { closeLayers(); return; }
+  if (anyOpen) return;
+  const typing = /INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName);
+  if (e.key === '/' && !typing) { e.preventDefault(); openSearch(); }
+  if (!typing && e.target.id !== 'track') { if (e.key === 'ArrowLeft') go(cur - 1); if (e.key === 'ArrowRight') go(cur + 1); }
+});
+window.addEventListener('resize', layout);
+
+$('picks').innerHTML = ['t08','t01','t02','t04'].map(id => { const t = T.find(x => x.id === id); return `<button class="pick" type="button" data-id="${id}"><span class="n">Nº ${num(t)} · ${esc(t.cat.toUpperCase())}</span><h3>${esc(t.t)}</h3><p>${esc(t.quote)}</p><span class="go">Abrir la táctica →</span></button>`; }).join('');
+
+$('waitlist').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = $('msg'), v = $('email').value.trim();
+  const show = (t, ok) => { msg.textContent = t; msg.className = 'msg' + (ok ? ' ok' : ''); msg.hidden = false; };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { show('Escribe un email válido, por ejemplo nombre@dominio.com.'); $('email').focus(); return; }
+  if (!WAITLIST_ENDPOINT) { show('Modo demostración: el formulario todavía no está conectado a una herramienta de emails, así que no se ha guardado.'); return; }
+  try {
+    const r = await fetch(WAITLIST_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify({ email: v, interes: $('interes').value }) });
+    if (!r.ok) throw new Error(r.status);
+    e.target.reset(); show('Estás dentro. Te escribiremos cuando abra la biblioteca.', true);
+  } catch(err) { show('No se ha podido enviar. Revisa tu conexión y vuelve a intentarlo.'); }
+});
+
+sub(); apply();
+const h0 = (location.hash || '').slice(1);
+if (/^t\d{2}$/.test(h0)) openTactic(h0);
+</script>
+
+</body>
+</html>
