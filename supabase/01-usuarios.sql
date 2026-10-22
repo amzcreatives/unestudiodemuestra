@@ -69,3 +69,7 @@ create policy "admin edita perfiles" on public.perfiles
 -- Perfiles de usuarios que ya existieran antes de crear la tabla
 insert into public.perfiles (id, email)
 select id, email from auth.users on conflict (id) do nothing;
+
+-- Las funciones de los disparadores no se pueden llamar desde la API
+revoke execute on function public.crear_perfil() from public, anon, authenticated;
+revoke execute on function public.proteger_perfil() from public, anon, authenticated;
