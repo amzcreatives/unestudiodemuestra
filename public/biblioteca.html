@@ -323,6 +323,7 @@ footer a{text-decoration:none}
 .menu nav a:hover{color:var(--mark)}
 .menu .soc{font-family:var(--mono);font-size:13px;color:var(--soft);display:flex;gap:22px;flex-wrap:wrap}
 
+.draftbar{grid-column:1/-1;margin:0 0 6px;padding:10px 14px;border-radius:12px;background:rgba(244,227,90,.12);border:1px solid rgba(244,227,90,.45);color:var(--paper);font-size:14px}
 .soonc{background:var(--ink-2)}
 .soonc .sblur{position:absolute;inset:-12px;filter:blur(5px) saturate(.85) brightness(.6)}
 .soonc .sblur .art{position:absolute;inset:12px}
@@ -642,6 +643,7 @@ const ILL = {
    De las que vienen después solo llega el aviso de «Próximamente» (título, tema y fecha). */
 let T = [];
 let SOON = [];
+let DRAFTS = []; // solo para admin: tácticas aún no públicas, se ven como PRÓXIMAMENTE pero se pueden abrir
 let LOADED = false, LOAD_ERR = false;
 const FALLBACK = /*{{FALLBACK}}*/null;
 const fmtDay = (d) => d ? new Date(d).toLocaleDateString('es-ES', { day:'numeric', month:'short' }).replace('.', '') : '';
@@ -723,7 +725,7 @@ function cover(t, big){
 function sub(){
   if (!LOADED){ $('sub').innerHTML = LOAD_ERR ? 'No se han podido cargar las tácticas. Recarga la página en un momento.' : 'Cargando la biblioteca…'; return; }
   const studies = T.reduce((a,t) => a + t.src.length, 0);
-  const pub = T.filter(t => !t.draft).length;
+  const pub = T.length;
   $('sub').innerHTML = pub
     ? `<b>${pub}</b> ${pub === 1 ? 'táctica publicada' : 'tácticas publicadas'} y <b>${studies}</b> estudios citados${SOON.length ? `. <b>${SOON.length}</b> más en camino` : ''}.`
     : `La biblioteca abre con su primera táctica muy pronto. <b>${SOON.length}</b> ${SOON.length === 1 ? 'táctica en camino' : 'tácticas en camino'}.`;
@@ -898,7 +900,7 @@ function sheet(t){
   const steps = locked
     ? `<div class="gate"><ol class="steps" aria-hidden="true">${fmts.map((f, i) => fake(i)).join('')}</ol><div class="unlock"><div>${LOCK}<b>Los ${fmts.length} pasos son parte de PRO</b><span class="note">${PRO_USER ? 'No se han podido cargar los pasos. Recarga la página.' : 'Con PRO ves cada paso con su imagen y el estudio del que sale, y puedes preguntarle a CiCi.'}</span>${PRO_USER ? '' : '<a class="btn" href="#pro" data-close>Hazte PRO</a><button class="linkbtn" type="button" data-login>Ya soy PRO: entrar</button>'}</div></div></div>`
     : `<ol class="steps">${t.how.map((h, i) => stepItem(t, h, i)).join('')}</ol>`;
-  $('sheet').innerHTML = `
+  $('sheet').innerHTML = `${t.draft ? '<p class="draftbar">Vista de administrador: esta táctica aún no es pública. Los visitantes la ven como «Próximamente».</p>' : ''}
     <aside class="side">
       ${cover(t, true)}
       ${t.reel ? `<a class="btn" href="${esc(t.reel)}" target="_blank" rel="noopener">Ver el reel en Instagram ▸</a>` : '<button class="btn" type="button" data-video>Ver el vídeo ▸</button>'}
@@ -931,7 +933,7 @@ let lastFocus = null;
 function openLayer(id){ lastFocus = document.activeElement; document.querySelectorAll('.layer').forEach(l => l.hidden = l.id !== id); $(id).hidden = false; $(id).scrollTop = 0; document.body.style.overflow = 'hidden'; }
 function closeLayers(){ document.querySelectorAll('.layer').forEach(l => l.hidden = true); document.body.style.overflow = ''; try { history.replaceState(null, '', '#biblioteca'); } catch(e){} if (lastFocus && lastFocus.focus) lastFocus.focus(); }
 function openTactic(id){
-  const t = T.find(x => x.id === id); if (!t) return;
+  const t = T.find(x => x.id === id) || DRAFTS.find(x => x.id === id); if (!t) return;
   OPEN_ID = id; sheet(t); openLayer('Lsheet'); $('Lsheet').querySelector('.x').focus();
   try { history.replaceState(null, '', '#' + id); } catch(e){}
   const i = list.findIndex(x => x.id === id); if (i >= 0) go(i);
@@ -950,7 +952,7 @@ document.addEventListener('click', (e) => {
 $('stage').addEventListener('click', (e) => {
   const c = e.target.closest('.card'); if (!c || moved) return;
   const i = +c.dataset.i;
-  if (i === cur) { if (!list[i].soon) openTactic(list[i].id); } else go(i);
+  if (i === cur) { if (!list[i].soon || DRAFTS.some(d => d.id === list[i].id)) openTactic(list[i].id); } else go(i);
 });
 let sx = null, moved = false;
 $('stage').addEventListener('pointerdown', (e) => { sx = e.clientX; moved = false; });
@@ -995,7 +997,7 @@ function renderPicks(){
   $('empieza').hidden = false;
   const cnt = (k, arr) => arr.filter(t => inTax(t, k)).length;
   const items = TAX.map(([k, label, subs]) => {
-    const pub = cnt(k, T.filter(t => !t.draft)), soon = cnt(k, SOON);
+    const pub = cnt(k, T), soon = cnt(k, SOON);
     return { k, label: CAT_LABEL[k] || label, subs: subs.map(x => x[1]), pub, soon };
   }).sort((a, b) => (b.pub - a.pub) || (b.soon - a.soon));
   $('picks').innerHTML = items.map(c => {
@@ -1105,13 +1107,15 @@ async function loadTactics(){
       if (a.error) throw a.error;
       rows = a.data || []; soon = b.error ? [] : (b.data || []);
     } else throw new Error('sin conexión');
-    T = rows.map(fromRow).sort((x, y) => (x.draft - y.draft) || (x.n - y.n));
+    const all = rows.map(fromRow);
+    T = all.filter(t => !t.draft).sort((x, y) => x.n - y.n);
+    DRAFTS = all.filter(t => t.draft);
     SOON = soon.filter(r => !T.some(t => t.id === r.id)).map(soonOf);
     LOADED = true; LOAD_ERR = false;
   } catch (e) { LOADED = false; LOAD_ERR = true; T = []; SOON = []; }
 }
 async function loadSteps(){
-  if (!sb || !PRO_USER) { T.forEach(t => { t.how = null; }); return; }
+  if (!sb || !PRO_USER) { T.concat(DRAFTS).forEach(t => { t.how = null; }); return; }
   const { data: rows, error } = await sb.from('pasos_pro').select('tactica,orden,texto,formato,refs,nota,imagen').order('orden');
   if (error || !rows) return;
   const paths = rows.filter(r => r.imagen).map(r => r.imagen);
@@ -1120,7 +1124,7 @@ async function loadSteps(){
     const { data } = await sb.storage.from('pro').createSignedUrls(paths, 3600);
     (data || []).forEach(d => { if (d.signedUrl) urls[d.path] = d.signedUrl; });
   }
-  T.forEach(t => {
+  T.concat(DRAFTS).forEach(t => {
     const r = rows.filter(x => x.tactica === t.id).sort((a, b) => a.orden - b.orden);
     t.how = r.length ? r.map(x => [x.texto, x.formato, x.refs || [], x.nota || '', urls[x.imagen] ? `<img src="${esc(urls[x.imagen])}" alt="" loading="lazy">` : undefined]) : null;
   });
