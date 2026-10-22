@@ -1,25 +1,35 @@
-# Supabase · cómo activar el acceso (una sola vez, ~10 minutos)
+# Supabase · base de datos de Un Estudio Demuestra
 
-1. **Crea el proyecto.** En supabase.com → New project. Nombre: `unestudiodemuestra`. Región: Europe (Frankfurt o París). Guarda la contraseña de la base de datos en un sitio seguro.
-2. **Crea las tablas.** Supabase → SQL Editor → New query → pega el contenido de `01-esquema.sql` → Run. Después, lo mismo con `02-pasos-pro.sql`.
-3. **Dirección de la web.** Authentication → URL Configuration:
-   - Site URL: `https://unestudiodemuestra.vercel.app` (o tu dominio cuando lo tengas)
+Proyecto: **unestudiodemuestra** (región París) · `https://kbzwzbnobmrelmyjyhno.supabase.co`
+
+## Puesta en marcha (una vez)
+
+1. Supabase → **SQL Editor** → New query → pega **`TODO-EN-UNO.sql`** entero → **Run**.
+   (Es lo mismo que ejecutar `01-usuarios.sql`, `02-tacticas-calendario-imagenes.sql` y `03-datos-tacticas.sql` en orden.)
+2. **Authentication → URL Configuration**:
+   - Site URL: `https://unestudiodemuestra.vercel.app`
    - Redirect URLs: añade `https://unestudiodemuestra.vercel.app/**`
-4. **Conecta la web.** Project Settings → API (o el botón «Connect»): copia **Project URL** y la clave **anon public**. Pégalas en `public/config.js` (o pásaselas a Claude). La clave `service_role` no se pone nunca en la web.
-5. **Regístrate tú.** En la biblioteca: Entrar → Crear cuenta, con tu email. Confirma el email.
-6. **Hazte administrador.** SQL Editor → pega `03-hacerme-admin.sql` → Run.
-7. Entra en `/admin` para dar o quitar el PRO a cualquier usuario.
+3. Regístrate en la biblioteca (Entrar → Crear cuenta) y confirma el email.
+4. SQL Editor → pega **`04-hacerme-admin.sql`** → Run. Ya puedes entrar en `/admin`.
 
-## Qué hace cada cosa
+## Qué hay en la base de datos
 
-- `perfiles`: un registro por usuario con su `plan` (free/pro), su `rol` (usuario/admin) y, opcional, `pro_hasta` (caducidad del PRO).
-- `pasos_pro`: el «Cómo aplicarlo» de todas las tácticas (es lo que da el plan PRO, junto con CiCi). No está en el código de la web: solo lo descarga quien tiene PRO o es admin. Lo garantiza la base de datos (Row Level Security), no la página.
-- Nadie puede darse PRO a sí mismo: solo un admin puede cambiar el plan o el rol.
+- `perfiles`: un registro por usuario con su `plan` (free/pro), su `rol` (usuario/admin) y, opcional, `pro_hasta`.
+- `tacticas`: todas las tácticas, publicadas o no, con su `estado` (idea, preparacion, video_listo, programada, publicada), `fecha_publicacion`, `url_reel` y el contenido público (`contenido`).
+  - La web solo recibe las **publicadas** y las **programadas cuya fecha ya ha llegado**.
+  - De las demás (en preparación, vídeo listo, programadas) solo llega el aviso de «Próximamente»: título, tema y fecha. Nunca el contenido.
+  - No puede haber dos tácticas con el mismo título.
+- `pasos_pro`: el «Cómo aplicarlo» de cada táctica. Solo lo leen usuarios PRO (y admins), y solo de tácticas publicadas.
+- Almacén de imágenes:
+  - `publico`: portadas y figuras (cualquiera puede verlas).
+  - `pro`: imágenes de los pasos. Privado: la web pide un enlace temporal solo para usuarios PRO.
+
+Todo lo protege la base de datos (Row Level Security), no la página.
 
 ## Usuario de prueba
 
-Authentication → Users → Add user → Create new user, con «Auto Confirm User» marcado. Luego, en `/admin`, ponle PRO.
+Authentication → Users → Add user → Create new user, con «Auto Confirm User» marcado. Luego, en `/admin` → Usuarios y accesos, ponle PRO.
 
-## Cuando llegue el cobro
+## Volver a cargar los textos de las tácticas
 
-Stripe avisará a Supabase (webhook) y pondrá `plan = 'pro'` automáticamente. La estructura ya está preparada para eso.
+`03-datos-tacticas.sql` se puede ejecutar otra vez: actualiza títulos y textos, pero no toca el estado ni la fecha de publicación.

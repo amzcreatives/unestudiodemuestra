@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Gestión de accesos · UED</title>
+<title>Panel UED</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJVbiBFc3R1ZGlvIERlbXVlc3RyYSI+PHRpdGxlPlVuIEVzdHVkaW8gRGVtdWVzdHJhPC90aXRsZT48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTQxQTI0Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMy4yNDggMi43ODgpIHNjYWxlKDAuOTIxMikiPjxwYXRoIGQ9Ik0yNSAxNCBINTUgTTgwIDM5IFY4NSBRODAgOTAgNzUgOTAgSDI1IFEyMCA5MCAyMCA4NSBWMTkgUTIwIDE0IDI1IDE0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNkY3RjQiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSI0MiIgY3k9IjUwIiByPSI2LjUiIGZpbGw9IiNGNEUzNUEiIGZpbGwtb3BhY2l0eT0iMC43NSIvPgo8Y2lyY2xlIGN4PSI3MSIgY3k9IjIzIiByPSIxNSIgZmlsbD0iI0Y0RTM1QSIvPjwvZz48L3N2Zz4K">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,6 +66,20 @@ input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border
   .tbl td.email{grid-column:1/-1}
   .tbl td[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim);margin-bottom:4px}
 }
+.tabs{display:inline-grid;grid-auto-flow:column;gap:4px;border:1px solid var(--rule);border-radius:12px;padding:4px;margin:6px 0 24px}
+.tabs button{background:none;border:0;border-radius:9px;padding:10px 16px;font-weight:700;color:var(--soft);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.tbl.cal td.t b{display:block}
+.tbl.cal td.t span{font-size:12.5px;color:var(--soft)}
+.tbl.cal td.n{font-family:var(--mono);color:var(--mark);white-space:nowrap}
+.tbl.cal input[type=url]{width:100%;min-width:160px}
+.st{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;border-radius:5px;padding:3px 7px;white-space:nowrap}
+.st.idea{background:var(--rule);color:var(--soft)} .st.preparacion{background:#3A4458;color:var(--paper)}
+.st.video_listo{background:#2346C9;color:#fff} .st.programada{background:rgba(244,227,90,.18);color:var(--mark)} .st.publicada{background:var(--mark);color:var(--ink)}
+.live{font-family:var(--mono);font-size:10.5px;color:var(--mark)}
+.newt{margin-top:22px;display:grid;gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lead b{color:var(--paper)}
 .help{margin-top:26px;color:var(--soft);font-size:14.5px;max-width:760px}
 .help b{color:var(--paper)}
 </style>
@@ -79,15 +93,18 @@ input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border
 <circle cx="34" cy="52" r="2.6" fill="#F4E35A" fill-opacity="0.4"/>
 <circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/>
 <circle cx="72" cy="22" r="12" fill="#F4E35A"/>
-<path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg><span>Gestión de accesos</span></a>
+<path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg><span>Panel de administración</span></a>
     <a class="back" href="biblioteca">← Volver a la biblioteca</a>
   </div>
 </header>
 
 <main class="wrap">
   <p class="kick">PANEL DE ADMINISTRACIÓN</p>
-  <h1>Quién tiene acceso</h1>
-  <p class="lead">Da o quita el plan PRO a cualquier usuario. Los cambios se guardan al momento y el usuario los ve al recargar la biblioteca.</p>
+  <h1 id="h1">Panel UED</h1>
+  <div class="tabs" role="tablist" id="tabs" hidden>
+    <button type="button" role="tab" data-tab="cal" aria-selected="true">Calendario de tácticas</button>
+    <button type="button" role="tab" data-tab="usr" aria-selected="false">Usuarios y accesos</button>
+  </div>
 
   <div id="vNoCfg" class="box" hidden><p class="msg err">Falta conectar la base de datos: rellena <span class="mono">config.js</span> con la URL y la clave pública de Supabase.</p></div>
 
@@ -103,7 +120,37 @@ input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border
     <p style="margin:14px 0 0"><button class="btn ghost" type="button" data-out>Cerrar sesión</button></p>
   </div>
 
+  <section id="vCal" hidden>
+    <p class="lead">Todas las tácticas, hechas o por hacer. Solo se ven en la web las <b>publicadas</b> y las <b>programadas</b> cuya fecha ya ha llegado. Las que tienen vídeo listo o están programadas salen como «Próximamente». Los cambios se guardan al momento.</p>
+    <div class="stats" id="cStats"></div>
+    <div class="tblw">
+      <table class="tbl cal">
+        <thead><tr><th>Nº</th><th>TÁCTICA</th><th>ESTADO</th><th>FECHA Y HORA</th><th>REEL DE INSTAGRAM</th><th></th></tr></thead>
+        <tbody id="cRows"></tbody>
+      </table>
+    </div>
+    <form class="box newt" id="newT" novalidate>
+      <p class="kick">NUEVA TÁCTICA</p>
+      <div class="grid2">
+        <label>Título<input name="titulo" required maxlength="140" placeholder="Por ejemplo: Termina tus precios en 9"></label>
+        <label>Estudio principal<input name="estudio" required maxlength="140" placeholder="Autores (año)"></label>
+        <label>Tema<input name="tema" required maxlength="40" placeholder="Precios, Copy, Packaging…"></label>
+        <label>Estado<select name="estado"><option value="idea">Idea</option><option value="preparacion">En preparación</option><option value="video_listo">Vídeo listo</option><option value="programada">Programada</option></select></label>
+        <label>Fecha y hora (opcional)<input type="datetime-local" name="fecha"></label>
+      </div>
+      <div id="dupes" class="msg err" hidden></div>
+      <button class="btn" type="submit" id="newGo">Añadir táctica</button>
+      <p class="saved" id="newMsg" aria-live="polite"></p>
+    </form>
+    <div class="help">
+      <p><b>Estados:</b> Idea → En preparación → Vídeo listo → Programada → Publicada. «Programada» necesita fecha: a esa hora la táctica se abre sola en la web. Pon la misma hora a la que hayas programado el reel.</p>
+      <p><b>Sin repetir:</b> al añadir una táctica te aviso si ya hay otra con un título parecido o con el mismo estudio principal. Dos tácticas no pueden tener el mismo título.</p>
+      <p><b>Contenido:</b> el texto de cada táctica (por qué funciona, pasos, fuentes) lo prepara Claude y se carga en la base de datos.</p>
+    </div>
+  </section>
+
   <section id="vAdmin" hidden>
+    <p class="lead">Da o quita el plan PRO a cualquier usuario. Los cambios se guardan al momento y el usuario los ve al recargar la biblioteca.</p>
     <div class="stats">
       <div class="stat"><b id="sTotal">0</b><span>usuarios</span></div>
       <div class="stat"><b id="sPro">0</b><span>con PRO</span></div>
@@ -136,7 +183,85 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&
 const CFG = window.UED_CONFIG || {};
 const sb = (CFG.url && CFG.anonKey && window.supabase) ? window.supabase.createClient(CFG.url, CFG.anonKey) : null;
 let ME = null, ALL = [];
-function view(v){ ['vNoCfg','vLogin','vNoAdmin','vAdmin'].forEach(id => $(id).hidden = id !== v); }
+let TAB = 'cal';
+function view(v){
+  const adm = v === 'vAdmin';
+  ['vNoCfg','vLogin','vNoAdmin'].forEach(id => $(id).hidden = id !== v);
+  $('tabs').hidden = !adm;
+  $('vCal').hidden = !(adm && TAB === 'cal');
+  $('vAdmin').hidden = !(adm && TAB === 'usr');
+}
+document.querySelectorAll('#tabs [data-tab]').forEach(b => b.addEventListener('click', () => {
+  TAB = b.dataset.tab;
+  document.querySelectorAll('#tabs [data-tab]').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+  view('vAdmin');
+}));
+
+/* ---------- calendario de tácticas ---------- */
+const ESTADOS = [['idea','Idea'],['preparacion','En preparación'],['video_listo','Vídeo listo'],['programada','Programada'],['publicada','Publicada']];
+let TACS = [];
+const isLive = (t) => t.estado === 'publicada' || (t.estado === 'programada' && t.fecha_publicacion && new Date(t.fecha_publicacion) <= new Date());
+const toLocal = (iso) => { if (!iso) return ''; const d = new Date(iso); const p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
+const normT = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 3);
+function parecido(a, b){ const A = new Set(normT(a)), B = new Set(normT(b)); if (!A.size || !B.size) return 0; let n = 0; A.forEach(w => { if (B.has(w)) n++; }); return n / Math.min(A.size, B.size); }
+async function loadCal(){
+  const { data, error } = await sb.from('tacticas').select('id,numero,titulo,tema,estudio_principal,estado,fecha_publicacion,url_reel').order('numero');
+  if (error){ $('cRows').innerHTML = `<tr><td colspan="6">No se han podido cargar las tácticas: ${esc(error.message)}</td></tr>`; return; }
+  TACS = data; renderCal();
+}
+function renderCal(){
+  const c = (e) => TACS.filter(t => t.estado === e).length;
+  $('cStats').innerHTML = [['Total', TACS.length], ['En la web', TACS.filter(isLive).length], ['Programadas', c('programada')], ['Vídeo listo', c('video_listo')], ['En preparación', c('preparacion')], ['Ideas', c('idea')]]
+    .map(([l, n]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  $('cRows').innerHTML = TACS.map(t => `<tr data-id="${t.id}">
+      <td class="n">${String(t.numero).padStart(3, '0')}</td>
+      <td class="t"><b>${esc(t.titulo)}</b><span>${esc(t.tema)} · ${esc(t.estudio_principal)}</span></td>
+      <td data-l="ESTADO"><select data-c="estado" aria-label="Estado de ${esc(t.titulo)}">${ESTADOS.map(([v, l]) => `<option value="${v}"${t.estado === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
+        <div style="margin-top:6px">${isLive(t) ? '<span class="live">● EN LA WEB</span>' : `<span class="st ${t.estado}">${['video_listo','programada','preparacion'].includes(t.estado) ? 'PRÓXIMAMENTE' : 'OCULTA'}</span>`}</div></td>
+      <td data-l="FECHA Y HORA"><input type="datetime-local" data-c="fecha_publicacion" value="${toLocal(t.fecha_publicacion)}" aria-label="Fecha de ${esc(t.titulo)}"></td>
+      <td data-l="REEL"><input type="url" data-c="url_reel" value="${esc(t.url_reel || '')}" placeholder="https://www.instagram.com/reel/…" aria-label="Reel de ${esc(t.titulo)}"></td>
+      <td><a class="back" href="biblioteca#${t.id}" target="_blank" rel="noopener">Ver</a> <span class="saved" aria-live="polite"></span></td>
+    </tr>`).join('') || '<tr><td colspan="6" style="color:var(--soft)">Aún no hay tácticas.</td></tr>';
+}
+$('cRows').addEventListener('change', async (e) => {
+  const el = e.target.closest('[data-c]'); if (!el) return;
+  const tr = el.closest('tr'), id = tr.dataset.id, f = el.dataset.c, out = tr.querySelector('.saved');
+  const t = TACS.find(x => x.id === id);
+  let val = el.value.trim();
+  if (f === 'fecha_publicacion') val = val ? new Date(val).toISOString() : null;
+  if (f === 'url_reel') val = val || null;
+  const patch = { [f]: val };
+  if (f === 'estado' && val === 'programada' && !t.fecha_publicacion){ out.className = 'saved err'; out.textContent = 'Pon primero la fecha'; el.value = t.estado; return; }
+  if (f === 'estado' && val === 'publicada' && !t.fecha_publicacion) patch.fecha_publicacion = new Date().toISOString();
+  out.className = 'saved'; out.textContent = 'Guardando…';
+  const { error } = await sb.from('tacticas').update(patch).eq('id', id);
+  if (error){ out.className = 'saved err'; out.textContent = 'Error'; out.title = error.message; return; }
+  Object.assign(t, patch); renderCal();
+  const o = document.querySelector(`#cRows tr[data-id="${id}"] .saved`); if (o) o.textContent = 'Guardado ✓';
+});
+let dupeOk = false;
+$('newT').addEventListener('input', () => { dupeOk = false; $('dupes').hidden = true; $('newGo').textContent = 'Añadir táctica'; });
+$('newT').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target, titulo = f.titulo.value.trim(), estudio = f.estudio.value.trim(), tema = f.tema.value.trim();
+  if (!titulo || !estudio || !tema){ $('newMsg').className = 'saved err'; $('newMsg').textContent = 'Rellena título, estudio principal y tema.'; return; }
+  const fecha = f.fecha.value ? new Date(f.fecha.value).toISOString() : null;
+  if (f.estado.value === 'programada' && !fecha){ $('newMsg').className = 'saved err'; $('newMsg').textContent = 'Una táctica programada necesita fecha.'; return; }
+  const dupes = TACS.filter(t => parecido(t.titulo, titulo) >= 0.6 || (estudio && t.estudio_principal.toLowerCase() === estudio.toLowerCase()));
+  if (dupes.length && !dupeOk){
+    $('dupes').innerHTML = 'Ojo, puede estar repetida:<br>' + dupes.map(t => `· Nº ${String(t.numero).padStart(3, '0')} ${esc(t.titulo)} (${esc(t.estudio_principal)})`).join('<br>') + '<br>Si es distinta, pulsa otra vez para añadirla.';
+    $('dupes').hidden = false; dupeOk = true; $('newGo').textContent = 'Añadir igualmente'; return;
+  }
+  const numero = TACS.reduce((m, t) => Math.max(m, t.numero), 0) + 1;
+  const id = 't' + String(numero).padStart(2, '0');
+  $('newGo').disabled = true;
+  const { error } = await sb.from('tacticas').insert({ id, numero, titulo, tema, estudio_principal: estudio, estado: f.estado.value, fecha_publicacion: fecha });
+  $('newGo').disabled = false;
+  if (error){ $('newMsg').className = 'saved err'; $('newMsg').textContent = error.code === '23505' ? 'Ya existe una táctica con ese título.' : error.message; return; }
+  f.reset(); dupeOk = false; $('dupes').hidden = true; $('newGo').textContent = 'Añadir táctica';
+  $('newMsg').className = 'saved'; $('newMsg').textContent = `Añadida como Nº ${String(numero).padStart(3, '0')} ✓`;
+  loadCal();
+});
 const fmtDate = (d) => d ? new Date(d).toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' }) : '';
 const isPro = (p) => p.rol === 'admin' || (p.plan === 'pro' && (!p.pro_hasta || new Date(p.pro_hasta) > new Date()));
 
@@ -146,7 +271,7 @@ async function boot(session){
   ME = session.user;
   const { data: me } = await sb.from('perfiles').select('rol').eq('id', ME.id).maybeSingle();
   if (!me || me.rol !== 'admin'){ $('naEmail').textContent = ME.email; return view('vNoAdmin'); }
-  view('vAdmin'); load();
+  view('vAdmin'); load(); loadCal();
 }
 async function load(){
   const { data, error } = await sb.from('perfiles').select('id,email,plan,rol,pro_hasta,creado_en').order('creado_en', { ascending:false });

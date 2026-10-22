@@ -1,5 +1,5 @@
 -- ============================================================
--- Un Estudio Demuestra · esquema de usuarios y contenido PRO
+-- Un Estudio Demuestra · 1/3 · usuarios, planes y roles
 -- Pegar entero en Supabase → SQL Editor → Run. Se puede ejecutar más de una vez.
 -- ============================================================
 
@@ -65,28 +65,6 @@ create policy "ver mi perfil o todos si admin" on public.perfiles
 drop policy if exists "admin edita perfiles" on public.perfiles;
 create policy "admin edita perfiles" on public.perfiles
   for update using (public.es_admin()) with check (public.es_admin());
-
--- 2) Pasos PRO: solo los lee quien tiene PRO (o es admin)
-create table if not exists public.pasos_pro (
-  tactica   text    not null,          -- t05, t06...
-  orden     int     not null,          -- 1, 2, 3...
-  texto     text    not null,
-  formato   text    not null check (formato in ('foto','video','copy')),
-  refs      int[]   not null default '{}',
-  nota      text    not null default '',  -- «De dónde sale»
-  imagen    text,                         -- URL de la imagen del paso (opcional)
-  primary key (tactica, orden)
-);
-
-alter table public.pasos_pro enable row level security;
-
-drop policy if exists "solo PRO lee pasos" on public.pasos_pro;
-create policy "solo PRO lee pasos" on public.pasos_pro
-  for select using (public.tiene_pro());
-
-drop policy if exists "admin gestiona pasos" on public.pasos_pro;
-create policy "admin gestiona pasos" on public.pasos_pro
-  for all using (public.es_admin()) with check (public.es_admin());
 
 -- Perfiles de usuarios que ya existieran antes de crear la tabla
 insert into public.perfiles (id, email)
