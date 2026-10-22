@@ -306,6 +306,33 @@ footer a{text-decoration:none}
 .menu nav a:hover{color:var(--mark)}
 .menu .soc{font-family:var(--mono);font-size:13px;color:var(--soft);display:flex;gap:22px;flex-wrap:wrap}
 
+.topr{display:flex;align-items:center;gap:10px}
+.acct{display:flex;align-items:center;gap:9px;border:1px solid var(--rule);background:transparent;border-radius:999px;padding:10px 18px;font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--paper)}
+.acct:hover{border-color:var(--soft)}
+.acct .av{width:24px;height:24px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;text-transform:uppercase}
+.pbadge{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;border-radius:5px;padding:3px 7px;background:var(--rule);color:var(--paper)}
+.pbadge.pro{background:var(--mark);color:var(--ink)}
+.pbadge.admin{background:var(--paper);color:var(--ink)}
+@media (max-width:420px){.acct .lbl{display:none}.acct{padding:8px}}
+.accbox{max-width:460px;margin:min(14vh,120px) auto 40px;background:var(--ink-2,#1A2130);border:1px solid var(--rule);border-radius:24px;padding:30px 28px;display:grid;gap:14px}
+.accbox h2{margin:0 0 6px;font-size:28px;line-height:1.15}
+.acck{margin:0;font-size:11.5px;letter-spacing:.14em;color:var(--mark)}
+.acctabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);border-radius:12px;padding:4px;margin:6px 0 14px}
+.acctabs button{background:none;border:0;border-radius:9px;padding:10px;font-weight:700;color:var(--soft)}
+.acctabs button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.accbox form{display:grid;gap:14px}
+.accbox label{display:grid;gap:7px;font-size:14px;font-weight:600;color:var(--soft)}
+.accbox input{font:inherit;font-size:16px;color:var(--paper);background:var(--ink-0,#0E1219);border:1px solid var(--rule);border-radius:12px;padding:13px 14px}
+.accbox input:focus{outline:2px solid var(--mark);outline-offset:1px;border-color:transparent}
+.linkbtn{background:none;border:0;color:var(--soft);font-size:13.5px;text-decoration:underline;padding:4px 0;justify-self:start}
+.linkbtn:hover{color:var(--paper)}
+.accmsg{margin:0;font-size:14.5px;line-height:1.5;border-radius:12px;padding:12px 14px;background:rgba(244,227,90,.1);border:1px solid rgba(244,227,90,.35);color:var(--paper)}
+.accmsg.err{background:rgba(242,164,164,.1);border-color:rgba(242,164,164,.4)}
+.accplan{display:flex;align-items:center;gap:10px;margin:0;color:var(--soft);font-size:15px}
+.accbtns{display:grid;gap:10px;margin-top:8px}
+.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--rule)}
+.unlock .linkbtn{justify-self:center;margin-top:-2px}
+
 @media (prefers-reduced-motion: reduce){.card,.knob,.fill,.klabel{transition:none}}
 </style>
 </head>
@@ -319,7 +346,10 @@ footer a{text-decoration:none}
 <circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/>
 <circle cx="72" cy="22" r="12" fill="#F4E35A"/>
 <path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg><span>un estudio demuestra</span></a>
-    <button class="menu-btn" type="button" id="openMenu" aria-haspopup="dialog">MENÚ <i aria-hidden="true">1</i></button>
+    <div class="topr">
+      <button class="acct" type="button" id="acct" data-login aria-haspopup="dialog">Entrar</button>
+      <button class="menu-btn" type="button" id="openMenu" aria-haspopup="dialog">MENÚ <i aria-hidden="true">1</i></button>
+    </div>
   </div>
 </header>
 
@@ -443,6 +473,48 @@ footer a{text-decoration:none}
   </div>
 </div>
 
+<div class="layer" id="Lacc" role="dialog" aria-modal="true" aria-labelledby="acc-title" hidden>
+  <button class="x" type="button" data-close aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div class="accbox">
+    <div id="accForm">
+      <p class="mono acck" id="acc-kick">ACCESO</p>
+      <h2 id="acc-title">Entra en tu biblioteca</h2>
+      <div class="acctabs" role="tablist">
+        <button type="button" role="tab" data-mode="in" aria-selected="true">Entrar</button>
+        <button type="button" role="tab" data-mode="up" aria-selected="false">Crear cuenta</button>
+      </div>
+      <form id="accF" novalidate>
+        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        <label id="accPassL">Contraseña<input type="password" name="pass" autocomplete="current-password" minlength="8" required></label>
+        <button class="btn" type="submit" id="accGo">Entrar</button>
+        <button class="linkbtn" type="button" id="accForgot">¿Has olvidado la contraseña?</button>
+        <p class="accmsg" id="accMsg" role="status" hidden></p>
+      </form>
+    </div>
+    <div id="accNew" hidden>
+      <p class="mono acck">NUEVA CONTRASEÑA</p>
+      <h2>Elige tu nueva contraseña</h2>
+      <form id="accNF" novalidate>
+        <label>Contraseña nueva<input type="password" name="pass" autocomplete="new-password" minlength="8" required></label>
+        <button class="btn" type="submit">Guardar contraseña</button>
+        <p class="accmsg" id="accNMsg" role="status" hidden></p>
+      </form>
+    </div>
+    <div id="accMe" hidden>
+      <p class="mono acck">TU CUENTA</p>
+      <h2 id="accEmail"></h2>
+      <p class="accplan"><span id="accBadge" class="pbadge"></span><span id="accPlanTxt"></span></p>
+      <div class="accbtns">
+        <a class="btn" href="admin" id="accAdmin" hidden>Gestionar accesos</a>
+        <a class="btn" href="#pro" data-close id="accUp" hidden>Hazte PRO</a>
+        <button class="btn ghost" type="button" id="accOut">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 const WAITLIST_ENDPOINT = ''; // Pega aquí la URL de tu herramienta de emails. Vacía = modo demostración.
 const LOGO = `<svg viewBox="15 8 71 87" aria-hidden="true" focusable="false"><path d="M25 14 H58 M80 36 V85 Q80 90 75 90 H25 Q20 90 20 85 V19 Q20 14 25 14" fill="none" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M40.683875 73.891V66.7735L39.133625 66.23725V65.8375H43.199375V66.23725L41.727125 66.7735V73.80325Q41.727125 75.568 41.093375 76.781875Q40.459625 77.99575 39.240875 78.614875Q38.022125 79.234 36.276875000000004 79.234Q34.395125 79.234 33.108125 78.614875Q31.821125000000002 77.99575 31.158125000000002 76.752625Q30.495125 75.5095 30.495125 73.64725V66.7735L29.022875000000003 66.23725V65.8375H34.560875V66.23725L33.088625 66.7735V73.696Q33.088625 74.99275 33.507875 75.8605Q33.927125000000004 76.72825 34.765625 77.15725Q35.604125 77.58625 36.852125 77.58625Q38.080625 77.58625 38.93375 77.167Q39.786875 76.74775 40.235375000000005 75.923875Q40.683875 75.1 40.683875 73.891ZM52.764125 69.49375 52.715374999999995 72.097 52.764125 74.70025H51.954875L51.633125 72.63325L47.050625 72.61375V71.59L51.633125 71.56075L51.954875 69.49375ZM55.425875 69.63025 54.928625 69.74725 52.949374999999996 66.52975 53.758624999999995 66.90025H46.962875V65.8375H53.271125L54.450874999999996 65.24275H54.684875ZM53.232124999999996 78.30775 55.377125 74.93425 55.825624999999995 75.05125 55.006625 79.663H54.753125L53.495374999999996 79.0H46.962875V77.93725H53.885374999999996ZM44.310874999999996 79.0V78.60025L45.783125 78.064V66.7735L44.310874999999996 66.23725V65.8375H48.376625V79.0ZM67.847375 72.253Q67.847375 69.5035 66.40925 68.201875Q64.971125 66.90025 62.445875 66.90025H59.803625000000004L59.637875 65.8375H62.923625Q65.478125 65.8375 67.174625 66.52000000000001Q68.871125 67.2025 69.71937500000001 68.58212499999999Q70.567625 69.96175 70.567625 72.0385Q70.567625 74.25175 69.573125 75.80687499999999Q68.578625 77.362 66.85287500000001 78.181Q65.127125 79.0 62.952875000000006 79.0H59.637875L59.803625000000004 77.93725H62.640875Q64.21062500000001 77.93725 65.38062500000001 77.357125Q66.550625 76.777 67.199 75.524125Q67.847375 74.27125 67.847375 72.253ZM57.044375 79.0V78.60025L58.516625000000005 78.064V66.7735L57.044375 66.23725V65.8375H61.110125000000004V79.0Z" fill="#F6F7F4"/> <circle cx="34" cy="52" r="2.6" fill="#F4E35A" fill-opacity="0.4"/> <circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/> <circle cx="72" cy="22" r="12" fill="#F4E35A"/> <path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg>`;
@@ -450,7 +522,7 @@ const EV = { hi:'Evidencia alta', md:'Evidencia media', lo:'Discutida' };
 const EVS = { hi:'Alta', md:'Media', lo:'Discutida' };
 const EVC = { hi:'var(--ev-hi)', md:'var(--ev-md)', lo:'var(--ev-lo)' };
 const ORDER = ['Personas','Composición','Encuadre','Tacto','Color','Sentidos'];
-const PRO_USER = false; // prototipo: el visitante no es PRO
+let PRO_USER = false; // se activa al iniciar sesión con plan PRO o rol admin
 
 /* ---------- ilustraciones propias (640×360) ---------- */
 const C = { ink:'#141A24', pan:'#1A2130', rule:'#2C3546', paper:'#F6F7F4', mark:'#F4E35A', soft:'#A3ACBB', dim:'#6F7889', mid:'#3A4458' };
@@ -629,11 +701,7 @@ const T = [
      ['Montarlo da confianza','Ese montaje mental aumenta la confianza en que el producto rinde bien. Esa confianza sube lo que vale para el cliente.',[1]],
      ['Funciona fuera del laboratorio','En dos experimentos de campo, en venta entre particulares y en anuncios en redes, las imágenes despiezadas generaron más interacción.',[1]],
    ],
-   how:[
-     ['Añade a la galería una imagen con el producto separado en capas.','foto',[1],'Frente a la imagen normal, la imagen por capas aumentó la valoración del producto en varios experimentos.'],
-     ['Deja aire entre capas y respeta el orden real, para que se pueda montar con la vista.','foto',[1],'El efecto viene de reconstruir mentalmente el producto a partir de sus partes.'],
-     ['Acompaña cada capa con un texto concreto: material, medida, función. «Espuma de 8 mm», no «máximo confort».','copy',[2],'La vista despiezada mejoró la comprensión y la intención de compra con descripciones concretas. Con descripciones abstractas, funcionó mejor la foto normal.'],
-   ],
+   how:null, fmts:['foto', 'foto', 'copy'], /* los pasos PRO viven en Supabase (tabla pasos_pro) */
    mejor:[['Productos que se compran por lo que hacen, más que por placer.',[1]],['Anuncios en redes y marketplaces.',[1]]],
    ojo:[['Si la compra es por placer, el efecto se debilita.',[1]],['Con clientes a los que la tecnología les genera ansiedad, también se debilita.',[1]],['Demasiadas piezas pueden abrumar.',[2]]],
    ex:'Una zapatilla con la suela, la amortiguación y la plantilla separadas en vertical. Junto a cada capa: «goma antideslizante», «espuma de 8 mm», «plantilla extraíble».',
@@ -650,12 +718,7 @@ const T = [
      ['El peso es bueno o malo según el producto','En snacks, donde el peso sugiere más cantidad o más sabor, se prefirieron los envases con la imagen en posición pesada. En productos donde el peso estorba, como una bombilla o una webcam, se prefirieron las posiciones ligeras.',[1]],
      ['Izquierda sana, derecha no','Colocar la opción saludable a la izquierda de la no saludable aumentó las elecciones sanas en siete estudios. Encaja con cómo ordenamos mentalmente la comida.',[2]],
    ],
-   how:[
-     ['Si el peso es una virtud (snacks, chocolate, comida que llena), coloca el producto abajo o a la derecha.','foto',[1],'Con snacks, los envases con la imagen en posición pesada se evaluaron mejor.'],
-     ['Si el peso es un defecto (electrónica, accesorios de viaje), colócalo arriba o a la izquierda.','foto',[1],'En productos no alimentarios donde el peso perjudica, se prefirieron las posiciones ligeras.'],
-     ['Busca el contraste con la competencia: el efecto aparece cuando tu envase se diferencia de los que tiene al lado.','foto',[1],'El efecto apareció cuando el envase contrastaba con los de su alrededor y desapareció cuando era igual que ellos.'],
-     ['Si vendes una versión saludable junto a otra que no lo es, ponla a la izquierda.','foto',[2],'Colocar lo sano a la izquierda hace que se procese con más facilidad, refuerza el autocontrol y aumenta la elección saludable.'],
-   ],
+   how:null, fmts:['foto', 'foto', 'foto', 'foto'], /* los pasos PRO viven en Supabase (tabla pasos_pro) */
    mejor:[['Envases y lineales donde tu producto compite al lado de otros.',[1]],['Menús y surtidos con opciones sanas y menos sanas.',[2]]],
    ojo:[['Si el cliente tiene en mente cuidarse, la preferencia por lo pesado se debilita.',[1]],['Si todos los envases de alrededor hacen lo mismo, el efecto desaparece.',[1]],['Se estudió en envases: llevarlo a la foto de producto es una extrapolación.',[]]],
    ex:'Una tableta de chocolate intenso con la onza dibujada abajo a la derecha. Su versión sin azúcar, en la misma página, colocada a la izquierda.',
@@ -671,11 +734,7 @@ const T = [
      ['Color intenso, producto intenso','Los envases con colores muy saturados se perciben más potentes y eficaces que los de tonos apagados. El efecto es más fuerte en limpieza y desinfección.',[1]],
      ['Color apagado, producto natural','Los colores poco saturados hacen que un producto parezca más respetuoso con el medio ambiente: más natural, más auténtico y más duradero. Eso aumenta la confianza en la marca, la intención de compra y la disposición a pagar más.',[2]],
    ],
-   how:[
-     ['Si vendes potencia o eficacia (limpieza, desinfección), sube la saturación del envase y de la imagen.','foto',[1],'Los colores saturados hicieron que los productos se percibieran más potentes y eficaces.'],
-     ['Si vendes algo natural, sostenible o duradero, baja la saturación.','foto',[2],'En cinco experimentos, los colores poco saturados aumentaron la percepción de sostenibilidad, la intención de compra y la disposición a pagar más.'],
-     ['Si el color dice «potente», que el texto diga cuánto usar.','copy',[1],'Percibir más potencia puede llevar a usar menos producto del necesario. Los autores recomiendan instrucciones de uso claras.'],
-   ],
+   how:null, fmts:['foto', 'foto', 'copy'], /* los pasos PRO viven en Supabase (tabla pasos_pro) */
    mejor:[['Limpieza y desinfección.',[1]],['Productos ecológicos, naturales o duraderos (en tonos apagados).',[2]]],
    ojo:[['En medicamentos, un envase muy saturado puede parecer demasiado fuerte y generar dudas.',[1]],['En productos de salud o seguridad, dosificar mal tiene consecuencias.',[1]]],
    ex:'Un desinfectante en rojo intenso con «Basta con un tapón por litro» bien visible. Un detergente ecológico, en verde apagado.',
@@ -751,7 +810,7 @@ function cover(t, big){
     <div><p class="kick">Un estudio demuestra que…</p><p class="hook">${t.cover}</p></div>
     <div class="foot">${LOGO}<span class="ev ${t.ev}">${EV[t.ev]}</span></div>
   </div>`;
-  return `<div class="cover ill${t.pro ? ' locked' : ''}">
+  return `<div class="cover ill${t.pro && !PRO_USER ? ' locked' : ''}">
     <div class="art">${t.img}</div>
     <div class="ct ov"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${num(t)}</span></div>
     <div class="lockveil"><span class="lockpill">${LOCK} PRO</span></div>
@@ -877,7 +936,7 @@ function searchRender(){
   pills($('ssort'), [['rel','Lo más relevante'],['num','Por número'],['ev','Más evidencia']], 'sort');
   const words = norm(S.q).split(/\s+/).filter(Boolean);
   let res = T.map(t => {
-    const hay = norm([t.t, t.quote, t.cat, t.sesgo, t.why.map(w => w[0] + ' ' + w[1]).join(' '), t.how.map(h => h[0]).join(' '), t.by.join(' ')].join(' '));
+    const hay = norm([t.t, t.quote, t.cat, t.sesgo, t.why.map(w => w[0] + ' ' + w[1]).join(' '), (t.how || []).map(h => h[0]).join(' '), t.by.join(' ')].join(' '));
     const score = words.reduce((a, w) => a + (hay.includes(w) ? 1 + (norm(t.t).includes(w) ? 2 : 0) : -99), 0);
     return { t, score };
   }).filter(r => (!words.length || r.score > 0) && (!S.cat || r.t.cat === S.cat));
@@ -916,11 +975,12 @@ function stepItem(t, h, i){
       <div class="sev"><span class="lbl">De dónde sale</span><p>${esc(note)}</p><ul class="sref">${rl}</ul></div></div></details></li>`;
 }
 function sheet(t){
-  const locked = t.pro && !PRO_USER;
+  const locked = t.pro && (!PRO_USER || !t.how);
   /* en PRO bloqueado no se pinta el texto real de los pasos: solo líneas de relleno */
-  const fake = (i) => `<li class="step f-${t.how[i][1]} fake"><div class="fsum"><span class="k">${String(i + 1).padStart(2,'0')}</span><span class="bars"><i style="width:${[92,78,86,70,82][i % 5]}%"></i><i style="width:${[54,62,40,58,47][i % 5]}%"></i><i class="t"></i></span></div></li>`;
+  const fmts = t.fmts || (t.how || []).map(h => h[1]);
+  const fake = (i) => `<li class="step f-${fmts[i]} fake"><div class="fsum"><span class="k">${String(i + 1).padStart(2,'0')}</span><span class="bars"><i style="width:${[92,78,86,70,82][i % 5]}%"></i><i style="width:${[54,62,40,58,47][i % 5]}%"></i><i class="t"></i></span></div></li>`;
   const steps = locked
-    ? `<div class="gate"><ol class="steps" aria-hidden="true">${t.how.map((h, i) => fake(i)).join('')}</ol><div class="unlock"><div>${LOCK}<b>Los ${t.how.length} pasos son parte de PRO</b><span class="note">Con PRO ves cada paso con su imagen y el estudio del que sale.</span><a class="btn" href="#pro" data-close>Hazte PRO</a></div></div></div>`
+    ? `<div class="gate"><ol class="steps" aria-hidden="true">${fmts.map((f, i) => fake(i)).join('')}</ol><div class="unlock"><div>${LOCK}<b>Los ${fmts.length} pasos son parte de PRO</b><span class="note">${PRO_USER ? 'No se han podido cargar los pasos. Recarga la página.' : 'Con PRO ves cada paso con su imagen y el estudio del que sale.'}</span>${PRO_USER ? '' : '<a class="btn" href="#pro" data-close>Hazte PRO</a><button class="linkbtn" type="button" data-login>Ya soy PRO: entrar</button>'}</div></div></div>`
     : `<ol class="steps">${t.how.map((h, i) => stepItem(t, h, i)).join('')}</ol>`;
   $('sheet').innerHTML = `
     <aside class="side">
@@ -956,7 +1016,7 @@ function openLayer(id){ lastFocus = document.activeElement; document.querySelect
 function closeLayers(){ document.querySelectorAll('.layer').forEach(l => l.hidden = true); document.body.style.overflow = ''; try { history.replaceState(null, '', '#biblioteca'); } catch(e){} if (lastFocus && lastFocus.focus) lastFocus.focus(); }
 function openTactic(id){
   const t = T.find(x => x.id === id); if (!t) return;
-  sheet(t); openLayer('Lsheet'); $('Lsheet').querySelector('.x').focus();
+  OPEN_ID = id; sheet(t); openLayer('Lsheet'); $('Lsheet').querySelector('.x').focus();
   try { history.replaceState(null, '', '#' + id); } catch(e){}
   const i = list.findIndex(x => x.id === id); if (i >= 0) go(i);
 }
@@ -1018,6 +1078,118 @@ $('waitlist').addEventListener('submit', async (e) => {
 });
 
 sub(); apply();
+
+/* ---------- acceso: Supabase (login, plan PRO y rol admin) ---------- */
+let OPEN_ID = null;
+const CFG = window.UED_CONFIG || {};
+const sb = (CFG.url && CFG.anonKey && window.supabase) ? window.supabase.createClient(CFG.url, CFG.anonKey) : null;
+let SESSION = null, PERFIL = null, accMode = 'in', REOPEN = null;
+const ERR = {
+  'Invalid login credentials':'El email o la contraseña no son correctos.',
+  'Email not confirmed':'Aún no has confirmado tu email. Revisa tu bandeja de entrada.',
+  'User already registered':'Ya existe una cuenta con ese email. Prueba a entrar.',
+  'Password should be at least 6 characters.':'La contraseña es demasiado corta.',
+};
+const tr = (m) => ERR[m] || m || 'Algo ha fallado. Inténtalo de nuevo.';
+function accMsg(id, text, err){ const m = $(id); m.hidden = !text; m.textContent = text || ''; m.classList.toggle('err', !!err); }
+function accView(v){ $('accForm').hidden = v !== 'form'; $('accNew').hidden = v !== 'new'; $('accMe').hidden = v !== 'me'; }
+function setMode(m){
+  accMode = m;
+  document.querySelectorAll('.acctabs [data-mode]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.mode === m)));
+  $('acc-title').textContent = m === 'in' ? 'Entra en tu biblioteca' : 'Crea tu cuenta';
+  $('accGo').textContent = m === 'in' ? 'Entrar' : 'Crear cuenta';
+  $('accF').pass.autocomplete = m === 'in' ? 'current-password' : 'new-password';
+  $('accForgot').hidden = m !== 'in';
+  accMsg('accMsg', '');
+}
+function openAcc(){
+  if (SESSION){ renderMe(); accView('me'); }
+  else { accView('form'); setMode(accMode); if (!sb) accMsg('accMsg', 'El acceso se activará en cuanto conectemos la base de datos.', true); }
+  openLayer('Lacc');
+  setTimeout(() => { const f = $('Lacc').querySelector('input:not([hidden]), .btn'); if (f) f.focus(); }, 30);
+}
+function planOf(p){ if (!p) return 'free'; if (p.rol === 'admin') return 'admin'; if (p.plan === 'pro' && (!p.pro_hasta || new Date(p.pro_hasta) > new Date())) return 'pro'; return 'free'; }
+function renderAcct(){
+  const b = $('acct');
+  if (!SESSION){ b.innerHTML = 'Entrar'; b.setAttribute('aria-label', 'Entrar'); return; }
+  const email = SESSION.user.email || '', pl = planOf(PERFIL);
+  b.innerHTML = `<span class="av" aria-hidden="true">${esc(email.charAt(0))}</span><span class="lbl">Mi cuenta</span>${pl !== 'free' ? `<span class="pbadge ${pl}">${pl === 'admin' ? 'ADMIN' : 'PRO'}</span>` : ''}`;
+  b.setAttribute('aria-label', 'Mi cuenta');
+}
+function renderMe(){
+  const pl = planOf(PERFIL);
+  $('accEmail').textContent = SESSION.user.email || '';
+  $('accBadge').className = 'pbadge ' + pl; $('accBadge').textContent = pl === 'admin' ? 'ADMIN' : pl === 'pro' ? 'PRO' : 'FREE';
+  $('accPlanTxt').textContent = pl === 'admin' ? 'Acceso completo y gestión de usuarios.' : pl === 'pro' ? 'Tienes acceso a toda la biblioteca.' : 'Ves las tácticas abiertas. Las PRO, con el plan PRO.';
+  $('accAdmin').hidden = pl !== 'admin'; $('accUp').hidden = pl !== 'free';
+}
+async function loadAccess(){
+  PERFIL = null; PRO_USER = false;
+  if (sb && SESSION){
+    const { data } = await sb.from('perfiles').select('email,plan,rol,pro_hasta').eq('id', SESSION.user.id).maybeSingle();
+    PERFIL = data || null;
+    if (planOf(PERFIL) !== 'free'){
+      PRO_USER = true;
+      const { data: rows, error } = await sb.from('pasos_pro').select('tactica,orden,texto,formato,refs,nota,imagen').order('orden');
+      if (!error && rows) T.forEach(t => {
+        if (!t.pro) return;
+        const r = rows.filter(x => x.tactica === t.id).sort((a, b) => a.orden - b.orden);
+        t.how = r.length ? r.map(x => [x.texto, x.formato, x.refs || [], x.nota || '', x.imagen ? `<img src="${esc(x.imagen)}" alt="" loading="lazy">` : undefined]) : null;
+      });
+    }
+  }
+  if (!PRO_USER) T.forEach(t => { if (t.pro) t.how = null; });
+  renderAcct();
+  buildStage(); layout();
+  if (OPEN_ID && !$('Lsheet').hidden) sheet(T.find(x => x.id === OPEN_ID));
+  if (REOPEN && PRO_USER){ const id = REOPEN; REOPEN = null; openTactic(id); return; }
+  REOPEN = null;
+  if (!$('Lacc').hidden && SESSION){ renderMe(); accView('me'); }
+}
+document.addEventListener('click', (e) => { if (e.target.closest('[data-login]')) { e.preventDefault(); openAcc(); } });
+document.querySelectorAll('.acctabs [data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+$('accF').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!sb) return;
+  const email = e.target.email.value.trim(), pass = e.target.pass.value;
+  if (!/^\S+@\S+\.\S+$/.test(email)) return accMsg('accMsg', 'Escribe un email válido.', true);
+  if (pass.length < 8) return accMsg('accMsg', 'La contraseña tiene que tener al menos 8 caracteres.', true);
+  $('accGo').disabled = true;
+  if (accMode === 'in'){
+    REOPEN = OPEN_ID;
+    const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+    if (error){ REOPEN = null; accMsg('accMsg', tr(error.message), true); }
+  } else {
+    const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + location.pathname } });
+    if (error) accMsg('accMsg', tr(error.message), true);
+    else if (!data.session) accMsg('accMsg', 'Cuenta creada. Te hemos enviado un email para confirmarla: abre el enlace y vuelve aquí.');
+  }
+  $('accGo').disabled = false;
+});
+$('accForgot').addEventListener('click', async () => {
+  if (!sb) return;
+  const email = $('accF').email.value.trim();
+  if (!/^\S+@\S+\.\S+$/.test(email)) return accMsg('accMsg', 'Escribe tu email arriba y vuelve a pulsar.', true);
+  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+  accMsg('accMsg', error ? tr(error.message) : 'Si existe una cuenta con ese email, te llegará un enlace para elegir otra contraseña.', !!error);
+});
+$('accNF').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const pass = e.target.pass.value;
+  if (pass.length < 8) return accMsg('accNMsg', 'Al menos 8 caracteres.', true);
+  const { error } = await sb.auth.updateUser({ password: pass });
+  if (error) accMsg('accNMsg', tr(error.message), true); else { renderMe(); accView('me'); }
+});
+$('accOut').addEventListener('click', async () => { if (sb) await sb.auth.signOut(); closeLayers(); });
+if (sb){
+  sb.auth.onAuthStateChange((ev, session) => {
+    SESSION = session;
+    if (ev === 'PASSWORD_RECOVERY'){ accView('new'); openLayer('Lacc'); return; }
+    setTimeout(loadAccess, 0);
+  });
+}
+renderAcct();
+
 const h0 = (location.hash || '').slice(1);
 if (/^t\d{2}$/.test(h0)) openTactic(h0);
 </script>

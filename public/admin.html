@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gestión de accesos · UED</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJVbiBFc3R1ZGlvIERlbXVlc3RyYSI+PHRpdGxlPlVuIEVzdHVkaW8gRGVtdWVzdHJhPC90aXRsZT48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTQxQTI0Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMy4yNDggMi43ODgpIHNjYWxlKDAuOTIxMikiPjxwYXRoIGQ9Ik0yNSAxNCBINTUgTTgwIDM5IFY4NSBRODAgOTAgNzUgOTAgSDI1IFEyMCA5MCAyMCA4NSBWMTkgUTIwIDE0IDI1IDE0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNkY3RjQiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSI0MiIgY3k9IjUwIiByPSI2LjUiIGZpbGw9IiNGNEUzNUEiIGZpbGwtb3BhY2l0eT0iMC43NSIvPgo8Y2lyY2xlIGN4PSI3MSIgY3k9IjIzIiByPSIxNSIgZmlsbD0iI0Y0RTM1QSIvPjwvZz48L3N2Zz4K">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141A24; --ink-0:#0E1219; --ink-2:#1A2130; --ink-3:#222A3A;
+  --paper:#F6F7F4; --mark:#F4E35A; --rule:#2C3546; --soft:#A3ACBB; --dim:#6F7889; --bad:#F2A4A4;
+  --sans:'Public Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ink-0);color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.5}
+a{color:inherit}
+button,input,select{font:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:16px}
+.top{padding-block:22px;border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand svg{height:40px;width:auto;display:block}
+.brand span{font-weight:700}
+.back{font-size:14px;color:var(--soft)}
+main{padding-block:40px 80px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 8px;letter-spacing:-.01em}
+.lead{color:var(--soft);margin:0 0 28px;max-width:640px}
+.mono{font-family:var(--mono)}
+.kick{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--mark);margin:0 0 10px}
+.box{background:var(--ink-2);border:1px solid var(--rule);border-radius:20px;padding:26px}
+.login{max-width:420px;display:grid;gap:14px}
+label{display:grid;gap:7px;font-size:14px;font-weight:600;color:var(--soft)}
+input,select{color:var(--paper);background:var(--ink-0);border:1px solid var(--rule);border-radius:10px;padding:11px 12px;font-size:15px}
+input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border-color:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;background:var(--mark);color:var(--ink);font-weight:800;padding:12px 18px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--rule)}
+.btn:disabled{opacity:.5;cursor:default}
+.msg{margin:0;border-radius:12px;padding:12px 14px;background:rgba(244,227,90,.1);border:1px solid rgba(244,227,90,.35)}
+.msg.err{background:rgba(242,164,164,.1);border-color:rgba(242,164,164,.4)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.stat{background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:16px 18px}
+.stat b{display:block;font-size:32px;line-height:1.1}
+.stat span{font-size:13px;color:var(--soft)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.bar input{flex:1;min-width:200px}
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--dim);font-weight:500;padding:10px 10px;border-bottom:1px solid var(--rule)}
+.tbl td{padding:10px;border-bottom:1px solid var(--rule);vertical-align:middle}
+.tbl td.email{font-weight:600;word-break:break-all}
+.tbl td.date{color:var(--soft);white-space:nowrap}
+.tbl select,.tbl input{padding:7px 9px;font-size:14px}
+.you{font-family:var(--mono);font-size:10.5px;background:var(--paper);color:var(--ink);border-radius:4px;padding:2px 6px;margin-left:6px}
+.saved{font-family:var(--mono);font-size:11px;color:var(--mark)}
+.saved.err{color:var(--bad)}
+.tblw{overflow-x:auto;background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:6px 8px}
+@media (max-width:720px){
+  .tbl thead{display:none}
+  .tbl tr{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 4px;border-bottom:1px solid var(--rule)}
+  .tbl td{border:0;padding:0}
+  .tbl td.email{grid-column:1/-1}
+  .tbl td[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim);margin-bottom:4px}
+}
+.help{margin-top:26px;color:var(--soft);font-size:14.5px;max-width:760px}
+.help b{color:var(--paper)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="biblioteca"><svg viewBox="15 8 71 87" aria-hidden="true" focusable="false"><path d="M25 14 H58 M80 36 V85 Q80 90 75 90 H25 Q20 90 20 85 V19 Q20 14 25 14" fill="none" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40.683875 73.891V66.7735L39.133625 66.23725V65.8375H43.199375V66.23725L41.727125 66.7735V73.80325Q41.727125 75.568 41.093375 76.781875Q40.459625 77.99575 39.240875 78.614875Q38.022125 79.234 36.276875000000004 79.234Q34.395125 79.234 33.108125 78.614875Q31.821125000000002 77.99575 31.158125000000002 76.752625Q30.495125 75.5095 30.495125 73.64725V66.7735L29.022875000000003 66.23725V65.8375H34.560875V66.23725L33.088625 66.7735V73.696Q33.088625 74.99275 33.507875 75.8605Q33.927125000000004 76.72825 34.765625 77.15725Q35.604125 77.58625 36.852125 77.58625Q38.080625 77.58625 38.93375 77.167Q39.786875 76.74775 40.235375000000005 75.923875Q40.683875 75.1 40.683875 73.891ZM52.764125 69.49375 52.715374999999995 72.097 52.764125 74.70025H51.954875L51.633125 72.63325L47.050625 72.61375V71.59L51.633125 71.56075L51.954875 69.49375ZM55.425875 69.63025 54.928625 69.74725 52.949374999999996 66.52975 53.758624999999995 66.90025H46.962875V65.8375H53.271125L54.450874999999996 65.24275H54.684875ZM53.232124999999996 78.30775 55.377125 74.93425 55.825624999999995 75.05125 55.006625 79.663H54.753125L53.495374999999996 79.0H46.962875V77.93725H53.885374999999996ZM44.310874999999996 79.0V78.60025L45.783125 78.064V66.7735L44.310874999999996 66.23725V65.8375H48.376625V79.0ZM67.847375 72.253Q67.847375 69.5035 66.40925 68.201875Q64.971125 66.90025 62.445875 66.90025H59.803625000000004L59.637875 65.8375H62.923625Q65.478125 65.8375 67.174625 66.52000000000001Q68.871125 67.2025 69.71937500000001 68.58212499999999Q70.567625 69.96175 70.567625 72.0385Q70.567625 74.25175 69.573125 75.80687499999999Q68.578625 77.362 66.85287500000001 78.181Q65.127125 79.0 62.952875000000006 79.0H59.637875L59.803625000000004 77.93725H62.640875Q64.21062500000001 77.93725 65.38062500000001 77.357125Q66.550625 76.777 67.199 75.524125Q67.847375 74.27125 67.847375 72.253ZM57.044375 79.0V78.60025L58.516625000000005 78.064V66.7735L57.044375 66.23725V65.8375H61.110125000000004V79.0Z" fill="#F6F7F4"/>
+<circle cx="34" cy="52" r="2.6" fill="#F4E35A" fill-opacity="0.4"/>
+<circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/>
+<circle cx="72" cy="22" r="12" fill="#F4E35A"/>
+<path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg><span>Gestión de accesos</span></a>
+    <a class="back" href="biblioteca">← Volver a la biblioteca</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="kick">PANEL DE ADMINISTRACIÓN</p>
+  <h1>Quién tiene acceso</h1>
+  <p class="lead">Da o quita el plan PRO a cualquier usuario. Los cambios se guardan al momento y el usuario los ve al recargar la biblioteca.</p>
+
+  <div id="vNoCfg" class="box" hidden><p class="msg err">Falta conectar la base de datos: rellena <span class="mono">config.js</span> con la URL y la clave pública de Supabase.</p></div>
+
+  <form id="vLogin" class="box login" hidden novalidate>
+    <label>Email<input type="email" name="email" autocomplete="email" required></label>
+    <label>Contraseña<input type="password" name="pass" autocomplete="current-password" required></label>
+    <button class="btn" type="submit">Entrar</button>
+    <p class="msg err" id="loginMsg" hidden></p>
+  </form>
+
+  <div id="vNoAdmin" class="box" hidden>
+    <p class="msg err">Tu cuenta (<span id="naEmail"></span>) no es de administrador.</p>
+    <p style="margin:14px 0 0"><button class="btn ghost" type="button" data-out>Cerrar sesión</button></p>
+  </div>
+
+  <section id="vAdmin" hidden>
+    <div class="stats">
+      <div class="stat"><b id="sTotal">0</b><span>usuarios</span></div>
+      <div class="stat"><b id="sPro">0</b><span>con PRO</span></div>
+      <div class="stat"><b id="sFree">0</b><span>free</span></div>
+      <div class="stat"><b id="sAdmin">0</b><span>administradores</span></div>
+    </div>
+    <div class="bar">
+      <input type="search" id="q" placeholder="Buscar por email" aria-label="Buscar por email">
+      <button class="btn ghost" type="button" id="reload">Actualizar</button>
+      <button class="btn ghost" type="button" data-out>Cerrar sesión</button>
+    </div>
+    <div class="tblw">
+      <table class="tbl">
+        <thead><tr><th>EMAIL</th><th>ALTA</th><th>PLAN</th><th>PRO HASTA</th><th>ROL</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="help">
+      <p><b>Añadir un usuario de prueba:</b> que se registre en la biblioteca (Entrar → Crear cuenta), o créalo en Supabase → Authentication → Users → Add user, marcando «Auto Confirm User». Aparecerá aquí y le das PRO.</p>
+      <p><b>PRO hasta:</b> déjalo vacío para un PRO sin caducidad. Si pones una fecha, el acceso se corta solo ese día.</p>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG = window.UED_CONFIG || {};
+const sb = (CFG.url && CFG.anonKey && window.supabase) ? window.supabase.createClient(CFG.url, CFG.anonKey) : null;
+let ME = null, ALL = [];
+function view(v){ ['vNoCfg','vLogin','vNoAdmin','vAdmin'].forEach(id => $(id).hidden = id !== v); }
+const fmtDate = (d) => d ? new Date(d).toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' }) : '';
+const isPro = (p) => p.rol === 'admin' || (p.plan === 'pro' && (!p.pro_hasta || new Date(p.pro_hasta) > new Date()));
+
+async function boot(session){
+  if (!sb) return view('vNoCfg');
+  if (!session) return view('vLogin');
+  ME = session.user;
+  const { data: me } = await sb.from('perfiles').select('rol').eq('id', ME.id).maybeSingle();
+  if (!me || me.rol !== 'admin'){ $('naEmail').textContent = ME.email; return view('vNoAdmin'); }
+  view('vAdmin'); load();
+}
+async function load(){
+  const { data, error } = await sb.from('perfiles').select('id,email,plan,rol,pro_hasta,creado_en').order('creado_en', { ascending:false });
+  if (error){ $('rows').innerHTML = `<tr><td colspan="6">No se han podido cargar los usuarios: ${esc(error.message)}</td></tr>`; return; }
+  ALL = data; render();
+}
+function render(){
+  const q = $('q').value.trim().toLowerCase();
+  const list = ALL.filter(p => !q || p.email.toLowerCase().includes(q));
+  $('sTotal').textContent = ALL.length;
+  $('sPro').textContent = ALL.filter(isPro).length;
+  $('sFree').textContent = ALL.filter(p => !isPro(p)).length;
+  $('sAdmin').textContent = ALL.filter(p => p.rol === 'admin').length;
+  $('rows').innerHTML = list.map(p => {
+    const mine = p.id === ME.id;
+    const until = p.pro_hasta ? p.pro_hasta.slice(0, 10) : '';
+    return `<tr data-id="${p.id}">
+      <td class="email">${esc(p.email)}${mine ? '<span class="you">TÚ</span>' : ''}</td>
+      <td class="date" data-l="ALTA">${fmtDate(p.creado_en)}</td>
+      <td data-l="PLAN"><select data-f="plan" aria-label="Plan de ${esc(p.email)}"><option value="free"${p.plan === 'free' ? ' selected' : ''}>Free</option><option value="pro"${p.plan === 'pro' ? ' selected' : ''}>PRO</option></select></td>
+      <td data-l="PRO HASTA"><input type="date" data-f="pro_hasta" value="${until}" aria-label="PRO hasta, ${esc(p.email)}"></td>
+      <td data-l="ROL"><select data-f="rol" aria-label="Rol de ${esc(p.email)}"${mine ? ' disabled title="No puedes quitarte tu propio rol"' : ''}><option value="usuario"${p.rol === 'usuario' ? ' selected' : ''}>Usuario</option><option value="admin"${p.rol === 'admin' ? ' selected' : ''}>Admin</option></select></td>
+      <td><span class="saved" aria-live="polite"></span></td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="6" style="color:var(--soft)">No hay usuarios con ese email.</td></tr>';
+}
+$('rows').addEventListener('change', async (e) => {
+  const el = e.target.closest('[data-f]'); if (!el) return;
+  const tr = el.closest('tr'), id = tr.dataset.id, f = el.dataset.f, out = tr.querySelector('.saved');
+  let val = el.value;
+  if (f === 'pro_hasta') val = val ? new Date(val + 'T23:59:59').toISOString() : null;
+  if (f === 'rol' && val === 'admin' && !confirmAdmin(tr)) { el.value = 'usuario'; return; }
+  out.className = 'saved'; out.textContent = 'Guardando…';
+  const { error } = await sb.from('perfiles').update({ [f]: val }).eq('id', id);
+  if (error){ out.className = 'saved err'; out.textContent = 'Error'; out.title = error.message; return; }
+  const p = ALL.find(x => x.id === id); p[f] = val;
+  out.textContent = 'Guardado ✓';
+  render();
+  const row = document.querySelector(`tr[data-id="${id}"] .saved`); if (row) row.textContent = 'Guardado ✓';
+});
+function confirmAdmin(tr){
+  // sin diálogos del navegador: segundo cambio confirma
+  if (tr.dataset.armed){ delete tr.dataset.armed; return true; }
+  tr.dataset.armed = '1';
+  const out = tr.querySelector('.saved'); out.className = 'saved err'; out.textContent = 'Vuelve a elegir «Admin» para confirmar';
+  return false;
+}
+$('q').addEventListener('input', render);
+$('reload').addEventListener('click', load);
+document.addEventListener('click', async (e) => { if (e.target.closest('[data-out]')) { await sb.auth.signOut(); } });
+$('vLogin').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const { error } = await sb.auth.signInWithPassword({ email: e.target.email.value.trim(), password: e.target.pass.value });
+  $('loginMsg').hidden = !error;
+  if (error) $('loginMsg').textContent = error.message === 'Invalid login credentials' ? 'El email o la contraseña no son correctos.' : error.message;
+});
+if (sb) sb.auth.onAuthStateChange((ev, session) => { setTimeout(() => boot(session), 0); });
+else view('vNoCfg');
+</script>
+
+</body>
+</html>
