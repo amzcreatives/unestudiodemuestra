@@ -11,6 +11,7 @@ Proyecto: **unestudiodemuestra** (región París) · `https://kbzwzbnobmrelmyjyh
    - Redirect URLs: añade `https://unestudiodemuestra.vercel.app/**`
 3. Regístrate en la biblioteca (Entrar → Crear cuenta) y confirma el email.
 4. SQL Editor → pega **`04-hacerme-admin.sql`** → Run. Ya puedes entrar en `/admin`.
+5. SQL Editor → pega **`05-lista-espera.sql`** → Run. Crea la lista de espera de la landing (si ya ejecutaste el `TODO-EN-UNO.sql` nuevo, ya está incluida).
 
 ## Qué hay en la base de datos
 
@@ -19,6 +20,7 @@ Proyecto: **unestudiodemuestra** (región París) · `https://kbzwzbnobmrelmyjyh
   - La web solo recibe las **publicadas** y las **programadas cuya fecha ya ha llegado**.
   - De las demás (en preparación, vídeo listo, programadas) solo llega el aviso de «Próximamente»: título, tema y fecha. Nunca el contenido.
   - No puede haber dos tácticas con el mismo título.
+- `lista_espera`: los emails de la landing y de la entrada a la biblioteca, con lo que quieren mejorar y desde dónde se apuntaron. Nadie puede leerla salvo un admin (pestaña «Lista de espera» de `/admin`, con descarga en CSV). Las altas entran solo por la función `unirse_lista()`.
 - `pasos_pro`: el «Cómo aplicarlo» de cada táctica. Solo lo leen usuarios PRO (y admins), y solo de tácticas publicadas.
 - Almacén de imágenes:
   - `publico`: portadas y figuras (cualquiera puede verlas).

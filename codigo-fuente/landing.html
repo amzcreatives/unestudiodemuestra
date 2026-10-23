@@ -1,20 +1,17 @@
-<title>Un Estudio Demuestra</title>
+<title>Un Estudio Demuestra · Tácticas de marketing demostradas por estudios</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Tácticas de marketing respaldadas por estudios científicos, siempre con la fuente citada. Apúntate a la lista de la biblioteca.">
+<meta name="description" content="Una biblioteca de tácticas de marketing sacadas de estudios científicos publicados, cada una con su fuente y cómo aplicarla. Abre el 2 de noviembre, solo para la lista.">
+<meta property="og:title" content="Un Estudio Demuestra · La biblioteca">
+<meta property="og:description" content="Deja de adivinar qué vende. Tácticas de marketing demostradas por estudios, con su fuente. Abre el 2 de noviembre, solo para la lista.">
+<meta property="og:image" content="media/recorrido-escritorio.jpg">
 <link rel="icon" href="{{FAVICON}}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Public+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: una hoja de estudio sobre la mesa — portada en tinta con el formulario, debajo la ficha de muestra en papel */
+/* Landing de lista de espera: noche de laboratorio (como la biblioteca), tarjetas-ficha con subrayador amarillo, una sola acción: dejar el email */
 :root{
-  --ink:#141A24;      /* Tinta: fondo principal */
-  --ink-2:#1B2230;    /* superficie elevada */
-  --rule:#2C3444;     /* Línea sobre tinta */
-  --paper:#F6F7F4;    /* Papel */
-  --mark:#F4E35A;     /* Subrayador: solo para lo que el estudio demuestra */
-  --soft:#A9B1BE;     /* Pizarra aclarada para leer sobre tinta */
-  --slate:#5B6472;    /* Pizarra sobre papel */
-  --line:#D9DDE3;     /* Línea sobre papel */
+  --ink:#141A24; --ink-0:#0E1219; --ink-2:#1A2130; --ink-3:#222A3A; --rule:#2C3546;
+  --paper:#F6F7F4; --mark:#F4E35A; --soft:#A3ACBB; --dim:#6F7889;
   --ev-hi:#5CC892; --ev-md:#E0B24A; --ev-lo:#FF8A73;
   --serif:"Newsreader", "Iowan Old Style", Georgia, serif;
   --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -23,127 +20,261 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink-0);color:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(900px 560px at 15% 8%, rgba(244,227,90,.08), transparent 60%),
+    radial-gradient(800px 600px at 90% 40%, rgba(110,139,255,.06), transparent 60%),
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px) 0 0/56px 56px,
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px) 0 0/56px 56px}
+header,main,footer{position:relative;z-index:1}
 a{color:inherit}
-.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-mark{background:var(--mark);color:var(--ink);padding:0 .12em;white-space:nowrap}
-.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
-h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
 p{margin:0}
+h1,h2,h3{margin:0;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+mark,.m{background:var(--mark);color:var(--ink);padding:0 .14em;font-style:normal;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mark)}
+.dot{color:var(--mark)}
 
 /* cabecera */
-header{padding-block:22px}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.top{padding-block:20px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
 .brand svg{height:44px;width:auto;display:block}
-.brand span{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em}
-.soon{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink);background:var(--paper);padding:6px 10px}
+.brand span{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-.01em}
+@media (max-width:560px){.brand span{display:none}}
+.top-r{display:flex;align-items:center;gap:10px}
+.opens{font-family:var(--mono);font-size:12px;letter-spacing:.12em;border:1px solid var(--rule);background:rgba(26,33,48,.7);border-radius:999px;padding:9px 14px;white-space:nowrap}
+.opens b{color:var(--mark);font-weight:600}
+@media (max-width:420px){.opens{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:14px;background:var(--mark);color:var(--ink);font-weight:800;font-size:16px;padding:15px 22px;text-decoration:none;white-space:nowrap;transition:transform .15s ease, box-shadow .15s ease;box-shadow:0 10px 30px rgba(244,227,90,.18)}
+.btn:hover{transform:translateY(-1px);box-shadow:0 14px 36px rgba(244,227,90,.28)}
+.btn.sm{font-size:14px;padding:10px 16px;border-radius:999px;box-shadow:none}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
 
 /* portada */
-.hero{padding-block:56px 72px;border-bottom:1px solid var(--rule)}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:56px;align-items:end}
-@media (max-width:880px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px}}
-.kicker{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,26px);color:var(--soft);margin-bottom:14px}
-.hero h1{font-size:clamp(44px,7.2vw,92px);line-height:.98}
-.hero .sub{margin-top:26px;font-size:clamp(17px,1.6vw,20px);color:var(--soft);max-width:52ch}
-.stamp{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:30px;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
-.stamp b{color:var(--paper);font-weight:500}
+.hero{padding-block:34px 70px;overflow:hidden;overflow:clip}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:48px;align-items:center}
+@media (max-width:940px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:44px}}
+.kicker{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.2vw,24px);color:var(--soft);margin-bottom:14px}
+.hero h1{font-family:var(--sans);font-weight:800;font-size:clamp(40px,6.2vw,76px);line-height:1.02;letter-spacing:-.025em}
+.hero h1 .l2{display:block;font-weight:300;letter-spacing:-.02em}
+.hero .sub{margin-top:22px;font-size:clamp(17px,1.6vw,19.5px);color:var(--soft);max-width:54ch}
+.hero .sub b{color:var(--paper);font-weight:600}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
+.facts b{color:var(--paper);font-weight:600;font-size:15px;margin-right:4px}
 
 /* formulario */
-.join{background:var(--ink-2);border:1px solid var(--rule);padding:28px;display:grid;gap:18px;position:relative}
-.join h2{font-size:28px;line-height:1.15}
-.join p{color:var(--soft);font-size:15.5px}
-.field{display:grid;gap:7px}
-.field label{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
-.field input,.field select{font:inherit;font-size:16px;color:var(--paper);background:var(--ink);border:1px solid var(--rule);padding:13px 14px;width:100%;border-radius:0;appearance:none}
-.field select{background-image:linear-gradient(45deg,transparent 50%,var(--soft) 50%),linear-gradient(135deg,var(--soft) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat}
-.field input::placeholder{color:#6B7486}
-.btn{font:inherit;font-weight:700;font-size:16px;border:0;cursor:pointer;background:var(--mark);color:var(--ink);padding:15px 20px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s ease}
-.btn:hover{transform:translateY(-1px)}
-.fine{font-size:13px;color:var(--soft)}
-.msg{font-size:14.5px;padding:12px 14px;border:1px solid var(--rule)}
-.msg.ok{border-color:var(--ev-hi);color:var(--paper)}
-.msg.err{border-color:var(--ev-lo)}
-.corner{position:absolute;top:-16px;right:-12px;width:42px;height:42px;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-weight:500;font-size:18px}
+.joinbox{margin-top:28px;max-width:560px}
+.jf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:rgba(26,33,48,.85);border:1px solid var(--rule);border-radius:18px;padding:8px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.jf:focus-within{border-color:rgba(244,227,90,.6)}
+.jf input[type=email]{font:inherit;font-size:16.5px;color:var(--paper);background:transparent;border:0;outline:0;padding:12px 14px;min-width:0}
+.jf input::placeholder{color:#6B7486}
+.jf .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+@media (max-width:520px){.jf{grid-template-columns:minmax(0,1fr)}.jf .btn{width:100%}}
+.jnote{margin-top:12px;font-size:13.5px;color:var(--soft);display:flex;flex-wrap:wrap;gap:4px 14px}
+.jnote .ok{color:var(--paper)}
+.jnote .ok::before{content:"✓ ";color:var(--mark)}
+.jlegal{margin-top:8px;font-size:12.5px;color:var(--dim)}
+.jlegal a{color:var(--soft)}
+.jmsg{margin-top:10px;font-size:14.5px;color:var(--ev-lo)}
+.proof{margin-top:12px;font-size:14px;color:var(--soft)}
+.proof b{color:var(--paper)}
+/* éxito */
+.done{background:var(--ink-2);border:1px solid rgba(244,227,90,.5);border-radius:20px;padding:22px;display:grid;gap:14px;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:pop .45s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.done h3{font-size:24px;font-weight:800;display:flex;align-items:center;gap:12px}
+.done h3 i{width:34px;height:34px;flex:none;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-style:normal;font-family:var(--mono);font-size:16px}
+.done p{color:var(--soft);font-size:15.5px}
+.done p b{color:var(--paper)}
+.done .q{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1px solid var(--rule);background:var(--ink);border-radius:999px;padding:8px 13px;font-size:14px}
+.chips button:hover{border-color:var(--soft)}
+.chips button[aria-pressed=true]{border-color:var(--mark);background:rgba(244,227,90,.14)}
+.share{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.share a,.share button{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);background:transparent;border-radius:999px;padding:8px 14px;font-size:14px;text-decoration:none}
+.share a:hover,.share button:hover{border-color:var(--soft)}
+
+/* cuenta atrás */
+.cd{display:flex;gap:8px;align-items:stretch;margin-top:20px}
+.cd div{min-width:64px;background:var(--ink-2);border:1px solid var(--rule);border-radius:12px;padding:8px 10px 6px;text-align:center}
+.cd b{display:block;font-family:var(--mono);font-weight:600;font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
+.cd span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--soft);text-transform:uppercase}
+.cd-wrap .label{display:block;margin-top:26px}
+@media (max-width:420px){.cd div{min-width:0;flex:1;padding-inline:4px}.cd b{font-size:21px}}
+
+/* abanico de tarjetas */
+.fan{position:relative;height:clamp(420px,46vw,520px)}
+.fc{position:absolute;width:min(360px,76vw);left:50%;top:50%;border-radius:22px;background:var(--ink-2);border:1px solid var(--rule);padding:10px;box-shadow:0 30px 80px rgba(0,0,0,.5);transition:transform .6s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.fc:nth-child(1){transform:translate(-50%,-50%) translate(-34%, -16%) rotate(-11deg) scale(.86);filter:brightness(.72)}
+.fc:nth-child(2){transform:translate(-50%,-50%) translate(32%, -10%) rotate(9deg) scale(.9);filter:brightness(.82)}
+.fc:nth-child(3){transform:translate(-50%,-50%) translate(0, 8%) rotate(-2deg);border-color:rgba(244,227,90,.55);animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.fan:hover .fc:nth-child(1){transform:translate(-50%,-50%) translate(-52%, -18%) rotate(-15deg) scale(.86)}
+.fan:hover .fc:nth-child(2){transform:translate(-50%,-50%) translate(50%, -12%) rotate(13deg) scale(.9)}
+.fcite{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 16px 8px 8px;font-family:var(--mono);font-size:12px;white-space:nowrap;box-shadow:0 14px 40px rgba(0,0,0,.45);z-index:3}
+.fcite i{width:26px;height:26px;border-radius:50%;background:var(--mark);display:grid;place-items:center;font-style:normal;font-weight:600}
+@media (max-width:520px){.fcite{font-size:10px;white-space:normal;width:max-content;max-width:92%;text-align:left;line-height:1.35;border-radius:16px}}
+/* portada de táctica (igual que en la biblioteca) */
+.cover{position:relative;aspect-ratio:4/3.1;border-radius:15px;overflow:hidden;background:
+  linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px) 0 0/22px 22px,linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px) 0 0/22px 22px,linear-gradient(160deg,#1E2636,#10141C);
+  padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.ct{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;background:var(--paper);color:var(--ink);padding:4px 8px;border-radius:4px}
+.num{font-weight:800;font-size:28px;line-height:1;letter-spacing:-.02em}
+.kick{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--soft)}
+.hook{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.9vw,33px);line-height:1.08;letter-spacing:-.01em;margin-top:2px}
+.foot{display:flex;justify-content:space-between;align-items:center}
+.foot svg{height:26px;width:auto}
+.ev{font-family:var(--mono);font-size:10.5px;padding:3px 9px;border:1px solid currentColor;border-radius:999px;white-space:nowrap}
+.ev.hi{color:var(--ev-hi)}.ev.md{color:var(--ev-md)}.ev.lo{color:var(--ev-lo)}
+.fc .ttl{padding:12px 6px 6px;font-weight:800;font-size:17px;line-height:1.25}
+.fc .by{padding:0 6px 6px;font-family:var(--mono);font-size:11px;color:var(--soft)}
+
+/* cinta de hallazgos */
+.ticker{border-block:1px solid var(--rule);background:rgba(20,26,36,.75);overflow:hidden;padding-block:16px;white-space:nowrap}
+.ticker .row{display:inline-flex;gap:46px;padding-right:46px;animation:tick 70s linear infinite}
+.ticker:hover .row{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker span{font-size:16px;color:var(--soft)}
+.ticker span i{font-family:var(--serif);font-style:italic;color:var(--paper)}
+.ticker span::before{content:"1";display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mark);color:var(--ink);font-family:var(--mono);font-size:11px;font-weight:600;margin-right:10px;vertical-align:2px}
 
 /* bloques */
-section.block{padding-block:84px;border-bottom:1px solid var(--rule)}
-.head{display:grid;gap:12px;max-width:62ch;margin-bottom:40px}
-.head h2{font-size:clamp(32px,4.4vw,52px);line-height:1.05}
-.head p{color:var(--soft)}
+section.block{padding-block:88px}
+.head{display:grid;gap:14px;max-width:760px;margin:0 auto 44px;text-align:center;justify-items:center}
+.head h2{font-family:var(--sans);font-weight:800;font-size:clamp(32px,4.6vw,54px);line-height:1.04;letter-spacing:-.02em}
+.head p{color:var(--soft);font-size:clamp(16.5px,1.5vw,18.5px);max-width:58ch}
 
-/* ficha de muestra en papel */
-.sheet-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:48px;align-items:start}
-@media (max-width:880px){.sheet-row{grid-template-columns:minmax(0,1fr)}}
-.sheet{background:var(--paper);color:var(--ink);padding:clamp(22px,3.4vw,40px);position:relative;display:grid;gap:22px}
-.sheet::after{content:"1";position:absolute;top:-18px;right:-14px;width:48px;height:48px;border-radius:50%;background:var(--mark);display:grid;place-items:center;font-family:var(--mono);font-weight:500;font-size:20px;color:var(--ink)}
-.sheet .meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--slate)}
-.tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;background:var(--ink);color:var(--paper);padding:5px 10px}
-.ev{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;padding:3px 9px;border:1px solid currentColor;border-radius:999px}
-.sheet .ev{color:#1F7A4D}
-.sheet h3{font-size:clamp(28px,3.4vw,40px);line-height:1.08}
-.sheet dl{margin:0;display:grid;gap:16px}
-.sheet dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-bottom:4px}
-.sheet dd{margin:0;font-size:16px}
-.sheet ol{margin:0;padding-left:20px;display:grid;gap:6px}
-.sheet .src{font-family:var(--mono);font-size:12.5px;color:var(--slate);border-top:1px dashed var(--line);padding-top:14px;line-height:1.55}
-.anatomy{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
-.anatomy li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
-.anatomy .n{font-family:var(--mono);font-size:13px;color:var(--mark);padding-top:2px}
-.anatomy b{display:block;font-weight:600}
-.anatomy span{color:var(--soft);font-size:15.5px}
-.pro-pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;background:var(--paper);color:var(--ink);padding:2px 6px;margin-left:8px;vertical-align:2px}
+/* tarjetas que se giran */
+.deck{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media (max-width:1100px){.deck{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .deck{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));padding-inline:max(16px, env(safe-area-inset-left, 0px));padding-bottom:10px;scrollbar-width:none}
+  .deck::-webkit-scrollbar{display:none}
+  .flip{flex:0 0 82%;scroll-snap-align:center}
+}
+.flip{position:relative;perspective:1400px;min-height:440px;border:0;background:none;padding:0;text-align:left}
+.flip .in{position:absolute;inset:0;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip[aria-pressed=true] .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;border:1px solid var(--rule);background:var(--ink-2);padding:10px;display:flex;flex-direction:column}
+.flip:hover .front{border-color:rgba(244,227,90,.45)}
+.front .art{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:var(--ink)}
+.front .art svg{display:block;width:100%;height:100%}
+.front .ct{position:absolute;left:10px;right:10px;top:10px}
+.front .ct .num{font-size:20px;background:#1A2130;padding:4px 8px 3px;border-radius:8px;box-shadow:0 0 0 1px #2C3546}
+.front .meta{margin:14px 8px 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--mark)}
+.front .qq{margin:10px 8px 0;font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.12;letter-spacing:-.01em}
+.front .go{margin:auto 8px 8px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700;font-size:14.5px;border-top:1px solid var(--rule);padding-top:12px}
+.front .go i{width:34px;height:34px;flex:none;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center}
+.front .go svg{transition:transform .2s}
+.flip:hover .front .go svg{transform:rotate(180deg)}
+.front .meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{transform:rotateY(180deg);background:var(--paper);color:var(--ink);padding:22px;gap:12px;border-color:var(--paper)}
+.back::after{content:"1";position:absolute;top:-12px;right:-10px;width:38px;height:38px;border-radius:50%;background:var(--mark);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:16px;color:var(--ink)}
+.back .k{font-family:var(--serif);font-style:italic;font-size:16px;color:#5B6472}
+.back .f{font-size:17px;font-weight:600;line-height:1.42}
+.back .src{font-family:var(--mono);font-size:11.5px;color:#5B6472;border-top:1px dashed #C9CED6;padding-top:10px;line-height:1.5}
+.back .src b{color:var(--ink);font-weight:600}
+.back .ev{align-self:flex-start}
+.back .ev.hi{color:#1F7A4D}.back .ev.md{color:#9A6B00}
+.back .inside{margin-top:auto;font-size:14px;color:#3A4458;display:grid;gap:10px}
+.back .inside .btn{box-shadow:none;width:100%}
+.deck-note{text-align:center;margin-top:26px;color:var(--soft);font-size:15px}
+.deck-note b{color:var(--paper)}
+
+/* recorrido en vídeo */
+.tour{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.7fr);gap:44px;align-items:center}
+@media (max-width:980px){.tour{grid-template-columns:minmax(0,1fr)}}
+.screens{position:relative;padding-bottom:40px}
+.browser{border-radius:16px;overflow:hidden;border:1px solid var(--rule);background:var(--ink);box-shadow:0 40px 100px rgba(0,0,0,.55)}
+.browser .bar{display:flex;align-items:center;gap:7px;padding:10px 12px;background:#1A2130;border-bottom:1px solid var(--rule)}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#3A4458}
+.browser .bar span{margin-left:10px;flex:1;max-width:340px;font-family:var(--mono);font-size:11.5px;color:var(--soft);background:var(--ink);border-radius:8px;padding:5px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.browser video{display:block;width:100%;aspect-ratio:1280/800;background:var(--ink)}
+.phone{position:absolute;right:-18px;bottom:0;width:27%;min-width:150px;border-radius:30px;padding:8px;background:#0B0E14;border:1px solid #3A4458;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.phone video{display:block;width:100%;aspect-ratio:390/844;border-radius:23px;background:var(--ink)}
+@media (max-width:700px){
+  .browser{display:none}
+  .screens{padding-bottom:0;display:grid;place-items:center}
+  .phone{position:relative;right:auto;width:min(300px,78vw)}
+}
+.points{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.points li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.points .n{width:28px;height:28px;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:13px}
+.points b{display:block;font-weight:700;font-size:17px}
+.points span{color:var(--soft);font-size:15.5px}
+.vctl{margin-top:14px;display:flex;justify-content:center}
+.vctl button{background:none;border:1px solid var(--rule);border-radius:999px;padding:7px 14px;font-family:var(--mono);font-size:12px;color:var(--soft)}
+
+/* método */
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.steps3{grid-template-columns:minmax(0,1fr)}}
+.st{background:var(--ink-2);border:1px solid var(--rule);border-radius:22px;padding:26px;display:grid;gap:12px;align-content:start;position:relative;overflow:hidden}
+.st .big{font-family:var(--sans);font-weight:800;font-size:72px;line-height:.8;color:rgba(255,255,255,.06);position:absolute;right:16px;top:14px}
+.st h3{font-size:21px;font-weight:800}
+.st p{color:var(--soft);font-size:15.5px}
+.st .eg{font-family:var(--mono);font-size:12px;color:var(--soft);border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+.st .eg s{color:var(--ev-lo)}
+.st .eg em{font-style:normal;color:var(--ev-hi)}
+.evrow{display:flex;flex-wrap:wrap;gap:8px}
 
 /* categorías */
-.cats{display:flex;flex-wrap:wrap;gap:10px}
-.cats span{font-family:var(--mono);font-size:13px;letter-spacing:.1em;border:1px solid var(--rule);padding:9px 14px}
-.cats span:nth-child(3n+1){background:var(--ink-2)}
-
-/* pilares */
-.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--rule)}
-@media (max-width:820px){.pillars{grid-template-columns:minmax(0,1fr)}}
-.pillar{padding:28px;display:grid;gap:12px;align-content:start;border-right:1px solid var(--rule)}
-.pillar:last-child{border-right:0}
-@media (max-width:820px){.pillar{border-right:0;border-bottom:1px solid var(--rule)}.pillar:last-child{border-bottom:0}}
-.pillar h3{font-size:25px}
-.pillar p{color:var(--soft);font-size:15.5px}
-.ev-row{display:flex;gap:8px;flex-wrap:wrap}
-.ev.hi{color:var(--ev-hi)}.ev.md{color:var(--ev-md)}.ev.lo{color:var(--ev-lo)}
-.chat{display:grid;gap:10px;font-size:14.5px}
-.chat .q{justify-self:end;background:var(--paper);color:var(--ink);padding:9px 12px;max-width:90%}
-.chat .a{border-left:2px solid var(--mark);padding-left:12px;color:var(--soft)}
-.chat sup{font-family:var(--mono);color:var(--mark);font-size:10px}
+.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.cats{grid-template-columns:minmax(0,1fr)}}
+.cat{display:flex;gap:14px;align-items:center;background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:14px 16px}
+.cat .ci{width:40px;height:40px;flex:none;border-radius:11px;background:var(--ink-3);display:grid;place-items:center;color:var(--soft)}
+.cat .ci svg{width:21px;height:21px}
+.cat b{display:block;font-size:16px}
+.cat small{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+.cat.on{border-color:rgba(244,227,90,.5);background:linear-gradient(135deg,rgba(244,227,90,.08),var(--ink-2))}
+.cat.on .ci{background:rgba(244,227,90,.16);color:var(--mark)}
+.cat.on small{color:var(--ink);background:var(--mark);border-radius:999px;padding:2px 8px}
 
 /* preguntas */
-.faq{display:grid;gap:0;border-top:1px solid var(--rule);max-width:820px}
+.faq{max-width:820px;margin:0 auto;border-top:1px solid var(--rule)}
 .faq details{border-bottom:1px solid var(--rule);padding:18px 0}
-.faq summary{cursor:pointer;font-family:var(--serif);font-size:22px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--mono);color:var(--mark)}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--mark);font-size:22px;line-height:1}
 .faq details[open] summary::after{content:"−"}
-.faq p{color:var(--soft);margin-top:10px;max-width:64ch}
+.faq p{color:var(--soft);margin-top:10px;max-width:66ch}
 
 /* cierre */
-.final{padding-block:96px}
-.final .wrap{display:grid;gap:24px;justify-items:start}
-.final h2{font-size:clamp(36px,5.6vw,70px);line-height:1.02;max-width:16ch}
-footer{border-top:1px solid var(--rule);padding-block:28px}
+.final{padding-block:96px 110px;text-align:center}
+.final .wrap{display:grid;justify-items:center;gap:6px}
+.final h2{font-family:var(--sans);font-weight:800;font-size:clamp(36px,6vw,74px);line-height:1.02;letter-spacing:-.025em;max-width:15ch}
+.final .sub{color:var(--soft);font-size:18px;margin-top:10px}
+.final .joinbox{width:100%;text-align:left}
+.final .cd{justify-content:center}
+footer{border-top:1px solid var(--rule);padding-block:26px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
 footer nav{display:flex;gap:18px;flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--paper)}
 
+/* entrada de bloques al hacer scroll */
 @media (prefers-reduced-motion: no-preference){
-  .hero h1 mark{background:linear-gradient(var(--mark),var(--mark)) no-repeat 0 0/0% 100%;animation:swipe .9s .35s cubic-bezier(.6,.05,.2,1) forwards}
-  @keyframes swipe{to{background-size:100% 100%}}
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .hero h1 mark{background:linear-gradient(var(--mark),var(--mark)) no-repeat 0 0/0% 100%;color:var(--paper);animation:swipe .9s .5s cubic-bezier(.6,.05,.2,1) forwards}
+  @keyframes swipe{to{background-size:100% 100%;color:var(--ink)}}
 }
+@media (prefers-reduced-motion: reduce){.ticker .row{animation:none}.fc:nth-child(3){animation:none}.flip .in{transition:none}}
 </style>
 
-<header>
+<header class="top">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Un Estudio Demuestra, inicio">{{SYMBOL}}<span>un estudio demuestra</span></a>
-    <span class="soon">BIBLIOTECA · PRÓXIMAMENTE</span>
+    <div class="top-r">
+      <span class="opens" id="opensPill">ABRE EL <b id="opensDate">2 NOV</b></span>
+      <a class="btn sm" href="#apuntarme" id="topCta">Quiero entrar</a>
+    </div>
   </div>
 </header>
 
@@ -152,116 +283,104 @@ footer a:hover{color:var(--paper)}
     <div class="wrap">
       <div>
         <p class="kicker">Un estudio demuestra que…</p>
-        <h1>Tácticas de marketing <mark>respaldadas</mark> por la ciencia.</h1>
-        <p class="sub">Cada semana convertimos un estudio científico en una táctica que puedes aplicar hoy en tus precios, tus textos o tu web. Siempre con la fuente citada.</p>
-        <div class="stamp"><span><b>Precios</b> · Copywriting · Ventas · Diseño</span><span>Fuente en cada táctica</span></div>
+        <h1>Deja de adivinar qué vende.<span class="l2">Aplica lo que <mark>ya está demostrado</mark>.</span></h1>
+        <p class="sub">Una biblioteca de tácticas de marketing sacadas de <b>estudios científicos publicados</b>. Cada una con el paper del que sale, por qué funciona y cómo aplicarla en tu negocio. Empezamos por las <b>fotos de producto</b>.</p>
+        <div class="joinbox" id="apuntarme" data-origen="landing-portada"></div>
+        <div class="cd-wrap"><span class="label" id="cdLabel1">La biblioteca abre en</span><div class="cd" data-cd></div></div>
+        <div class="facts"><span><b id="fT">8</b>tácticas listas</span><span><b id="fS">24</b>estudios citados</span><span><b>1</b>fuente en cada dato</span></div>
       </div>
-
-      <form class="join" id="waitlist" novalidate>
-        <span class="corner" aria-hidden="true">1</span>
-        <h2>Entra en la lista de la biblioteca</h2>
-        <p>Te avisamos cuando abra, con acceso anticipado y precio de fundador.</p>
-        <div class="field">
-          <label for="email">Tu email</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required>
-        </div>
-        <div class="field">
-          <label for="interes">¿Qué quieres mejorar primero?</label>
-          <select id="interes" name="interes">
-            <option>Precios</option><option>Copywriting</option><option>Ventas</option>
-            <option>Diseño web</option><option>Promociones</option><option>Email</option>
-          </select>
-        </div>
-        <button class="btn" type="submit">Entrar en la lista →</button>
-        <p class="fine">Sin spam. Te puedes dar de baja con un clic.</p>
-        <p class="msg" id="msg" role="status" hidden></p>
-      </form>
+      <div class="fan" aria-hidden="true" id="fan"></div>
     </div>
   </section>
 
-  <section class="block" id="ficha">
+  <div class="ticker" aria-label="Algunos hallazgos de la biblioteca"><div class="row" id="tick"></div></div>
+
+  <section class="block" id="tacticas">
     <div class="wrap">
-      <div class="head">
-        <span class="label">Así es cada táctica</span>
-        <h2>Un estudio, una táctica, una fuente.</h2>
-        <p>Todas las fichas de la biblioteca siguen la misma estructura. Esta es una de muestra.</p>
+      <div class="head rv">
+        <span class="label">Las primeras tácticas</span>
+        <h2>Toca una tarjeta<span class="dot">.</span><br>Te contamos qué demuestra el estudio.</h2>
+        <p>Estas son las tácticas con las que abrimos. Cada una responde a una pregunta que te haces cuando preparas tus fotos. Dentro de la biblioteca tienes el resto: por qué funciona, cuándo no y cómo aplicarla.</p>
       </div>
-      <div class="sheet-row">
-        <article class="sheet" aria-label="Ficha de muestra">
-          <div class="meta"><span class="tag">PRECIOS</span><span>Nº 001</span><span class="ev">Evidencia alta</span></div>
-          <h3>Termina tus precios en ,99</h3>
-          <dl>
-            <div><dt>Lo que demuestra el estudio</dt><dd>Un precio de 2,99 € se percibe bastante más barato que uno de 3,00 €, mucho más de lo que indica un céntimo de diferencia.</dd></div>
-            <div><dt>Por qué funciona</dt><dd>Leemos de izquierda a derecha y el primer dígito pesa de más. Es el efecto del dígito izquierdo.</dd></div>
-            <div><dt>Cómo aplicarlo</dt><dd><ol><li>Usa terminaciones en ,99 o ,95 cuando quieras transmitir precio bajo.</li><li>En productos premium, el precio redondo transmite calidad.</li><li>Prueba las dos versiones antes de decidir.</li></ol></dd></div>
-          </dl>
-          <p class="src">Thomas, M. &amp; Morwitz, V. (2005). Penny wise and pound foolish: the left-digit effect in price cognition. <i>Journal of Consumer Research</i>, 32(1), 54–64.</p>
-        </article>
-        <ol class="anatomy">
-          <li><span class="n">01</span><div><b>La táctica</b><span>Escrita como una acción que puedes hacer hoy.</span></div></li>
-          <li><span class="n">02</span><div><b>Lo que demuestra el estudio</b><span>El hallazgo en dos frases, sin tecnicismos.</span></div></li>
-          <li><span class="n">03</span><div><b>Por qué funciona</b><span>El sesgo o mecanismo psicológico que lo explica.</span></div></li>
-          <li><span class="n">04</span><div><b>Cómo aplicarlo<span class="pro-pill">PRO</span></b><span>Pasos concretos y ejemplos en webs, anuncios y packaging.</span></div></li>
-          <li><span class="n">05</span><div><b>Nivel de evidencia</b><span>Si el efecto se ha replicado o si está en duda.</span></div></li>
-          <li><span class="n">06</span><div><b>La fuente</b><span>Autores, año, revista y enlace al estudio original.</span></div></li>
-          <li><span class="n">07</span><div><b>Pregúntale a CiCi<span class="pro-pill">PRO</span></b><span>CiCi (Ciencia Citada) responde a tu caso con los estudios de la biblioteca.</span></div></li>
-        </ol>
-      </div>
+      <div class="deck" id="deck"></div>
+      <p class="deck-note rv">Y cada semana, una táctica nueva. <b>Solo para la lista.</b></p>
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" id="dentro" style="padding-top:40px">
     <div class="wrap">
-      <div class="head">
-        <span class="label">Lo que vas a encontrar</span>
-        <h2>Una biblioteca para decidir con datos.</h2>
+      <div class="head rv">
+        <span class="label">Por dentro</span>
+        <h2>Así es la biblioteca<span class="dot">.</span></h2>
+        <p>Busca lo que vendes, abre una táctica y tienes el estudio, la explicación y los ejemplos en una sola ficha.</p>
       </div>
-      <div class="pillars">
-        <div class="pillar">
-          <span class="label">Por categorías</span>
-          <h3>Busca por lo que quieres mejorar</h3>
-          <p>Filtra las tácticas por área y encuentra en segundos qué dice la ciencia sobre tu problema.</p>
-          <div class="cats" aria-label="Categorías"><span>PRECIOS</span><span>COPYWRITING</span><span>VENTAS</span><span>DISEÑO WEB</span><span>PROMOCIONES</span><span>EMAIL</span><span>PACKAGING</span><span>NEGOCIACIÓN</span></div>
-        </div>
-        <div class="pillar">
-          <span class="label">Con rigor</span>
-          <h3>Sabrás cuánto fiarte de cada estudio</h3>
-          <p>Algunos estudios famosos no se han podido replicar. Cada táctica indica su nivel de evidencia para que no te la juegues.</p>
-          <div class="ev-row"><span class="ev hi">Evidencia alta</span><span class="ev md">Media</span><span class="ev lo">Discutida</span></div>
-        </div>
-        <div class="pillar">
-          <span class="label">PRO</span>
-          <h3>Pregúntale a CiCi</h3>
-          <p>CiCi, de Ciencia Citada, es nuestra asistente. Cuéntale tu caso y te responde con los estudios de la biblioteca, citando cada uno.</p>
-          <div class="chat" aria-label="Ejemplo de conversación">
-            <span class="q">Vendo cosmética online. ¿Cómo pongo los precios?</span>
-            <span class="a">Prueba terminaciones en ,99<sup>[1]</sup> y añade un formato intermedio que haga más atractivo el grande<sup>[2]</sup>.</span>
+      <div class="tour">
+        <div class="screens rv">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i><span>La Biblioteca UED · unestudiodemuestra</span></div>
+            <video id="vDesk" muted loop playsinline preload="none" poster="media/recorrido-escritorio.jpg" data-src="media/recorrido-escritorio.mp4" aria-label="Recorrido por la biblioteca en ordenador: búsqueda, ficha de una táctica y categorías"></video>
           </div>
+          <div class="phone"><video id="vMob" muted loop playsinline preload="none" poster="media/recorrido-movil.jpg" data-src="media/recorrido-movil.mp4" aria-label="Recorrido por la biblioteca en el móvil"></video></div>
+        </div>
+        <div class="rv">
+          <ol class="points">
+            <li><span class="n">1</span><div><b>Busca por lo que vendes</b><span>Escribe «velas», «ropa» o «packaging» y te salen las tácticas que aplican.</span></div></li>
+            <li><span class="n">2</span><div><b>Cada táctica, con su estudio</b><span>Autores, año, revista y enlace al paper original. Nada de «dicen los expertos».</span></div></li>
+            <li><span class="n">3</span><div><b>Por qué funciona y cuándo no</b><span>El mecanismo, cuándo funciona mejor y con qué tener cuidado.</span></div></li>
+            <li><span class="n">4</span><div><b>Nivel de evidencia</b><span>Te decimos cuánto fiarte: si está muy probado o si es un solo estudio.</span></div></li>
+          </ol>
+          <div class="vctl"><button type="button" id="vToggle">❚❚ Pausar vídeo</button></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" id="metodo" style="padding-top:40px">
     <div class="wrap">
-      <div class="head">
-        <span class="label">Preguntas</span>
-        <h2>Antes de apuntarte</h2>
+      <div class="head rv">
+        <span class="label">Cómo la hacemos</span>
+        <h2>Si el estudio no lo dice<span class="dot">,</span> no lo ponemos<span class="dot">.</span></h2>
+        <p>En internet hay muchos «trucos de neuromarketing» sin fuente. Aquí cada frase se comprueba contra el paper.</p>
       </div>
-      <div class="faq">
-        <details><summary>¿Cuándo abre la biblioteca?</summary><p>Estamos publicando las primeras tácticas en Instagram. Quien esté en la lista recibirá el aviso antes que nadie, con acceso anticipado.</p></details>
-        <details><summary>¿Será gratis?</summary><p>Sí: todas las tácticas, con su explicación, sus ejemplos y sus fuentes, son gratis. PRO añade el «Cómo aplicarlo» paso a paso de cada táctica y a CiCi, la asistente que responde a tu caso con estudios.</p></details>
-        <details><summary>¿De dónde salen los estudios?</summary><p>De revistas científicas de psicología, economía conductual y marketing. Cada táctica cita a sus autores, el año y la revista, con enlace al original.</p></details>
-        <details><summary>¿Para quién es?</summary><p>Para quien vende algo y quiere tomar mejores decisiones: tiendas online, marcas, emprendedores, marketers y equipos de ventas.</p></details>
+      <div class="steps3">
+        <div class="st rv"><span class="big">01</span><span class="label">Leemos</span><h3>El estudio original</h3><p>Partimos de estudios publicados en revistas científicas de marketing y psicología del consumidor, como Journal of Marketing o Journal of Consumer Research.</p></div>
+        <div class="st rv"><span class="big">02</span><span class="label">Verificamos</span><h3>Cada afirmación, una a una</h3><p>Lo que el estudio no demuestra, se quita. Lo que es una idea nuestra, se dice.</p><p class="eg"><s>«Funciona siempre»</s> → <em>«Funcionó en ropa; en otras categorías está por confirmar»</em></p></div>
+        <div class="st rv"><span class="big">03</span><span class="label">Lo bajamos a tierra</span><h3>Pasos para tu negocio</h3><p>Convertimos el hallazgo en acciones para tus fotos, tus vídeos y tus textos, con ejemplos.</p><div class="evrow"><span class="ev hi">Evidencia alta</span><span class="ev md">Media</span><span class="ev lo">Discutida</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="temas" style="padding-top:40px">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="label">Lo que irá llegando</span>
+        <h2>Empezamos por las fotos<span class="dot">.</span><br>Seguimos por todo lo demás<span class="dot">.</span></h2>
+      </div>
+      <div class="cats rv" id="cats"></div>
+    </div>
+  </section>
+
+  <section class="block" id="preguntas" style="padding-top:40px">
+    <div class="wrap">
+      <div class="head rv"><span class="label">Preguntas</span><h2>Antes de apuntarte<span class="dot">.</span></h2></div>
+      <div class="faq rv">
+        <details><summary>¿Cuánto cuesta?</summary><p>Entrar es gratis. Todas las tácticas, con su estudio, su explicación y sus ejemplos, son gratis para quien esté en la lista. Más adelante habrá un plan opcional con extras para quien quiera ir más a fondo.</p></details>
+        <details><summary>¿Por qué solo para la lista?</summary><p>Queremos abrir con poca gente, escucharla y mejorar la biblioteca con ella. Si dejas tu email, el <span data-date-long>2 de noviembre</span> te escribimos con tu acceso.</p></details>
+        <details><summary>¿Qué haréis con mi email?</summary><p>Usarlo para darte acceso a la biblioteca y avisarte cuando haya tácticas nuevas. Nada más: no lo cedemos a nadie y te puedes dar de baja cuando quieras. Lo tienes todo en la <a href="privacidad">política de privacidad</a>.</p></details>
+        <details><summary>¿De dónde salen los estudios?</summary><p>De revistas científicas revisadas por otros investigadores: marketing, psicología del consumidor y economía del comportamiento. Cada táctica cita a sus autores, el año y la revista, con enlace al original.</p></details>
+        <details><summary>¿Para quién es?</summary><p>Para quien vende online y decide cómo se ven sus productos: tiendas, marcas, sellers de Amazon, fotógrafos, diseñadores y agencias.</p></details>
+        <details><summary>¿Y mientras tanto?</summary><p>Publicamos las tácticas en vídeo en Instagram: <a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">@unestudiodemuestra</a>.</p></details>
       </div>
     </div>
   </section>
 
   <section class="final">
     <div class="wrap">
-      <span class="label">Lista de espera</span>
-      <h2>La próxima táctica puede cambiar tus ventas.</h2>
-      <a class="btn" href="#waitlist">Entrar en la lista →</a>
+      <span class="label" id="finalLabel">El <span data-date-long>2 de noviembre</span> abrimos</span>
+      <h2 id="finalH">¿Estás en la lista?</h2>
+      <p class="sub" id="finalSub">Solo entra quien haya dejado su email.</p>
+      <div class="cd" data-cd></div>
+      <div class="joinbox" data-origen="landing-cierre"></div>
     </div>
   </section>
 </main>
@@ -269,38 +388,254 @@ footer a:hover{color:var(--paper)}
 <footer>
   <div class="wrap">
     <span>Un Estudio Demuestra · 2026</span>
-    <nav aria-label="Redes sociales">
+    <nav aria-label="Enlaces">
       <a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">Instagram</a>
-      <span>@unestudiodemuestra</span>
+      <a href="privacidad">Privacidad</a>
     </nav>
   </div>
 </footer>
 
+<script src="config.js"></script>
 <script>
-/* Conecta aquí tu herramienta de emails (Tally, Brevo, Mailchimp, Formspree…):
-   pega la URL que te den para recibir envíos por POST. Mientras esté vacía, el formulario
-   funciona en modo demostración y no guarda nada. */
-const WAITLIST_ENDPOINT = '';
+const CFG = window.UED_CONFIG || {};
+const LAUNCH = new Date(CFG.lanzamiento || '2026-11-02T19:00:00+01:00');
+const OPEN = () => Date.now() >= LAUNCH.getTime();
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const LOGO = `{{SYMBOL_SMALL}}`;
+const STORE = 'ued-lista';
+const getMe = () => { try { return localStorage.getItem(STORE) || ''; } catch(e){ return ''; } };
+const setMe = (v) => { try { localStorage.setItem(STORE, v); } catch(e){} };
+const fmtShort = LAUNCH.toLocaleDateString('es-ES', { day:'numeric', month:'short', timeZone:'Europe/Madrid' }).replace('.', '').toUpperCase();
+const fmtLong = LAUNCH.toLocaleDateString('es-ES', { day:'numeric', month:'long', timeZone:'Europe/Madrid' });
+$('opensDate').textContent = fmtShort;
+document.querySelectorAll('[data-date-long]').forEach(e => e.textContent = fmtLong);
 
-(function(){
-  const form = document.getElementById('waitlist');
-  const msg = document.getElementById('msg');
-  const email = document.getElementById('email');
-  function show(text, kind){ msg.textContent = text; msg.className = 'msg ' + kind; msg.hidden = false; }
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const value = email.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) { show('Escribe un email válido, por ejemplo nombre@dominio.com.', 'err'); email.focus(); return; }
-    if (!WAITLIST_ENDPOINT) { show('Modo demostración: el formulario todavía no está conectado a una herramienta de emails, así que no se ha guardado.', 'err'); return; }
+/* ---------- ilustraciones de la biblioteca ---------- */
+/*{{ILL}}*/
+
+/* ---------- datos de las tácticas (salen de la biblioteca, verificados) ---------- */
+const CARDS = /*{{CARDS}}*/[];
+const QUESTIONS = {
+  t01:'¿Debe salir una persona en la foto de tu producto?',
+  t02:'¿Qué foto va justo después de la principal?',
+  t03:'¿Desde qué ángulo parece más lujoso un producto?',
+  t04:'¿Cómo haces que quieran tocar tu producto a través de una pantalla?',
+  t05:'¿Qué pasa si enseñas tu producto por dentro?',
+  t06:'¿En qué lugar del envase «pesa» más la imagen?',
+  t07:'¿Qué colores hacen que un producto parezca más eficaz?',
+  t08:'¿Se puede oler una foto?',
+};
+const EV = { hi:'Evidencia alta', md:'Evidencia media', lo:'Discutida' };
+const pad = (n) => String(n).padStart(3, '0');
+CARDS.sort((a, b) => a.n - b.n);
+if (CARDS.length) $('fT').textContent = CARDS.length;
+if (window.UED_N_STUDIES) $('fS').textContent = window.UED_N_STUDIES;
+
+/* abanico de la portada */
+const coverHTML = (t) => `<div class="cover"><div class="ct"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${pad(t.n)}</span></div>
+  <div><p class="kick">Un estudio demuestra que…</p><p class="hook">${t.cover}</p></div>
+  <div class="foot">${LOGO}<span class="ev ${t.ev}">${EV[t.ev]}</span></div></div>
+  <p class="ttl">${esc(t.t)}</p><p class="by">${esc(t.by[0])} · ${esc(t.by[1])}</p>`;
+const pick = (id) => CARDS.find(c => c.id === id);
+const FAN = ['t03', 't05', 't08'].map(pick).filter(Boolean);
+$('fan').innerHTML = FAN.map(t => `<div class="fc">${coverHTML(t)}</div>`).join('') +
+  (FAN[2] ? `<div class="fcite"><i>1</i>${esc(FAN[2].by[0])} · ${esc(FAN[2].by[1])} · ${esc(FAN[2].by[2])}</div>` : '');
+
+/* cinta: «un estudio demuestra que…» con hallazgos reales */
+const TICK = [
+  'un producto visto desde abajo parece superior y más lujoso.',
+  'enseñar el producto despiezado hace que valga más para el cliente.',
+  'los colores muy saturados hacen que un producto parezca más fuerte y eficaz.',
+  'de 957 limpiadores con aroma, solo el 27 % enseñaba a qué huele. Y esos tenían mejor nota.',
+  'tocar algo nos hace sentirlo nuestro.',
+  'la imagen colocada abajo a la derecha hace que el producto parezca más pesado.',
+  'una persona en la foto puede hacer que el producto parezca de otro.',
+  'la foto que te ayuda a imaginarte usándolo es la que empuja la compra.',
+];
+const tickRow = TICK.map(s => `<span><i>Un estudio demuestra que</i> ${esc(s)}</span>`).join('');
+$('tick').innerHTML = tickRow + tickRow.replace(/<span>/g, '<span aria-hidden="true">');
+
+/* tarjetas que se giran */
+const FLIPICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 2v5h-5M6 22v-5h5"/></svg>';
+$('deck').innerHTML = CARDS.map(t => {
+  const art = (typeof ILL !== 'undefined' && ILL[t.id]) ? ILL[t.id]() : '';
+  return `<button class="flip rv" type="button" aria-pressed="false" data-id="${t.id}">
+  <span class="in">
+    <span class="face front">
+      <span class="art">${art}<span class="ct"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${pad(t.n)}</span></span></span>
+      <span class="meta">${esc(t.sesgo.toUpperCase())}</span>
+      <span class="qq">${esc(QUESTIONS[t.id] || t.t)}</span>
+      <span class="go">Ver qué demuestra<i>${FLIPICON}</i></span>
+    </span>
+    <span class="face back">
+      <span class="k">Un estudio demuestra que…</span>
+      <span class="f">${esc(t.quote)}</span>
+      <span class="src"><b>${esc(t.by[0])}</b> · ${esc(t.by[1])} · <i>${esc(t.by[2])}</i></span>
+      <span class="ev ${t.ev}">${EV[t.ev]}</span>
+      <span class="inside">La táctica completa, con cómo aplicarla, está en la biblioteca.<span class="btn" data-go>Quiero entrar</span></span>
+    </span>
+  </span></button>`;
+}).join('');
+$('deck').addEventListener('click', (e) => {
+  const card = e.target.closest('.flip'); if (!card) return;
+  if (e.target.closest('[data-go]') && card.getAttribute('aria-pressed') === 'true') {
+    e.preventDefault(); goJoin(); return;
+  }
+  card.setAttribute('aria-pressed', card.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+});
+function goJoin(){
+  const box = $('apuntarme'); box.scrollIntoView({ behavior:'smooth', block:'center' });
+  setTimeout(() => { const i = box.querySelector('input[type=email]'); if (i) i.focus({ preventScroll:true }); }, 600);
+}
+$('topCta').addEventListener('click', (e) => { if (OPEN() && getMe()) return; e.preventDefault(); goJoin(); });
+
+/* categorías */
+const CATS = [
+  ['ecommerce','Imágenes de producto y eCommerce','<rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-5-5-8 8"/>'],
+  ['copywriting','Copywriting','<path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M13 7l3 3"/><path d="M14 20h6"/>'],
+  ['precios','Precios','<path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.5"/>'],
+  ['publicidad','Publicidad','<path d="M3 10v4h3l6 4V6L6 10H3z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>'],
+  ['branding','Branding y packaging','<path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/>'],
+  ['ux','Experiencia de usuario','<path d="M5 3l14 8-6 2-2 6L5 3z"/><path d="M13 13l6 6"/>'],
+  ['ventas','Ventas y negociación','<path d="M3 12l4-4 4 3 3-2 7 5-4 4-3-2-3 2-4-3-4 1z"/><path d="M7 8l4 3"/>'],
+  ['retail','Retail','<path d="M3 9l2-5h14l2 5"/><path d="M4 9v11h16V9"/><path d="M3 9h18M9 20v-6h6v6"/>'],
+  ['sector','Lujo y ONG','<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5M9 10h.01M15 10h.01"/>'],
+];
+$('cats').innerHTML = CATS.map(([k, label, ic], i) => `<div class="cat ${i === 0 ? 'on' : ''}"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic}</svg></span><div><b>${label}</b><small>${i === 0 ? CARDS.length + ' tácticas listas' : 'Próximamente'}</small></div></div>`).join('');
+
+/* cuenta atrás */
+function tickCd(){
+  const ms = Math.max(0, LAUNCH.getTime() - Date.now());
+  const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, s = Math.floor(ms / 1e3) % 60;
+  const two = (n) => String(n).padStart(2, '0');
+  const html = `<div><b>${d}</b><span>días</span></div><div><b>${two(h)}</b><span>horas</span></div><div><b>${two(m)}</b><span>min</span></div><div><b>${two(s)}</b><span>seg</span></div>`;
+  document.querySelectorAll('[data-cd]').forEach(e => { e.innerHTML = html; e.setAttribute('aria-label', `Faltan ${d} días, ${h} horas y ${m} minutos`); });
+  if (!ms) { clearInterval(cdTimer); applyOpenState(); }
+}
+const cdTimer = setInterval(tickCd, 1000);
+
+/* cuando ya ha abierto */
+function applyOpenState(){
+  if (!OPEN()) return;
+  document.querySelectorAll('[data-cd]').forEach(e => e.hidden = true);
+  $('cdLabel1').hidden = true;
+  $('opensPill').innerHTML = '<b>YA ESTÁ ABIERTA</b>';
+  $('finalLabel').textContent = 'Ya está abierta';
+  $('finalH').textContent = 'Deja tu email y entra.';
+  $('finalSub').textContent = 'La biblioteca es solo para quien está en la lista.';
+  if (getMe()) { $('topCta').textContent = 'Entrar a la biblioteca'; $('topCta').href = 'biblioteca'; }
+  renderJoins();
+}
+
+/* ---------- formulario de la lista ---------- */
+const API = CFG.url && CFG.anonKey ? (name, body) => fetch(`${CFG.url}/rest/v1/rpc/${name}`, {
+  method:'POST', headers:{ 'Content-Type':'application/json', apikey: CFG.anonKey, Authorization:`Bearer ${CFG.anonKey}` }, body: JSON.stringify(body)
+}).then(async r => { const j = await r.json().catch(() => null); if (!r.ok) { const e = new Error((j && j.message) || String(r.status)); throw e; } return j; }) : null;
+const INTERESTS = ['Fotos de producto', 'Fichas y textos', 'Anuncios', 'Precios', 'Packaging', 'Vídeo y redes'];
+const shareUrl = location.origin && location.origin.startsWith('http') ? location.origin + location.pathname : 'https://unestudiodemuestra.vercel.app/';
+const shareText = 'Mira esto: una biblioteca de tácticas de marketing demostradas por estudios. Abre el ' + fmtLong + ', solo para la lista →';
+
+function formHTML(){
+  const open = OPEN();
+  return `<form class="jf" novalidate>
+    <label class="hp">No rellenar <input name="web" tabindex="-1" autocomplete="off"></label>
+    <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="tu@email.com" aria-label="Tu email">
+    <button class="btn" type="submit">${open ? 'Entrar gratis →' : 'Quiero acceso →'}</button>
+  </form>
+  <p class="jnote"><span class="ok">Gratis</span><span class="ok">${open ? 'Acceso al momento' : 'Abre el ' + esc(fmtLong)}</span><span class="ok">Sin spam</span></p>
+  <p class="jlegal">Al apuntarte aceptas la <a href="privacidad">política de privacidad</a>. Te das de baja cuando quieras.</p>
+  <p class="jmsg" role="alert" hidden></p>
+  <p class="proof" data-proof hidden></p>`;
+}
+function doneHTML(email, total){
+  const open = OPEN();
+  return `<div class="done" role="status">
+    <h3><i>✓</i>${open ? 'Ya tienes acceso.' : 'Estás dentro.'}</h3>
+    <p>${open ? 'Entra cuando quieras. Te avisaremos en ' : `El <b>${esc(fmtLong)}</b> te escribimos a `}<b>${esc(email)}</b>${open ? ' cuando haya tácticas nuevas.' : ' con tu acceso.'}${total ? ` Ya somos <b>${total}</b> en la lista.` : ''}</p>
+    ${open ? '<a class="btn" href="biblioteca">Entrar a la biblioteca →</a>' : ''}
+    <span class="q">¿Qué quieres mejorar primero?</span>
+    <div class="chips">${INTERESTS.map(x => `<button type="button" aria-pressed="false">${x}</button>`).join('')}</div>
+    <span class="q">Pásaselo a quien venda online</span>
+    <div class="share"><a href="https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}" target="_blank" rel="noopener">WhatsApp</a><button type="button" data-copy>Copiar enlace</button></div>
+  </div>`;
+}
+function renderJoins(){
+  const me = getMe();
+  document.querySelectorAll('.joinbox').forEach(box => {
+    if (me) { box.innerHTML = doneHTML(me, null).replace('Estás dentro.', 'Ya estás en la lista.'); bindDone(box, me); }
+    else { box.innerHTML = formHTML(); bindForm(box); }
+  });
+  loadProof();
+}
+function bindForm(box){
+  const f = box.querySelector('form'), msg = box.querySelector('.jmsg'), input = f.email, btn = f.querySelector('button');
+  const say = (t) => { msg.textContent = t; msg.hidden = !t; };
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault(); say('');
+    const v = input.value.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { say('Escribe un email válido, por ejemplo nombre@dominio.com.'); input.focus(); return; }
+    if (f.web.value) { setMe(v); renderJoins(); return; }
+    if (!API) { say('Vista previa: aquí el formulario no guarda nada. En la web publicada sí.'); return; }
+    btn.disabled = true; btn.textContent = 'Un segundo…';
     try {
-      const res = await fetch(WAITLIST_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email: value, interes: document.getElementById('interes').value }) });
-      if (!res.ok) throw new Error(res.status);
-      form.reset();
-      show('Estás dentro. Te escribiremos cuando abra la biblioteca.', 'ok');
+      const total = await API('unirse_lista', { p_email: v, p_origen: box.dataset.origen + (location.search ? ' ' + location.search.slice(0, 80) : '') });
+      setMe(v);
+      document.querySelectorAll('.joinbox').forEach(b => { b.innerHTML = doneHTML(v, typeof total === 'number' ? total : null); bindDone(b, v); });
+      if (OPEN()) { $('topCta').textContent = 'Entrar a la biblioteca'; $('topCta').href = 'biblioteca'; }
     } catch (err) {
-      show('No se ha podido enviar. Revisa tu conexión y vuelve a intentarlo.', 'err');
+      say(/email_invalido/.test(err.message) ? 'Ese email no parece válido. Revísalo.' : 'No se ha podido guardar. Revisa tu conexión y vuelve a intentarlo.');
+      btn.disabled = false; btn.textContent = OPEN() ? 'Entrar gratis →' : 'Quiero acceso →';
     }
   });
-})();
+}
+function bindDone(box, email){
+  box.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => {
+    box.querySelectorAll('.chips button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+    if (API) API('lista_interes', { p_email: email, p_interes: b.textContent }).catch(() => {});
+  }));
+  const cp = box.querySelector('[data-copy]');
+  if (cp) cp.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(shareUrl); cp.textContent = '¡Copiado!'; } catch (e) { cp.textContent = shareUrl; }
+  });
+}
+/* prueba social: solo cuando ya es un número que dice algo */
+let proofN = null;
+async function loadProof(){
+  if (!API) return;
+  try { if (proofN === null) proofN = await API('lista_espera_total', {}); } catch (e) { return; }
+  if (typeof proofN === 'number' && proofN >= 50)
+    document.querySelectorAll('[data-proof]').forEach(p => { p.innerHTML = `Ya somos <b>${proofN}</b> en la lista.`; p.hidden = false; });
+}
+
+/* ---------- vídeos: se cargan y reproducen solo cuando se ven ---------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let userPaused = reduce;
+const vids = [$('vDesk'), $('vMob')];
+const mp4ok = !!document.createElement('video').canPlayType('video/mp4; codecs="avc1.42E01E"');
+const srcOf = (v) => mp4ok ? v.dataset.src : v.dataset.src.replace(/\.mp4$/, '.webm');
+const vio = new IntersectionObserver((es) => es.forEach(en => {
+  const v = en.target;
+  if (en.isIntersecting) {
+    if (!v.src && v.offsetParent) { v.src = srcOf(v); }
+    if (!userPaused && v.offsetParent) v.play().catch(() => {});
+  } else if (v.src) v.pause();
+}), { threshold:.35 });
+vids.forEach(v => vio.observe(v));
+const vt = $('vToggle');
+const setVt = () => vt.textContent = userPaused ? '▶ Reproducir vídeo' : '❚❚ Pausar vídeo';
+setVt();
+vt.addEventListener('click', () => {
+  userPaused = !userPaused; setVt();
+  vids.forEach(v => { if (!v.offsetParent) return; if (!v.src) v.src = srcOf(v); userPaused ? v.pause() : v.play().catch(() => {}); });
+});
+
+/* entrada suave de bloques */
+const rio = new IntersectionObserver((es) => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); } }), { threshold:.12 });
+document.querySelectorAll('.rv').forEach(e => rio.observe(e));
+
+tickCd();
+renderJoins();
+applyOpenState();
 </script>

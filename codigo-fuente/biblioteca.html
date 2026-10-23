@@ -110,7 +110,7 @@ mark,.m{background:var(--mark);color:var(--ink);padding:0 .14em;white-space:nowr
 .cover .art,.cover .art svg,.cover .art img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .cover .art img{object-fit:contain;background:var(--ink)}
 .cover .ct.ov{position:absolute;left:14px;right:14px;top:14px;z-index:1}
-.cover .ct.ov .num{font-size:26px;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cover .ct.ov .num{font-size:26px;background:#1A2130;padding:5px 9px 4px;border-radius:9px;box-shadow:0 0 0 1px #2C3546}
 .fig{margin:0;border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--ink)}
 .fig svg,.fig img{display:block;width:100%;height:auto}
 .fig figcaption{padding:12px 16px;font-size:14px;color:var(--soft);border-top:1px solid var(--rule)}
@@ -178,6 +178,32 @@ mark,.m{background:var(--mark);color:var(--ink);padding:0 .14em;white-space:nowr
 .pick h3{font-size:20px;font-weight:800;line-height:1.25}
 .pick p{color:var(--soft);font-size:15px}
 .pick .go{font-family:var(--mono);font-size:12px;color:var(--soft)}
+
+/* acceso solo para la lista */
+.lgate{position:fixed;inset:0;z-index:45;display:grid;place-items:center;padding:24px max(16px, env(safe-area-inset-left, 0px));background:radial-gradient(900px 600px at 50% 20%, rgba(244,227,90,.07), transparent 60%),rgba(10,13,19,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow-y:auto}
+body.gated{overflow:hidden}
+body.gated main,body.gated footer{filter:blur(6px);pointer-events:none;user-select:none}
+.lgate .box{width:min(560px,100%);background:var(--ink-2);border:1px solid var(--rule);border-radius:26px;padding:clamp(22px,4vw,34px);display:grid;gap:16px;box-shadow:0 40px 120px rgba(0,0,0,.6);position:relative}
+.lgate .box::after{content:"1";position:absolute;top:-14px;right:-12px;width:42px;height:42px;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:17px}
+.lgate .k{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--mark);text-transform:uppercase}
+.lgate h2{font-weight:800;font-size:clamp(28px,4.6vw,40px);line-height:1.08;letter-spacing:-.015em}
+.lgate p{color:var(--soft)}
+.lgate p b{color:var(--paper)}
+.lgate .gcd{display:flex;gap:8px}
+.lgate .gcd div{flex:1;background:var(--ink);border:1px solid var(--rule);border-radius:12px;padding:8px 6px 6px;text-align:center}
+.lgate .gcd b{display:block;font-family:var(--mono);font-weight:600;font-size:22px;font-variant-numeric:tabular-nums}
+.lgate .gcd span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--soft);text-transform:uppercase}
+.lgate form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;background:var(--ink);border:1px solid var(--rule);border-radius:16px;padding:7px}
+.lgate form:focus-within{border-color:rgba(244,227,90,.6)}
+.lgate input[type=email]{font:inherit;font-size:16px;color:var(--paper);background:transparent;border:0;outline:0;padding:11px 12px;min-width:0}
+@media (max-width:480px){.lgate form{grid-template-columns:minmax(0,1fr)}}
+.lgate .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.lgate .err{color:var(--ev-lo);font-size:14.5px}
+.lgate .ok{border:1px solid rgba(244,227,90,.5);border-radius:14px;padding:14px 16px;color:var(--paper)}
+.lgate .fine{font-size:12.5px;color:var(--dim)}
+.lgate .fine a,.lgate .links a,.lgate .links button{color:var(--soft)}
+.lgate .links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px}
+.lgate .links button{background:none;border:0;padding:0;text-decoration:underline;font-size:13.5px}
 
 /* pro + lista */
 .plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:1000px;margin:0 auto}
@@ -392,6 +418,7 @@ footer a{text-decoration:none}
 @media (prefers-reduced-motion: reduce){.card,.knob,.fill,.klabel{transition:none}}
 </style>
 
+<div class="lgate" id="Lgate" role="dialog" aria-modal="true" aria-labelledby="gTitle" hidden><div class="box" id="gBox"></div></div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#biblioteca" aria-label="Un Estudio Demuestra">{{SYMBOL}}<span>un estudio demuestra</span></a>
@@ -434,7 +461,6 @@ footer a{text-decoration:none}
       <div class="track" id="track" role="slider" tabindex="0" aria-label="Posición en la biblioteca" aria-valuemin="1"></div>
       <button class="arrow" type="button" id="next" aria-label="Táctica siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </div>
-    <p class="demo">Contenido de prueba · tácticas basadas en estudios reales, con textos e ilustraciones propios</p>
   </section>
 
   <section class="sec" id="empieza">
@@ -455,14 +481,14 @@ footer a{text-decoration:none}
         <div class="plan">
           <span class="k">ABIERTA</span><h3>Gratis</h3>
           <ul><li>Todas las tácticas: por qué funcionan, ejemplos y fuentes</li><li>Buscador y filtros</li><li>Nueva táctica cada semana en redes</li></ul>
-          <a class="btn ghost" href="#lista">Apuntarme gratis</a>
+          <a class="btn ghost" href="#biblioteca">Ya lo tienes</a>
         </div>
         <div class="plan feat">
           <span class="k">PRO</span><h3>Cómo aplicarlo + CiCi</h3>
-          <p class="price">[PRECIO]<small>/ mes</small></p>
+          <p class="price">Muy pronto</p>
           <ul><li>Cómo aplicarlo, paso a paso, en cada táctica</li><li>Cada paso con su imagen y el estudio del que sale</li><li>CiCi: cuéntale tu caso y te responde con estudios citados</li><li>Las tácticas nuevas, en cuanto se publican</li></ul>
-          <a class="btn" href="#lista">Quiero el precio de fundador</a>
-          <p class="note">La lista de espera tendrá acceso anticipado y precio de fundador.</p>
+          <a class="btn" href="#lista">Avísame cuando salga</a>
+          <p class="note">Quien se apunte tendrá precio de fundador.</p>
         </div>
       </div>
     </div>
@@ -470,12 +496,12 @@ footer a{text-decoration:none}
 
   <section class="sec" id="lista">
     <div class="wrap">
-      <div class="sec-head"><h2>Lista de espera<span class="dot">.</span></h2><p>Te avisamos cuando abra la biblioteca.</p></div>
+      <div class="sec-head"><h2>Avísame de PRO<span class="dot">.</span></h2><p>Te escribimos cuando abra PRO, con precio de fundador para los primeros.</p></div>
       <form class="join" id="waitlist" novalidate>
         <div class="row">
           <label for="email">Tu email</label><input id="email" type="email" autocomplete="email" placeholder="tu@email.com" required>
-          <label for="interes">Qué quieres mejorar</label><select id="interes"><option>Precios</option><option>Copywriting</option><option>Ventas</option><option>Diseño web</option><option>Promociones</option><option>Email</option></select>
-          <button class="btn" type="submit">Entrar →</button>
+          <label for="interes">Qué quieres mejorar</label><select id="interes"><option>Fotos de producto</option><option>Fichas y textos</option><option>Anuncios</option><option>Precios</option><option>Packaging</option><option>Vídeo y redes</option></select>
+          <button class="btn" type="submit">Avisarme →</button>
         </div>
         <p class="msg" id="msg" role="status" hidden></p>
       </form>
@@ -520,7 +546,7 @@ footer a{text-decoration:none}
       <a href="#empieza" data-close>Empieza por aquí</a>
       <a href="cici">Pregúntale a CiCi</a>
       <a href="#pro" data-close>Hazte PRO</a>
-      <a href="#lista" data-close>Lista de espera</a>
+      <a href="#lista" data-close>Avísame de PRO</a>
     </nav>
     <div class="soc"><a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">Instagram</a><span>@unestudiodemuestra</span></div>
   </div>
@@ -586,7 +612,6 @@ footer a{text-decoration:none}
 <script src="config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
-const WAITLIST_ENDPOINT = ''; // Pega aquí la URL de tu herramienta de emails. Vacía = modo demostración.
 const LOGO = `{{SYMBOL_SMALL}}`;
 const EV = { hi:'Evidencia alta', md:'Evidencia media', lo:'Discutida' };
 const EVS = { hi:'Alta', md:'Media', lo:'Discutida' };
@@ -962,7 +987,7 @@ function sheet(t){
 
 /* capas */
 let lastFocus = null;
-function openLayer(id){ lastFocus = document.activeElement; document.querySelectorAll('.layer').forEach(l => l.hidden = l.id !== id); $(id).hidden = false; $(id).scrollTop = 0; document.body.style.overflow = 'hidden'; }
+function openLayer(id){ if (document.body.classList.contains('gated') && id !== 'Lacc') return; lastFocus = document.activeElement; document.querySelectorAll('.layer').forEach(l => l.hidden = l.id !== id); $(id).hidden = false; $(id).scrollTop = 0; document.body.style.overflow = 'hidden'; }
 function closeLayers(){ document.querySelectorAll('.layer').forEach(l => l.hidden = true); document.body.style.overflow = ''; try { history.replaceState(null, '', '#biblioteca'); } catch(e){} if (lastFocus && lastFocus.focus) lastFocus.focus(); }
 function openTactic(id){
   const t = T.find(x => x.id === id) || DRAFTS.find(x => x.id === id); if (!t) return;
@@ -1053,15 +1078,14 @@ document.querySelectorAll('.catnav').forEach(n => n.addEventListener('click', ()
 
 $('waitlist').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const msg = $('msg'), v = $('email').value.trim();
+  const msg = $('msg'), v = $('email').value.trim().toLowerCase();
   const show = (t, ok) => { msg.textContent = t; msg.className = 'msg' + (ok ? ' ok' : ''); msg.hidden = false; };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { show('Escribe un email válido, por ejemplo nombre@dominio.com.'); $('email').focus(); return; }
-  if (!WAITLIST_ENDPOINT) { show('Modo demostración: el formulario todavía no está conectado a una herramienta de emails, así que no se ha guardado.'); return; }
-  try {
-    const r = await fetch(WAITLIST_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify({ email: v, interes: $('interes').value }) });
-    if (!r.ok) throw new Error(r.status);
-    e.target.reset(); show('Estás dentro. Te escribiremos cuando abra la biblioteca.', true);
-  } catch(err) { show('No se ha podido enviar. Revisa tu conexión y vuelve a intentarlo.'); }
+  if (!sb) { show('Vista previa: aquí el formulario no guarda nada. En la web publicada sí.'); return; }
+  const { error } = await sb.rpc('unirse_lista', { p_email: v, p_interes: $('interes').value, p_origen: 'biblioteca-pro' });
+  if (error) { show('No se ha podido guardar. Revisa tu conexión y vuelve a intentarlo.'); return; }
+  try { if (!localStorage.getItem('ued-lista')) localStorage.setItem('ued-lista', v); } catch (_) {}
+  e.target.reset(); show('Hecho. Te escribiremos en cuanto abra PRO.', true);
 });
 
 sub(); apply();
@@ -1161,13 +1185,67 @@ async function loadSteps(){
     t.how = r.length ? r.map(x => [x.texto, x.formato, x.refs || [], x.nota || '', urls[x.imagen] ? `<img src="${esc(urls[x.imagen])}" alt="" loading="lazy">` : undefined]) : null;
   });
 }
+/* ---------- acceso: la biblioteca es solo para la lista ----------
+   Antes del lanzamiento está cerrada (salvo PRO/admin). Después entra quien haya dejado su email. */
+const LAUNCH = new Date(CFG.lanzamiento || '2026-11-02T19:00:00+01:00');
+const LKEY = 'ued-lista';
+const listaMe = () => { try { return localStorage.getItem(LKEY) || ''; } catch (e) { return ''; } };
+const isOpen = () => Date.now() >= LAUNCH.getTime();
+const hasSession = () => { try { return Object.keys(localStorage).some(k => /^sb-.*-auth-token$/.test(k)); } catch (e) { return false; } };
+const gDate = LAUNCH.toLocaleDateString('es-ES', { day:'numeric', month:'long', timeZone:'Europe/Madrid' });
+let gTimer = null, gChecked = false, PENDING = null;
+function gateCd(){
+  const ms = Math.max(0, LAUNCH.getTime() - Date.now()), two = (n) => String(n).padStart(2, '0');
+  const el = $('gCd'); if (!el) return;
+  el.innerHTML = `<div><b>${Math.floor(ms / 864e5)}</b><span>días</span></div><div><b>${two(Math.floor(ms / 36e5) % 24)}</b><span>horas</span></div><div><b>${two(Math.floor(ms / 6e4) % 60)}</b><span>min</span></div><div><b>${two(Math.floor(ms / 1e3) % 60)}</b><span>seg</span></div>`;
+  if (!ms) { clearInterval(gTimer); gTimer = null; gateCheck(); }
+}
+function gateRender(){
+  const open = isOpen(), me = listaMe();
+  const links = `<div class="links"><a href="./">Qué es la biblioteca</a><button type="button" data-login>Tengo cuenta PRO: entrar</button></div>`;
+  const form = (btn) => `<form id="gForm" novalidate><label class="hp">No rellenar <input name="web" tabindex="-1" autocomplete="off"></label><input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="tu@email.com" aria-label="Tu email"><button class="btn" type="submit">${btn}</button></form>
+    <p class="err" id="gErr" hidden></p><p class="fine">Gratis. Al apuntarte aceptas la <a href="privacidad">política de privacidad</a>.</p>`;
+  let h;
+  if (!gChecked && hasSession()) h = `<span class="k">Un momento</span><h2 id="gTitle">Comprobando tu acceso…</h2>`;
+  else if (!open && me) h = `<span class="k">Ya estás en la lista</span><h2 id="gTitle">Abrimos el ${esc(gDate)}<span class="dot">.</span></h2>
+    <p>Te escribiremos a <b>${esc(me)}</b> ese día con tu acceso. Mientras tanto, las tácticas salen en vídeo en <a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">Instagram</a>.</p><div class="gcd" id="gCd"></div>${links}`;
+  else if (!open) h = `<span class="k">Solo para la lista</span><h2 id="gTitle">La biblioteca abre el ${esc(gDate)}<span class="dot">.</span></h2>
+    <p>Solo entra quien haya dejado su email. Apúntate y ese día te escribimos con tu acceso.</p><div class="gcd" id="gCd"></div>${form('Quiero acceso →')}${links}`;
+  else h = `<span class="k">Solo para la lista</span><h2 id="gTitle">Deja tu email y entra<span class="dot">.</span></h2>
+    <p>La biblioteca es gratis, pero solo para quien está en la lista. Te avisaremos cuando haya tácticas nuevas.</p>${form('Entrar →')}${links}`;
+  $('gBox').innerHTML = h;
+  if ($('gCd')) { gateCd(); if (!gTimer) gTimer = setInterval(gateCd, 1000); }
+  const f = $('gForm'); if (!f) return;
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const v = f.email.value.trim().toLowerCase(), err = $('gErr'), b = f.querySelector('button');
+    const say = (t) => { err.textContent = t; err.hidden = !t; };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { say('Escribe un email válido, por ejemplo nombre@dominio.com.'); f.email.focus(); return; }
+    if (!f.web.value) {
+      if (!sb) { say('Vista previa: aquí no se guarda nada.'); return; }
+      b.disabled = true;
+      const { error } = await sb.rpc('unirse_lista', { p_email: v, p_origen: 'biblioteca-acceso' + (location.hash ? ' ' + location.hash.slice(0, 20) : '') });
+      b.disabled = false;
+      if (error) { say(/email_invalido/.test(error.message || '') ? 'Ese email no parece válido. Revísalo.' : 'No se ha podido guardar. Revisa tu conexión y vuelve a intentarlo.'); return; }
+    }
+    try { localStorage.setItem(LKEY, v); } catch (_) {}
+    gateCheck();
+  });
+}
+function gateCheck(){
+  const ok = !!window.UED_PREVIEW || PRO_USER || (isOpen() && !!listaMe());
+  $('Lgate').hidden = ok; document.body.classList.toggle('gated', !ok);
+  if (ok) { if (gTimer) { clearInterval(gTimer); gTimer = null; } if (PENDING && LOADED) { const h = PENDING; PENDING = null; openTactic(h); } return; }
+  gateRender();
+}
 let FIRST = true;
 async function refresh(){
   await loadProfile();
   await loadTactics();
   await loadSteps();
   renderAcct(); sub(); apply(); renderPicks(); if (window.ccShow) window.ccShow(PRO_USER);
-  if (FIRST){ FIRST = false; const h = (location.hash || '').slice(1); if (/^t\d{2,3}$/.test(h)) openTactic(h); }
+  gChecked = true; gateCheck();
+  if (FIRST){ FIRST = false; const h = (location.hash || '').slice(1); if (/^t\d{2,3}$/.test(h)) { if (document.body.classList.contains('gated')) PENDING = h; else openTactic(h); } }
   if (OPEN_ID && !$('Lsheet').hidden){ const t = T.find(x => x.id === OPEN_ID); if (t) sheet(t); }
   if (REOPEN && PRO_USER){ const id = REOPEN; REOPEN = null; openTactic(id); return; }
   REOPEN = null;
@@ -1249,6 +1327,7 @@ if (sb){
 })();
 
 renderAcct();
+gateCheck();
 if (!sb) refresh();
 
 </script>

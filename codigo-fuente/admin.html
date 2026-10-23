@@ -155,6 +155,7 @@ input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border
   <div class="tabs" role="tablist" id="tabs" hidden>
     <button type="button" role="tab" data-tab="cal" aria-selected="true">Calendario de tácticas</button>
     <button type="button" role="tab" data-tab="usr" aria-selected="false">Usuarios y accesos</button>
+    <button type="button" role="tab" data-tab="lst" aria-selected="false">Lista de espera <span id="lCountTab" class="mono"></span></button>
   </div>
 
   <div id="vNoCfg" class="box" hidden><p class="msg err">Falta conectar la base de datos: rellena <span class="mono">config.js</span> con la URL y la clave pública de Supabase.</p></div>
@@ -249,6 +250,31 @@ input:focus,select:focus{outline:2px solid var(--mark);outline-offset:1px;border
     </div>
   </section>
 
+  <section id="vList" hidden>
+    <p class="lead">Los emails que se han apuntado desde la landing y la biblioteca. Solo tú (admin) puedes verlos. El día que abra la biblioteca, descarga el CSV e impórtalo en tu herramienta de emails para avisarles.</p>
+    <div class="stats">
+      <div class="stat"><b id="lTotal">0</b><span>en la lista</span></div>
+      <div class="stat"><b id="lHoy">0</b><span>hoy</span></div>
+      <div class="stat"><b id="l7">0</b><span>últimos 7 días</span></div>
+      <div class="stat"><b id="lTop">—</b><span>lo que más quieren mejorar</span></div>
+    </div>
+    <div class="bar">
+      <input type="search" id="lq" placeholder="Buscar por email, interés u origen" aria-label="Buscar en la lista">
+      <button class="btn" type="button" id="lCsv">Descargar CSV</button>
+      <button class="btn ghost" type="button" id="lReload">Actualizar</button>
+    </div>
+    <div class="tblw">
+      <table class="tbl">
+        <thead><tr><th>EMAIL</th><th>FECHA</th><th>QUIERE MEJORAR</th><th>DESDE DÓNDE</th><th></th></tr></thead>
+        <tbody id="lRows"></tbody>
+      </table>
+    </div>
+    <div class="help">
+      <p><b>Origen:</b> «landing-portada» y «landing-cierre» son los dos formularios de la página principal; «biblioteca-acceso» es la pantalla de entrada a la biblioteca; «biblioteca-pro» es quien pidió que le avisemos de PRO. Si el enlace llevaba parámetros (por ejemplo <span class="mono">?utm_source=instagram</span>), aparecen al lado.</p>
+      <p><b>Borrar:</b> si alguien pide la baja, bórralo aquí. No se puede deshacer.</p>
+    </div>
+  </section>
+
   <section id="vAdmin" hidden>
     <p class="lead">Da o quita el plan PRO a cualquier usuario. Los cambios se guardan al momento y el usuario los ve al recargar la biblioteca.</p>
     <div class="stats">
@@ -290,6 +316,7 @@ function view(v){
   $('tabs').hidden = !adm;
   $('vCal').hidden = !(adm && TAB === 'cal');
   $('vAdmin').hidden = !(adm && TAB === 'usr');
+  $('vList').hidden = !(adm && TAB === 'lst');
 }
 document.querySelectorAll('#tabs [data-tab]').forEach(b => b.addEventListener('click', () => {
   TAB = b.dataset.tab;
@@ -492,13 +519,57 @@ $('newT').addEventListener('submit', async (e) => {
 const fmtDate = (d) => d ? new Date(d).toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' }) : '';
 const isPro = (p) => p.rol === 'admin' || (p.plan === 'pro' && (!p.pro_hasta || new Date(p.pro_hasta) > new Date()));
 
+/* ---------- lista de espera ---------- */
+let LIST = [];
+const dkey = (d) => new Date(d).toLocaleDateString('es-ES');
+async function loadList(){
+  const { data, error } = await sb.from('lista_espera').select('id,email,interes,origen,creado').order('creado', { ascending:false });
+  if (error){ $('lRows').innerHTML = `<tr><td colspan="5">No se ha podido cargar la lista: ${esc(error.message)}. ¿Has ejecutado el SQL 05-lista-espera en Supabase?</td></tr>`; return; }
+  LIST = data || []; renderList();
+}
+function renderList(){
+  const q = $('lq').value.trim().toLowerCase();
+  const rows = LIST.filter(r => !q || [r.email, r.interes, r.origen].some(x => (x || '').toLowerCase().includes(q)));
+  const now = Date.now(), today = dkey(now);
+  $('lTotal').textContent = LIST.length; $('lCountTab').textContent = LIST.length ? '· ' + LIST.length : '';
+  $('lHoy').textContent = LIST.filter(r => dkey(r.creado) === today).length;
+  $('l7').textContent = LIST.filter(r => now - new Date(r.creado).getTime() < 7 * 864e5).length;
+  const cnt = {}; LIST.forEach(r => { if (r.interes) cnt[r.interes] = (cnt[r.interes] || 0) + 1; });
+  const top = Object.entries(cnt).sort((a, b) => b[1] - a[1])[0];
+  $('lTop').textContent = top ? top[0] : '—'; $('lTop').style.fontSize = top ? '20px' : '';
+  $('lRows').innerHTML = rows.map(r => `<tr data-id="${r.id}">
+    <td class="email">${esc(r.email)}</td>
+    <td class="date" data-l="FECHA">${new Date(r.creado).toLocaleString('es-ES', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' })}</td>
+    <td data-l="QUIERE MEJORAR">${esc(r.interes || '—')}</td>
+    <td data-l="DESDE DÓNDE" class="mono" style="font-size:12.5px;color:var(--soft)">${esc(r.origen || '—')}</td>
+    <td><button class="btn ghost" type="button" data-del style="padding:6px 12px;font-size:13px">Borrar</button></td>
+  </tr>`).join('') || `<tr><td colspan="5" style="color:var(--soft)">${LIST.length ? 'Nadie coincide con la búsqueda.' : 'Todavía no se ha apuntado nadie.'}</td></tr>`;
+}
+$('lq').addEventListener('input', renderList);
+$('lReload').addEventListener('click', loadList);
+$('lRows').addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-del]'); if (!b) return;
+  const tr = b.closest('tr'), r = LIST.find(x => String(x.id) === tr.dataset.id); if (!r) return;
+  if (!window.confirm(`¿Borrar ${r.email} de la lista? No se puede deshacer.`)) return;
+  const { error } = await sb.from('lista_espera').delete().eq('id', r.id);
+  if (error) { b.textContent = 'Error'; b.title = error.message; return; }
+  LIST = LIST.filter(x => x !== r); renderList();
+});
+$('lCsv').addEventListener('click', () => {
+  const q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const csv = ['email,fecha,interes,origen'].concat(LIST.map(r => [r.email, new Date(r.creado).toISOString(), r.interes, r.origen].map(q).join(','))).join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type:'text/csv;charset=utf-8' }));
+  a.download = 'lista-espera-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+});
 async function boot(session){
   if (!sb) return view('vNoCfg');
   if (!session) return view('vLogin');
   ME = session.user;
   const { data: me } = await sb.from('perfiles').select('rol').eq('id', ME.id).maybeSingle();
   if (!me || me.rol !== 'admin'){ $('naEmail').textContent = ME.email; return view('vNoAdmin'); }
-  view('vAdmin'); load(); loadCal();
+  view('vAdmin'); load(); loadCal(); loadList();
 }
 async function load(){
   const { data, error } = await sb.from('perfiles').select('id,email,plan,rol,pro_hasta,creado_en').order('creado_en', { ascending:false });

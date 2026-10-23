@@ -3,22 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Un Estudio Demuestra</title>
-<meta name="description" content="Tácticas de marketing respaldadas por estudios científicos, siempre con la fuente citada. Apúntate a la lista de la biblioteca.">
+<title>Un Estudio Demuestra · Tácticas de marketing demostradas por estudios</title>
+<meta name="description" content="Una biblioteca de tácticas de marketing sacadas de estudios científicos publicados, cada una con su fuente y cómo aplicarla. Abre el 2 de noviembre, solo para la lista.">
+<meta property="og:title" content="Un Estudio Demuestra · La biblioteca">
+<meta property="og:description" content="Deja de adivinar qué vende. Tácticas de marketing demostradas por estudios, con su fuente. Abre el 2 de noviembre, solo para la lista.">
+<meta property="og:image" content="media/recorrido-escritorio.jpg">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJVbiBFc3R1ZGlvIERlbXVlc3RyYSI+PHRpdGxlPlVuIEVzdHVkaW8gRGVtdWVzdHJhPC90aXRsZT48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMTQxQTI0Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMy4yNDggMi43ODgpIHNjYWxlKDAuOTIxMikiPjxwYXRoIGQ9Ik0yNSAxNCBINTUgTTgwIDM5IFY4NSBRODAgOTAgNzUgOTAgSDI1IFEyMCA5MCAyMCA4NSBWMTkgUTIwIDE0IDI1IDE0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNkY3RjQiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSI0MiIgY3k9IjUwIiByPSI2LjUiIGZpbGw9IiNGNEUzNUEiIGZpbGwtb3BhY2l0eT0iMC43NSIvPgo8Y2lyY2xlIGN4PSI3MSIgY3k9IjIzIiByPSIxNSIgZmlsbD0iI0Y0RTM1QSIvPjwvZz48L3N2Zz4K">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Public+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: una hoja de estudio sobre la mesa — portada en tinta con el formulario, debajo la ficha de muestra en papel */
+/* Landing de lista de espera: noche de laboratorio (como la biblioteca), tarjetas-ficha con subrayador amarillo, una sola acción: dejar el email */
 :root{
-  --ink:#141A24;      /* Tinta: fondo principal */
-  --ink-2:#1B2230;    /* superficie elevada */
-  --rule:#2C3444;     /* Línea sobre tinta */
-  --paper:#F6F7F4;    /* Papel */
-  --mark:#F4E35A;     /* Subrayador: solo para lo que el estudio demuestra */
-  --soft:#A9B1BE;     /* Pizarra aclarada para leer sobre tinta */
-  --slate:#5B6472;    /* Pizarra sobre papel */
-  --line:#D9DDE3;     /* Línea sobre papel */
+  --ink:#141A24; --ink-0:#0E1219; --ink-2:#1A2130; --ink-3:#222A3A; --rule:#2C3546;
+  --paper:#F6F7F4; --mark:#F4E35A; --soft:#A3ACBB; --dim:#6F7889;
   --ev-hi:#5CC892; --ev-md:#E0B24A; --ev-lo:#FF8A73;
   --serif:"Newsreader", "Iowan Old Style", Georgia, serif;
   --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -27,126 +24,257 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink-0);color:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(900px 560px at 15% 8%, rgba(244,227,90,.08), transparent 60%),
+    radial-gradient(800px 600px at 90% 40%, rgba(110,139,255,.06), transparent 60%),
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px) 0 0/56px 56px,
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px) 0 0/56px 56px}
+header,main,footer{position:relative;z-index:1}
 a{color:inherit}
-.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-mark{background:var(--mark);color:var(--ink);padding:0 .12em;white-space:nowrap}
-.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
-h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.01em}
 p{margin:0}
+h1,h2,h3{margin:0;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+mark,.m{background:var(--mark);color:var(--ink);padding:0 .14em;font-style:normal;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mark)}
+.dot{color:var(--mark)}
 
 /* cabecera */
-header{padding-block:22px}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.top{padding-block:20px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
 .brand svg{height:44px;width:auto;display:block}
-.brand span{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:-.01em}
-.soon{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink);background:var(--paper);padding:6px 10px}
+.brand span{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-.01em}
+@media (max-width:560px){.brand span{display:none}}
+.top-r{display:flex;align-items:center;gap:10px}
+.opens{font-family:var(--mono);font-size:12px;letter-spacing:.12em;border:1px solid var(--rule);background:rgba(26,33,48,.7);border-radius:999px;padding:9px 14px;white-space:nowrap}
+.opens b{color:var(--mark);font-weight:600}
+@media (max-width:420px){.opens{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:14px;background:var(--mark);color:var(--ink);font-weight:800;font-size:16px;padding:15px 22px;text-decoration:none;white-space:nowrap;transition:transform .15s ease, box-shadow .15s ease;box-shadow:0 10px 30px rgba(244,227,90,.18)}
+.btn:hover{transform:translateY(-1px);box-shadow:0 14px 36px rgba(244,227,90,.28)}
+.btn.sm{font-size:14px;padding:10px 16px;border-radius:999px;box-shadow:none}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
 
 /* portada */
-.hero{padding-block:56px 72px;border-bottom:1px solid var(--rule)}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:56px;align-items:end}
-@media (max-width:880px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:40px}}
-.kicker{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,26px);color:var(--soft);margin-bottom:14px}
-.hero h1{font-size:clamp(44px,7.2vw,92px);line-height:.98}
-.hero .sub{margin-top:26px;font-size:clamp(17px,1.6vw,20px);color:var(--soft);max-width:52ch}
-.stamp{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:30px;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
-.stamp b{color:var(--paper);font-weight:500}
+.hero{padding-block:34px 70px;overflow:hidden;overflow:clip}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:48px;align-items:center}
+@media (max-width:940px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:44px}}
+.kicker{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.2vw,24px);color:var(--soft);margin-bottom:14px}
+.hero h1{font-family:var(--sans);font-weight:800;font-size:clamp(40px,6.2vw,76px);line-height:1.02;letter-spacing:-.025em}
+.hero h1 .l2{display:block;font-weight:300;letter-spacing:-.02em}
+.hero .sub{margin-top:22px;font-size:clamp(17px,1.6vw,19.5px);color:var(--soft);max-width:54ch}
+.hero .sub b{color:var(--paper);font-weight:600}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
+.facts b{color:var(--paper);font-weight:600;font-size:15px;margin-right:4px}
 
 /* formulario */
-.join{background:var(--ink-2);border:1px solid var(--rule);padding:28px;display:grid;gap:18px;position:relative}
-.join h2{font-size:28px;line-height:1.15}
-.join p{color:var(--soft);font-size:15.5px}
-.field{display:grid;gap:7px}
-.field label{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
-.field input,.field select{font:inherit;font-size:16px;color:var(--paper);background:var(--ink);border:1px solid var(--rule);padding:13px 14px;width:100%;border-radius:0;appearance:none}
-.field select{background-image:linear-gradient(45deg,transparent 50%,var(--soft) 50%),linear-gradient(135deg,var(--soft) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat}
-.field input::placeholder{color:#6B7486}
-.btn{font:inherit;font-weight:700;font-size:16px;border:0;cursor:pointer;background:var(--mark);color:var(--ink);padding:15px 20px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s ease}
-.btn:hover{transform:translateY(-1px)}
-.fine{font-size:13px;color:var(--soft)}
-.msg{font-size:14.5px;padding:12px 14px;border:1px solid var(--rule)}
-.msg.ok{border-color:var(--ev-hi);color:var(--paper)}
-.msg.err{border-color:var(--ev-lo)}
-.corner{position:absolute;top:-16px;right:-12px;width:42px;height:42px;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-weight:500;font-size:18px}
+.joinbox{margin-top:28px;max-width:560px}
+.jf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:rgba(26,33,48,.85);border:1px solid var(--rule);border-radius:18px;padding:8px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.jf:focus-within{border-color:rgba(244,227,90,.6)}
+.jf input[type=email]{font:inherit;font-size:16.5px;color:var(--paper);background:transparent;border:0;outline:0;padding:12px 14px;min-width:0}
+.jf input::placeholder{color:#6B7486}
+.jf .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+@media (max-width:520px){.jf{grid-template-columns:minmax(0,1fr)}.jf .btn{width:100%}}
+.jnote{margin-top:12px;font-size:13.5px;color:var(--soft);display:flex;flex-wrap:wrap;gap:4px 14px}
+.jnote .ok{color:var(--paper)}
+.jnote .ok::before{content:"✓ ";color:var(--mark)}
+.jlegal{margin-top:8px;font-size:12.5px;color:var(--dim)}
+.jlegal a{color:var(--soft)}
+.jmsg{margin-top:10px;font-size:14.5px;color:var(--ev-lo)}
+.proof{margin-top:12px;font-size:14px;color:var(--soft)}
+.proof b{color:var(--paper)}
+/* éxito */
+.done{background:var(--ink-2);border:1px solid rgba(244,227,90,.5);border-radius:20px;padding:22px;display:grid;gap:14px;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:pop .45s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.done h3{font-size:24px;font-weight:800;display:flex;align-items:center;gap:12px}
+.done h3 i{width:34px;height:34px;flex:none;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-style:normal;font-family:var(--mono);font-size:16px}
+.done p{color:var(--soft);font-size:15.5px}
+.done p b{color:var(--paper)}
+.done .q{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1px solid var(--rule);background:var(--ink);border-radius:999px;padding:8px 13px;font-size:14px}
+.chips button:hover{border-color:var(--soft)}
+.chips button[aria-pressed=true]{border-color:var(--mark);background:rgba(244,227,90,.14)}
+.share{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.share a,.share button{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);background:transparent;border-radius:999px;padding:8px 14px;font-size:14px;text-decoration:none}
+.share a:hover,.share button:hover{border-color:var(--soft)}
+
+/* cuenta atrás */
+.cd{display:flex;gap:8px;align-items:stretch;margin-top:20px}
+.cd div{min-width:64px;background:var(--ink-2);border:1px solid var(--rule);border-radius:12px;padding:8px 10px 6px;text-align:center}
+.cd b{display:block;font-family:var(--mono);font-weight:600;font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
+.cd span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--soft);text-transform:uppercase}
+.cd-wrap .label{display:block;margin-top:26px}
+@media (max-width:420px){.cd div{min-width:0;flex:1;padding-inline:4px}.cd b{font-size:21px}}
+
+/* abanico de tarjetas */
+.fan{position:relative;height:clamp(420px,46vw,520px)}
+.fc{position:absolute;width:min(360px,76vw);left:50%;top:50%;border-radius:22px;background:var(--ink-2);border:1px solid var(--rule);padding:10px;box-shadow:0 30px 80px rgba(0,0,0,.5);transition:transform .6s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.fc:nth-child(1){transform:translate(-50%,-50%) translate(-34%, -16%) rotate(-11deg) scale(.86);filter:brightness(.72)}
+.fc:nth-child(2){transform:translate(-50%,-50%) translate(32%, -10%) rotate(9deg) scale(.9);filter:brightness(.82)}
+.fc:nth-child(3){transform:translate(-50%,-50%) translate(0, 8%) rotate(-2deg);border-color:rgba(244,227,90,.55);animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.fan:hover .fc:nth-child(1){transform:translate(-50%,-50%) translate(-52%, -18%) rotate(-15deg) scale(.86)}
+.fan:hover .fc:nth-child(2){transform:translate(-50%,-50%) translate(50%, -12%) rotate(13deg) scale(.9)}
+.fcite{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 16px 8px 8px;font-family:var(--mono);font-size:12px;white-space:nowrap;box-shadow:0 14px 40px rgba(0,0,0,.45);z-index:3}
+.fcite i{width:26px;height:26px;border-radius:50%;background:var(--mark);display:grid;place-items:center;font-style:normal;font-weight:600}
+@media (max-width:520px){.fcite{font-size:10px;white-space:normal;width:max-content;max-width:92%;text-align:left;line-height:1.35;border-radius:16px}}
+/* portada de táctica (igual que en la biblioteca) */
+.cover{position:relative;aspect-ratio:4/3.1;border-radius:15px;overflow:hidden;background:
+  linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px) 0 0/22px 22px,linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px) 0 0/22px 22px,linear-gradient(160deg,#1E2636,#10141C);
+  padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.ct{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;background:var(--paper);color:var(--ink);padding:4px 8px;border-radius:4px}
+.num{font-weight:800;font-size:28px;line-height:1;letter-spacing:-.02em}
+.kick{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--soft)}
+.hook{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.9vw,33px);line-height:1.08;letter-spacing:-.01em;margin-top:2px}
+.foot{display:flex;justify-content:space-between;align-items:center}
+.foot svg{height:26px;width:auto}
+.ev{font-family:var(--mono);font-size:10.5px;padding:3px 9px;border:1px solid currentColor;border-radius:999px;white-space:nowrap}
+.ev.hi{color:var(--ev-hi)}.ev.md{color:var(--ev-md)}.ev.lo{color:var(--ev-lo)}
+.fc .ttl{padding:12px 6px 6px;font-weight:800;font-size:17px;line-height:1.25}
+.fc .by{padding:0 6px 6px;font-family:var(--mono);font-size:11px;color:var(--soft)}
+
+/* cinta de hallazgos */
+.ticker{border-block:1px solid var(--rule);background:rgba(20,26,36,.75);overflow:hidden;padding-block:16px;white-space:nowrap}
+.ticker .row{display:inline-flex;gap:46px;padding-right:46px;animation:tick 70s linear infinite}
+.ticker:hover .row{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker span{font-size:16px;color:var(--soft)}
+.ticker span i{font-family:var(--serif);font-style:italic;color:var(--paper)}
+.ticker span::before{content:"1";display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mark);color:var(--ink);font-family:var(--mono);font-size:11px;font-weight:600;margin-right:10px;vertical-align:2px}
 
 /* bloques */
-section.block{padding-block:84px;border-bottom:1px solid var(--rule)}
-.head{display:grid;gap:12px;max-width:62ch;margin-bottom:40px}
-.head h2{font-size:clamp(32px,4.4vw,52px);line-height:1.05}
-.head p{color:var(--soft)}
+section.block{padding-block:88px}
+.head{display:grid;gap:14px;max-width:760px;margin:0 auto 44px;text-align:center;justify-items:center}
+.head h2{font-family:var(--sans);font-weight:800;font-size:clamp(32px,4.6vw,54px);line-height:1.04;letter-spacing:-.02em}
+.head p{color:var(--soft);font-size:clamp(16.5px,1.5vw,18.5px);max-width:58ch}
 
-/* ficha de muestra en papel */
-.sheet-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:48px;align-items:start}
-@media (max-width:880px){.sheet-row{grid-template-columns:minmax(0,1fr)}}
-.sheet{background:var(--paper);color:var(--ink);padding:clamp(22px,3.4vw,40px);position:relative;display:grid;gap:22px}
-.sheet::after{content:"1";position:absolute;top:-18px;right:-14px;width:48px;height:48px;border-radius:50%;background:var(--mark);display:grid;place-items:center;font-family:var(--mono);font-weight:500;font-size:20px;color:var(--ink)}
-.sheet .meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--slate)}
-.tag{font-family:var(--mono);font-size:12px;letter-spacing:.12em;background:var(--ink);color:var(--paper);padding:5px 10px}
-.ev{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;padding:3px 9px;border:1px solid currentColor;border-radius:999px}
-.sheet .ev{color:#1F7A4D}
-.sheet h3{font-size:clamp(28px,3.4vw,40px);line-height:1.08}
-.sheet dl{margin:0;display:grid;gap:16px}
-.sheet dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-bottom:4px}
-.sheet dd{margin:0;font-size:16px}
-.sheet ol{margin:0;padding-left:20px;display:grid;gap:6px}
-.sheet .src{font-family:var(--mono);font-size:12.5px;color:var(--slate);border-top:1px dashed var(--line);padding-top:14px;line-height:1.55}
-.anatomy{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
-.anatomy li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
-.anatomy .n{font-family:var(--mono);font-size:13px;color:var(--mark);padding-top:2px}
-.anatomy b{display:block;font-weight:600}
-.anatomy span{color:var(--soft);font-size:15.5px}
-.pro-pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;background:var(--paper);color:var(--ink);padding:2px 6px;margin-left:8px;vertical-align:2px}
+/* tarjetas que se giran */
+.deck{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media (max-width:1100px){.deck{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .deck{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));padding-inline:max(16px, env(safe-area-inset-left, 0px));padding-bottom:10px;scrollbar-width:none}
+  .deck::-webkit-scrollbar{display:none}
+  .flip{flex:0 0 82%;scroll-snap-align:center}
+}
+.flip{position:relative;perspective:1400px;min-height:440px;border:0;background:none;padding:0;text-align:left}
+.flip .in{position:absolute;inset:0;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip[aria-pressed=true] .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;border:1px solid var(--rule);background:var(--ink-2);padding:10px;display:flex;flex-direction:column}
+.flip:hover .front{border-color:rgba(244,227,90,.45)}
+.front .art{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:var(--ink)}
+.front .art svg{display:block;width:100%;height:100%}
+.front .ct{position:absolute;left:10px;right:10px;top:10px}
+.front .ct .num{font-size:20px;background:#1A2130;padding:4px 8px 3px;border-radius:8px;box-shadow:0 0 0 1px #2C3546}
+.front .meta{margin:14px 8px 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--mark)}
+.front .qq{margin:10px 8px 0;font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.12;letter-spacing:-.01em}
+.front .go{margin:auto 8px 8px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700;font-size:14.5px;border-top:1px solid var(--rule);padding-top:12px}
+.front .go i{width:34px;height:34px;flex:none;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center}
+.front .go svg{transition:transform .2s}
+.flip:hover .front .go svg{transform:rotate(180deg)}
+.front .meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{transform:rotateY(180deg);background:var(--paper);color:var(--ink);padding:22px;gap:12px;border-color:var(--paper)}
+.back::after{content:"1";position:absolute;top:-12px;right:-10px;width:38px;height:38px;border-radius:50%;background:var(--mark);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:16px;color:var(--ink)}
+.back .k{font-family:var(--serif);font-style:italic;font-size:16px;color:#5B6472}
+.back .f{font-size:17px;font-weight:600;line-height:1.42}
+.back .src{font-family:var(--mono);font-size:11.5px;color:#5B6472;border-top:1px dashed #C9CED6;padding-top:10px;line-height:1.5}
+.back .src b{color:var(--ink);font-weight:600}
+.back .ev{align-self:flex-start}
+.back .ev.hi{color:#1F7A4D}.back .ev.md{color:#9A6B00}
+.back .inside{margin-top:auto;font-size:14px;color:#3A4458;display:grid;gap:10px}
+.back .inside .btn{box-shadow:none;width:100%}
+.deck-note{text-align:center;margin-top:26px;color:var(--soft);font-size:15px}
+.deck-note b{color:var(--paper)}
+
+/* recorrido en vídeo */
+.tour{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.7fr);gap:44px;align-items:center}
+@media (max-width:980px){.tour{grid-template-columns:minmax(0,1fr)}}
+.screens{position:relative;padding-bottom:40px}
+.browser{border-radius:16px;overflow:hidden;border:1px solid var(--rule);background:var(--ink);box-shadow:0 40px 100px rgba(0,0,0,.55)}
+.browser .bar{display:flex;align-items:center;gap:7px;padding:10px 12px;background:#1A2130;border-bottom:1px solid var(--rule)}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#3A4458}
+.browser .bar span{margin-left:10px;flex:1;max-width:340px;font-family:var(--mono);font-size:11.5px;color:var(--soft);background:var(--ink);border-radius:8px;padding:5px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.browser video{display:block;width:100%;aspect-ratio:1280/800;background:var(--ink)}
+.phone{position:absolute;right:-18px;bottom:0;width:27%;min-width:150px;border-radius:30px;padding:8px;background:#0B0E14;border:1px solid #3A4458;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.phone video{display:block;width:100%;aspect-ratio:390/844;border-radius:23px;background:var(--ink)}
+@media (max-width:700px){
+  .browser{display:none}
+  .screens{padding-bottom:0;display:grid;place-items:center}
+  .phone{position:relative;right:auto;width:min(300px,78vw)}
+}
+.points{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.points li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.points .n{width:28px;height:28px;border-radius:50%;background:var(--mark);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:13px}
+.points b{display:block;font-weight:700;font-size:17px}
+.points span{color:var(--soft);font-size:15.5px}
+.vctl{margin-top:14px;display:flex;justify-content:center}
+.vctl button{background:none;border:1px solid var(--rule);border-radius:999px;padding:7px 14px;font-family:var(--mono);font-size:12px;color:var(--soft)}
+
+/* método */
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.steps3{grid-template-columns:minmax(0,1fr)}}
+.st{background:var(--ink-2);border:1px solid var(--rule);border-radius:22px;padding:26px;display:grid;gap:12px;align-content:start;position:relative;overflow:hidden}
+.st .big{font-family:var(--sans);font-weight:800;font-size:72px;line-height:.8;color:rgba(255,255,255,.06);position:absolute;right:16px;top:14px}
+.st h3{font-size:21px;font-weight:800}
+.st p{color:var(--soft);font-size:15.5px}
+.st .eg{font-family:var(--mono);font-size:12px;color:var(--soft);border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+.st .eg s{color:var(--ev-lo)}
+.st .eg em{font-style:normal;color:var(--ev-hi)}
+.evrow{display:flex;flex-wrap:wrap;gap:8px}
 
 /* categorías */
-.cats{display:flex;flex-wrap:wrap;gap:10px}
-.cats span{font-family:var(--mono);font-size:13px;letter-spacing:.1em;border:1px solid var(--rule);padding:9px 14px}
-.cats span:nth-child(3n+1){background:var(--ink-2)}
-
-/* pilares */
-.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--rule)}
-@media (max-width:820px){.pillars{grid-template-columns:minmax(0,1fr)}}
-.pillar{padding:28px;display:grid;gap:12px;align-content:start;border-right:1px solid var(--rule)}
-.pillar:last-child{border-right:0}
-@media (max-width:820px){.pillar{border-right:0;border-bottom:1px solid var(--rule)}.pillar:last-child{border-bottom:0}}
-.pillar h3{font-size:25px}
-.pillar p{color:var(--soft);font-size:15.5px}
-.ev-row{display:flex;gap:8px;flex-wrap:wrap}
-.ev.hi{color:var(--ev-hi)}.ev.md{color:var(--ev-md)}.ev.lo{color:var(--ev-lo)}
-.chat{display:grid;gap:10px;font-size:14.5px}
-.chat .q{justify-self:end;background:var(--paper);color:var(--ink);padding:9px 12px;max-width:90%}
-.chat .a{border-left:2px solid var(--mark);padding-left:12px;color:var(--soft)}
-.chat sup{font-family:var(--mono);color:var(--mark);font-size:10px}
+.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.cats{grid-template-columns:minmax(0,1fr)}}
+.cat{display:flex;gap:14px;align-items:center;background:var(--ink-2);border:1px solid var(--rule);border-radius:16px;padding:14px 16px}
+.cat .ci{width:40px;height:40px;flex:none;border-radius:11px;background:var(--ink-3);display:grid;place-items:center;color:var(--soft)}
+.cat .ci svg{width:21px;height:21px}
+.cat b{display:block;font-size:16px}
+.cat small{font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+.cat.on{border-color:rgba(244,227,90,.5);background:linear-gradient(135deg,rgba(244,227,90,.08),var(--ink-2))}
+.cat.on .ci{background:rgba(244,227,90,.16);color:var(--mark)}
+.cat.on small{color:var(--ink);background:var(--mark);border-radius:999px;padding:2px 8px}
 
 /* preguntas */
-.faq{display:grid;gap:0;border-top:1px solid var(--rule);max-width:820px}
+.faq{max-width:820px;margin:0 auto;border-top:1px solid var(--rule)}
 .faq details{border-bottom:1px solid var(--rule);padding:18px 0}
-.faq summary{cursor:pointer;font-family:var(--serif);font-size:22px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--mono);color:var(--mark)}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--mark);font-size:22px;line-height:1}
 .faq details[open] summary::after{content:"−"}
-.faq p{color:var(--soft);margin-top:10px;max-width:64ch}
+.faq p{color:var(--soft);margin-top:10px;max-width:66ch}
 
 /* cierre */
-.final{padding-block:96px}
-.final .wrap{display:grid;gap:24px;justify-items:start}
-.final h2{font-size:clamp(36px,5.6vw,70px);line-height:1.02;max-width:16ch}
-footer{border-top:1px solid var(--rule);padding-block:28px}
+.final{padding-block:96px 110px;text-align:center}
+.final .wrap{display:grid;justify-items:center;gap:6px}
+.final h2{font-family:var(--sans);font-weight:800;font-size:clamp(36px,6vw,74px);line-height:1.02;letter-spacing:-.025em;max-width:15ch}
+.final .sub{color:var(--soft);font-size:18px;margin-top:10px}
+.final .joinbox{width:100%;text-align:left}
+.final .cd{justify-content:center}
+footer{border-top:1px solid var(--rule);padding-block:26px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-family:var(--mono);font-size:12.5px;color:var(--soft)}
 footer nav{display:flex;gap:18px;flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--paper)}
 
+/* entrada de bloques al hacer scroll */
 @media (prefers-reduced-motion: no-preference){
-  .hero h1 mark{background:linear-gradient(var(--mark),var(--mark)) no-repeat 0 0/0% 100%;animation:swipe .9s .35s cubic-bezier(.6,.05,.2,1) forwards}
-  @keyframes swipe{to{background-size:100% 100%}}
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .hero h1 mark{background:linear-gradient(var(--mark),var(--mark)) no-repeat 0 0/0% 100%;color:var(--paper);animation:swipe .9s .5s cubic-bezier(.6,.05,.2,1) forwards}
+  @keyframes swipe{to{background-size:100% 100%;color:var(--ink)}}
 }
+@media (prefers-reduced-motion: reduce){.ticker .row{animation:none}.fc:nth-child(3){animation:none}.flip .in{transition:none}}
 </style>
 </head>
 <body>
 
-<header>
+<header class="top">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Un Estudio Demuestra, inicio"><svg viewBox="15 8 71 87" aria-hidden="true" focusable="false"><path d="M25 14 H58 M80 36 V85 Q80 90 75 90 H25 Q20 90 20 85 V19 Q20 14 25 14" fill="none" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M40.683875 73.891V66.7735L39.133625 66.23725V65.8375H43.199375V66.23725L41.727125 66.7735V73.80325Q41.727125 75.568 41.093375 76.781875Q40.459625 77.99575 39.240875 78.614875Q38.022125 79.234 36.276875000000004 79.234Q34.395125 79.234 33.108125 78.614875Q31.821125000000002 77.99575 31.158125000000002 76.752625Q30.495125 75.5095 30.495125 73.64725V66.7735L29.022875000000003 66.23725V65.8375H34.560875V66.23725L33.088625 66.7735V73.696Q33.088625 74.99275 33.507875 75.8605Q33.927125000000004 76.72825 34.765625 77.15725Q35.604125 77.58625 36.852125 77.58625Q38.080625 77.58625 38.93375 77.167Q39.786875 76.74775 40.235375000000005 75.923875Q40.683875 75.1 40.683875 73.891ZM52.764125 69.49375 52.715374999999995 72.097 52.764125 74.70025H51.954875L51.633125 72.63325L47.050625 72.61375V71.59L51.633125 71.56075L51.954875 69.49375ZM55.425875 69.63025 54.928625 69.74725 52.949374999999996 66.52975 53.758624999999995 66.90025H46.962875V65.8375H53.271125L54.450874999999996 65.24275H54.684875ZM53.232124999999996 78.30775 55.377125 74.93425 55.825624999999995 75.05125 55.006625 79.663H54.753125L53.495374999999996 79.0H46.962875V77.93725H53.885374999999996ZM44.310874999999996 79.0V78.60025L45.783125 78.064V66.7735L44.310874999999996 66.23725V65.8375H48.376625V79.0ZM67.847375 72.253Q67.847375 69.5035 66.40925 68.201875Q64.971125 66.90025 62.445875 66.90025H59.803625000000004L59.637875 65.8375H62.923625Q65.478125 65.8375 67.174625 66.52000000000001Q68.871125 67.2025 69.71937500000001 68.58212499999999Q70.567625 69.96175 70.567625 72.0385Q70.567625 74.25175 69.573125 75.80687499999999Q68.578625 77.362 66.85287500000001 78.181Q65.127125 79.0 62.952875000000006 79.0H59.637875L59.803625000000004 77.93725H62.640875Q64.21062500000001 77.93725 65.38062500000001 77.357125Q66.550625 76.777 67.199 75.524125Q67.847375 74.27125 67.847375 72.253ZM57.044375 79.0V78.60025L58.516625000000005 78.064V66.7735L57.044375 66.23725V65.8375H61.110125000000004V79.0Z" fill="#F6F7F4"/>
@@ -154,7 +282,10 @@ footer a:hover{color:var(--paper)}
 <circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/>
 <circle cx="72" cy="22" r="12" fill="#F4E35A"/>
 <path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg><span>un estudio demuestra</span></a>
-    <span class="soon">BIBLIOTECA · PRÓXIMAMENTE</span>
+    <div class="top-r">
+      <span class="opens" id="opensPill">ABRE EL <b id="opensDate">2 NOV</b></span>
+      <a class="btn sm" href="#apuntarme" id="topCta">Quiero entrar</a>
+    </div>
   </div>
 </header>
 
@@ -163,116 +294,104 @@ footer a:hover{color:var(--paper)}
     <div class="wrap">
       <div>
         <p class="kicker">Un estudio demuestra que…</p>
-        <h1>Tácticas de marketing <mark>respaldadas</mark> por la ciencia.</h1>
-        <p class="sub">Cada semana convertimos un estudio científico en una táctica que puedes aplicar hoy en tus precios, tus textos o tu web. Siempre con la fuente citada.</p>
-        <div class="stamp"><span><b>Precios</b> · Copywriting · Ventas · Diseño</span><span>Fuente en cada táctica</span></div>
+        <h1>Deja de adivinar qué vende.<span class="l2">Aplica lo que <mark>ya está demostrado</mark>.</span></h1>
+        <p class="sub">Una biblioteca de tácticas de marketing sacadas de <b>estudios científicos publicados</b>. Cada una con el paper del que sale, por qué funciona y cómo aplicarla en tu negocio. Empezamos por las <b>fotos de producto</b>.</p>
+        <div class="joinbox" id="apuntarme" data-origen="landing-portada"></div>
+        <div class="cd-wrap"><span class="label" id="cdLabel1">La biblioteca abre en</span><div class="cd" data-cd></div></div>
+        <div class="facts"><span><b id="fT">8</b>tácticas listas</span><span><b id="fS">24</b>estudios citados</span><span><b>1</b>fuente en cada dato</span></div>
       </div>
-
-      <form class="join" id="waitlist" novalidate>
-        <span class="corner" aria-hidden="true">1</span>
-        <h2>Entra en la lista de la biblioteca</h2>
-        <p>Te avisamos cuando abra, con acceso anticipado y precio de fundador.</p>
-        <div class="field">
-          <label for="email">Tu email</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required>
-        </div>
-        <div class="field">
-          <label for="interes">¿Qué quieres mejorar primero?</label>
-          <select id="interes" name="interes">
-            <option>Precios</option><option>Copywriting</option><option>Ventas</option>
-            <option>Diseño web</option><option>Promociones</option><option>Email</option>
-          </select>
-        </div>
-        <button class="btn" type="submit">Entrar en la lista →</button>
-        <p class="fine">Sin spam. Te puedes dar de baja con un clic.</p>
-        <p class="msg" id="msg" role="status" hidden></p>
-      </form>
+      <div class="fan" aria-hidden="true" id="fan"></div>
     </div>
   </section>
 
-  <section class="block" id="ficha">
+  <div class="ticker" aria-label="Algunos hallazgos de la biblioteca"><div class="row" id="tick"></div></div>
+
+  <section class="block" id="tacticas">
     <div class="wrap">
-      <div class="head">
-        <span class="label">Así es cada táctica</span>
-        <h2>Un estudio, una táctica, una fuente.</h2>
-        <p>Todas las fichas de la biblioteca siguen la misma estructura. Esta es una de muestra.</p>
+      <div class="head rv">
+        <span class="label">Las primeras tácticas</span>
+        <h2>Toca una tarjeta<span class="dot">.</span><br>Te contamos qué demuestra el estudio.</h2>
+        <p>Estas son las tácticas con las que abrimos. Cada una responde a una pregunta que te haces cuando preparas tus fotos. Dentro de la biblioteca tienes el resto: por qué funciona, cuándo no y cómo aplicarla.</p>
       </div>
-      <div class="sheet-row">
-        <article class="sheet" aria-label="Ficha de muestra">
-          <div class="meta"><span class="tag">PRECIOS</span><span>Nº 001</span><span class="ev">Evidencia alta</span></div>
-          <h3>Termina tus precios en ,99</h3>
-          <dl>
-            <div><dt>Lo que demuestra el estudio</dt><dd>Un precio de 2,99 € se percibe bastante más barato que uno de 3,00 €, mucho más de lo que indica un céntimo de diferencia.</dd></div>
-            <div><dt>Por qué funciona</dt><dd>Leemos de izquierda a derecha y el primer dígito pesa de más. Es el efecto del dígito izquierdo.</dd></div>
-            <div><dt>Cómo aplicarlo</dt><dd><ol><li>Usa terminaciones en ,99 o ,95 cuando quieras transmitir precio bajo.</li><li>En productos premium, el precio redondo transmite calidad.</li><li>Prueba las dos versiones antes de decidir.</li></ol></dd></div>
-          </dl>
-          <p class="src">Thomas, M. &amp; Morwitz, V. (2005). Penny wise and pound foolish: the left-digit effect in price cognition. <i>Journal of Consumer Research</i>, 32(1), 54–64.</p>
-        </article>
-        <ol class="anatomy">
-          <li><span class="n">01</span><div><b>La táctica</b><span>Escrita como una acción que puedes hacer hoy.</span></div></li>
-          <li><span class="n">02</span><div><b>Lo que demuestra el estudio</b><span>El hallazgo en dos frases, sin tecnicismos.</span></div></li>
-          <li><span class="n">03</span><div><b>Por qué funciona</b><span>El sesgo o mecanismo psicológico que lo explica.</span></div></li>
-          <li><span class="n">04</span><div><b>Cómo aplicarlo<span class="pro-pill">PRO</span></b><span>Pasos concretos y ejemplos en webs, anuncios y packaging.</span></div></li>
-          <li><span class="n">05</span><div><b>Nivel de evidencia</b><span>Si el efecto se ha replicado o si está en duda.</span></div></li>
-          <li><span class="n">06</span><div><b>La fuente</b><span>Autores, año, revista y enlace al estudio original.</span></div></li>
-          <li><span class="n">07</span><div><b>Pregúntale a CiCi<span class="pro-pill">PRO</span></b><span>CiCi (Ciencia Citada) responde a tu caso con los estudios de la biblioteca.</span></div></li>
-        </ol>
-      </div>
+      <div class="deck" id="deck"></div>
+      <p class="deck-note rv">Y cada semana, una táctica nueva. <b>Solo para la lista.</b></p>
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" id="dentro" style="padding-top:40px">
     <div class="wrap">
-      <div class="head">
-        <span class="label">Lo que vas a encontrar</span>
-        <h2>Una biblioteca para decidir con datos.</h2>
+      <div class="head rv">
+        <span class="label">Por dentro</span>
+        <h2>Así es la biblioteca<span class="dot">.</span></h2>
+        <p>Busca lo que vendes, abre una táctica y tienes el estudio, la explicación y los ejemplos en una sola ficha.</p>
       </div>
-      <div class="pillars">
-        <div class="pillar">
-          <span class="label">Por categorías</span>
-          <h3>Busca por lo que quieres mejorar</h3>
-          <p>Filtra las tácticas por área y encuentra en segundos qué dice la ciencia sobre tu problema.</p>
-          <div class="cats" aria-label="Categorías"><span>PRECIOS</span><span>COPYWRITING</span><span>VENTAS</span><span>DISEÑO WEB</span><span>PROMOCIONES</span><span>EMAIL</span><span>PACKAGING</span><span>NEGOCIACIÓN</span></div>
-        </div>
-        <div class="pillar">
-          <span class="label">Con rigor</span>
-          <h3>Sabrás cuánto fiarte de cada estudio</h3>
-          <p>Algunos estudios famosos no se han podido replicar. Cada táctica indica su nivel de evidencia para que no te la juegues.</p>
-          <div class="ev-row"><span class="ev hi">Evidencia alta</span><span class="ev md">Media</span><span class="ev lo">Discutida</span></div>
-        </div>
-        <div class="pillar">
-          <span class="label">PRO</span>
-          <h3>Pregúntale a CiCi</h3>
-          <p>CiCi, de Ciencia Citada, es nuestra asistente. Cuéntale tu caso y te responde con los estudios de la biblioteca, citando cada uno.</p>
-          <div class="chat" aria-label="Ejemplo de conversación">
-            <span class="q">Vendo cosmética online. ¿Cómo pongo los precios?</span>
-            <span class="a">Prueba terminaciones en ,99<sup>[1]</sup> y añade un formato intermedio que haga más atractivo el grande<sup>[2]</sup>.</span>
+      <div class="tour">
+        <div class="screens rv">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i><span>La Biblioteca UED · unestudiodemuestra</span></div>
+            <video id="vDesk" muted loop playsinline preload="none" poster="media/recorrido-escritorio.jpg" data-src="media/recorrido-escritorio.mp4" aria-label="Recorrido por la biblioteca en ordenador: búsqueda, ficha de una táctica y categorías"></video>
           </div>
+          <div class="phone"><video id="vMob" muted loop playsinline preload="none" poster="media/recorrido-movil.jpg" data-src="media/recorrido-movil.mp4" aria-label="Recorrido por la biblioteca en el móvil"></video></div>
+        </div>
+        <div class="rv">
+          <ol class="points">
+            <li><span class="n">1</span><div><b>Busca por lo que vendes</b><span>Escribe «velas», «ropa» o «packaging» y te salen las tácticas que aplican.</span></div></li>
+            <li><span class="n">2</span><div><b>Cada táctica, con su estudio</b><span>Autores, año, revista y enlace al paper original. Nada de «dicen los expertos».</span></div></li>
+            <li><span class="n">3</span><div><b>Por qué funciona y cuándo no</b><span>El mecanismo, cuándo funciona mejor y con qué tener cuidado.</span></div></li>
+            <li><span class="n">4</span><div><b>Nivel de evidencia</b><span>Te decimos cuánto fiarte: si está muy probado o si es un solo estudio.</span></div></li>
+          </ol>
+          <div class="vctl"><button type="button" id="vToggle">❚❚ Pausar vídeo</button></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block">
+  <section class="block" id="metodo" style="padding-top:40px">
     <div class="wrap">
-      <div class="head">
-        <span class="label">Preguntas</span>
-        <h2>Antes de apuntarte</h2>
+      <div class="head rv">
+        <span class="label">Cómo la hacemos</span>
+        <h2>Si el estudio no lo dice<span class="dot">,</span> no lo ponemos<span class="dot">.</span></h2>
+        <p>En internet hay muchos «trucos de neuromarketing» sin fuente. Aquí cada frase se comprueba contra el paper.</p>
       </div>
-      <div class="faq">
-        <details><summary>¿Cuándo abre la biblioteca?</summary><p>Estamos publicando las primeras tácticas en Instagram. Quien esté en la lista recibirá el aviso antes que nadie, con acceso anticipado.</p></details>
-        <details><summary>¿Será gratis?</summary><p>Sí: todas las tácticas, con su explicación, sus ejemplos y sus fuentes, son gratis. PRO añade el «Cómo aplicarlo» paso a paso de cada táctica y a CiCi, la asistente que responde a tu caso con estudios.</p></details>
-        <details><summary>¿De dónde salen los estudios?</summary><p>De revistas científicas de psicología, economía conductual y marketing. Cada táctica cita a sus autores, el año y la revista, con enlace al original.</p></details>
-        <details><summary>¿Para quién es?</summary><p>Para quien vende algo y quiere tomar mejores decisiones: tiendas online, marcas, emprendedores, marketers y equipos de ventas.</p></details>
+      <div class="steps3">
+        <div class="st rv"><span class="big">01</span><span class="label">Leemos</span><h3>El estudio original</h3><p>Partimos de estudios publicados en revistas científicas de marketing y psicología del consumidor, como Journal of Marketing o Journal of Consumer Research.</p></div>
+        <div class="st rv"><span class="big">02</span><span class="label">Verificamos</span><h3>Cada afirmación, una a una</h3><p>Lo que el estudio no demuestra, se quita. Lo que es una idea nuestra, se dice.</p><p class="eg"><s>«Funciona siempre»</s> → <em>«Funcionó en ropa; en otras categorías está por confirmar»</em></p></div>
+        <div class="st rv"><span class="big">03</span><span class="label">Lo bajamos a tierra</span><h3>Pasos para tu negocio</h3><p>Convertimos el hallazgo en acciones para tus fotos, tus vídeos y tus textos, con ejemplos.</p><div class="evrow"><span class="ev hi">Evidencia alta</span><span class="ev md">Media</span><span class="ev lo">Discutida</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="temas" style="padding-top:40px">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="label">Lo que irá llegando</span>
+        <h2>Empezamos por las fotos<span class="dot">.</span><br>Seguimos por todo lo demás<span class="dot">.</span></h2>
+      </div>
+      <div class="cats rv" id="cats"></div>
+    </div>
+  </section>
+
+  <section class="block" id="preguntas" style="padding-top:40px">
+    <div class="wrap">
+      <div class="head rv"><span class="label">Preguntas</span><h2>Antes de apuntarte<span class="dot">.</span></h2></div>
+      <div class="faq rv">
+        <details><summary>¿Cuánto cuesta?</summary><p>Entrar es gratis. Todas las tácticas, con su estudio, su explicación y sus ejemplos, son gratis para quien esté en la lista. Más adelante habrá un plan opcional con extras para quien quiera ir más a fondo.</p></details>
+        <details><summary>¿Por qué solo para la lista?</summary><p>Queremos abrir con poca gente, escucharla y mejorar la biblioteca con ella. Si dejas tu email, el <span data-date-long>2 de noviembre</span> te escribimos con tu acceso.</p></details>
+        <details><summary>¿Qué haréis con mi email?</summary><p>Usarlo para darte acceso a la biblioteca y avisarte cuando haya tácticas nuevas. Nada más: no lo cedemos a nadie y te puedes dar de baja cuando quieras. Lo tienes todo en la <a href="privacidad">política de privacidad</a>.</p></details>
+        <details><summary>¿De dónde salen los estudios?</summary><p>De revistas científicas revisadas por otros investigadores: marketing, psicología del consumidor y economía del comportamiento. Cada táctica cita a sus autores, el año y la revista, con enlace al original.</p></details>
+        <details><summary>¿Para quién es?</summary><p>Para quien vende online y decide cómo se ven sus productos: tiendas, marcas, sellers de Amazon, fotógrafos, diseñadores y agencias.</p></details>
+        <details><summary>¿Y mientras tanto?</summary><p>Publicamos las tácticas en vídeo en Instagram: <a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">@unestudiodemuestra</a>.</p></details>
       </div>
     </div>
   </section>
 
   <section class="final">
     <div class="wrap">
-      <span class="label">Lista de espera</span>
-      <h2>La próxima táctica puede cambiar tus ventas.</h2>
-      <a class="btn" href="#waitlist">Entrar en la lista →</a>
+      <span class="label" id="finalLabel">El <span data-date-long>2 de noviembre</span> abrimos</span>
+      <h2 id="finalH">¿Estás en la lista?</h2>
+      <p class="sub" id="finalSub">Solo entra quien haya dejado su email.</p>
+      <div class="cd" data-cd></div>
+      <div class="joinbox" data-origen="landing-cierre"></div>
     </div>
   </section>
 </main>
@@ -280,40 +399,332 @@ footer a:hover{color:var(--paper)}
 <footer>
   <div class="wrap">
     <span>Un Estudio Demuestra · 2026</span>
-    <nav aria-label="Redes sociales">
+    <nav aria-label="Enlaces">
       <a href="https://www.instagram.com/unestudiodemuestra/" target="_blank" rel="noopener">Instagram</a>
-      <span>@unestudiodemuestra</span>
+      <a href="privacidad">Privacidad</a>
     </nav>
   </div>
 </footer>
 
+<script src="config.js"></script>
 <script>
-/* Conecta aquí tu herramienta de emails (Tally, Brevo, Mailchimp, Formspree…):
-   pega la URL que te den para recibir envíos por POST. Mientras esté vacía, el formulario
-   funciona en modo demostración y no guarda nada. */
-const WAITLIST_ENDPOINT = '';
+const CFG = window.UED_CONFIG || {};
+const LAUNCH = new Date(CFG.lanzamiento || '2026-11-02T19:00:00+01:00');
+const OPEN = () => Date.now() >= LAUNCH.getTime();
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const LOGO = `<svg viewBox="15 8 71 87" aria-hidden="true" focusable="false"><path d="M25 14 H58 M80 36 V85 Q80 90 75 90 H25 Q20 90 20 85 V19 Q20 14 25 14" fill="none" stroke="#F6F7F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M40.683875 73.891V66.7735L39.133625 66.23725V65.8375H43.199375V66.23725L41.727125 66.7735V73.80325Q41.727125 75.568 41.093375 76.781875Q40.459625 77.99575 39.240875 78.614875Q38.022125 79.234 36.276875000000004 79.234Q34.395125 79.234 33.108125 78.614875Q31.821125000000002 77.99575 31.158125000000002 76.752625Q30.495125 75.5095 30.495125 73.64725V66.7735L29.022875000000003 66.23725V65.8375H34.560875V66.23725L33.088625 66.7735V73.696Q33.088625 74.99275 33.507875 75.8605Q33.927125000000004 76.72825 34.765625 77.15725Q35.604125 77.58625 36.852125 77.58625Q38.080625 77.58625 38.93375 77.167Q39.786875 76.74775 40.235375000000005 75.923875Q40.683875 75.1 40.683875 73.891ZM52.764125 69.49375 52.715374999999995 72.097 52.764125 74.70025H51.954875L51.633125 72.63325L47.050625 72.61375V71.59L51.633125 71.56075L51.954875 69.49375ZM55.425875 69.63025 54.928625 69.74725 52.949374999999996 66.52975 53.758624999999995 66.90025H46.962875V65.8375H53.271125L54.450874999999996 65.24275H54.684875ZM53.232124999999996 78.30775 55.377125 74.93425 55.825624999999995 75.05125 55.006625 79.663H54.753125L53.495374999999996 79.0H46.962875V77.93725H53.885374999999996ZM44.310874999999996 79.0V78.60025L45.783125 78.064V66.7735L44.310874999999996 66.23725V65.8375H48.376625V79.0ZM67.847375 72.253Q67.847375 69.5035 66.40925 68.201875Q64.971125 66.90025 62.445875 66.90025H59.803625000000004L59.637875 65.8375H62.923625Q65.478125 65.8375 67.174625 66.52000000000001Q68.871125 67.2025 69.71937500000001 68.58212499999999Q70.567625 69.96175 70.567625 72.0385Q70.567625 74.25175 69.573125 75.80687499999999Q68.578625 77.362 66.85287500000001 78.181Q65.127125 79.0 62.952875000000006 79.0H59.637875L59.803625000000004 77.93725H62.640875Q64.21062500000001 77.93725 65.38062500000001 77.357125Q66.550625 76.777 67.199 75.524125Q67.847375 74.27125 67.847375 72.253ZM57.044375 79.0V78.60025L58.516625000000005 78.064V66.7735L57.044375 66.23725V65.8375H61.110125000000004V79.0Z" fill="#F6F7F4"/> <circle cx="34" cy="52" r="2.6" fill="#F4E35A" fill-opacity="0.4"/> <circle cx="47" cy="40" r="4.2" fill="#F4E35A" fill-opacity="0.7"/> <circle cx="72" cy="22" r="12" fill="#F4E35A"/> <path d="M68.565 27.475V26.035H71.475V17.935000000000002L68.55 20.110000000000003V18.355000000000004L71.05499999999999 16.525000000000002H73.09499999999998V26.035H75.44999999999999V27.475Z" fill="#141A24"/></svg>`;
+const STORE = 'ued-lista';
+const getMe = () => { try { return localStorage.getItem(STORE) || ''; } catch(e){ return ''; } };
+const setMe = (v) => { try { localStorage.setItem(STORE, v); } catch(e){} };
+const fmtShort = LAUNCH.toLocaleDateString('es-ES', { day:'numeric', month:'short', timeZone:'Europe/Madrid' }).replace('.', '').toUpperCase();
+const fmtLong = LAUNCH.toLocaleDateString('es-ES', { day:'numeric', month:'long', timeZone:'Europe/Madrid' });
+$('opensDate').textContent = fmtShort;
+document.querySelectorAll('[data-date-long]').forEach(e => e.textContent = fmtLong);
 
-(function(){
-  const form = document.getElementById('waitlist');
-  const msg = document.getElementById('msg');
-  const email = document.getElementById('email');
-  function show(text, kind){ msg.textContent = text; msg.className = 'msg ' + kind; msg.hidden = false; }
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const value = email.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) { show('Escribe un email válido, por ejemplo nombre@dominio.com.', 'err'); email.focus(); return; }
-    if (!WAITLIST_ENDPOINT) { show('Modo demostración: el formulario todavía no está conectado a una herramienta de emails, así que no se ha guardado.', 'err'); return; }
+/* ---------- ilustraciones de la biblioteca ---------- */
+/* ---------- ilustraciones propias (640×360) ---------- */
+const C = { ink:'#141A24', pan:'#1A2130', rule:'#2C3546', paper:'#F6F7F4', mark:'#F4E35A', soft:'#A3ACBB', dim:'#6F7889', mid:'#3A4458' };
+const OK = (x,y) => `<circle cx="${x}" cy="${y}" r="14" fill="${C.mark}"/><path d="M${x-6} ${y} l4 4 l8 -8" fill="none" stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+const NO = (x,y) => `<circle cx="${x}" cy="${y}" r="14" fill="${C.rule}"/><path d="M${x-5} ${y-5} l10 10 M${x+5} ${y-5} l-10 10" stroke="${C.soft}" stroke-width="2.6" stroke-linecap="round"/>`;
+const P = (x, label, v, cap, inner) => `<g transform="translate(${x} 0)"><rect x="16" y="16" width="296" height="328" rx="14" fill="${C.pan}" stroke="${C.rule}"/>
+  <text x="36" y="47" font-family="JetBrains Mono,monospace" font-size="12" letter-spacing="1.4" fill="${C.soft}">${label}</text>${v === 1 ? OK(284,42) : v === 0 ? NO(284,42) : ''}
+  ${inner}<text x="164" y="322" text-anchor="middle" font-family="Public Sans,Arial,sans-serif" font-size="14.5" font-weight="600" fill="${C.paper}">${cap}</text></g>`;
+const SVG = (label, a, b, mid = '') => `<svg viewBox="0 0 640 360" role="img" aria-label="${label}"><rect width="640" height="360" fill="${C.ink}"/>${a}${b}${mid}</svg>`;
+const ARROW = `<circle cx="320" cy="180" r="18" fill="${C.mark}"/><path d="M311 180 h16 m-6 -6 l6 6 -6 6" fill="none" stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+const blender = (cx) => `<rect x="${cx-28}" y="238" width="56" height="32" rx="6" fill="${C.paper}"/><path d="M${cx-24} 236 L${cx+24} 236 L${cx+18} 150 L${cx-18} 150 Z" fill="rgba(246,247,244,.07)" stroke="${C.paper}" stroke-width="3"/><path d="M${cx-21} 234 L${cx+21} 234 L${cx+19} 200 L${cx-19} 200 Z" fill="${C.mark}" opacity=".85"/><rect x="${cx-22}" y="138" width="44" height="12" rx="3" fill="${C.paper}"/>`;
+const shirt = (x, y, fill) => `<path transform="translate(${x} ${y})" d="M30 0 L50 8 Q60 14 70 8 L90 0 L120 22 L104 44 L92 36 L92 110 L28 110 L28 36 L16 44 L0 22 Z" fill="${fill}"/>`;
+const mug = (x, right, hand) => `<rect x="${x}" y="122" width="100" height="120" rx="14" fill="${C.paper}"/><ellipse cx="${x+50}" cy="124" rx="44" ry="7" fill="${C.mid}"/>
+  <path d="${right ? `M${x+100} 152 C${x+140} 152 ${x+140} 214 ${x+100} 214` : `M${x} 152 C${x-40} 152 ${x-40} 214 ${x} 214`}" fill="none" stroke="${C.paper}" stroke-width="12" stroke-linecap="round"/>
+  <path d="M${x+38} 108 q-6 -10 0 -20 M${x+56} 108 q-6 -10 0 -20" fill="none" stroke="${C.soft}" stroke-width="2.5" stroke-linecap="round"/>
+  ${hand ? `<path transform="translate(${x+136} 196) scale(2)" d="M8 2v11l-2-2a2 2 0 0 0-3 3l5 6h9l2-8a2 2 0 0 0-2-2h-4V2a2 2 0 0 0-4 0z" fill="${C.mark}" stroke="${C.ink}" stroke-width="1.2" stroke-linejoin="round"/>` : ''}`;
+const bag = (top, bot, y0, y1, band) => `<path d="M${164-top} ${y0-12} L${164+top} ${y0-12} L${164+top} ${y0} L${164-top} ${y0} Z" fill="${C.soft}"/>
+  <path d="M${164-top} ${y0} L${164+top} ${y0} L${164+bot} ${y1} L${164-bot} ${y1} Z" fill="${C.paper}"/>
+  <path d="M${164-band[0]} ${band[2]} L${164+band[0]} ${band[2]} L${164+band[1]} ${band[3]} L${164-band[1]} ${band[3]} Z" fill="${C.mark}"/>
+  <text x="164" y="${(band[2]+band[3])/2+6}" text-anchor="middle" font-family="Public Sans,Arial" font-weight="800" font-size="17" letter-spacing="2" fill="${C.ink}">CAFÉ</text>`;
+const cam = (x, y) => `<rect x="${x}" y="${y}" width="28" height="19" rx="4" fill="${C.soft}"/><circle cx="${x+14}" cy="${y+9.5}" r="5.5" fill="${C.ink}"/><rect x="${x+4}" y="${y-4}" width="9" height="5" rx="1.5" fill="${C.soft}"/>`;
+const slab = (y, fill, front) => `<path d="M88 ${y+22} L130 ${y} L252 ${y} L210 ${y+22} Z" fill="${fill}"/><path d="M88 ${y+22} L210 ${y+22} L210 ${y+32} L88 ${y+32} Z" fill="${front}"/><path d="M210 ${y+22} L252 ${y} L252 ${y+10} L210 ${y+32} Z" fill="${C.mid}"/>`;
+const pack = (ix, iy) => `<rect x="62" y="96" width="204" height="118" rx="6" fill="${C.paper}"/><rect x="${ix}" y="${iy}" width="60" height="42" rx="4" fill="#7A5233"/><path d="M${ix+20} ${iy} v42 M${ix+40} ${iy} v42 M${ix} ${iy+21} h60" stroke="#5E3D24" stroke-width="2"/>`;
+const beam = (side) => `<path d="M164 296 l-14 0 l14 -26 l14 26 z" fill="${C.soft}"/><path d="M96 ${side ? 262 : 278} L232 ${side ? 278 : 262}" stroke="${C.soft}" stroke-width="5" stroke-linecap="round"/>
+  ${side ? `<rect x="214" y="250" width="26" height="22" rx="3" fill="#7A5233"/>` : `<rect x="88" y="246" width="18" height="14" rx="3" fill="#7A5233"/>`}`;
+const box = (fill, band, txt, tc) => `<rect x="104" y="80" width="120" height="176" rx="8" fill="${fill}"/><rect x="104" y="138" width="120" height="48" fill="${band}"/><text x="164" y="171" text-anchor="middle" font-family="Public Sans,Arial" font-weight="800" font-size="22" letter-spacing="2" fill="${tc}">${txt}</text><rect x="120" y="206" width="88" height="7" rx="3.5" fill="${tc}" opacity=".5"/><rect x="132" y="221" width="64" height="7" rx="3.5" fill="${tc}" opacity=".35"/>`;
+
+const soap = (x) => `<rect x="${x+40}" y="96" width="40" height="18" rx="3" fill="${C.soft}"/><rect x="${x+52}" y="78" width="16" height="20" fill="${C.soft}"/><rect x="${x+42}" y="70" width="46" height="12" rx="4" fill="${C.soft}"/><rect x="${x+84}" y="72" width="30" height="7" rx="3" fill="${C.soft}"/>
+  <rect x="${x}" y="112" width="120" height="170" rx="42" fill="rgba(246,247,244,.08)" stroke="${C.paper}" stroke-width="3"/><rect x="${x+12}" y="150" width="96" height="30" rx="4" fill="${C.paper}"/><text x="${x+60}" y="170" text-anchor="middle" font-family="Public Sans,Arial" font-weight="800" font-size="13" letter-spacing="1.5" fill="${C.ink}">LIMÓN</text>
+  <rect x="${x+12}" y="196" width="96" height="58" rx="4" fill="rgba(92,200,146,.35)"/>`;
+const lemonHalf = (cx, cy, r) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${C.mark}"/><circle cx="${cx}" cy="${cy}" r="${r-4}" fill="#FFF2A6"/>${Array.from({length:8}, (_,k) => { const a = k*Math.PI/4; return `<path d="M${cx} ${cy} L${(cx + Math.cos(a)*(r-5)).toFixed(1)} ${(cy + Math.sin(a)*(r-5)).toFixed(1)}" stroke="${C.mark}" stroke-width="1.6"/>`; }).join('')}<circle cx="${cx}" cy="${cy}" r="3" fill="${C.mark}"/>`;
+const ILL = {
+  t01: () => SVG('Comparación: producto con una persona frente a producto con el rastro de una persona',
+    P(0, 'CON PERSONA', 0, 'Parece de otra persona', `<circle cx="112" cy="128" r="25" fill="${C.mid}"/><rect x="76" y="160" width="72" height="112" rx="30" fill="${C.mid}"/>${blender(212)}`),
+    P(312, 'SOLO EL RASTRO', 1, 'Sugiere uso sin mostrar a nadie', `${blender(146)}<rect x="196" y="262" width="96" height="10" rx="3" fill="${C.soft}"/><circle cx="222" cy="249" r="13" fill="${C.mark}"/><circle cx="222" cy="249" r="8" fill="none" stroke="${C.paper}" stroke-width="2"/><circle cx="254" cy="251" r="11" fill="${C.mark}"/><path d="M254 240 v22 M243 251 h22" stroke="${C.paper}" stroke-width="1.6"/><rect x="58" y="206" width="36" height="64" rx="5" fill="none" stroke="${C.paper}" stroke-width="3"/><rect x="61" y="238" width="30" height="29" rx="3" fill="${C.mark}" opacity=".85"/>`)),
+  t02: () => SVG('Secuencia: primero el producto aislado, después en contexto',
+    P(0, '1 · PARA ELEGIR', -1, 'Solo: fácil de comparar', `<rect x="74" y="70" width="180" height="204" rx="10" fill="${C.paper}"/>${shirt(104, 118, C.ink)}`),
+    P(312, '2 · PARA COMPRAR', -1, 'En contexto: ayuda a decidir', `<rect x="34" y="66" width="86" height="112" rx="4" fill="${C.rule}" opacity=".9"/><path d="M77 66 v112 M34 122 h86" stroke="${C.pan}" stroke-width="4"/><circle cx="262" cy="118" r="30" fill="${C.mid}" opacity=".8"/><rect x="246" y="146" width="32" height="40" rx="4" fill="${C.rule}"/><path d="M40 286 h248" stroke="${C.rule}" stroke-width="4"/><path d="M64 94 h200" stroke="${C.soft}" stroke-width="3"/><path d="M164 94 v10 M164 104 L122 126 h84 Z" fill="none" stroke="${C.paper}" stroke-width="3" stroke-linejoin="round"/>${shirt(104, 126, C.mark)}`),
+    ARROW),
+  t03: () => SVG('Comparación de ángulos de cámara sobre una bolsa de café',
+    P(0, 'DESDE ABAJO', -1, 'Superior · más lujo', `${bag(40, 58, 96, 264, [46, 52, 172, 208])}${cam(48, 272)}<path d="M76 276 L118 240" stroke="${C.dim}" stroke-width="2" stroke-dasharray="5 5"/>`),
+    P(312, 'DESDE ARRIBA', -1, 'Pierde presencia', `${bag(64, 46, 96, 264, [58, 52, 150, 186])}${cam(250, 62)}<path d="M250 78 L214 100" stroke="${C.dim}" stroke-width="2" stroke-dasharray="5 5"/>`)),
+  t04: () => SVG('Comparación: taza con el asa a la izquierda frente a taza con el asa a la derecha y una mano',
+    P(0, 'ASA A LA IZQUIERDA', 0, 'Cuesta imaginarse cogiéndola', mug(132, false, false)),
+    P(312, 'ASA A LA DERECHA', 1, 'Invita a cogerla: somos diestros', mug(84, true, true))),
+  t05: () => SVG('Comparación: producto como bloque frente a producto con las capas separadas',
+    P(0, 'UN BLOQUE', 0, 'No se ve por qué funciona', `<path d="M96 146 L138 118 L260 118 L218 146 Z" fill="#4A5468"/><rect x="96" y="146" width="122" height="104" fill="${C.mid}"/><path d="M218 146 L260 118 L260 222 L218 250 Z" fill="${C.rule}"/>`),
+    P(312, 'CAPAS SEPARADAS', 1, 'Se monta con la vista: confianza', `<path d="M150 80 V272" stroke="${C.dim}" stroke-width="2" stroke-dasharray="4 6"/>${slab(78, C.paper, '#C9CED6')}${slab(128, C.mark, '#C9B83F')}${slab(178, C.soft, '#7F8898')}${slab(228, C.paper, '#C9CED6')}`)),
+  t06: () => SVG('Comparación: imagen del producto arriba a la izquierda frente a abajo a la derecha en un envase',
+    P(0, 'ARRIBA · IZQUIERDA', -1, 'Se percibe más ligero', `${pack(78, 110)}<rect x="150" y="116" width="96" height="9" rx="4.5" fill="${C.ink}"/><rect x="150" y="134" width="70" height="7" rx="3.5" fill="${C.soft}"/>${beam(false)}`),
+    P(312, 'ABAJO · DERECHA', 1, 'Más pesado, más contundente', `${pack(190, 160)}<rect x="80" y="116" width="96" height="9" rx="4.5" fill="${C.ink}"/><rect x="80" y="134" width="70" height="7" rx="3.5" fill="${C.soft}"/>${beam(true)}`)),
+  t07: () => SVG('Comparación: envase saturado frente a envase de colores apagados',
+    P(0, 'SATURADO', -1, 'Intenso · potente · eficaz', box('#E8262B', '#FFD60A', 'MAX', '#FFFFFF')),
+    P(312, 'APAGADO', -1, 'Suave · natural · ecológico', box('#A9B8AC', '#E6E9E2', 'EKO', '#3E4A42'))),
+
+  t08: () => SVG('Comparación: jabón de limón con limones enteros frente a jabón con un limón cortado',
+    P(0, 'LIMONES ENTEROS', 0, 'Se ve, pero no se huele', `${soap(104)}<ellipse cx="146" cy="224" rx="21" ry="15" fill="${C.mark}"/><ellipse cx="180" cy="228" rx="19" ry="14" fill="#E6D24A"/><path d="M124 224 l-6 0 M200 228 l6 0" stroke="${C.mark}" stroke-width="5" stroke-linecap="round"/>`),
+    P(312, 'LIMÓN CORTADO', 1, 'Con el zumo a la vista, casi se huele', `${soap(104)}${lemonHalf(150, 226, 22)}<ellipse cx="186" cy="228" rx="16" ry="13" fill="#E6D24A"/><path d="M168 228 a18 13 0 0 1 0 0" /><path d="M128 196 q4 -6 0 -12 M140 192 q4 -6 0 -12" fill="none" stroke="${C.soft}" stroke-width="2" stroke-linecap="round"/><path d="M262 120 q6 -10 0 -18 q-6 -8 0 -18 M276 128 q6 -10 0 -18 q-6 -8 0 -18" fill="none" stroke="${C.mark}" stroke-width="2.5" stroke-linecap="round" opacity=".8"/><path d="M240 250 q4 8 0 12 q-4 -4 0 -12 Z M252 262 q3 6 0 9 q-3 -3 0 -9 Z" fill="#FFF2A6"/>`)),
+  t08b: () => `<svg viewBox="0 0 640 360" role="img" aria-label="Vela de canela con canela en rama y canela molida; ampliación de la canela molida con la etiqueta aroma más intenso"><rect width="640" height="360" fill="${C.ink}"/>
+    <rect x="16" y="16" width="608" height="328" rx="14" fill="${C.pan}" stroke="${C.rule}"/>
+    <rect x="40" y="286" width="258" height="14" rx="4" fill="#5A3E2B"/>
+    <rect x="72" y="146" width="92" height="140" rx="12" fill="rgba(246,247,244,.10)" stroke="${C.paper}" stroke-width="3"/>
+    <rect x="77" y="182" width="82" height="100" rx="8" fill="${C.paper}"/><rect x="92" y="214" width="52" height="34" rx="3" fill="none" stroke="#9A5A2E" stroke-width="2"/><rect x="100" y="228" width="36" height="6" rx="3" fill="#9A5A2E"/>
+    <path d="M118 182 v-12" stroke="${C.ink}" stroke-width="2"/><path d="M118 146 q-10 14 0 24 q10 -10 0 -24 Z" fill="${C.mark}"/>
+    ${[0,1,2].map(k => `<rect x="${186 + k*6}" y="${252 + k*-11}" width="96" height="14" rx="7" fill="#A0612F"/><circle cx="${188 + k*6}" cy="${259 + k*-11}" r="7" fill="#7A4521"/><circle cx="${188 + k*6}" cy="${259 + k*-11}" r="3.5" fill="#5A3317"/>`).join('')}
+    <path d="M52 288 Q98 238 146 288 Z" fill="#C47A3E"/>${Array.from({length:22}, (_,k) => `<circle cx="${62 + (k*37)%80}" cy="${272 + (k*13)%14}" r="1.4" fill="#8A4F22"/>`).join('')}
+    <rect x="44" y="236" width="112" height="58" rx="4" fill="none" stroke="${C.mark}" stroke-width="2.5"/>
+    <path d="M156 240 L344 118" stroke="${C.mark}" stroke-width="2"/>
+    <rect x="344" y="100" width="260" height="214" rx="12" fill="#232B3A" stroke="${C.mark}" stroke-width="2.5"/>
+    <path d="M362 300 Q470 150 588 300 Z" fill="#C47A3E"/>${Array.from({length:60}, (_,k) => `<circle cx="${380 + (k*53)%190}" cy="${262 + (k*17)%34}" r="2" fill="#8A4F22"/>`).join('')}
+    <rect x="372" y="54" width="214" height="36" rx="8" fill="${C.ink}" stroke="${C.rule}"/>
+    <text x="479" y="77" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="14" letter-spacing="2" fill="${C.paper}">AROMA <tspan font-weight="700" fill="${C.mark}">MÁS INTENSO</tspan></text>
+    <path d="M479 90 V214" stroke="${C.paper}" stroke-width="2.5"/><circle cx="479" cy="218" r="7" fill="${C.ink}" stroke="${C.paper}" stroke-width="2.5"/>
+  </svg>`,
+};
+
+
+
+/* ---------- datos de las tácticas (salen de la biblioteca, verificados) ---------- */
+const CARDS = [{"id": "t01", "n": 1, "cat": "Personas", "ev": "md", "sesgo": "Propiedad psicológica", "cover": "El rastro, <i class=\"m\">no la persona</i>", "t": "Sugiere a las personas, no las muestres", "by": ["Lu, Jung & Peck", "2024", "Journal of Consumer Research"], "quote": "Una persona en la foto puede hacer que el producto parezca de otro. Una pista de que alguien lo usa, como una mano o una taza a medio beber, aporta calidez sin ese efecto."}, {"id": "t02", "n": 2, "cat": "Composición", "ev": "md", "sesgo": "Simulación mental", "cover": "Primero <i class=\"m\">solo</i>, luego en uso", "t": "Ordena la galería: el producto solo y, justo después, en uso", "by": ["Lee, Shin & Kincade", "2024", "Journal of Product & Brand Management"], "quote": "La foto que te ayuda a imaginarte usando el producto es la que empuja la compra. Y el lugar que ocupa en la galería cambia cuánto ayuda."}, {"id": "t03", "n": 5, "cat": "Encuadre", "ev": "md", "sesgo": "Verticalidad", "cover": "Desde abajo, <i class=\"m\">superior</i>", "t": "Fotografía el producto desde un poco más abajo", "by": ["Xuan, Chen, Lin & Huang", "2024", "Journal of Advertising"], "quote": "Visto desde abajo, un producto parece superior y más lujoso. La excepción son los productos con cara, que gustan más vistos desde arriba."}, {"id": "t04", "n": 6, "cat": "Tacto", "ev": "hi", "sesgo": "Propiedad por el tacto", "cover": "El asa, <i class=\"m\">a la derecha</i>", "t": "Haz que den ganas de tocar el producto", "by": ["Peck & Shu", "2009", "Journal of Consumer Research"], "quote": "Tocar algo nos hace sentirlo nuestro. Online no se puede tocar, pero verlo tocar, tenerlo orientado hacia tu mano o leer cómo se siente produce un efecto parecido."}, {"id": "t05", "n": 3, "cat": "Composición", "ev": "hi", "sesgo": "Montaje mental", "cover": "Enseña las <i class=\"m\">capas</i>", "t": "Enseña las capas del producto por dentro", "by": ["Kang, Kim & Lakshmanan", "2024", "Journal of Marketing"], "quote": "Enseñar el producto despiezado, con sus capas separadas, hace que valga más para el cliente: al montarlo con la vista, confía más en que funcionará."}, {"id": "t06", "n": 4, "cat": "Composición", "ev": "hi", "sesgo": "Peso visual", "cover": "Abajo a la derecha <i class=\"m\">pesa más</i>", "t": "Coloca la imagen abajo a la derecha para dar peso", "by": ["Deng & Kahn", "2009", "Journal of Marketing Research"], "quote": "En un envase, la imagen del producto colocada abajo o a la derecha lo hace parecer más pesado. Si el peso es una virtud, suma. Si no, resta."}, {"id": "t07", "n": 7, "cat": "Color", "ev": "hi", "sesgo": "Intensidad del color", "cover": "Más saturado, <i class=\"m\">más potente</i>", "t": "Sube la saturación para transmitir potencia", "by": ["Labrecque et al.", "2025", "Journal of Marketing"], "quote": "Los colores muy saturados hacen que un producto parezca más fuerte y eficaz. Los apagados, más natural y sostenible."}, {"id": "t08", "n": 8, "cat": "Sentidos", "ev": "md", "sesgo": "Imaginería sensorial", "cover": "Que la foto <i class=\"m\">huela</i>", "t": "Haz que tus fotos se puedan oler, oír y tocar", "by": ["Sharma & Estes", "2024", "International Journal of Research in Marketing"], "quote": "De 957 detergentes y limpiadores con aroma, solo el 27 % enseñaba en el envase aquello a lo que huele. Y esos tenían mejor nota de los clientes: 4,66 frente a 4,46 estrellas."}];
+window.UED_N_STUDIES = 24;
+const QUESTIONS = {
+  t01:'¿Debe salir una persona en la foto de tu producto?',
+  t02:'¿Qué foto va justo después de la principal?',
+  t03:'¿Desde qué ángulo parece más lujoso un producto?',
+  t04:'¿Cómo haces que quieran tocar tu producto a través de una pantalla?',
+  t05:'¿Qué pasa si enseñas tu producto por dentro?',
+  t06:'¿En qué lugar del envase «pesa» más la imagen?',
+  t07:'¿Qué colores hacen que un producto parezca más eficaz?',
+  t08:'¿Se puede oler una foto?',
+};
+const EV = { hi:'Evidencia alta', md:'Evidencia media', lo:'Discutida' };
+const pad = (n) => String(n).padStart(3, '0');
+CARDS.sort((a, b) => a.n - b.n);
+if (CARDS.length) $('fT').textContent = CARDS.length;
+if (window.UED_N_STUDIES) $('fS').textContent = window.UED_N_STUDIES;
+
+/* abanico de la portada */
+const coverHTML = (t) => `<div class="cover"><div class="ct"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${pad(t.n)}</span></div>
+  <div><p class="kick">Un estudio demuestra que…</p><p class="hook">${t.cover}</p></div>
+  <div class="foot">${LOGO}<span class="ev ${t.ev}">${EV[t.ev]}</span></div></div>
+  <p class="ttl">${esc(t.t)}</p><p class="by">${esc(t.by[0])} · ${esc(t.by[1])}</p>`;
+const pick = (id) => CARDS.find(c => c.id === id);
+const FAN = ['t03', 't05', 't08'].map(pick).filter(Boolean);
+$('fan').innerHTML = FAN.map(t => `<div class="fc">${coverHTML(t)}</div>`).join('') +
+  (FAN[2] ? `<div class="fcite"><i>1</i>${esc(FAN[2].by[0])} · ${esc(FAN[2].by[1])} · ${esc(FAN[2].by[2])}</div>` : '');
+
+/* cinta: «un estudio demuestra que…» con hallazgos reales */
+const TICK = [
+  'un producto visto desde abajo parece superior y más lujoso.',
+  'enseñar el producto despiezado hace que valga más para el cliente.',
+  'los colores muy saturados hacen que un producto parezca más fuerte y eficaz.',
+  'de 957 limpiadores con aroma, solo el 27 % enseñaba a qué huele. Y esos tenían mejor nota.',
+  'tocar algo nos hace sentirlo nuestro.',
+  'la imagen colocada abajo a la derecha hace que el producto parezca más pesado.',
+  'una persona en la foto puede hacer que el producto parezca de otro.',
+  'la foto que te ayuda a imaginarte usándolo es la que empuja la compra.',
+];
+const tickRow = TICK.map(s => `<span><i>Un estudio demuestra que</i> ${esc(s)}</span>`).join('');
+$('tick').innerHTML = tickRow + tickRow.replace(/<span>/g, '<span aria-hidden="true">');
+
+/* tarjetas que se giran */
+const FLIPICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 2v5h-5M6 22v-5h5"/></svg>';
+$('deck').innerHTML = CARDS.map(t => {
+  const art = (typeof ILL !== 'undefined' && ILL[t.id]) ? ILL[t.id]() : '';
+  return `<button class="flip rv" type="button" aria-pressed="false" data-id="${t.id}">
+  <span class="in">
+    <span class="face front">
+      <span class="art">${art}<span class="ct"><span class="tag">${esc(t.cat.toUpperCase())}</span><span class="num">#${pad(t.n)}</span></span></span>
+      <span class="meta">${esc(t.sesgo.toUpperCase())}</span>
+      <span class="qq">${esc(QUESTIONS[t.id] || t.t)}</span>
+      <span class="go">Ver qué demuestra<i>${FLIPICON}</i></span>
+    </span>
+    <span class="face back">
+      <span class="k">Un estudio demuestra que…</span>
+      <span class="f">${esc(t.quote)}</span>
+      <span class="src"><b>${esc(t.by[0])}</b> · ${esc(t.by[1])} · <i>${esc(t.by[2])}</i></span>
+      <span class="ev ${t.ev}">${EV[t.ev]}</span>
+      <span class="inside">La táctica completa, con cómo aplicarla, está en la biblioteca.<span class="btn" data-go>Quiero entrar</span></span>
+    </span>
+  </span></button>`;
+}).join('');
+$('deck').addEventListener('click', (e) => {
+  const card = e.target.closest('.flip'); if (!card) return;
+  if (e.target.closest('[data-go]') && card.getAttribute('aria-pressed') === 'true') {
+    e.preventDefault(); goJoin(); return;
+  }
+  card.setAttribute('aria-pressed', card.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+});
+function goJoin(){
+  const box = $('apuntarme'); box.scrollIntoView({ behavior:'smooth', block:'center' });
+  setTimeout(() => { const i = box.querySelector('input[type=email]'); if (i) i.focus({ preventScroll:true }); }, 600);
+}
+$('topCta').addEventListener('click', (e) => { if (OPEN() && getMe()) return; e.preventDefault(); goJoin(); });
+
+/* categorías */
+const CATS = [
+  ['ecommerce','Imágenes de producto y eCommerce','<rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-5-5-8 8"/>'],
+  ['copywriting','Copywriting','<path d="M4 20l4-1 10-10-3-3L5 16l-1 4z"/><path d="M13 7l3 3"/><path d="M14 20h6"/>'],
+  ['precios','Precios','<path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.5"/>'],
+  ['publicidad','Publicidad','<path d="M3 10v4h3l6 4V6L6 10H3z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/>'],
+  ['branding','Branding y packaging','<path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/>'],
+  ['ux','Experiencia de usuario','<path d="M5 3l14 8-6 2-2 6L5 3z"/><path d="M13 13l6 6"/>'],
+  ['ventas','Ventas y negociación','<path d="M3 12l4-4 4 3 3-2 7 5-4 4-3-2-3 2-4-3-4 1z"/><path d="M7 8l4 3"/>'],
+  ['retail','Retail','<path d="M3 9l2-5h14l2 5"/><path d="M4 9v11h16V9"/><path d="M3 9h18M9 20v-6h6v6"/>'],
+  ['sector','Lujo y ONG','<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5M9 10h.01M15 10h.01"/>'],
+];
+$('cats').innerHTML = CATS.map(([k, label, ic], i) => `<div class="cat ${i === 0 ? 'on' : ''}"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic}</svg></span><div><b>${label}</b><small>${i === 0 ? CARDS.length + ' tácticas listas' : 'Próximamente'}</small></div></div>`).join('');
+
+/* cuenta atrás */
+function tickCd(){
+  const ms = Math.max(0, LAUNCH.getTime() - Date.now());
+  const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, s = Math.floor(ms / 1e3) % 60;
+  const two = (n) => String(n).padStart(2, '0');
+  const html = `<div><b>${d}</b><span>días</span></div><div><b>${two(h)}</b><span>horas</span></div><div><b>${two(m)}</b><span>min</span></div><div><b>${two(s)}</b><span>seg</span></div>`;
+  document.querySelectorAll('[data-cd]').forEach(e => { e.innerHTML = html; e.setAttribute('aria-label', `Faltan ${d} días, ${h} horas y ${m} minutos`); });
+  if (!ms) { clearInterval(cdTimer); applyOpenState(); }
+}
+const cdTimer = setInterval(tickCd, 1000);
+
+/* cuando ya ha abierto */
+function applyOpenState(){
+  if (!OPEN()) return;
+  document.querySelectorAll('[data-cd]').forEach(e => e.hidden = true);
+  $('cdLabel1').hidden = true;
+  $('opensPill').innerHTML = '<b>YA ESTÁ ABIERTA</b>';
+  $('finalLabel').textContent = 'Ya está abierta';
+  $('finalH').textContent = 'Deja tu email y entra.';
+  $('finalSub').textContent = 'La biblioteca es solo para quien está en la lista.';
+  if (getMe()) { $('topCta').textContent = 'Entrar a la biblioteca'; $('topCta').href = 'biblioteca'; }
+  renderJoins();
+}
+
+/* ---------- formulario de la lista ---------- */
+const API = CFG.url && CFG.anonKey ? (name, body) => fetch(`${CFG.url}/rest/v1/rpc/${name}`, {
+  method:'POST', headers:{ 'Content-Type':'application/json', apikey: CFG.anonKey, Authorization:`Bearer ${CFG.anonKey}` }, body: JSON.stringify(body)
+}).then(async r => { const j = await r.json().catch(() => null); if (!r.ok) { const e = new Error((j && j.message) || String(r.status)); throw e; } return j; }) : null;
+const INTERESTS = ['Fotos de producto', 'Fichas y textos', 'Anuncios', 'Precios', 'Packaging', 'Vídeo y redes'];
+const shareUrl = location.origin && location.origin.startsWith('http') ? location.origin + location.pathname : 'https://unestudiodemuestra.vercel.app/';
+const shareText = 'Mira esto: una biblioteca de tácticas de marketing demostradas por estudios. Abre el ' + fmtLong + ', solo para la lista →';
+
+function formHTML(){
+  const open = OPEN();
+  return `<form class="jf" novalidate>
+    <label class="hp">No rellenar <input name="web" tabindex="-1" autocomplete="off"></label>
+    <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="tu@email.com" aria-label="Tu email">
+    <button class="btn" type="submit">${open ? 'Entrar gratis →' : 'Quiero acceso →'}</button>
+  </form>
+  <p class="jnote"><span class="ok">Gratis</span><span class="ok">${open ? 'Acceso al momento' : 'Abre el ' + esc(fmtLong)}</span><span class="ok">Sin spam</span></p>
+  <p class="jlegal">Al apuntarte aceptas la <a href="privacidad">política de privacidad</a>. Te das de baja cuando quieras.</p>
+  <p class="jmsg" role="alert" hidden></p>
+  <p class="proof" data-proof hidden></p>`;
+}
+function doneHTML(email, total){
+  const open = OPEN();
+  return `<div class="done" role="status">
+    <h3><i>✓</i>${open ? 'Ya tienes acceso.' : 'Estás dentro.'}</h3>
+    <p>${open ? 'Entra cuando quieras. Te avisaremos en ' : `El <b>${esc(fmtLong)}</b> te escribimos a `}<b>${esc(email)}</b>${open ? ' cuando haya tácticas nuevas.' : ' con tu acceso.'}${total ? ` Ya somos <b>${total}</b> en la lista.` : ''}</p>
+    ${open ? '<a class="btn" href="biblioteca">Entrar a la biblioteca →</a>' : ''}
+    <span class="q">¿Qué quieres mejorar primero?</span>
+    <div class="chips">${INTERESTS.map(x => `<button type="button" aria-pressed="false">${x}</button>`).join('')}</div>
+    <span class="q">Pásaselo a quien venda online</span>
+    <div class="share"><a href="https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}" target="_blank" rel="noopener">WhatsApp</a><button type="button" data-copy>Copiar enlace</button></div>
+  </div>`;
+}
+function renderJoins(){
+  const me = getMe();
+  document.querySelectorAll('.joinbox').forEach(box => {
+    if (me) { box.innerHTML = doneHTML(me, null).replace('Estás dentro.', 'Ya estás en la lista.'); bindDone(box, me); }
+    else { box.innerHTML = formHTML(); bindForm(box); }
+  });
+  loadProof();
+}
+function bindForm(box){
+  const f = box.querySelector('form'), msg = box.querySelector('.jmsg'), input = f.email, btn = f.querySelector('button');
+  const say = (t) => { msg.textContent = t; msg.hidden = !t; };
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault(); say('');
+    const v = input.value.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { say('Escribe un email válido, por ejemplo nombre@dominio.com.'); input.focus(); return; }
+    if (f.web.value) { setMe(v); renderJoins(); return; }
+    if (!API) { say('Vista previa: aquí el formulario no guarda nada. En la web publicada sí.'); return; }
+    btn.disabled = true; btn.textContent = 'Un segundo…';
     try {
-      const res = await fetch(WAITLIST_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email: value, interes: document.getElementById('interes').value }) });
-      if (!res.ok) throw new Error(res.status);
-      form.reset();
-      show('Estás dentro. Te escribiremos cuando abra la biblioteca.', 'ok');
+      const total = await API('unirse_lista', { p_email: v, p_origen: box.dataset.origen + (location.search ? ' ' + location.search.slice(0, 80) : '') });
+      setMe(v);
+      document.querySelectorAll('.joinbox').forEach(b => { b.innerHTML = doneHTML(v, typeof total === 'number' ? total : null); bindDone(b, v); });
+      if (OPEN()) { $('topCta').textContent = 'Entrar a la biblioteca'; $('topCta').href = 'biblioteca'; }
     } catch (err) {
-      show('No se ha podido enviar. Revisa tu conexión y vuelve a intentarlo.', 'err');
+      say(/email_invalido/.test(err.message) ? 'Ese email no parece válido. Revísalo.' : 'No se ha podido guardar. Revisa tu conexión y vuelve a intentarlo.');
+      btn.disabled = false; btn.textContent = OPEN() ? 'Entrar gratis →' : 'Quiero acceso →';
     }
   });
-})();
+}
+function bindDone(box, email){
+  box.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => {
+    box.querySelectorAll('.chips button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+    if (API) API('lista_interes', { p_email: email, p_interes: b.textContent }).catch(() => {});
+  }));
+  const cp = box.querySelector('[data-copy]');
+  if (cp) cp.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(shareUrl); cp.textContent = '¡Copiado!'; } catch (e) { cp.textContent = shareUrl; }
+  });
+}
+/* prueba social: solo cuando ya es un número que dice algo */
+let proofN = null;
+async function loadProof(){
+  if (!API) return;
+  try { if (proofN === null) proofN = await API('lista_espera_total', {}); } catch (e) { return; }
+  if (typeof proofN === 'number' && proofN >= 50)
+    document.querySelectorAll('[data-proof]').forEach(p => { p.innerHTML = `Ya somos <b>${proofN}</b> en la lista.`; p.hidden = false; });
+}
+
+/* ---------- vídeos: se cargan y reproducen solo cuando se ven ---------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let userPaused = reduce;
+const vids = [$('vDesk'), $('vMob')];
+const mp4ok = !!document.createElement('video').canPlayType('video/mp4; codecs="avc1.42E01E"');
+const srcOf = (v) => mp4ok ? v.dataset.src : v.dataset.src.replace(/\.mp4$/, '.webm');
+const vio = new IntersectionObserver((es) => es.forEach(en => {
+  const v = en.target;
+  if (en.isIntersecting) {
+    if (!v.src && v.offsetParent) { v.src = srcOf(v); }
+    if (!userPaused && v.offsetParent) v.play().catch(() => {});
+  } else if (v.src) v.pause();
+}), { threshold:.35 });
+vids.forEach(v => vio.observe(v));
+const vt = $('vToggle');
+const setVt = () => vt.textContent = userPaused ? '▶ Reproducir vídeo' : '❚❚ Pausar vídeo';
+setVt();
+vt.addEventListener('click', () => {
+  userPaused = !userPaused; setVt();
+  vids.forEach(v => { if (!v.offsetParent) return; if (!v.src) v.src = srcOf(v); userPaused ? v.pause() : v.play().catch(() => {}); });
+});
+
+/* entrada suave de bloques */
+const rio = new IntersectionObserver((es) => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); } }), { threshold:.12 });
+document.querySelectorAll('.rv').forEach(e => rio.observe(e));
+
+tickCd();
+renderJoins();
+applyOpenState();
 </script>
 
 </body>
