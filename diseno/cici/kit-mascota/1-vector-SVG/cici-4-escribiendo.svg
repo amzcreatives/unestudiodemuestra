@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -12 140 160">
+<title>CiCi · escribiendo</title>
+<g id="sombra"><ellipse cx="60" cy="134" rx="32" ry="4" fill="#000000" opacity="0.28"/></g>
+<g id="cici">
+<g id="hoja"><path d="M30 14 H78 L98 34 V120 Q98 128 90 128 H30 Q22 128 22 120 V22 Q22 14 30 14 Z" fill="#F6F7F4"/><path d="M78 14 V28 Q78 34 84 34 H98 Z" fill="#D9DDE3"/><path d="M34 100 H86 M34 108 H78 M34 116 H68" stroke="#D9DDE3" stroke-width="3" stroke-linecap="round" fill="none"/></g>
+<g id="ojos" fill="#141A24"><circle cx="46" cy="56" r="4.8"/><circle cx="74" cy="56" r="4.8"/></g>
+<g id="boca"><rect x="46.35" y="66.25" width="27.3" height="10.5" rx="1.5" fill="#F4E35A"/></g>
+<g id="brillo"><circle cx="98" cy="17" r="19" fill="#F4E35A" opacity="0.3"/></g>
+<g id="nota-al-pie"><circle cx="98" cy="17" r="13" fill="#F4E35A"/><path d="M94.76 22.5V20.85H97.61V13.21L94.75 15.35V13.37L97.27 11.55H99.48V20.85H101.78V22.5Z" fill="#141A24"/></g>
+</g></svg>

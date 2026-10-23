@@ -1,0 +1,63 @@
+CiCi · kit de la mascota para edición de vídeo
+Un Estudio Demuestra (@unestudiodemuestra)
+==============================================
+
+QUIÉN ES CICI
+CiCi (de «Ciencia Citada») es la asistente de Un Estudio Demuestra: una hoja de estudio con vida.
+La esquina doblada y la nota al pie «1» en círculo amarillo salen del logo UED.
+Empieza por 0-hoja-de-estados.png y 0-previsualizacion-todos-los-estados.mp4 para verla entera.
+
+
+LOS 6 ESTADOS (y cuándo usar cada uno)
+1 · Reposo ........ Por defecto. Cuando presenta algo o espera. Flota suave y parpadea.
+2 · Escuchando .... Mientras alguien pregunta o escribe. Mira hacia abajo y la nota «1» asiente.
+3 · Pensando ...... Mientras busca en los estudios. Mira arriba, se balancea y suben puntos amarillos (los datos).
+4 · Escribiendo ... Mientras da la respuesta. La boca (el subrayador amarillo) se mueve y el «1» brilla.
+5 · Contenta ...... Ha encontrado la respuesta. Da un saltito, ojos felices, el «1» brilla.
+6 · Sin evidencia .. No hay estudios que respalden algo. Mirada baja, boca gris y el «1» se convierte en «?».
+
+Secuencia típica en un vídeo: Reposo → Escuchando (aparece la pregunta) → Pensando → Escribiendo → Contenta.
+Para un «mito» o algo que no está demostrado: Pensando → Sin evidencia.
+
+
+QUÉ HAY EN CADA CARPETA
+0-hoja-de-estados.png ................ Todos los estados de un vistazo, con la paleta.
+0-previsualizacion-...mp4 ............ Los 6 estados animados a la vez (solo para ver, no para montar).
+
+1-vector-SVG/ ........................ Vectores editables (Illustrator, Figma, After Effects).
+                                       Capas con nombre: sombra, cici › hoja, ojos, boca, datos, brillo, nota-al-pie.
+   para-fondos-claros/ ............... Con contorno oscuro, para fondos blancos o claros.
+
+2-PNG-transparente/ (1400 × 1600 px)
+   con-sombra/ · sin-sombra/ · para-fondos-claros/
+   TODOS los estados usan el mismo lienzo y la misma posición:
+   puedes cambiar de un estado a otro en la línea de tiempo sin que CiCi salte.
+
+3-animaciones-en-bucle/ (1050 × 1200 px · 30 fps · bucles sin corte)
+   MOV-ProRes4444-transparente/ ...... El bueno para Premiere, After Effects, Final Cut y DaVinci (con transparencia).
+   WebM-transparente/ ................ Ligero, con transparencia (web y algunos editores).
+   MP4-fondo-verde/ .................. Para CapCut o apps de móvil: quita el verde con «croma» (CiCi no tiene nada verde).
+   Duración de cada bucle: reposo 4,2 s · escuchando 3,6 s · pensando 3,2 s · escribiendo 2,6 s
+                           contenta 2,8 s (salta al empezar) · sin evidencia 4,2 s.
+   Repite el clip todas las veces que necesites: el último fotograma enlaza con el primero.
+
+4-avatar/ (1080 × 1080) ............... CiCi en reposo sobre fondo tinta y sobre fondo papel.
+
+5-extra-version-con-brazos/ ........... Versión guardada con brazos. NO usar salvo que Gondez lo pida.
+
+
+COLORES
+Papel (cuerpo) ........ #F6F7F4
+Pliegue y líneas ...... #D9DDE3
+Tinta (ojos) .......... #141A24   (también el fondo de marca)
+Subrayador (boca, «1») #F4E35A
+«?» ................... #A3ACBB sobre #141A24, borde #5B6472
+
+
+REGLAS
+- No cambiar colores, proporciones ni la forma de la hoja. No estirarla ni deformarla.
+- La nota al pie («1» o «?») siempre arriba a la derecha, rompiendo la esquina.
+- Mejor sobre fondos oscuros (tinta #141A24). En fondos claros, usa las versiones «para-fondos-claros».
+- Evita fondos amarillos: la nota «1» y la boca desaparecen.
+- Tamaño mínimo recomendado en pantalla: unos 120 px de alto en un vídeo de 1080 × 1920.
+- Tipografías de la marca: Newsreader (titulares), Public Sans (texto), JetBrains Mono (datos y citas).
