@@ -3,6 +3,7 @@
 Todos los estudios citados en la biblioteca, con lo que dicen de verdad. Cada hallazgo se comprobó contra el resumen del artículo (o el texto completo cuando hacía falta para una cifra).
 
 - `fuentes.json`: la misma información en formato de datos (para importarla a Supabase más adelante).
+- `tanda-02-virales.md` / `.json`: las 10 tácticas virales para los vídeos de la lista de espera (de qué táctica de Kolenda sale cada una, estudios verificados, gancho y qué no decir).
 - `pdf/`: guarda aquí los PDF de cada estudio con el nombre `id.pdf` (por ejemplo `sharma-2024.pdf`). **Solo si el repositorio es privado.**
 
 Regla de la casa: si un estudio no lo dice, no lo ponemos en la web.
